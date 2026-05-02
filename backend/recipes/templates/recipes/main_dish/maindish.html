@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Yummy - Main Dishes</title>
+    <link rel="stylesheet" href="../../src/css/maindish.css">
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <div id="navbar">
+        <nav class="main-nav">
+            <div class="logo">Yummy 🍲</div>
+            <button id="backbutton" class="big-arrow-btn" type="button" aria-label="Go Back">
+                &#8592;
+            </button>
+            <ul class="nav-links">
+                <li><a href="../../cover.html">Team</a></li>
+                <li><a href="../../index.html">Home</a></li>
+                <li><a href="../../search.html">Search</a></li>
+                <li><a href="../../favorites.html">Favorites</a></li>
+                <li><a href="../admin/admin-recipe.html">Admin</a></li>
+                <li><a href="../admin/add-recipe.html">Add Recipe</a></li>
+                <li><a href="../auth/login.html">Login</a></li>
+                <li><a href="../auth/signup.html">Sign Up</a></li>
+            </ul>
+        </nav>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="main">
+        <div class="main-content">
+            <h1>Main Dishes</h1>
+            <p>Fresh. Tasty. Unforgettable Meals 😍</p>
+            <a href="javascript:void(0)" class="btn-main" onclick="onClick()">View Recipes</a>
+        </div>
+    </section>
+
+    <!-- Recipes Categories -->
+    <h2 class="h2">Recipes Categories</h2>
+
+    <section class="recipes-container" id="recipes">
+        <div class="recipe-card" id="chicken">
+            <h2>Chicken 🍗</h2>
+            <p>Tender chicken dishes bursting with flavor in every bite.</p>
+            <a href="chicken.html" target="_blank">View Recipes</a>
+        </div>
+
+        <div class="recipe-card" id="beef">
+            <h2>Beef 🥩</h2>
+            <p>Rich, juicy beef cooked to perfection for true meat lovers.</p>
+            <a href="beef.html" target="_blank">View Recipes</a>
+        </div>
+
+        <div class="recipe-card" id="seafood">
+            <h2>Seafood 🐟</h2>
+            <p>Fresh seafood delights straight from the ocean to your plate.</p>
+            <a href="seafood.html" target="_blank">View Recipes</a>
+        </div>
+
+        <div class="recipe-card" id="vegetarian">
+            <h2>Vegetarian 🥗</h2>
+            <p>Healthy and delicious plant-based meals full of goodness.</p>
+            <a href="vegetarian.html" target="_blank">View Recipes</a>
+        </div>
+
+        <div class="recipe-card" id="pasta">
+            <h2>Pasta 🍝</h2>
+            <p>Creamy, cheesy pasta made to satisfy your cravings.</p>
+            <a href="pasta.html" target="_blank">View Recipes</a>
+        </div>
+
+        <div class="recipe-card" id="fast-food">
+            <h2>Fast Food 🍔</h2>
+            <p>Quick, tasty bites that hit the spot every time.</p>
+            <a href="fastfood.html" target="_blank">View Recipes</a>
+        </div>
+    </section>
+
+    <script src="../../src/js/maindish.js"></script>
+</body>
+
+</html>

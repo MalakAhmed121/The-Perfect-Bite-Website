@@ -1,0 +1,82 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Yummy - My Favorites</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap" rel="stylesheet" />
+
+    <style>
+        /* Container for cards - Set to row to display them side by side */
+        #favorites-list {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 25px;
+            padding: 40px 20px;
+            width: 100%;
+        }
+
+        /* Card styling with a width suitable for horizontal layout */
+        .recipe-card {
+            width: 360px;
+            height: 400px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            border-radius: 40px;
+            padding: 25px;
+            background-size: cover;
+            background-position: center;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+        }
+
+        .hidden {
+            display: none !important;
+        }
+    </style>
+</head>
+
+<body style="background-color: #f2e7df; text-align: center">
+    <div id="navbar">
+        <nav class="main-nav">
+            <div class="logo">Yummy</div>
+            <ul class="nav-links">
+                <li><a href="{% url 'cover' %}">Team</a></li>
+                <li><a href="{% url 'home' %}">Home</a></li>
+                <li><a href="{% url 'search' %}">Search</a></li>
+                <li><a href="{% url 'favorites' %}">Favorites</a></li>
+                <li><a href="{% url 'admin_recipe' %}">Admin</a></li>
+                <li><a href="{% url 'add_recipe' %}">Add Recipe</a></li>
+                <li><a href="{% url 'login' %}">Login</a></li>
+                <li><a href="{% url 'signup' %}">Sign Up</a></li>
+            </ul>
+        </nav>
+    </div>
+
+    <div id="favorites-view">
+        <h1 class="fav" style="margin-top: 20px">MY FAVORITES</h1>
+
+        <div id="empty-state">
+            <div>
+                <img class="favimg" src="{% static 'bakeryimages/favorite.png' %}" width="400" />
+            </div>
+            <h2 class="fav">Your favorites haven't arrived yet...</h2>
+            <p class="P-fav">
+                Your personal collection of recipes is ready to grow.<br />
+                Start saving the recipes you love and build your delicious collection!
+            </p>
+            <br />
+            <a href="{% url 'recipes' %}" style="text-decoration: none">
+                <span class="favbutton">DISCOVER DELIGHTFUL RECIPES</span>
+            </a>
+        </div>
+
+        <div id="favorites-list"></div>
+    </div>
+
+    

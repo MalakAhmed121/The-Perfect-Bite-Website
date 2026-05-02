@@ -1,0 +1,418 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+:root{
+    --fern: #62783Bff;
+    --wheat: #E8D2A8ff;
+    --ochre: #C1772Bff;
+    --dark-walnut: #3F1F08ff;
+    --golden-earth: #8F6128ff;
+    --rich-mahogany: #331506ff;
+    --golden-chestnut: #BC8143ff;
+    --shadow-sm: 0 2px 5px rgba(0, 0, 0, 0.1);
+    --harvest-gold: #CA8B24ff;
+}
+
+ 
+
+body {
+    font-family: 'Segoe UI', system-ui, sans-serif;
+    background: linear-gradient(45deg, var(--golden-chestnut));
+    color: var(--dark-walnut);
+    line-height: 1.6;
+}
+
+/* Main Banner Section */
+.main {
+    background-image: url("{% static 'photos/appetizersimgs/main1.jpg' %}");
+    background-color: #8F6128ff;
+    text-align: center;
+    height: 630px;
+    padding-bottom: 0ch;
+    width: 1550px;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.main h1 {
+    font-size: 50px;
+    text-align: center;
+    padding: 160px;
+    padding-bottom: 0px;
+    height: 50px;
+    color: white;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.main p {
+    font-size: 20px;
+    text-align: center;
+    padding: 70px;
+    padding-bottom: 50px;
+    color: white;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+
+}
+
+.main a {
+    padding: 18px 40px;
+    text-align: center;
+    border-radius: 50px;
+    margin-right: 100px;
+    background: var(--ochre);
+    color: var(--dark-walnut);
+    font: 19px;
+    font-family: 'Times New Roman', Times, serif;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.main a:hover {
+    transform: translateY(-5px);
+    background: var(--golden-earth);
+}
+
+/* Recipes Grid Container */
+.recipes-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 25px;
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.h2 {
+    text-align: center;
+    padding-bottom: 20px;
+    margin-top: 10px;
+    color: var( --dark-walnut);
+}
+
+/* Recipe Card Shared Styles */
+.recipe-card {
+    height: 400px;
+    background: #E8D2A8ff;
+    border-radius: 40px;
+    padding: 25px;
+    box-shadow: 0px 0px 2px white;
+    background-size: 400px 500px;
+    background-repeat: no-repeat;
+    color: white;
+    text-shadow: 0px 0px 3px black;
+}
+
+.recipe-card:hover {
+    transform: translateY(-5px);
+}
+
+/* Recipe Card Buttons */
+.recipe-card a {
+    margin-top: auto;
+    align-self: center;
+    margin-top: 250px;
+    margin-left: 90PX;
+    padding: 10px 30px;
+    text-align: center;
+    border-radius: 20px;
+    background-color:var(--dark-walnut);
+    color: var(--ochre);
+    font-size: 16px;
+    font-family: 'Times New Roman', Times, serif;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.recipe-card a:hover {
+    transform: translateY(-5px);
+    background-color:var(--ochre);
+    color: var(--dark-walnut);
+}
+
+/*Images*/
+#DeviledEggs,
+#SpinachArtichokeDip,
+#ChickenWings,
+#JalapenoPoppers,
+#StuffedMushrooms,
+#Crostini,
+#CharcuterieBoard,
+#Sliders,
+#ShrimpCocktail,
+#DeviledEggs-card,
+#SpinachArtichokeDip-card,
+#ChickenWings-card,
+#JalapenoPoppers-card,
+#StuffedMushrooms-card,
+#Crostini-card,
+#CharcuterieBoard-card,
+#Sliders-card,
+#ShrimpCocktail-card
+{
+    background-size: cover;
+    background-repeat: no-repeat;
+    color: white;
+    text-shadow: 0px 0px 3px black;
+}
+
+ 
+#DeviledEggs,
+#DeviledEggs-card
+ 
+ {
+    background-image: url("{% static 'photos/appetizersimgs/pic1.jpg' %}");
+}
+
+ 
+#SpinachArtichokeDip,
+#SpinachArtichokeDip-card
+ 
+ {
+    background-image: url("{% static 'photos/appetizersimgs/pic2.jpg' %}");
+}
+
+ 
+#ChickenWings,
+#ChickenWings-card{
+    background-image: url("{% static 'photos/appetizersimgs/pic3.jpg' %}");
+}
+
+#JalapenoPoppers,
+#JalapenoPoppers-card {
+    background-image: url("{% static 'photos/appetizersimgs/pic4.jpg' %}");
+}
+
+#StuffedMushrooms,
+#StuffedMushrooms-card{
+ 
+    background-image: url("{% static 'photos/appetizersimgs/mushroom.jpeg' %}");
+}
+
+#Crostini,
+#Crostini-card{
+    background-image: url("{% static 'photos/appetizersimgs/pic5.jpeg' %}");
+
+}
+
+#CharcuterieBoard-card,
+#CharcuterieBoard{
+    background-image: url("{% static 'photos/appetizersimgs/pic7.jpeg' %}");
+
+}
+
+#Sliders,
+#Sliders-card{
+     background-image: url("{% static 'photos/appetizersimgs/pic6.jpeg' %}");
+
+}
+
+#ShrimpCocktail,
+#ShrimpCocktail-card{
+     background-image: url("{% static 'photos/appetizersimgs/pic8.jpeg' %}");
+
+}
+
+/*Cards*/
+.details-card {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1000;
+    height: 600px;
+    width: 500px;
+    border-radius: 40px;
+    padding: 25px;
+    background-size: cover;
+    background-position: center;
+
+}
+
+.recipe-content-box {
+    margin-top: 0px;
+    color: black;
+    height: 550px;
+    background-color: rgba(255, 255, 255, 0.4);
+    border-radius: 40px;
+    padding: 20px;
+    text-shadow: 0px 0px 10px white;
+}
+.recipe-content-box-Shrimp{
+     margin-top: 20px;
+    color: black;
+    height: 550px;
+    background-color: rgba(255, 255, 255, 0.4);
+    border-radius: 40px;
+    padding: 20px;
+    text-shadow: 0px 0px 10px white;
+    overflow-y: scroll;
+}
+.recipe-content-box p ,h3{
+    color:#643305;
+  
+}
+.recipe-content-box ul{
+    
+    list-style: none;
+}
+
+.btn-main {
+    margin-top: auto;
+    align-self: center;
+    margin-top: 40px;
+    margin-left: 150PX;
+    padding: 10px 30px;
+    text-align: center;
+    border-radius: 20px;
+    background-color: var(--golden-earth);
+    color: white;
+    font-size: 16px;
+    font-family: 'Times New Roman', Times, serif;
+    text-decoration: none;
+    display: inline-block;
+    
+}
+
+.heart {
+     margin-top: auto;
+    align-self: center;
+    margin-top: 20px;
+    margin-left: 170PX;
+    padding: 0px 30px;
+    font-size: 40px;
+    color: white;   
+    cursor: pointer;
+    text-shadow: 0 0 1px #4b1f11; 
+    transition: all 0.3s ease;
+    display: inline-block;
+     text-align: center;
+    border-radius: 20px;
+    background-color: #4b1f11;
+}
+
+
+.heart:hover {
+   transform: translateY(-5px);
+}
+
+@media only screen and (max-width: 800px) {
+
+    .main {
+        width: 100%;
+        height: auto;
+        background-size: cover;
+        background-position: center;
+        padding: 40px 20px;
+        text-align: center;
+    }
+
+    .main h1 {
+        font-size: 28px;
+        padding: 40px 10px;
+    }
+
+    .main p {
+        font-size: 16px;
+        padding: 20px 10px;
+    }
+
+    .main a {
+        margin: 20px auto;
+        display: table;
+        font-size: 14px;
+        padding: 10px 20px;
+    }
+
+
+
+    .detials-card {
+        width: 90%;
+        height: auto;
+        max-height: 80vh;
+    }
+
+    .recipe-card {
+        height: 400px;
+        padding: 10px;
+        background-size: cover;
+        background-position: center;
+    }
+
+    .recipe-card a {
+        margin: 120px auto;
+        display: table;
+        font-size: 14px;
+        padding: 8px 20px;
+    }
+
+    .recipes-container {
+        grid-template-columns: 1fr;
+        gap: 15px;
+        padding: 10px;
+        height: fit-content;
+    }
+
+    #DeviledEggs,
+    #SpinachArtichokeDip,
+    #ChickenWings,
+    #JalapenoPoppers,
+    #StuffedMushrooms,
+    #Crostini,
+    #CharcuterieBoard,
+    #Sliders,
+    #ShrimpCocktail,
+    #DeviledEggs-card,
+    #SpinachArtichokeDip-card,
+    #ChickenWings-card,
+    #JalapenoPoppers-card,
+    #StuffedMushrooms-card,
+    #Crostini-card,
+    #CharcuterieBoard-card,
+    #Sliders-card,
+    #ShrimpCocktail-card
+    {
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        color: white;
+        text-shadow: 0px 0px 3px black;
+    }
+
+     .details-card {
+        width: 90%;       
+        max-height: 80vh; 
+        padding: 15px;
+        border-radius: 20px;
+        overflow: hidden;
+    }
+
+    .recipe-content-box {
+        margin-top: 20px;
+        height: auto;  
+        padding: 15px;
+        border-radius: 20px;
+        font-size: 14px;  
+        overflow-y: auto; 
+    }
+ .recipe-content-box-Shrimp{
+        margin-top: 20px;
+        height: auto;  
+        padding: 15px;
+        border-radius: 20px;
+        font-size: 14px;  
+        overflow-y: scroll; 
+    }
+    .btn-main {
+        margin: 20px auto;   
+        display: table;
+        font-size: 14px;    
+        padding: 8px 20px;   
+        border-radius: 15px;
+        background: var(--golden-earth);
+        color: white;
+    }
+
+}

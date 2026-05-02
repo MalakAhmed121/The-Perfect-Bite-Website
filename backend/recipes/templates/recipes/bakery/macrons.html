@@ -1,0 +1,136 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Home Baked Recipes • Bakery</title>
+    <link rel="stylesheet" href="{% static 'css/bakery-style.css' %}" />
+    <script src="{% static 'js/bakery-java.js' %}"></script>
+</head>
+
+<body>
+    <div id="navbar">
+        <nav class="main-nav">
+            <div class="logo">Yummy</div>
+            <ul class="nav-links">
+                <li><a href="{% url 'cover' %}">Team</a></li>
+                <li><a href="{% url 'home' %}">Home</a></li>
+                <li><a href="{% url 'search' %}">Search</a></li>
+                <li><a href="{% url 'favorites' %}">Favorites</a></li>
+                <li><a href="{% url 'admin_recipe' %}">Admin</a></li>
+                <li><a href="{% url 'add_recipe' %}">Add Recipe</a></li>
+                <li><a href="{% url 'login' %}">Login</a></li>
+                <li><a href="{% url 'signup' %}">Sign Up</a></li>
+            </ul>
+        </nav>
+    </div>
+
+ 
+
+    <div class="banner">
+        <img src="{% static 'bakeryimages/macronbanner.png' %}" style=" width: 100%;
+            height: 420px;
+            margin-bottom: 30px;">
+
+    </div>
+
+    <BR>
+    <BR>
+
+    <h2 class="h2">OUR Recipes </h2>
+
+
+    <div class="recipes-container">
+
+        <div class="recipe-card" id="VanillaMacarons" data-id="VanillaMacarons"
+            onclick="openCard(event, 'VanillaMacarons-card')">
+            <h2>Vanilla Macarons </h2>
+            <p>Classic French shells filled with a smooth and creamy vanilla bean ganache.</p>
+            <a href="javascript:void(0)" class="btn-main" onclick="openCard(event, 'VanillaMacarons-card')">View
+                Recipes</a>
+        </div>
+
+        <div class="recipe-card" id="PistachioMacarons" data-id="PistachioMacarons"
+            onClick="openCard(event, 'PistachioMacarons-card')">
+            <h2>Pistachio Macarons </h2>
+            <p>Authentic nutty flavor with a light, crisp shell and rich pistachio filling.</p>
+            <a href="javascript:void(0)" class="btn-main" onclick="openCard(event, 'PistachioMacarons-card')">view
+                Recipes</a>
+        </div>
+
+        <div class="recipe-card" id="RaspberryMacrons" data-id="RaspberryMacrons"
+            onclick="openCard(event, 'RaspberryMacrons-card')">
+            <h2>Raspberry Macarons </h2>
+            <p>Delicate almond shells with a tangy and sweet fresh raspberry center.</p>
+            <a href="javascript:void(0)" class="btn-main" onclick="openCard(event, 'RaspberryMacrons-card')">view
+                Recipes</a>
+        </div>
+
+
+    </div>
+
+    <div class="detials-card" id="VanillaMacarons-card">
+        <div class="recipe-content-box">
+            <h2 style="text-align: center;">Vanilla Bean Macarons</h2>
+            <h3>Ingredients</h3>
+            <ul class="recipe-list">
+                <li>Shells: 100g Almond flour, 100g Powdered sugar, 70g Egg whites, 50g Granulated sugar.</li>
+                <li>Filling: 100g White chocolate, 50ml Heavy cream, 1 tsp Vanilla bean paste.</li>
+            </ul>
+            <p><strong>Preparation Steps:</strong></p>
+            <ul class="recipe-list">
+                <li><b>Macaronage🥣:</b> Fold dry ingredients into stiff meringue until it flows like lava.</li>
+                <li><b>Rest⌛:</b> Pipe circles and let them sit for 30-45 mins until a skin forms.</li>
+                <li><b>Bake🔥:</b> Bake at 150°C for 14-16 mins. Let them cool completely before removing.</li>
+                <li><b>Fill🍦:</b> Sandwich two shells with the creamy vanilla ganache.</li>
+            </ul>
+            <span class="heart" title="Add to Favorites" onclick="changecolor(this)">♥</span>
+        </div>
+    </div>
+
+    <div class="detials-card" id="PistachioMacarons-card">
+        <div class="recipe-content-box">
+            <h2 style="text-align: center;">Pistachio Macarons</h2>
+            <h3>Ingredients</h3>
+            <ul class="recipe-list">
+                <li>Shells: Replace 20g of almond flour with finely ground pistachios.</li>
+                <li>Filling: 80g Pistachio paste, 100g White chocolate ganache.</li>
+                <li>Color: A tiny drop of green food coloring.</li>
+            </ul>
+            <p><strong>Preparation Steps:</strong></p>
+            <ul class="recipe-list">
+                <li><b>Combine🥣:</b> Mix the ground pistachios with the almond flour and sugar.</li>
+                <li><b>Pipe✨:</b> Pipe onto parchment paper and tap the tray to release air bubbles.</li>
+                <li><b>Bake🔥:</b> Bake at 150°C. The "feet" should be stable and not sticky.</li>
+                <li><b>Nutty Fill🟢:</b> Use the pistachio-infused ganache for a rich, nutty center.</li>
+            </ul>
+            <span class="heart" title="Add to Favorites" onclick="changecolor(this)">♥</span>
+        </div>
+    </div>
+
+    <div class="detials-card" id="RaspberryMacrons-card">
+        <div class="recipe-content-box">
+            <h2 style="text-align: center;">Raspberry Macarons</h2>
+            <h3>Ingredients</h3>
+            <ul class="recipe-list">
+                <li>Shells: Classic almond shells with pink food coloring.</li>
+                <li>Filling: Raspberry jam or fresh raspberry reduction mixed with buttercream.</li>
+            </ul>
+            <p><strong>Preparation Steps:</strong></p>
+            <ul class="recipe-list">
+                <li><b>Meringue🥣:</b> Whisk egg whites until stiff peaks form, adding pink color at the end.</li>
+                <li><b>Bake🔥:</b> Same classic method (150°C). Don't let them brown!</li>
+                <li><b>Tangy Center🍓:</b> Fill with a ring of buttercream and a drop of raspberry jam in the middle.
+                </li>
+                <li><b>Mature⏳:</b> Store in the fridge for 24 hours for the best chewy texture.</li>
+            </ul>
+            <span class="heart" title="Add to Favorites" onclick="changecolor(this)">♥</span>
+        </div>
+    </div>
+
+
+</body>
+
+</html>

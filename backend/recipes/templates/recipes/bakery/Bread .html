@@ -1,0 +1,121 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Home Baked Recipes • Bakery</title>
+    <link rel="stylesheet" href="{% static 'css/bakery-style.css' %}" />
+    <script src="{% static 'js/bakery-java.js' %}"></script>
+</head>
+
+<body>
+    <div id="navbar">
+        <nav class="main-nav">
+            <div class="logo">Yummy</div>
+            <ul class="nav-links">
+                <li><a href="{% url 'cover' %}">Team</a></li>
+                <li><a href="{% url 'home' %}">Home</a></li>
+                <li><a href="{% url 'search' %}">Search</a></li>
+                <li><a href="{% url 'favorites' %}">Favorites</a></li>
+                <li><a href="{% url 'admin_recipe' %}">Admin</a></li>
+                <li><a href="{% url 'add_recipe' %}">Add Recipe</a></li>
+                <li><a href="{% url 'login' %}">Login</a></li>
+                <li><a href="{% url 'signup' %}">Sign Up</a></li>
+            </ul>
+        </nav>
+    </div>
+
+    <div class="banner">
+        <img src="{% static 'bakeryimages/breadBanner.png' %}">
+    </div>
+
+    <br><br>
+
+    <h2 class="h2">OUR Recipes</h2>
+
+    <div class="recipes-container">
+        <div class="recipe-card" id="Baguette" data-id="Baguette" onclick="openCard(event, 'Baguette-card')">
+            <h2>Classic French Baguette 🥖</h2>
+            <p>A golden, crackly crust with a light, airy interior—the authentic taste of France in every bite</p>
+            <a href="javascript:void(0)" class="btn-main" onclick="openCard(event, 'Baguette-card')">View Recipes</a>
+        </div>
+
+        <div class="recipe-card" id="Sourdough" data-id="Sourdough" onclick="openCard(event, 'Sourdough-card')">
+            <h2>Natural Sourdough 🥐</h2>
+            <p>Slow-fermented for deep flavor and a chewy texture, crafted with natural wild yeast for a healthy, artisan loaf.</p>
+            <a href="javascript:void(0)" class="btn-main" onclick="openCard(event, 'Sourdough-card')">View Recipes</a>
+        </div>
+
+        <div class="recipe-card" id="Focaccia" data-id="Focaccia" onclick="openCard(event, 'Focaccia-card')">
+            <h2>Herbed Focaccia 🍪🤎</h2>
+            <p>Soft Italian flatbread infused with premium olive oil and aromatic herbs, perfect for dipping or sharing.</p>
+            <a href="javascript:void(0)" class="btn-main" onclick="openCard(event, 'Focaccia-card')">View Recipes</a>
+        </div>
+    </div>
+
+    <div class="detials-card" id="Baguette-card">
+        <div class="recipe-content-box">
+            <h2 style="text-align: center;">Baguette</h2>
+            <h3>Ingredients</h3>
+            <ul class="Baguettelist">
+                <li>Flour: 500g All-purpose or Bread flour.</li>
+                <li>Water: 350ml Warm water.</li>
+                <li>Yeast: 10g Active dry yeast.</li>
+                <li>Salt: 10g Fine sea salt</li>
+            </ul>
+            <p><strong>Preparation Steps:</strong></p>
+            <ul class="Baguettelist">
+                <li><b>Mix & Knead🥣:</b> Combine flour, water, yeast, and salt. Knead for 10 minutes until smooth and elastic</li>
+                <li><b>First Rise⏳:</b> Place in a greased bowl, cover, and let it rise in a warm place for 1.5 hours until doubled.</li>
+                <li><b>Shape & Score🥖:</b> Divide dough into long loaves. Let them rise for 45 mins, then make 3 diagonal slashes on top</li>
+                <li><b>Bake🔥:</b> Bake at 220°C for 25 minutes. Use a tray of water in the oven for a professional crunchy crust.</li>
+            </ul>
+            <span class="heart" title="Add to Favorites" onclick="changecolor(this)">♥</span>
+        </div>
+    </div>
+
+    <div class="detials-card" id="Sourdough-card">
+        <div class="recipe-content-box">
+            <h2 style="text-align: center;">Natural Sourdough</h2>
+            <h3>Ingredients</h3>
+            <ul class="recipe-list">
+                <li>Starter: 100g Active sourdough starter.</li>
+                <li>Flour: 500g High-protein bread flour.</li>
+                <li>Water: 350ml Lukewarm filtered water.</li>
+                <li>Salt: 12g Fine sea salt.</li>
+            </ul>
+            <p><strong>Preparation Steps:</strong></p>
+            <ul class="recipe-list">
+                <li><b>Autolyse🥣:</b> Mix starter, water, and flour. Let it rest for 30 mins to develop gluten.</li>
+                <li><b>Stretch & Fold⏳:</b> Add salt, then perform 4 rounds of folds every 30 mins for a strong structure.</li>
+                <li><b>Bulk Ferment⌛:</b> Let the dough rise at room temperature for 6-8 hours until bubbly and airy.</li>
+                <li><b>Bake🔥:</b> Bake in a preheated Dutch oven at 230°C for 20 mins (lid on) and 20 mins (lid off).</li>
+            </ul>
+            <span class="heart" title="Add to Favorites" onclick="changecolor(this)">♥</span>
+        </div>
+    </div>
+
+    <div class="detials-card" id="Focaccia-card">
+        <div class="recipe-content-box">
+            <h2 style="text-align: center;">Herbed Focaccia</h2>
+            <h3>Ingredients</h3>
+            <ul class="recipe-list">
+                <li>Flour: 500g All-purpose flour.</li>
+                <li>Water: 400ml Warm water (High hydration).</li>
+                <li>Yeast & Honey: 7g Instant yeast and 1 tsp honey.</li>
+                <li>Toppings: Extra virgin olive oil, fresh rosemary, and sea salt.</li>
+            </ul>
+            <p><strong>Preparation Steps:</strong></p>
+            <ul class="recipe-list">
+                <li><b>Mix & Chill🥣:</b> Mix ingredients into a sticky dough. Cover and refrigerate overnight.</li>
+                <li><b>Dimple & Shape✨:</b> Place in an oiled tray. Use your fingers to create deep dimples in the dough.</li>
+                <li><b>Garnish🌿:</b> Drizzle generously with olive oil and sprinkle rosemary and flaky salt.</li>
+                <li><b>Bake🔥:</b> Bake at 220°C for 20-25 minutes until the bottom is golden and crispy.</li>
+            </ul>
+            <span class="heart" title="Add to Favorites" onclick="changecolor(this)">♥</span>
+        </div>
+    </div>
+</body>
+</html>

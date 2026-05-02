@@ -1,0 +1,416 @@
+/* --- Navbar --- */
+#navbar {
+    padding: 15px;
+    background-color: #f4deaadc;
+    /* Very Light Cream */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.main-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: auto;
+}
+
+.logo {
+    color: #A98F6F;
+    /* Soft Brownish Beige */
+    font-size: 1.6rem;
+    font-weight: bold;
+}
+
+.nav-links {
+    display: flex;
+    list-style: none;
+    margin-left: 0;
+}
+
+.nav-links li {
+    margin-left: 15px;
+}
+
+.nav-links a {
+    color: #5A5A5A;
+    /* Dark Grey */
+    text-decoration: none;
+    font-weight: 500;
+    transition: 0.3s;
+}
+
+.nav-links a:hover,
+.nav-links li button#backbutton:hover {
+    transform: translateY(-1.5px);
+
+    text-shadow: 0 0 15px rgb(255, 255, 255, 0.5);
+}
+
+.big-arrow-btn {
+    font-size: 24px;
+    font-weight: bold;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: rgb(48, 27, 11);
+    transition: transform 0.2s;
+    padding: 0 10px;
+    display: flex;
+    align-items: center;
+}
+
+
+.big-arrow-btn:hover {
+    transform: translateY(-1.5px);
+
+    text-shadow: 0 0 15px rgb(255, 255, 255, 0.5);
+    transform: scale(1.2);
+}
+
+
+/* General Reset & Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.nav-links a:hover {
+    transform: translateY(-2px);
+    text-shadow: 0 0 5px rgba(171, 135, 92, 0.5);
+}
+
+/* --- Body & General --- */
+body {
+    font-family: 'Segoe UI', sans-serif;
+    background-color: #f4e7c9;
+    /* Light warm cream */
+    color: #f7ebeb;
+    margin: 0;
+}
+
+h2.h2 {
+    text-align: center;
+    margin: 30px 0 20px 0;
+}
+
+/* --- Hero Section --- */
+.main {
+    background: url("{% static 'photos/maindish/main.jpg' %}") center/cover no-repeat;
+    height: 80vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+}
+
+.main h1 {
+    font-size: 3rem;
+    color: lch(20.94% 26.19 93.08);
+}
+
+.main p {
+    font-size: large;
+    margin-bottom: 40px;
+    color: #3c5024;
+    text-shadow: 3px 3px 0 black;
+}
+
+.main a.btn-main {
+    padding: 15px 40px;
+    border-radius: 50px;
+    background-color: #f5d0a1;
+    color: #fff;
+    text-decoration: none;
+    font-size: 1rem;
+    transition: 0.3s;
+}
+
+.main a.btn-main:hover {
+    transform: translateY(-5px);
+}
+
+/* --- Recipes Grid --- */
+.recipes-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 25px;
+    max-width: 1200px;
+    margin: auto;
+    padding: 20px;
+}
+
+/* --- Recipe Cards --- */
+.recipe-card {
+    background: #ffffff;
+    /* أبيض صريح */
+    border-radius: 30px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.recipe-card:hover {
+    transform: translateY(-5px);
+}
+
+.recipe-card h2 {
+    color: hsla(41, 57%, 83%, 0.863);
+    margin-bottom: 10px;
+    text-shadow: #000000;
+}
+
+.recipe-card p {
+    color: #d1af89;
+    flex-grow: 3;
+    text-shadow: 3px 3px 0 black,
+        6px 6px 10px rgba(0, 0, 0, 0.5);
+}
+
+
+.recipe-card a {
+    margin-top: auto;
+    align-self: center;
+    margin-top: 250px;
+    margin-left: 90PX;
+    padding: 10px 30px;
+    text-align: center;
+    border-radius: 20px;
+    background-color: #64420c;
+    color: #ffffff;
+    font-size: 16px;
+    font-family: 'Times New Roman', Times, serif;
+    text-decoration: none;
+    display: inline-block;
+}
+
+
+
+.recipe-card a:hover {
+    transform: translateY(-3px);
+}
+
+/* Main Categories Backgrounds */
+#chicken {
+    background-image: url("{% static 'photos/maindish/chicken.jpg' %}");
+}
+
+#beef {
+    background-image: url("{% static 'photos/maindish/meat.jpg' %}");
+}
+
+#seafood {
+    background-image: url("{% static 'photos/maindish/seafood.jfif' %}");
+}
+
+#vegetarian {
+    background-image: url("{% static 'photos/maindish/Vegetarian.jpg' %}");
+}
+
+#pasta {
+    background-image: url("{% static 'photos/maindish/pasta.jfif' %}");
+}
+
+#fast-food {
+    background-image: url("{% static 'photos/maindish/fastfood.jpg' %}");
+}
+
+
+/* Hide recipe details initially */
+.detials-card {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 90%;
+    max-width: 600px;
+    background-color: #ffffff;
+    border-radius: 20px;
+    padding: 20px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+    z-index: 999;
+}
+
+.detials-card .recipe-content-box {
+    max-height: 80vh;
+    overflow-y: auto;
+}
+
+.detials-card.show {
+    display: block;
+}
+
+.detials-card .close-btn {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 22px;
+    cursor: pointer;
+    color: #ad9292;
+    box-shadow: #000000;
+}
+
+/* ✅ تصحيح أسماء IDs */
+#beefSteak,
+#beefSteak-card {
+    background-image: url("{% static 'photos/maindish/steak2.jfif' %}");
+}
+
+#beefStew,
+#beefStew-card {
+    background-image: url("{% static 'photos/maindish/swtea1.jfif' %}");
+}
+
+#beefTacos,
+#beefTacos-card {
+    background-image: url("{% static 'photos/maindish/tacos2.jfif' %}");
+}
+
+#grilledChicken,
+#grilledChicken-card {
+    background-image: url("{% static 'photos/maindish/girrled.jfif' %}");
+}
+
+#chickenCurry,
+#chickenCurry-card {
+    background-image: url("{% static 'photos/maindish/chickencurry.jfif' %}");
+}
+
+#friedChicken,
+#friedChicken-card {
+    background-image: url("{% static 'photos/maindish/fried.jfif' %}");
+}
+
+#grilledSalmon,
+#grilledSalmon-card {
+    background-image: url("{% static 'photos/maindish/salmon.jfif' %}");
+}
+
+#shrimpPasta,
+#shrimpPasta-card {
+    background-image: url("{% static 'photos/maindish/pastash.jfif' %}");
+}
+
+#fishCurry,
+#fishCurry-card {
+    background-image: url("{% static 'photos/maindish/fishcurry.jfif' %}");
+}
+
+#veggieStirFry,
+#veggieStirFry-card {
+    background-image: url("{% static 'photos/maindish/salad.jfif' %}");
+}
+
+#veggieCurry,
+#veggieCurry-card {
+    background-image: url("{% static 'photos/maindish/currysalad.jfif' %}");
+}
+
+#quinoaSalad,
+#quinoaSalad-card {
+    background-image: url("{% static 'photos/maindish/quinoa.jfif' %}");
+}
+
+#burger,
+#burger-card {
+    background-image: url("{% static 'photos/maindish/burger.jfif' %}");
+}
+
+#pizza,
+#pizza-card {
+    background-image: url("{% static 'photos/maindish/pizza.jfif' %}");
+}
+
+#fries,
+#fries-card {
+    background-image: url("{% static 'photos/maindish/frensh fries.jfif' %}");
+}
+
+#spaghettiCarbonara,
+#spaghettiCarbonara-card {
+    background-image: url("{% static 'photos/maindish/macrona.jfif' %}");
+}
+
+#pastaPesto,
+#pastaPesto-card {
+    background-image: url("{% static 'photos/maindish/pesto.jfif' %}");
+}
+
+#lasagna,
+#lasagna-card {
+    background-image: url("{% static 'photos/maindish/lasania.jfif' %}");
+}
+
+
+.detials-card {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1000;
+    height: 600px;
+    width: 500px;
+    border-radius: 40px;
+    padding: 25px;
+    background-size: cover;
+    background-position: center;
+}
+
+.recipe-content-box {
+    margin-top: 85px;
+    color: black;
+    height: 500px;
+    background-color: rgba(255, 255, 255, 0.4);
+    border-radius: 40px;
+    padding: 20px;
+    text-shadow: 0px 0px 10px white;
+}
+
+.recipe-content-box p,
+h3 {
+    color: #2c1802;
+}
+
+.recipe-content-box ul {
+    list-style: none;
+}
+
+.heart {
+    margin-top: auto;
+    align-self: center;
+    margin-top: 20px;
+    margin-left: 170PX;
+    padding: 0px 30px;
+    font-size: 40px;
+    color: white;
+    cursor: pointer;
+    text-shadow: 0 0 1px #4b1f11;
+    transition: all 0.3s ease;
+    display: inline-block;
+    text-align: center;
+    border-radius: 20px;
+    background-color: #4b1f11;
+}
+
+.heart:hover {
+    transform: translateY(-5px);
+}
+
+/* --- Responsive --- */
+@media (max-width: 768px) {
+    .main h1 {
+        font-size: 2.2rem;
+    }
+
+    .main p {
+        font-size: 1rem;
+        padding: 0 20px;
+    }
+}

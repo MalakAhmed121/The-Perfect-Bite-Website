@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Yummy - Search</title>
+    <link rel="stylesheet" href="src/css/style.css">
+    <script src="src/js/search-js.js"></script>
+
+</head>
+
+<body>
+    <div id="navbar">
+        <nav class="main-nav">
+            <div class="logo">Yummy </div>
+            <ul class="nav-links">
+                <li><a href="cover.html">Team</a></li>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="search.html">Search</a></li>
+                <li><a href="favorites.html">Favorites</a></li>
+                <li><a href="pages/admin/admin-recipe.html">Admin</a></li>
+                <li><a href="pages/admin/add-recipe.html">Add Recipe</a></li>
+                <li><a href="pages/auth/login.html">Login</a></li>
+                <li><a href="pages/auth/signup.html">Sign Up</a></li>
+            </ul>
+        </nav>
+    </div>
+    <center>
+        <div class="search-page-wrapper">
+            <h1>Find Your Recipe 🍲</h1>
+
+            <!-- input واحد فقط -->
+            <input type="text" id="input" placeholder="Type to search..."
+                style="width:70%; padding:8px 12px; margin-bottom:15px; border-radius:6px; border:1px solid #ccc;">
+
+            <!-- زرارين لتحديد نوع البحث -->
+            <button class="btn-main" onclick="searchdata('recipe')" style="padding:8px 20px; border-radius:6px ">
+
+                Search by Recipe Name
+            </button>
+
+            <button class="btn-main" onclick="searchdata('ingredient')" style="padding:8px 20px; border-radius:6px ">
+                Search by Ingredient
+            </button>
+
+            <!-- عرض النتائج -->
+            <div id="results" style="margin-top:20px;"></div>
+        </div>
+    </center>
+    </div>
+    <script>
+     
+
+    </script>
+</body>
+
+</html>

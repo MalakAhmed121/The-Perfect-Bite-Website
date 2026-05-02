@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Chicken Recipes</title>
+    <link rel="stylesheet" href="../../src/css/maindish.css">
+    <script src="../../src/js/maindish.js"></script>
+     <script src="../../src/js/search-js.js"></script>
+</head>
+
+<body>
+    <div id="navbar">
+        <nav class="main-nav">
+            <div class="logo">Yummy 🍲</div>
+            <ul class="nav-links">
+                <li><a href="../../cover.html">Team</a></li>
+                <li><a href="../../index.html">Home</a></li>
+                <li><a href="../../search.html">Search</a></li>
+                <li><a href="../../favorites.html">Favorites</a></li>
+                <li><a href="../admin/admin-recipe.html">Admin</a></li>
+                <li><a href="../admin/add-recipe.html">Add Recipe</a></li>
+                <li><a href="../auth/login.html">Login</a></li>
+                <li><a href="../auth/signup.html">Sign Up</a></li>
+            </ul>
+        </nav>
+    </div>
+
+    <div class="banner">
+        <img src="../../photos/maindish/chicken-banner.jfif" style="width:100%; height:400px; margin-bottom:30px;">
+    </div>
+
+    <h2 class="h2">Our Chicken Recipes</h2>
+
+    <div class="recipes-container">
+ 
+        <div class="recipe-card" id="grilledChicken" data-id="grilledChicken"
+            onclick="openCard(event,'grilledChicken-card')">
+ 
+            <h2>Grilled Chicken 🍗</h2>
+            <p>Juicy chicken grilled to perfection with herbs and spices.</p>
+            <a href="javascript:void(0)" onclick="openCard(event,'grilledChicken-card')">View Recipes</a>
+        </div>
+
+ 
+        <div class="recipe-card" id="chickenCurry" data-id="chickenCurry" onclick="openCard(event,'chickenCurry-card')">
+ 
+            <h2>Chicken Curry 🍛</h2>
+            <p>Classic chicken curry with rich, flavorful sauce.</p>
+            <a href="javascript:void(0)" onclick="openCard(event,'chickenCurry-card')">View Recipes</a>
+        </div>
+ 
+        <div class="recipe-card" id="friedChicken" data-id="friedChicken" onclick="openCard(event,'friedChicken-card')">
+ 
+            <h2>Fried Chicken 🍗</h2>
+            <p>Crispy golden chicken bites with perfect seasoning.</p>
+            <a href="javascript:void(0)" onclick="openCard(event,'friedChicken-card')">View Recipes</a>
+        </div>
+    </div>
+
+    <!-- Recipe Details Cards -->
+    <div class="detials-card" id="grilledChicken-card">
+        <div class="recipe-content-box">
+            <h2 style="text-align:center;">Grilled Chicken</h2>
+            <h3>Ingredients</h3>
+            <ul class="recipe-list">
+                <li>Chicken breast: 500g</li>
+                <li>Olive oil: 2 tbsp</li>
+                <li>Garlic: 2 cloves, minced</li>
+                <li>Herbs: 1 tsp thyme, 1 tsp rosemary</li>
+                <li>Salt & pepper: to taste</li>
+            </ul>
+            <p><strong>Preparation Steps:</strong></p>
+            <ul class="recipe-list">
+                <li>Marinate chicken with olive oil, garlic, herbs, salt & pepper for 30 mins.</li>
+                <li>Preheat grill to medium heat.</li>
+                <li>Grill chicken 6-7 mins per side until cooked through.</li>
+                <li>Serve hot with your choice of sides.</li>
+            </ul>
+            <span class="heart" title="Add to Favorites" onclick="changecolor(this)">♥</span>
+        </div>
+    </div>
+
+    <div class="detials-card" id="chickenCurry-card">
+        <div class="recipe-content-box">
+            <h2 style="text-align:center;">Chicken Curry</h2>
+            <h3>Ingredients</h3>
+            <ul class="recipe-list">
+                <li>Chicken pieces: 500g</li>
+                <li>Onion: 1 large, chopped</li>
+                <li>Tomatoes: 2 medium, pureed</li>
+                <li>Curry powder: 2 tsp</li>
+                <li>Coconut milk: 1 cup</li>
+                <li>Salt & pepper: to taste</li>
+            </ul>
+            <p><strong>Preparation Steps:</strong></p>
+            <ul class="recipe-list">
+                <li>Sauté onions until golden, add curry powder.</li>
+                <li>Add chicken and brown for 5 mins.</li>
+                <li>Add tomato puree and coconut milk, simmer 20 mins.</li>
+                <li>Serve hot with rice or bread.</li>
+            </ul>
+            <span class="heart" title="Add to Favorites" onclick="changecolor(this)">♥</span>
+        </div>
+    </div>
+
+    <div class="detials-card" id="friedChicken-card">
+        <div class="recipe-content-box">
+            <h2 style="text-align:center;">Fried Chicken</h2>
+            <h3>Ingredients</h3>
+            <ul class="recipe-list">
+                <li>Chicken pieces: 500g</li>
+                <li>Flour: 1 cup</li>
+                <li>Eggs: 2, beaten</li>
+                <li>Breadcrumbs: 1 cup</li>
+                <li>Oil for frying</li>
+                <li>Salt & pepper: to taste</li>
+            </ul>
+            <p><strong>Preparation Steps:</strong></p>
+            <ul class="recipe-list">
+                <li>Coat chicken with flour, dip in eggs, then breadcrumbs.</li>
+                <li>Heat oil and fry chicken until golden brown and cooked inside.</li>
+                <li>Drain excess oil and serve hot.</li>
+            </ul>
+            <span class="heart" title="Add to Favorites" onclick="changecolor(this)">♥</span>
+        </div>
+    </div>
+
+</body>
+
+</html>

@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Beef Recipes</title>
+    <link rel="stylesheet" href="../../src/css/maindish.css">
+    <script src="../../src/js/maindish.js"></script>
+    <script src="../../src/js/search-js.js"></script>
+</head>
+
+<body>
+    <div id="navbar">
+        <nav class="main-nav">
+            <div class="logo">Yummy 🍲</div>
+            <ul class="nav-links">
+                <li><a href="../../cover.html">Team</a></li>
+                <li><a href="../../index.html">Home</a></li>
+                <li><a href="../../search.html">Search</a></li>
+                <li><a href="../../favorites.html">Favorites</a></li>
+                <li><a href="../admin/admin-recipe.html">Admin</a></li>
+                <li><a href="../admin/add-recipe.html">Add Recipe</a></li>
+                <li><a href="../auth/login.html">Login</a></li>
+                <li><a href="../auth/signup.html">Sign Up</a></li>
+            </ul>
+        </nav>
+    </div>
+
+    <div class="banner">
+        <img src="../../photos/maindish/jucybeef.jfif" style="width:100%; height:400px; margin-bottom:30px;">
+    </div>
+
+    <h2 class="h2">Our Beef Recipes</h2>
+
+    <div class="recipes-container">
+
+        <div class="recipe-card" id="beefSteak" data-id="beefSteak" onclick="openCard(event,'beefSteak-card')">
+
+            <h2>Beef Steak 🥩</h2>
+            <p>Perfectly grilled beef steak with herbs.</p>
+            <a href="javascript:void(0)" onclick="openCard(event,'beefSteak-card')">View Recipes</a>
+        </div>
+
+
+        <div class="recipe-card" id="beefStew" data-id="beefStew" onclick="openCard(event,'beefStew-card')">
+
+            <h2>Beef Stew 🍲</h2>
+            <p>Slow-cooked beef with vegetables in rich gravy.</p>
+            <a href="javascript:void(0)" onclick="openCard(event,'beefStew-card')">View Recipes</a>
+        </div>
+
+
+        <div class="recipe-card" id="beefTacos" data-id="beefTacos" onclick="openCard(event,'beefTacos-card')">
+
+            <h2>Beef Tacos 🌮</h2>
+            <p>Spicy ground beef in soft tortillas with fresh toppings.</p>
+            <a href="javascript:void(0)" onclick="openCard(event,'beefTacos-card')">View Recipes</a>
+        </div>
+    </div>
+
+    <!-- Recipe Details -->
+    <div class="detials-card" id="beefSteak-card">
+        <div class="recipe-content-box">
+            <h2 style="text-align:center;">Beef Steak</h2>
+            <h3>Ingredients</h3>
+            <ul class="recipe-list">
+                <li>Beef steak: 400g</li>
+                <li>Olive oil: 2 tbsp</li>
+                <li>Salt & pepper: to taste</li>
+                <li>Herbs: rosemary</li>
+            </ul>
+            <h3>Preparation Steps</h3>
+            <ul class="recipe-list">
+                <li>Season steak with salt, pepper, and herbs.</li>
+                <li>Grill each side 5-7 mins for medium.</li>
+                <li>Serve hot with vegetables or mashed potatoes.</li>
+            </ul>
+            <span class="heart" onclick="changecolor(this)">♥</span>
+        </div>
+    </div>
+
+    <div class="detials-card" id="beefStew-card">
+        <div class="recipe-content-box">
+            <h2 style="text-align:center;">Beef Stew</h2>
+            <h3>Ingredients</h3>
+            <ul class="recipe-list">
+                <li>Beef cubes: 500g</li>
+                <li>Carrots, potatoes, onions: 2 cups mixed</li>
+                <li>Beef stock: 2 cups</li>
+                <li>Thyme & bay leaf</li>
+            </ul>
+            <h3>Preparation Steps</h3>
+            <ul class="recipe-list">
+                <li>Braise beef with vegetables and herbs.</li>
+                <li>Add stock, simmer 1-2 hours until tender.</li>
+                <li>Serve hot with bread or rice.</li>
+            </ul>
+            <span class="heart" onclick="changecolor(this)">♥</span>
+        </div>
+    </div>
+
+    <div class="detials-card" id="beefTacos-card">
+        <div class="recipe-content-box">
+            <h2 style="text-align:center;">Beef Tacos</h2>
+            <h3>Ingredients</h3>
+            <ul class="recipe-list">
+                <li>Ground beef: 400g</li>
+                <li>Taco seasoning: 2 tsp</li>
+                <li>Soft tortillas: 6</li>
+                <li>Lettuce, tomato, cheese: toppings</li>
+            </ul>
+            <h3>Preparation Steps</h3>
+            <ul class="recipe-list">
+                <li>Cook ground beef with taco seasoning.</li>
+                <li>Fill tortillas with beef and toppings.</li>
+                <li>Serve immediately.</li>
+            </ul>
+            <span class="heart" onclick="changecolor(this)">♥</span>
+        </div>
+    </div>
+
+</body>
+
+</html>

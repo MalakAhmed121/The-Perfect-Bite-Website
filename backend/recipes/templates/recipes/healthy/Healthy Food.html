@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yummy - Healthy Life 🥗</title>
+    <link rel="stylesheet" href="../../src/css/Health_Style.css">
+</head>
+<body class="healthy-page">
+
+    <header id="navbar">
+        <nav class="main-nav">
+            <div class="logo">Yummy 🍲</div>
+            <ul class="nav-links">
+            <li><a href="../../cover.html">Team</a></li>
+            <li><a href="../../index.html">Home</a></li>
+            <li><a href="../../search.html">Search</a></li>
+            <li><a href="../../favorites.html">Favorites</a></li>
+            <li><a href="../admin/admin-recipe.html">Admin</a></li>
+            <li><a href="../admin/add-recipe.html">Add Recipe</a></li>
+            <li><a href="../auth/login.html">Login</a></li>
+            <li><a href="../auth/signup.html">Sign Up</a></li>
+            <li>
+                <button id="backbutton" class="big-arrow-btn" type="button" aria-label="Go Back" onclick="history.back()">
+                    &#8592;
+                </button>
+            </li>
+        </ul>
+        </nav>
+    </header>
+
+    <!-- Visual Hero header with tagline -->
+    <section class="healthy-hero">
+        <div class="hero-content">
+            <h1>Eat Better, Feel Better</h1>
+            <p>Your journey to a healthier lifestyle starts with a single delicious bite.</p>
+            <a href="#recipes-container" class="btn-hero">View Recipes</a>
+        </div>
+    </section>
+
+    <!-- Dietary Filter Tabs -->
+    <section class="filter-section">
+        <div class="container">
+            <h2 class="section-title">Choose Your Diet Plan</h2>
+            <div class="diet-tabs">
+                <button class="tab-btn active" data-diet="all">All Recipes</button>
+                <button class="tab-btn" data-diet="keto">Keto Friendly</button>
+                <button class="tab-btn" data-diet="vegan">Vegan / Vegetarian</button>
+                <button class="tab-btn" data-diet="protein">High Protein</button>
+                <button class="tab-btn" data-diet="gluten-free">Gluten-Free</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Recipe Grid Contents -->
+    <main class="container">
+        <div class="healthy-recipes-grid" id="recipes-container">
+            
+            <div class="recipe-card keto" id="grilled_salmon_avocado">
+                <div class="card-image" style="background-image: url('../../photos/Healthy_images/Healthy Salmon & Avocado Salad.jfif');">
+                    <span class="diet-badge">Keto</span>
+                    <button class="grid-heart-btn" onclick="changecolor(this)" aria-label="Favorite">❤</button>
+                </div>
+                <div class="card-body">
+                    <h3>Grilled Salmon & Avocado</h3>
+                    <p>High healthy fats, low carbs. Perfect for staying in ketosis.</p>
+                    <div class="card-info">
+                        <span>⏱ 25 min</span>
+                        <span>🔥 450 kcal</span>
+                    </div>
+                    <a href="#" class="btn-healthy">View Recipe</a>
+                </div>
+            </div>
+
+            <div class="recipe-card vegan" id="quinoa_buddha_bowl">
+                <div class="card-image" style="background-image: url('../../photos/Healthy_images/Spiced Tofu & Roasted Veggie Quinoa Bowl.jfif');">
+                    <span class="diet-badge">Vegan</span>
+                    <button class="grid-heart-btn" onclick="changecolor(this)" aria-label="Favorite">❤</button>
+                </div>
+                <div class="card-body">
+                    <h3>Quinoa Buddha Bowl</h3>
+                    <p>A rainbow of vegetables with a protein-packed quinoa base.</p>
+                    <div class="card-info">
+                        <span>⏱ 15 min</span>
+                        <span>🔥 320 kcal</span>
+                    </div>
+                    <a href="#" class="btn-healthy">View Recipe</a>
+                </div>
+            </div>
+
+            <div class="recipe-card protein" id="lemon_herb_chicken">
+                <div class="card-image" style="background-image: url('../../photos/Healthy_images/Herb-Roasted Golden Chicken with Lemon Essence.jfif');">
+                    <span class="diet-badge">High Protein</span>
+                    <button class="grid-heart-btn" onclick="changecolor(this)" aria-label="Favorite">❤</button>
+                </div>
+                <div class="card-body">
+                    <h3>Lemon Herb Chicken</h3>
+                    <p>Lean chicken breast served with steamed broccoli and brown rice.</p>
+                    <div class="card-info">
+                        <span>⏱ 35 min</span>
+                        <span>🔥 510 kcal</span>
+                    </div>
+                    <a href="#" class="btn-healthy">View Recipe</a>
+                </div>
+            </div>
+
+            <div class="recipe-card gluten-free" id="zucchini_noodles">
+                <div class="card-image" style="background-image: url('../../photos/Healthy_images/Low Carb Zucchini Noodles with Pesto Sauce.jfif');">
+                    <span class="diet-badge">Gluten-Free</span>
+                    <button class="grid-heart-btn" onclick="changecolor(this)" aria-label="Favorite">❤</button>
+                </div>
+                <div class="card-body">
+                    <h3>Zucchini Noodles (Zoodles)</h3>
+                    <p>Fresh zucchini strips with a light garlic and tomato pesto.</p>
+                    <div class="card-info">
+                        <span>⏱ 20 min</span>
+                        <span>🔥 210 kcal</span>
+                    </div>
+                    <a href="#" class="btn-healthy">View Recipe</a>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Recipe Detail Modal (Pop-up) -->
+        <div id="recipeModal" class="modal">
+            <div class="modal-content glass-card">
+                <!-- Stationery close btn for fallback, though script generates a dynamic one -->
+                <span class="close-btn">&times;</span>
+                <div id="modalBody">
+                    <!-- Dynamic Content Goes Here -->
+                </div>
+            </div>
+        </div>
+
+
+    <!-- Embedded Script for Deep Linking (Admin View & Search Results) -->
+    <script>
+        window.addEventListener("load", function () {
+            let recipeId = window.location.hash.substring(1);
+            if (recipeId && recipeId.endsWith('card')) {
+                recipeId = recipeId.replace('card', '');
+            }
+            if (recipeId) {
+                setTimeout(function () {
+                    const targetCard = document.getElementById(recipeId);
+                    if (targetCard) {
+                        targetCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                        
+                        // Add highlight effect matching drinks pages style
+                        targetCard.style.transition = "all 0.3s ease";
+                        targetCard.style.transform = "translateY(-10px)";
+                        targetCard.style.boxShadow = "0 5px 15px rgba(230, 126, 34, 0.4)";
+                        
+                        setTimeout(function () {
+                            targetCard.style.transform = "";
+                            targetCard.style.boxShadow = "";
+                        }, 1000);
+
+                        // Trigger the modal exactly as if the user clicked it
+                        targetCard.click();
+                    }
+                }, 500);
+            }
+        });
+    </script>
+    <script src="../../src/js/Health_Script.js"></script>
+</body>
+</html>

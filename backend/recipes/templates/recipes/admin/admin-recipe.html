@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Yummy - Admin Recipes</title>
+    <link rel="stylesheet" href="../../src/css/style.css">
+</head>
+<body>
+    <div id="navbar">
+        <nav class="main-nav">
+            <div class="logo">Yummy 🍲</div>
+            <ul class="nav-links">
+                <li><a href="../../cover.html">Team</a></li>
+                <li><a href="../../index.html">Home</a></li>
+                <li><a href="../../search.html">Search</a></li>
+                <li><a href="../../favorites.html">Favorites</a></li>
+                <li><a href="../../pages/admin/admin-recipe.html">Admin</a></li>
+                <li><a href="../../pages/admin/add-recipe.html">Add Recipe</a></li>
+                <li><a href="../../pages/auth/login.html">Login</a></li>
+                <li><a href="../../pages/auth/signup.html">Sign Up</a></li>
+            </ul>
+        </nav>
+    </div>
+
+    <div class="page-wrapper" style="display: block; text-align: center;">
+        <h1>Recipe Management Portal</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Recipe Name</th>
+                    <th>Course</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody id="recipeTableBody">
+                </tbody>
+        </table>
+    </div>
+
+    <script>
+        const staticRecipes = [
+            { id: "beefSteak", name: "Beef Steak 🥩", course: "maindish/beef" },
+            { id: "beefTacos", name: "Beef Tacos 🌮", course: "maindish/beef" },
+            { id: "beefStew", name: "Beef Stew 🍲", course: "maindish/beef" },
+            { id: "friedChicken", name: "Fried Chicken 🍗", course: "maindish/chicken" },
+            { id: "chickenCurry", name: "Chicken Curry 🍛", course: "maindish/chicken" },
+            { id: "grilledChicken", name: "Grilled Chicken 🍗", course: "maindish/chicken" },
+            { id: "spaghettiCarbonara", name: " Spaghetti Carbonara 🍝", course: "maindish/pasta" },
+            { id: "pastaPesto", name: "Pasta Pesto 🌿", course: "maindish/pasta" },
+            { id: "lasagna", name: "Lasagna 🍲", course: "maindish/pasta" },
+            { id: "grilledSalmon", name: "Grilled Salmon 🐟", course: "maindish/seafood" },
+            { id: "shrimpPasta", name: "Shrimp Pasta 🍤", course: "maindish/seafood" },
+            { id: "fishCurry", name: "Fish Curry 🐠", course: "maindish/seafood" },
+            { id: "burger", name: " Burger 🍔", course: "maindish/fastfood" },
+            { id: "fries", name: "French Fries 🍟", course: "maindish/fastfood" },
+            { id: "pizza", name: "Pizza 🍕", course: "maindish/fastfood" },
+            { id: "veggieStirFry", name: "Veggie Stir-Fry 🥗", course: "maindish/Vegetarian" },
+            { id: "veggieCurry", name: "Vegetable Curry 🍛", course: "maindish/Vegetarian" },
+            { id: "quinoaSalad", name: "Quinoa Salad 🥗", course: "maindish/Vegetarian" },
+            { id: "grilled_salmon_avocado", name: "Grilled Salmon & Avocado", course: "Healthy" },
+            { id: "quinoa_buddha_bowl", name: "Quinoa Buddha Bowl", course: "Healthy" },
+            { id: "lemon_herb_chicken", name: "Lemon Herb Chicken", course: "Healthy" },
+            { id: "zucchini_noodles", name: "Zucchini Noodles (Zoodles)", course: "Healthy" },
+            { id: "Baguette", name: "Classic French Baguette 🥖", course: "Bakery/Bread" },
+            { id: "Sourdough", name: "Natural Sourdough 🥐", course: "Bakery/Bread" },
+            { id: "Focaccia", name: "Herbed Focaccia 🍪", course: "Bakery/Bread" },
+            { id: "ButterCroissant", name: "Butter Croissant", course: "Bakery/Croissant" },
+            { id: "PainauChocolat", name: "Pain au Chocolat", course: "Bakery/Croissant" },
+            { id: "StrawberryDanish", name: "Strawberry Custard Danish", course: "Bakery/Croissant" },
+            { id: "ClassicCinnamon", name: "Classic Cinnamon Rolls", course: "Bakery/Cinnamon" },
+            { id: "PecanCinnamon", name: "Pecan Cinnamon Rolls", course: "Bakery/Cinnamon" },
+            { id: "ChocolateCinnamon", name: "Chocolate Cinnamon Rolls", course: "Bakery/Cinnamon" },
+            { id: "ChocolateCookies", name: "Chocolate Cookies 🍪", course: "Bakery/Cookies" },
+            { id: "ButterBiscuits", name: "Butter Shortbread Biscuits 🧈", course: "Bakery/Cookies" },
+            { id: "OatmealCookies", name: "Oatmeal Raisin Cookies 🌾", course: "Bakery/Cookies" },
+            { id: "GlazedDonuts", name: "Glazed Donuts 🍩", course: "Bakery/Donuts" },
+            { id: "ChocolateDonuts", name: "Chocolate Donuts 🍫", course: "Bakery/Donuts" },
+            { id: "FilledDonuts", name: "Filled Donuts 🍓", course: "Bakery/Donuts" },
+            { id: "VanillaMacarons", name: "Vanilla Macarons", course: "Bakery/Macarons" },
+            { id: "PistachioMacarons", name: "Pistachio Macarons", course: "Bakery/Macarons" },
+            { id: "RaspberryMacrons", name: "Raspberry Macarons", course: "Bakery/Macarons" },
+            { id: "tiramisu", name: "Tiramisu ☕", course: "Dessert" },
+            { id: "blackforest-cheesecake", name: "Black Forest Cheesecake 🍒", course: "Dessert" },
+            { id: "brownie", name: "Brownies 🍫", course: "Dessert" },
+            { id: "strawberryCake", name: "Strawberry Cake 🍓", course: "Dessert" },
+            { id: "CremeCaramel", name: "Crème Caramel 🍮", course: "Dessert" },
+            { id: "cupcake", name: "Cupcake 🧁", course: "Dessert" },
+            { id: "DeviledEggs", name: "Deviled Eggs", course: "appetizers" },
+            { id: "SpinachArtichokeDip", name: "Spinach Artichoke Dip", course: "appetizers" },
+            { id: "ChickenWings", name: "Chicken Wings", course: "appetizers" },
+            { id: "JalapenoPoppers", name: "Jalapeno Poppers", course: "appetizers" },
+            { id: "StuffedMushrooms", name: "Stuffed Mushrooms", course: "appetizers" },
+            { id: "Crostini", name: "Crostini", course: "appetizers" },
+            { id: "CharcuterieBoard", name: "Charcuterie Board", course: "appetizers" },
+            { id: "Sliders", name: "Sliders", course: "appetizers" },
+            { id: "ShrimpCocktail", name: "Shrimp Cocktail", course: "appetizers" },
+            { id: "Cappuccino", name: "French Vanilla Cappuccino", course: "Drinks/coffee" },
+            { id: "icedcoffee", name: "Caramel Hazelnut Iced Coffee", course: "Drinks/coffee" },
+            { id: "arabcoffee", name: "Arab Coffee", course: "Drinks/coffee" },
+            { id: "Smoothie", name: "Berry Blast Smoothie🍸", course: "Drinks/fresh juices& smoothie" },
+            { id: "smothie2", name: "Pineapple Mango Smoothie", course: "Drinks/fresh juices& smoothie" },
+            { id: "strawberrylemo", name: "Strawberry Lemonade🍓", course: "Drinks/fresh juices& smoothie" },
+            { id: "turkish-tea", name: "Turkish Tea🍃", course: "Drinks/Hot drinks" },
+            { id: "Hibiscus-tea", name: "Herbal Hibiscus Tea🌺🌹", course: "Drinks/Hot drinks" }
+        ];
+
+
+        // Function to render the table
+        function displayRecipes() {
+            const tableBody = document.getElementById('recipeTableBody');
+            
+            // 2. Fetch recipes added by the user from localStorage
+            let userAddedRecipes = JSON.parse(localStorage.getItem('recipes')) || [];
+
+            // 3. Combine both lists (Static + User Added)
+            let allRecipes = [...staticRecipes];
+            userAddedRecipes.forEach(userRecipe => {
+                // Prevent duplicate IDs or names if the user adds something already in static
+                let inStatic = staticRecipes.some(s => s.id === userRecipe.id || s.name.trim().toLowerCase() === userRecipe.name.trim().toLowerCase());
+                if (!inStatic) {
+                    // Check if it's already added to prevent duplicates from within userAddedRecipes itself
+                    let inAll = allRecipes.some(a => a.id === userRecipe.id || a.name.trim().toLowerCase() === userRecipe.name.trim().toLowerCase());
+                    if (!inAll) {
+                        allRecipes.push(userRecipe);
+                    }
+                }
+            });
+
+            let rowsHTML = "";
+            allRecipes.forEach((recipe, index) => {
+                rowsHTML += `
+                    <tr>
+                        <td>${index + 1}</td>
+                        <td><strong>${recipe.name}</strong></td>
+                        <td>${recipe.course}</td>
+                        <td class="actions-cell">
+                            <button class="btn-admin btn-view-mod" onclick="viewRecipe('${recipe.id}', '${recipe.course}')">View</button>
+                            <button class="btn-admin btn-edit-mod" onclick="editRecipe('${recipe.id}')">Edit</button>
+                            <button class="btn-admin btn-delete-mod" onclick="deleteRecipe('${recipe.id}')">Delete</button>
+                        </td>
+                    </tr>`;
+            });
+            tableBody.innerHTML = rowsHTML;
+        }
+
+        // View Function: This focuses on the target page and the specific card
+        function viewRecipe(id, course) {
+            const categoryPages = {
+                "appetizers": "../../pages/appetizers/appetizers.html",
+                "dessert": "../../pages/desserts/dessert.html",
+                "healthy": "../../pages/healthy/Healthy Food.html",
+                "maindish/beef": "../../pages/main_dish/beef.html",
+                "maindish/chicken": "../../pages/main_dish/chicken.html",
+                "maindish/pasta": "../../pages/main_dish/pasta.html",
+                "maindish/fastfood": "../../pages/main_dish/fastfood.html",
+                "maindish/seafood": "../../pages/main_dish/seafood.html",
+                "maindish/vegetarian": "../../pages/main_dish/Vegetarian.html",
+                "bakery/bread": "../../pages/bakery/Bread .html",
+                "bakery/croissant": "../../pages/bakery/Croissants .html",
+                "bakery/cinnamon": "../../pages/bakery/Cinnamon.html",
+                "bakery/cookies": "../../pages/bakery/cookies.html",
+                "bakery/donuts": "../../pages/bakery/Donuts .html",
+                "bakery/macarons": "../../pages/bakery/macrons.html",
+                "drinks/coffee": "../../pages/drinks/coffee.html",
+                "drinks/fresh juices& smoothie": "../../pages/drinks/juices.html",
+                "drinks/hot drinks": "../../pages/drinks/hot-drinks.html"
+            };
+
+            let targetPage = "../../index.html";
+            const courseLower = course.toLowerCase();
+            
+            for (let key in categoryPages) {
+                if (courseLower.includes(key.toLowerCase())) {
+                    targetPage = categoryPages[key];
+                    break;
+                }
+            }
+
+            // Redirect using the exact id matching the HTML element
+            window.location.href = `${targetPage}#${id}`;
+        }
+
+        // Delete Function: Safety check for static recipes
+        function deleteRecipe(id) {
+            const isStatic = staticRecipes.some(r => r.id === id);
+            
+            if (isStatic) {
+                alert("This is a core website recipe and cannot be deleted.");
+                return;
+            }
+
+            if (confirm("Delete this user-added recipe?")) {
+                let userList = JSON.parse(localStorage.getItem('recipes')) || [];
+                userList = userList.filter(r => r.id !== id);
+                localStorage.setItem('recipes', JSON.stringify(userList));
+                displayRecipes();
+            }
+        }
+
+        function editRecipe(id) {
+            window.location.href = `edit-recipe.html?id=${id}`;
+        }
+
+        // Initialize table on load
+        displayRecipes();
+    </script>
+</body>
+</html>

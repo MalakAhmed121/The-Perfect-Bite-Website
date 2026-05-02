@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <title>Yummy-Desserts</title>
+    <link rel="stylesheet" href="../../src/css/dessert.css"/><script src="../../src/js/bakery-java.js"></script>
+    <script src="../../src/js/search-js.js"></script>
+
+    <style>
+        #navbar{
+            background-color:#6B3E26;
+	        padding: 1rem 2rem;
+	        box-shadow:0 2px 5px rgba(0, 0, 0, 0.1); 
+       }
+
+       .main-nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+       }
+
+       .logo {
+           color: #fff;
+           font-size: 1.5rem;
+           font-weight: bold;
+        }
+
+       .nav-links {
+           display: flex;
+           list-style: none;
+        } 
+  
+       .nav-links li {
+           margin-left: 20px;
+        }
+
+        .nav-links a {
+            color: #ecf0f1;
+            text-decoration: none;
+            font-weight: 500;
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover {
+            color: #2C2F6B;
+            text-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
+        }
+       
+    </style>
+</head>
+<body>
+     <div id="navbar">
+        <nav class="main-nav">
+            <div class="logo">Yummy 🍲</div> 
+            <ul class="nav-links">
+                <button id="backbutton" class="big-arrow-btn" type="button" aria-label="Go Back">
+        &#8592;
+    </button>
+                <li><a href="../../cover.html">Team</a></li>
+                <li><a href="../../index.html">Home</a></li>
+                <li><a href="../../search.html">Search</a></li>
+                <li><a href="../../favorites.html">Favorites</a></li>
+                <li><a href="../admin/admin-recipe.html">Admin</a></li>
+                <li><a href="../admin/add-recipe.html">Add Recipe</a></li>
+                <li><a href="../auth/login.html">Login</a></li>
+                <li><a href="../auth/signup.html">Sign Up</a></li>
+            </ul>
+        </nav>
+    </div>
+
+
+    <section class="main">
+        <div class="main-content">
+            <h1>Delicious Desserts for Every Mood</h1>
+            <p>Discover a world of sweet and delicious desserts made to brighten your day</p>
+            <a href="javascript:void(0)" class="btn-main" onclick="onClick()">View Recipes</a>
+        </div>
+    </section>
+
+    <h2 class="h2">Our Dessert Collection </h2>
+
+    <div class="recipes-container">
+
+
+      <div class="recipe-card" id="tiramisu"  data-id="tiramisu"onclick="openCard(event,'tiramisu-card')">
+         <h2>Tiramisu</h2>
+         <p>Tiramisu is a creamy Italian dessert with coffee-soaked ladyfingers.</p>
+         <a href="javascript:void(0)" class="btn-main" onclick="openCard(event,'tiramisu-card')">View Recipe</a>
+      </div>
+
+
+      <div class="recipe-card" id="blackforest-cheesecake" data-id="blackforest-cheesecake" onclick="openCard(event,'blackforest-cheesecake-card')">
+          <h2>Black Forest Cheesecake</h2>
+          <p>Black Forest Cheesecake is a creamy chocolate cheesecake with cherry layers on top.</p>
+          <a href="javascript:void(0)" class="btn-main" onclick="openCard(event,'blackforest-cheesecake-card')">View Recipe</a>
+      </div>
+
+
+      <div class="recipe-card" id="brownie" data-id="brownie"  onclick="openCard(event,'brownie-card')">
+         <h2>Brownies</h2>
+         <p>Brownies are rich, chocolatey squares with a soft, fudgy center. Perfect for chocolate lovers!</p>
+         <a href="javascript:void(0)" class="btn-main" onclick="openCard(event,'brownie-card')">View Recipe</a>
+      </div> 
+
+
+      <div class="recipe-card" id="strawberryCake" data-id="strawberryCake" onclick="openCard(event,'strawberryCake-card')">
+         <h2>strawberry Cake</h2>
+         <p>Strawberry Cake is a soft, sweet cake layered with fresh strawberries and cream.</p>
+         <a href="javascript:void(0)" class="btn-main" onclick="openCard(event,'strawberryCake-card')">View Recipe</a>
+      </div>
+ 
+      
+      <div class="recipe-card" id="CremeCaramel" data-id="CremeCaramel" onclick="openCard(event,'CremeCaramel-card')">
+         <h2>Crème Caramel</h2>
+         <p>Crème Caramel is a smooth custard dessert topped with soft caramel.</p>
+         <a href="javascript:void(0)" class="btn-main" onclick="openCard(event,'CremeCaramel-card')">View Recipe</a>
+      </div>
+      
+      
+
+      <div class="recipe-card" id="cupcake" data-id="cupcake" onclick="openCard(event,'cupcake-card')">
+         <h2>Cupcake</h2>
+         <p>Cupcakes are small, sweet cakes,topped with frosting or sprinkles.</p>
+         <a href="javascript:void(0)" class="btn-main" onclick="openCard(event,'cupcake-card')">View Recipe</a>
+      </div>    
+
+    </div>
+
+
+    <div class="details-card" id="tiramisu-card">
+		<div class="recipe-content-box">
+			<h2 style="text-align: center;">Tiramisu</h2>
+            <h3>Ingredients</h3>
+            <ul class="recipe-list">
+              <li>Ladyfingers(savoiardi):200-300g</li>
+              <li>Mascarpone Cheese:500g</li>
+              <li>Heavy Cream:250ml</li>
+              <li>Espresso Coffee:1cup</li>
+            </ul>
+            <p><strong>Preparation Steps:</strong></p>
+            <ul class="recipe-list">
+              <li>Mix:Fold the whipped cream into the Mascarpone</li>
+              <li>Dip:Briefly soak ladyfingers in the cold coffe</li>
+              <li>Layer:Alternate soaked biscuits and cream in a dish</li>
+              <li>Chill:Refigerate for 4-6 hours before serving</li>
+            </ul>
+            <span class="heart" title="Add to Favorites" onclick="changecolor(this)">♥</span>
+        </div>
+    </div>
+
+
+
+    <div class="details-card" id="blackforest-cheesecake-card">
+		<div class="recipe-content-box">
+			<h2 style="text-align: center;">Black Forest Cheesecake</h2>
+            <h3>Ingredients</h3>
+            <ul class="recipe-list">
+              <li>Chocolate Biscuits:250g mixed with 50g melted butter</li>
+              <li>Cream Cheese:500g</li>
+              <li>Heavy Cream:250ml</li>
+              <li>Cherry Pie Filling:1can</li>
+            </ul>
+            <p><strong>Preparation Steps:</strong></p>
+            <ul class="recipe-list">
+              <li>Crust:Press the crushed biscuis into the bottom of your tin</li>
+              <li>Fill:Mix cream with cheese and spread it</li>
+              <li>Top:Add the cherry filling on the surface</li>
+              <li>Chill:Refigerate for 6 hours before serving</li>
+            </ul>
+            <span class="heart" title="Add to Favorites" onclick="changecolor(this)">♥</span>
+        </div>
+    </div>
+
+
+
+   <div class="details-card" id="brownie-card">
+		<div class="recipe-content-box">
+			<h2 style="text-align: center;">Brownies</h2>
+            <h3>Ingredients</h3>
+            <ul class="recipe-list">
+              <li>Chocolate Spread:1 large jar(400g)</li>
+              <li>Eggs:2 large</li>
+              <li>Flour:1/2cup</li>
+              <li>Chocolate Chips:1/2cup</li>
+            </ul>
+            <p><strong>Preparation Steps:</strong></p>
+            <ul class="recipe-list">
+              <li>Mix:Blend chocolate spread with eggs</li>
+              <li>Fold:Stir in the flour gently with chocolate chips</li>
+              <li>Fill: Pour batter into baking tray.</li>
+              <li>Bake: Cook at 180°C for 25 mins.</li>
+            </ul>
+            <span class="heart" title="Add to Favorites" onclick="changecolor(this)">♥</span>
+        </div>
+    </div>
+
+
+
+   <div class="details-card" id="strawberryCake-card">
+		<div class="recipe-content-box">
+			<h2 style="text-align: center;">Strawberry Cake</h2>
+            <h3>Ingredients</h3>
+            <ul class="recipe-list">
+              <li>for cake:self-rising flour:1.5 cups,suger:1cup,eggs:3 large,milk:1/2cup</li>
+              <li>Strawberry Jelly:1 small pack</li>
+              <li>strawberries:1 cup(pieces)</li>
+            </ul>
+            <p><strong>Preparation Steps:</strong></p>
+            <ul class="recipe-list">
+              <li>Mix:combine flour,suger,eggs,milk,Strawberry Jelly</li>
+              <li>Fold:add the strawberry pieces gently</li>
+              <li>Fill:pour the batter into a greased pan</li>
+              <li>Bake:cook at 180°C for 30-35 minutes</li>
+              <li>Cool:let it rest for 15 minutes before serving</li>
+            </ul>
+            <span class="heart" title="Add to Favorites" onclick="changecolor(this)">♥</span>
+        </div>
+    </div>
+
+
+
+    <div class="details-card" id="CremeCaramel-card">
+		<div class="recipe-content-box">
+			<h2 style="text-align: center;">Crème Caramel</h2>
+            <h3>Ingredients</h3>
+            <ul class="recipe-list">
+              <li>Milk:2cups</li>
+              <li>Eggs:3large</li>
+              <li>Suger:1/2cup(for cream)+ 1/2cup(for the caramel)</li>
+              <li>Vanila:1tsp</li>
+            </ul>
+            <p><strong>Preparation Steps:</strong></p>
+            <ul class="recipe-list">
+              <li>Melt:Heat 1/2cup sugar until it turns into Caramel</li>
+              <li>Mix:Whisk milk,eggs,sugar,and vanilla.</li>
+              <li>Fill:Pour caramel in the mold,then add the mixture</li>
+              <li>Bake:Cook in a Water Bath at 160°C for 45 minutes</li>
+              <li>Chill:Refrigerate for 4 hours</li>
+            </ul>
+            <span class="heart" title="Add to Favorites" onclick="changecolor(this)">♥</span>
+        </div>
+    </div>
+
+
+     <div class="details-card" id="cupcake-card">
+	 	<div class="recipe-content-box">
+			<h2 style="text-align: center;">Cup Cake</h2>
+            <h3>Ingredients</h3>
+            <ul class="recipe-list">
+              <li>Self-Rising Flour:1.5 cups</li>
+              <li>Sugar:3/4cup</li>
+              <li>Soft Butter: 125g</li>
+              <li>Eggs:2large(mixed with 1tsp vanilla)</li>
+            </ul>
+            <p><strong>Preparation Steps:</strong></p>
+            <ul class="recipe-list">
+              <li>Mix:Whisk butter and sugar until creamy</li>
+              <li>Add:Stir in eggs, then fold in flour</li>
+              <li>Fill:Scoop the batter into cupcake liners(fill to 2/3)</li>
+              <li>Bake:Cook at 180°C for 15-20 minutes</li>
+              <li>Top: Pipe whipped cream on top and Add sprinkles or chocolate chips or black cheery</li>
+            </ul>
+            <span class="heart" title="Add to Favorites" onclick="changecolor(this)">♥</span>
+        </div>
+    </div>
+
+
+
+ <script>
+
+     function changecolor(element) {
+      if(element.style.color=="red") {element.style.color="white"}
+       else {element.style.color = "red";
+         element.title = "Added Successfully! ✨";}
+          
+        }
+
+		let currentCard = null;
+		function openCard(event, cardId){
+
+			if(event) {event.stopPropagation();}
+
+			if(currentCard) {currentCard.style.display = "none";}
+
+			const targetCard = document.getElementById(cardId);
+
+			if(targetCard){
+				targetCard.style.display = "block";
+				currentCard = targetCard;
+			}
+
+		}
+
+		window.onclick = function(event){
+			if(currentCard && currentCard.style.display === "block"){
+
+				if(event.target !== currentCard && !currentCard.contains(event.target)){
+					currentCard.style.display = "none";
+					currentCard = null;
+				}
+
+			}
+		}
+
+		 function onClick() {
+            window.scrollBy({
+                top: 740,
+                behavior: 'smooth'
+            });
+        }
+    </script>
+
+</body>
+</html>

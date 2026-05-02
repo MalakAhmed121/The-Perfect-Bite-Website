@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Pasta Recipes</title>
+    <link rel="stylesheet" href="../../src/css/maindish.css">
+    <script src="../../src/js/maindish.js"></script>
+     <script src="../../src/js/search-js.js"></script>
+</head>
+
+<body>
+    <div id="navbar">
+        <nav class="main-nav">
+            <div class="logo">Yummy 🍲</div>
+            <ul class="nav-links">
+                <li><a href="../../cover.html">Team</a></li>
+                <li><a href="../../index.html">Home</a></li>
+                <li><a href="../../search.html">Search</a></li>
+                <li><a href="../../favorites.html">Favorites</a></li>
+                <li><a href="../admin/admin-recipe.html">Admin</a></li>
+                <li><a href="../admin/add-recipe.html">Add Recipe</a></li>
+                <li><a href="../auth/login.html">Login</a></li>
+                <li><a href="../auth/signup.html">Sign Up</a></li>
+            </ul>
+        </nav>
+    </div>
+
+    <div class="banner">
+        <img src="../../photos/maindish/pasta-banner.jfif" style="width:100%; height:400px; margin-bottom:30px;">
+    </div>
+
+    <h2 class="h2">Our Pasta Recipes</h2>
+
+    <div class="recipes-container">
+ 
+        <div class="recipe-card" id="spaghettiCarbonara" data-id="spaghettiCarbonara"
+            onclick="openCard(event,'spaghettiCarbonara-card')">
+ 
+            <h2>Spaghetti Carbonara 🍝</h2>
+            <p>Creamy spaghetti with bacon and parmesan.</p>
+            <a href="javascript:void(0)" onclick="openCard(event,'spaghettiCarbonara-card')">View Recipes</a>
+        </div>
+
+ 
+        <div class="recipe-card" id="pastaPesto" data-id="pastaPesto" onclick="openCard(event,'pastaPesto-card')">
+ 
+            <h2>Pasta Pesto 🌿</h2>
+            <p>Fresh basil pesto with pasta noodles.</p>
+            <a href="javascript:void(0)" onclick="openCard(event,'pastaPesto-card')">View Recipes</a>
+        </div>
+
+ 
+        <div class="recipe-card" id="lasagna" data-id="lasagna"onclick="openCard(event,'lasagna-card')">
+ 
+            <h2>Lasagna 🍲</h2>
+            <p>Layers of pasta, cheese, and tomato sauce.</p>
+            <a href="javascript:void(0)" onclick="openCard(event,'lasagna-card')">View Recipes</a>
+        </div>
+    </div>
+
+    <!-- Recipe Details -->
+    <div class="detials-card" id="spaghettiCarbonara-card">
+        <div class="recipe-content-box">
+            <h2 style="text-align:center;">Spaghetti Carbonara</h2>
+            <h3>Ingredients</h3>
+            <ul class="recipe-list">
+                <li>Spaghetti: 200g</li>
+                <li>Bacon: 100g</li>
+                <li>Eggs: 2</li>
+                <li>Parmesan: 50g</li>
+            </ul>
+            <h3>Preparation Steps</h3>
+            <ul class="recipe-list">
+                <li>Cook spaghetti al dente.</li>
+                <li>Cook bacon, mix with eggs & cheese, toss with spaghetti.</li>
+                <li>Serve immediately.</li>
+            </ul>
+            <span class="heart" onclick="changecolor(this)">♥</span>
+        </div>
+    </div>
+
+    <div class="detials-card" id="pastaPesto-card">
+        <div class="recipe-content-box">
+            <h2 style="text-align:center;">Pasta Pesto</h2>
+            <h3>Ingredients</h3>
+            <ul class="recipe-list">
+                <li>Pasta: 200g</li>
+                <li>Basil pesto: 3 tbsp</li>
+                <li>Olive oil: 1 tbsp</li>
+                <li>Parmesan: 30g</li>
+            </ul>
+            <h3>Preparation Steps</h3>
+            <ul class="recipe-list">
+                <li>Cook pasta, drain and toss with pesto and olive oil.</li>
+                <li>Sprinkle parmesan and serve.</li>
+            </ul>
+            <span class="heart" onclick="changecolor(this)">♥</span>
+        </div>
+    </div>
+
+    <div class="detials-card" id="lasagna-card">
+        <div class="recipe-content-box">
+            <h2 style="text-align:center;">Lasagna</h2>
+            <h3>Ingredients</h3>
+            <ul class="recipe-list">
+                <li>Lasagna sheets: 6</li>
+                <li>Tomato sauce: 2 cups</li>
+                <li>Cheese: 200g</li>
+                <li>Bechamel sauce: 1 cup</li>
+            </ul>
+            <h3>Preparation Steps</h3>
+            <ul class="recipe-list">
+                <li>Layer pasta, sauce, and cheese in baking dish.</li>
+                <li>Bake at 180°C for 25-30 mins until golden.</li>
+                <li>Serve hot.</li>
+            </ul>
+            <span class="heart" onclick="changecolor(this)">♥</span>
+        </div>
+    </div>
+
+</body>
+
+</html>

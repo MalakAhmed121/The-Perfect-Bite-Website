@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Yummy-Hot drinks</title>
+    <link rel="stylesheet" href="../../src/css/style.css">
+    <link rel="stylesheet" href="../../src/css/drinks.css">
+    <script src="../../src/js/search-js.js"></script>
+    <script src="../../src/js/bakery-java.js"></script>
+
+</head>
+
+<body>
+    <div id="navbar">
+        <nav class="main-nav">
+            <div class="logo">Yummy 🍲</div>
+            <ul class="nav-links">
+                <button id="backbutton" class="big-arrow-btn" type="button" aria-label="Go Back">
+                    &#8592;
+                </button>
+                <li><a href="../../cover.html">Team</a></li>
+                <li><a href="../../index.html">Home</a></li>
+                <li><a href="../../search.html">Search</a></li>
+                <li><a href="../../favorites.html">Favorites</a></li>
+                <li><a href="../admin/admin-recipe.html">Admin</a></li>
+                <li><a href="../admin/add-recipe.html">Add Recipe</a></li>
+                <li><a href="../auth/login.html">Login</a></li>
+                <li><a href="../auth/signup.html">Sign Up</a></li>
+            </ul>
+        </nav>
+    </div>
+    <section class="hero hot-drinks-hero">
+        <div class="hero-content">
+            <h1 class="hero-title">
+                Warm your day with every sip — cozy, rich, and full of comfort
+            </h1>
+            <br>
+            <a href="#recipesss" class="btn-main">View Recipes</a>
+            <br>
+        </div>
+    </section>
+    <br>
+
+    <h2 id="recipesss">Recipes</h2>
+    <div class="recipes-container">
+
+        <div class="recipe-card" id="hot-chocolate" data-id="hot-chocolate"
+            onclick="openCard(event, 'hot-chocolate-card')">
+            <h2>Hot Chocolate🍫</h2>
+            <p>Rich, warm chocolate with creamy milk</p>
+            <!-- <a href="coffee.html" class="btn-main">View Recipe</a> -->
+            <a href="javascript:void(0)" class="btn-main" onclick="openCard(event, 'hot-chocolate-card')">View
+                Recipe</a>
+        </div>
+
+        <div class="recipe-card" id="turkish-tea" data-id="turkish-tea" onclick="openCard(event, 'turkish-tea-card')">
+            <h2>Turkish Tea🍃</h2>
+            <p>Classic strong black tea served hot </p>
+            <!-- <a href="recipe-details.html" class="btn-main">View Recipes</a> -->
+            <a href="javascript:void(0)" class="btn-main" onclick="openCard(event, 'turkish-tea-card')">View
+                Recipe</a>
+        </div>
+
+        <div class="recipe-card" id="Hibiscus-tea" data-id="Hibiscus-tea"
+            onclick="openCard(event, 'Hibiscus-tea-card')">
+            <h2>Herbal Hibiscus Tea🌺🌹</h2>
+            <p>Refreshing hibiscus with a naturally tangy taste</p>
+            <!-- <a href="recipe-details.html" class="btn-main">View Recipes</a> -->
+            <a href="javascript:void(0)" class="btn-main" onclick="openCard(event, 'Hibiscus-tea-card')">View
+                Recipes</a>
+        </div>
+
+    </div>
+
+    <div class="details-card" id="hot-chocolate-card">
+        <div class="recipe-content-box">
+            <h2>Hot Chocolate🍫</h2>
+
+            <h3>Ingredients</h3>
+            <ul class="recipe-list">
+                <li>🥛 2 cups milk</li>
+                <li>🍫 2 tbsp cocoa powder</li>
+                <li>🍯 2 tbsp sugar (or honey)</li>
+                <li>🍦 1/4 tsp vanilla extract</li>
+                <li>🍫 Chocolate chips (optional)</li>
+                <li>☁️ Whipped cream (for topping)</li>
+            </ul>
+
+            <p><strong>Preparation Steps:</strong></p>
+            <ul class="recipe-list">
+                <li><b>Heat 🔥:</b> Warm the milk in a saucepan (do not boil).</li>
+                <li><b>Mix 🍫:</b> Add cocoa powder and sugar, stir well.</li>
+                <li><b>Flavor 🍦:</b> Add vanilla extract and mix.</li>
+                <li><b>Melt ✨:</b> Add chocolate chips and stir until melted.</li>
+                <li><b>Serve ☕:</b> Pour into a cup and top with whipped cream.</li>
+            </ul>
+            <span class="heart" style="margin-top: 40px;" title="Add to Favorites" onclick="changecolor(this)">♥</span>
+
+        </div>
+
+
+    </div>
+
+
+
+    <div class="details-card" id="turkish-tea-card">
+        <div class="recipe-content-box">
+            <h2>Turkish Tea🍃</h2>
+
+            <h3>Ingredients</h3>
+            <ul class="recipe-list">
+                <li>💧 ¼ cup water</li>
+                <li>🍃 5 tbsp tea leaves (for 6 people)</li>
+                <li>💧 Water for large teapot</li>
+            </ul>
+
+            <p><strong>Preparation Steps:</strong></p>
+            <ul class="recipe-list">
+                <li><b>Prepare 🫖:</b> Pour ¼ cup water in the small teapot and add tea leaves, then cover.</li>
+                <li><b>Boil 🔥:</b> Fill the large teapot with water and place both pots on the stove. Bring to boil.
+                </li>
+                <li><b>Simmer ⏳:</b> Reduce heat and let it simmer for 5 minutes.</li>
+                <li><b>Mix 💧:</b> Transfer more than half of the hot water to the small teapot.</li>
+                <li><b>Refill 🔄:</b> Fill the large teapot again with water and place them back on the stove.</li>
+                <li><b>Brew 🍃:</b> Bring to boil, then reduce heat and simmer for 10–15 minutes.</li>
+                <li><b>Serve ☕:</b> Keep warm or serve and reheat when needed.</li>
+            </ul>
+			<span class="heart" title="Add to Favorites" onclick="changecolor(this)">♥</span>
+
+
+        </div>
+    </div>
+
+
+
+    <div class="details-card" id="Hibiscus-tea-card">
+        <div class="recipe-content-box">
+            <h2>Herbal Hibiscus Tea🌺🌹</h2>
+
+            <h3>Ingredients</h3>
+            <ul class="recipe-list">
+                <li>🌺 2 tablespoons dried hibiscus petals</li>
+                <li>💧 4 cups boiling water</li>
+                <li>🍯 1 tablespoon honey</li>
+            </ul>
+
+            <p><strong>Preparation Steps:</strong></p>
+            <ul class="recipe-list">
+                <li><b>Boil 🔥:</b> Bring water to a boil.</li>
+                <li><b>Steep 🌺:</b> Add hibiscus petals and let it steep for 10 minutes.</li>
+                <li><b>Strain 🍵:</b> Strain the tea to remove petals.</li>
+                <li><b>Sweeten 🍯:</b> Add honey and stir well.</li>
+                <li><b>Serve ❄️/☕:</b> Chill for iced tea or serve warm.</li>
+            </ul>
+            <span class="heart" style="margin-top: 40px;" title="Add to Favorites" onclick="changecolor(this)">♥</span>
+
+
+        </div>
+    </div>
+
+    <script>
+
+        //==============================  heart button ==================================
+        function changecolor(element) {
+            const isRed = element.style.color === "red";
+
+            if (isRed) {
+                element.style.color = "white";
+
+
+            }
+            else {
+                element.style.color = "red";
+                element.title = "Added Successfully! ✨";
+            }
+        }
+
+        // =================================== OPEN CARD==============================================
+        let currentCard = null;
+
+        function openCard(event, cardId) {
+            if (event) event.stopPropagation();
+
+
+            if (currentCard) {
+                currentCard.style.display = "none";
+            }
+
+
+            const targetCard = document.getElementById(cardId);
+
+            if (targetCard) {
+                targetCard.style.display = "block";
+                currentCard = targetCard;
+            }
+        }
+
+        window.onclick = function (event) {
+            if (currentCard && currentCard.style.display === "block") {
+                if (event.target !== currentCard && !currentCard.contains(event.target)) {
+                    currentCard.style.display = "none";
+                    currentCard = null;
+                }
+            }
+        }
+
+        //================================Admin Features=========================================      
+
+        // هذا الكود يعمل فور تحميل الصفحة
+        window.addEventListener("load", function () {
+            // Get the recipe ID from the URL hash (everything after #)
+            let recipeId = window.location.hash.substring(1);
+
+            // Remove 'card' suffix if present (clean the ID)
+            if (recipeId && recipeId.endsWith('card')) {
+                recipeId = recipeId.replace('card', '');
+            }
+
+            if (recipeId) {
+                // Add a longer delay to ensure the DOM is fully ready
+                setTimeout(function () {
+                    // Try to open the details card
+                    const detailsCardId = recipeId + 'card';
+                    const detailsCard = document.getElementById(detailsCardId);
+
+                    if (detailsCard) {
+                        // Close any open card first
+                        if (currentCard) {
+                            currentCard.style.display = "none";
+                        }
+
+                        // Open the card
+                        detailsCard.style.display = "block";
+                        currentCard = detailsCard;
+
+                        // Find and scroll to the recipe card
+                        const element = document.getElementById(recipeId);
+                        if (element) {
+                            element.scrollIntoView({ behavior: 'smooth', block: 'center' });
+
+                            // Add highlight effect
+                            element.style.transition = "all 0.3s ease";
+                            element.style.transform = "translateY(-10px)";
+                            element.style.boxShadow = "0 5px 15px rgba(0,0,0,0.3)";
+
+                            setTimeout(function () {
+                                element.style.transform = "";
+                                element.style.boxShadow = "";
+                            }, 1000);
+                        }
+                    } else {
+                        console.log("Card not found:", detailsCardId);
+                    }
+                }, 500); // Increased delay to 500ms
+            }
+        });
+
+    </script>
+
+
+
+</body>
