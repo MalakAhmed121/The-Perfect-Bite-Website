@@ -55,7 +55,7 @@ urlpatterns = [
     # Drinks
     path('drinks/', views.drinks_page, name='drinks'),
     path('coffee/', views.coffee, name='coffee'),
-    path('hot-drinks/', views.hot_drinks, name='hot-drinks'),
+    path('hot_drinks/', views.hot_drinks, name='hot_drinks'),
     path('juices/', views.juices, name='juices'),
     
     # Healthy

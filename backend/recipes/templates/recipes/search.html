@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+{% load static %}
+
 
 <head>
     <meta charset="UTF-8">
     <title>Yummy - Search</title>
-    <link rel="stylesheet" href="src/css/style.css">
-    <script src="src/js/search-js.js"></script>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <script src="{% static 'js/search-js.js' %}"></script>
 
 </head>
 
@@ -14,14 +16,14 @@
         <nav class="main-nav">
             <div class="logo">Yummy </div>
             <ul class="nav-links">
-                <li><a href="cover.html">Team</a></li>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="search.html">Search</a></li>
-                <li><a href="favorites.html">Favorites</a></li>
-                <li><a href="pages/admin/admin-recipe.html">Admin</a></li>
-                <li><a href="pages/admin/add-recipe.html">Add Recipe</a></li>
-                <li><a href="pages/auth/login.html">Login</a></li>
-                <li><a href="pages/auth/signup.html">Sign Up</a></li>
+                <li><a href="{% url 'cover' %}">Team</a></li>
+                <li><a href="{% url 'home' %}">Home</a></li>
+                <li><a href="{% url 'search' %}">Search</a></li>
+                <li><a href="{% url 'favorites' %}">Favorites</a></li>
+                <li><a href="{% url 'admin_recipe' %}">Admin</a></li>
+                <li><a href="{% url 'add_recipe' %}">Add Recipe</a></li>
+                <li><a href="{% url 'login' %}">Login</a></li>
+                <li><a href="{% url 'signup' %}">Sign Up</a></li>
             </ul>
         </nav>
     </div>
@@ -49,7 +51,7 @@
     </center>
     </div>
     <script>
-     
+
 
     </script>
 </body>

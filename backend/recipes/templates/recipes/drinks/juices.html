@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
-
+ {% load static %}
 <head>
     <meta charset="UTF-8">
     <title>Yummy-Juice </title>
-    <link rel="stylesheet" href="../../src/css/style.css">
-    <link rel="stylesheet" href="../../src/css/drinks.css">
-    <script src="../../src/js/search-js.js"></script>
-    <script src="../../src/js/bakery-java.js"></script>
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/drinks.css' %}">
+    <script src="{% static 'js/search-js.js' %}"></script>
+    <script src="{% static 'js/bakery-java.js' %}"></script>
 
 
 </head>
@@ -20,14 +20,14 @@
                 <button id="backbutton" class="big-arrow-btn" type="button" aria-label="Go Back">
                     &#8592;
                 </button>
-                <li><a href="../../cover.html">Team</a></li>
-                <li><a href="../../index.html">Home</a></li>
-                <li><a href="../../search.html">Search</a></li>
-                <li><a href="../../favorites.html">Favorites</a></li>
-                <li><a href="../admin/admin-recipe.html">Admin</a></li>
-                <li><a href="../admin/add-recipe.html">Add Recipe</a></li>
-                <li><a href="../auth/login.html">Login</a></li>
-                <li><a href="../auth/signup.html">Sign Up</a></li>
+                   <li><a href="{% url 'cover' %}">Team</a></li>
+                <li><a href="{% url 'home' %}">Home</a></li>
+                <li><a href="{% url 'search' %}">Search</a></li>
+                <li><a href="{% url 'favorites' %}">Favorites</a></li>
+                <li><a href="{% url 'admin_recipe' %}">Admin</a></li>
+                <li><a href="{% url 'add_recipe' %}">Add Recipe</a></li>
+                <li><a href="{% url 'login' %}">Login</a></li>
+                <li><a href="{% url 'signup' %}">Sign Up</a></li>
             </ul>
         </nav>
     </div>
