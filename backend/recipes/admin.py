@@ -5,4 +5,4 @@ from django.contrib import admin
 from django.contrib import admin
 from .models import HealthyRecipe
 
-admin.site.register(HealthyRecipe) # سجل الموديل بتاعنا في لوحة التحكم[cite: 5]
+admin.site.register(HealthyRecipe) 
