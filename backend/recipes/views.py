@@ -78,7 +78,7 @@ def coffee(request):
     return render(request, 'recipes/drinks/coffee.html')
 
 def hot_drinks(request):
-    return render(request, 'recipes/drinks/hot-drinks.html')
+    return render(request, 'recipes/drinks/hot_drinks.html')
 
 def juices(request):
     return render(request, 'recipes/drinks/juices.html')
