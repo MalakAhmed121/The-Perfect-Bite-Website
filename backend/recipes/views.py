@@ -84,9 +84,35 @@ def juices(request):
     return render(request, 'recipes/drinks/juices.html')
 
 #  healthy
-def healthy_food(request):
-    return render(request, 'recipes/healthy/Healthy Food.html')
+from django.shortcuts import render
+from .models import HealthyRecipe # بنقوله هات الموديل اللي صممناه
 
+def healthy_food(request):
+    # بنسحب كل الأكلات الصحية من قاعدة البيانات[cite: 10]
+    all_healthy_recipes = HealthyRecipe.objects.all() 
+    
+    # بنبعتها للـ HTML في قاموس (Context) اسمه 'recipes'[cite: 10]
+    return render(request, 'recipes/healthy/Healthy Food.html', {'recipes': all_healthy_recipes})
+from django.http import JsonResponse
+
+def get_recipe_details(request, recipe_id):
+    try:
+        # بنبحث عن الوجبة بالرقم بتاعها (ID)[cite: 10]
+        recipe = HealthyRecipe.objects.get(id=recipe_id)
+        
+        # بنجهز البيانات في شكل JSON عشان الـ JS يفهمها
+        data = {
+            'title': recipe.title,
+            'description': recipe.description,
+            'ingredients': recipe.ingredients.split(','), # بنحول النص لقائمة
+            'method': recipe.preparation_steps,
+            'image_url': recipe.image.url,
+            'calories': recipe.calories,
+            'prep_time': recipe.prep_time,
+        }
+        return JsonResponse(data)
+    except HealthyRecipe.DoesNotExist:
+        return JsonResponse({'error': 'الوجبة غير موجودة'}, status=404)
 #  main_dish
 def main_dish(request):
     return render(request, 'recipes/main_dish/maindish.html')

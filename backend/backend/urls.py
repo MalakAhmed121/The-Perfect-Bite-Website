@@ -60,7 +60,7 @@ urlpatterns = [
     
     # Healthy
     path('healthy/', views.healthy_food, name='healthy'),
-    
+    path('recipe-api/<int:recipe_id>/', views.get_recipe_details, name='get_recipe_details'),
     # Main Dish
     path('main-dish/', views.main_dish, name='main_dish'),
     path('beef/', views.beef, name='beef'),
