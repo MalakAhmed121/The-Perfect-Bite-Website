@@ -17,7 +17,7 @@
                 <li><a href="{% url 'search' %}">Search</a></li>
                 <li><a href="{% url 'favorites' %}">Favorites</a></li>
                 {% if user.is_staff %}
-                <li><a href="{% url 'admin_recipe' %}">Admin</a></li>
+               <li><a href="{% url 'admin_recipe' %}">Admin</a></li>
                 {% endif %}
                 <li><a href="{% url 'add_recipe' %}">Add Recipe</a></li>
                 <li><a href="{% url 'login' %}">Login</a></li>
@@ -163,7 +163,7 @@
                 "bakery/macarons": "{% url 'macrons' %}",
                 "drinks/coffee": "{% url 'coffee' %}",
                 "drinks/fresh juices& smoothie": "{% url 'juices' %}",
-                "drinks/hot drinks": "{% url 'hot-drinks' %}"
+                "drinks/hot drinks": "{% url 'hot_drinks' %}"
             };
 
             let targetURL = "{% url 'home' %}";

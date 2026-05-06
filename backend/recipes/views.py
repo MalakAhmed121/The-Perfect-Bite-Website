@@ -1,13 +1,14 @@
 # Create your views here.
 
 from django.shortcuts import render
-from django.shortcuts import redirect 
-from django.contrib.auth import authenticate, login  
-from django.contrib.auth.models import User  
-from django.http import JsonResponse 
-from .forms import RegisterForm 
+from django.shortcuts import redirect
+from django.contrib.auth import authenticate, login
+from django.contrib.auth.models import User
+from django.http import JsonResponse
+from .forms import RegisterForm
 from .models import HealthyRecipe
 from django.contrib.auth.decorators import login_required
+
 
 # home page
 @login_required(login_url="login")
@@ -36,7 +37,7 @@ def search_page(request):
 
 
 def login_page(request):
-    
+
     if request.method == "POST":
         username = request.POST.get("username")
         password = request.POST.get("password")
@@ -49,33 +50,35 @@ def login_page(request):
             return redirect(next_url)
         else:
             return render(
-                request, "recipes/auth/login.html", {"error": "Invalid username or password"}
+                request,
+                "recipes/auth/login.html",
+                {"error": "Invalid username or password"},
             )
 
     return render(request, "recipes/auth/login.html")
 
 
 def signup_page(request):
-   
 
     if request.method == "POST":
         form = RegisterForm(request.POST)
         if form.is_valid():
             username = form.cleaned_data.get("username")
             password = form.cleaned_data.get("password")
-            user_type = request.POST.get('user_type')
-            
-            if not user_type or user_type not in ['user', 'admin']:
-                return render(request, 'recipes/auth/signup.html', {
-                    'form': form,
-                    'error': 'Please select user type (User or Admin)'
-                })
+            user_type = request.POST.get("user_type")
+
+            if not user_type or user_type not in ["user", "admin"]:
+                return render(
+                    request,
+                    "recipes/auth/signup.html",
+                    {"form": form, "error": "Please select user type (User or Admin)"},
+                )
 
             user = User.objects.create_user(username=username, password=password)
 
-            if user_type == 'admin':
+            if user_type == "admin":
                 user.is_staff = True
-                user.is_superuser = True 
+                user.is_superuser = True
                 user.save()
 
             login(request, user)
@@ -92,7 +95,7 @@ def add_recipe(request):
 
 
 def admin_recipe(request):
-    return render(request, "recipes/admin/admin-recipe.html")
+    return render(request, "recipes/admin/admin_recipe.html")
 
 
 def edit_recipe(request):
@@ -158,7 +161,6 @@ def juices(request):
 #  healthy
 
 
-
 def healthy_food(request):
 
     all_healthy_recipes = HealthyRecipe.objects.all()
@@ -166,8 +168,6 @@ def healthy_food(request):
     return render(
         request, "recipes/healthy/Healthy Food.html", {"recipes": all_healthy_recipes}
     )
-
-
 
 
 def get_recipe_details(request, recipe_id):
