@@ -28,7 +28,7 @@
     <div class="login-page-wrapper">
         <h1 class="welcome-msg">Welcome Back to YUMMY! 😊</h1>
 
-        <!-- ✅ رسالة الخطأ -->
+    
         {% if error %}
         <div
             style="color: red; background-color: #ffe0e0; padding: 10px; border-radius: 5px; margin: 10px auto; width: 50%;">
@@ -42,13 +42,13 @@
             </div>
 
             <div class="form-section">
-                <!-- ✅ method POST وشيلنا action -->
+              
                 <form method="POST">
                     {% csrf_token %}
 
                     <div class="form-group">
                         <label>Username</label>
-                        <!-- ✅ name="username" -->
+                        
                         <input type="text" class="form-input" required placeholder="Enter your username"
                             name="username">
                     </div>
@@ -59,7 +59,7 @@
                             required>
                     </div>
 
-                    <!-- ✅ hidden input للـ next -->
+                   
                     <input type="hidden" name="next" value="{{ request.GET.next }}">
 
                     <div class="form-group">
