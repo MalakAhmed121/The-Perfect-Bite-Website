@@ -1,23 +1,26 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Yummy - Admin Recipes</title>
-    <link rel="stylesheet" href="../../src/css/style.css">
+    <!-- تم تحديث مسار الـ CSS ليعمل بنظام static الخاص بـ Django[cite: 10] -->
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
 </head>
 <body>
     <div id="navbar">
         <nav class="main-nav">
             <div class="logo">Yummy 🍲</div>
             <ul class="nav-links">
-                <li><a href="../../cover.html">Team</a></li>
-                <li><a href="../../index.html">Home</a></li>
-                <li><a href="../../search.html">Search</a></li>
-                <li><a href="../../favorites.html">Favorites</a></li>
-                <li><a href="../../pages/admin/admin-recipe.html">Admin</a></li>
-                <li><a href="../../pages/admin/add-recipe.html">Add Recipe</a></li>
-                <li><a href="../../pages/auth/login.html">Login</a></li>
-                <li><a href="../../pages/auth/signup.html">Sign Up</a></li>
+                <!-- تم استبدال المسارات النسبية (../../) بـ Django URL Tags[cite: 24, 26] -->
+                <li><a href="{% url 'cover' %}">Team</a></li>
+                <li><a href="{% url 'home' %}">Home</a></li>
+                <li><a href="{% url 'search' %}">Search</a></li>
+                <li><a href="{% url 'favorites' %}">Favorites</a></li>
+                <li><a href="{% url 'admin_recipe' %}">Admin</a></li>
+                <li><a href="{% url 'add_recipe' %}">Add Recipe</a></li>
+                <li><a href="{% url 'login' %}">Login</a></li>
+                <li><a href="{% url 'signup' %}">Sign Up</a></li>
             </ul>
         </nav>
     </div>
@@ -34,7 +37,8 @@
                 </tr>
             </thead>
             <tbody id="recipeTableBody">
-                </tbody>
+                <!-- الصفوف سيتم إنشاؤها عبر JavaScript -->
+            </tbody>
         </table>
     </div>
 
@@ -105,21 +109,14 @@
             { id: "Hibiscus-tea", name: "Herbal Hibiscus Tea🌺🌹", course: "Drinks/Hot drinks" }
         ];
 
-
-        // Function to render the table
         function displayRecipes() {
             const tableBody = document.getElementById('recipeTableBody');
-            
-            // 2. Fetch recipes added by the user from localStorage
             let userAddedRecipes = JSON.parse(localStorage.getItem('recipes')) || [];
-
-            // 3. Combine both lists (Static + User Added)
             let allRecipes = [...staticRecipes];
+
             userAddedRecipes.forEach(userRecipe => {
-                // Prevent duplicate IDs or names if the user adds something already in static
                 let inStatic = staticRecipes.some(s => s.id === userRecipe.id || s.name.trim().toLowerCase() === userRecipe.name.trim().toLowerCase());
                 if (!inStatic) {
-                    // Check if it's already added to prevent duplicates from within userAddedRecipes itself
                     let inAll = allRecipes.some(a => a.id === userRecipe.id || a.name.trim().toLowerCase() === userRecipe.name.trim().toLowerCase());
                     if (!inAll) {
                         allRecipes.push(userRecipe);
@@ -144,47 +141,46 @@
             tableBody.innerHTML = rowsHTML;
         }
 
-        // View Function: This focuses on the target page and the specific card
+        // --- تعديل دالة العرض لحل مشكلة الـ 404 ---
         function viewRecipe(id, course) {
-            const categoryPages = {
-                "appetizers": "../../pages/appetizers/appetizers.html",
-                "dessert": "../../pages/desserts/dessert.html",
-                "healthy": "../../pages/healthy/Healthy Food.html",
-                "maindish/beef": "../../pages/main_dish/beef.html",
-                "maindish/chicken": "../../pages/main_dish/chicken.html",
-                "maindish/pasta": "../../pages/main_dish/pasta.html",
-                "maindish/fastfood": "../../pages/main_dish/fastfood.html",
-                "maindish/seafood": "../../pages/main_dish/seafood.html",
-                "maindish/vegetarian": "../../pages/main_dish/Vegetarian.html",
-                "bakery/bread": "../../pages/bakery/Bread .html",
-                "bakery/croissant": "../../pages/bakery/Croissants .html",
-                "bakery/cinnamon": "../../pages/bakery/Cinnamon.html",
-                "bakery/cookies": "../../pages/bakery/cookies.html",
-                "bakery/donuts": "../../pages/bakery/Donuts .html",
-                "bakery/macarons": "../../pages/bakery/macrons.html",
-                "drinks/coffee": "../../pages/drinks/coffee.html",
-                "drinks/fresh juices& smoothie": "../../pages/drinks/juices.html",
-                "drinks/hot drinks": "../../pages/drinks/hot-drinks.html"
+            // قمنا باستبدال المسارات الثابتة (.html) بأسماء المسارات من Django URLconf[cite: 23]
+            const categoryURLs = {
+                "appetizers": "{% url 'appetizers' %}",
+                "dessert": "{% url 'dessert' %}",
+                "healthy": "{% url 'healthy' %}",
+                "maindish/beef": "{% url 'beef' %}",
+                "maindish/chicken": "{% url 'chicken' %}",
+                "maindish/pasta": "{% url 'pasta' %}",
+                "maindish/fastfood": "{% url 'fastfood' %}",
+                "maindish/seafood": "{% url 'seafood' %}",
+                "maindish/vegetarian": "{% url 'vegetarian' %}",
+                "bakery/bread": "{% url 'bread' %}",
+                "bakery/croissant": "{% url 'croissants' %}",
+                "bakery/cinnamon": "{% url 'cinnamon' %}",
+                "bakery/cookies": "{% url 'cookies' %}",
+                "bakery/donuts": "{% url 'donuts' %}",
+                "bakery/macarons": "{% url 'macrons' %}",
+                "drinks/coffee": "{% url 'coffee' %}",
+                "drinks/fresh juices& smoothie": "{% url 'juices' %}",
+                "drinks/hot drinks": "{% url 'hot-drinks' %}"
             };
 
-            let targetPage = "../../index.html";
+            let targetURL = "{% url 'home' %}";
             const courseLower = course.toLowerCase();
             
-            for (let key in categoryPages) {
+            for (let key in categoryURLs) {
                 if (courseLower.includes(key.toLowerCase())) {
-                    targetPage = categoryPages[key];
+                    targetURL = categoryURLs[key];
                     break;
                 }
             }
 
-            // Redirect using the exact id matching the HTML element
-            window.location.href = `${targetPage}#${id}`;
+            // الانتقال للرابط الصحيح مع الـ hash الخاص بالـ ID[cite: 23]
+            window.location.href = `${targetURL}#${id}`;
         }
 
-        // Delete Function: Safety check for static recipes
         function deleteRecipe(id) {
             const isStatic = staticRecipes.some(r => r.id === id);
-            
             if (isStatic) {
                 alert("This is a core website recipe and cannot be deleted.");
                 return;
@@ -199,10 +195,10 @@
         }
 
         function editRecipe(id) {
-            window.location.href = `edit-recipe.html?id=${id}`;
+            // توجيه لصفحة التعديل باستخدام Django URL[cite: 23]
+            window.location.href = "{% url 'edit_recipe' %}?id=" + id;
         }
 
-        // Initialize table on load
         displayRecipes();
     </script>
 </body>

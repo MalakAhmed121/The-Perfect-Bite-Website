@@ -1,10 +1,12 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <title>Yummy - Add Recipe</title>
-    <link rel="stylesheet" href="../../src/css/style.css">
+    <!-- تحديث مسار الـ CSS لنظام Django -->
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
 </head>
 
 <body>
@@ -12,151 +14,70 @@
         <nav class="main-nav">
             <div class="logo">Yummy 🍲</div>
             <ul class="nav-links">
-                <li><a href="../../cover.html">Team</a></li>
-                <li><a href="../../index.html">Home</a></li>
-                <li><a href="../../search.html">Search</a></li>
-                <li><a href="../../favorites.html">Favorites</a></li>
-                <li><a href="../admin/admin-recipe.html">Admin</a></li>
-                <li><a href="../admin/add-recipe.html">Add Recipe</a></li>
+                <!-- استخدام أسماء الروابط المعرفة في urls.py بدلاً من مسارات الملفات -->
+                <li><a href="{% url 'cover' %}">Team</a></li>
+                <li><a href="{% url 'home' %}">Home</a></li>
+                <li><a href="{% url 'search' %}">Search</a></li>
+                <li><a href="{% url 'favorites' %}">Favorites</a></li>
+                <li><a href="{% url 'admin_recipe' %}">Admin</a></li>
+                <li><a href="{% url 'add_recipe' %}">Add Recipe</a></li>
             </ul>
         </nav>
     </div>
 
     <div class="page-wrapper">
-    <div class="edit-card">
-        <h2>Add New Recipe</h2>
-        <form id="addRecipeForm">
-            <div class="form-grid">
-                <input type="text" id="recipeName" class="form-input" placeholder="Recipe Name" required>
-                <select id="recipeCourse" class="form-input">
-                    <option value="Main-course">Main-course</option>
-                    <option value="Dessert">Dessert</option>
-                    <option value="Appetizers">Appetizers</option>
-                    <option value="Healthy">Healthy Food</option>
-                    <option value="Bakery">Bakery</option>
-                    <option value="Drinks">Drinks</option>
-                </select>
-            </div>
-            
-            <div class="ingredients-section">
-                <h4>Ingredients</h4>
-                <textarea id="recipeIngredients" class="form-input" placeholder="List ingredients here..."></textarea>
-            </div>
-
-            <button type="submit" id="saveBtn" class="btn-main">Save Recipe</button>
-        </form>
-    </div>
-</div>
-
-<script>
-    document.getElementById('addRecipeForm').onsubmit = function(e) {
-        e.preventDefault();
-        
-        // Prevent multiple clicks
-        const saveBtn = document.getElementById('saveBtn');
-        saveBtn.disabled = true;
-        saveBtn.innerText = "Saving...";
-
-        // 1. Get existing recipes
-        let recipes = JSON.parse(localStorage.getItem('recipes')) || [];
-        
-        // 2. Build the new recipe object with ingredients
-        const newRecipe = {
-            id: Date.now().toString(), // Using string for consistency
-            name: document.getElementById('recipeName').value,
-            course: document.getElementById('recipeCourse').value,
-            ingredients: document.getElementById('recipeIngredients').value
-        };
-
-        // 3. Save to localStorage
-        recipes.push(newRecipe);
-        localStorage.setItem('recipes', JSON.stringify(recipes));
-        
-        // 4. Go to Admin page
-        window.location.href = 'admin-recipe.html';
-    };
-</script>
-
-
-
-
-    <!--*************************************************************************** -->
-    <!-- <div class="page-wrapper">
-        <div class="add-recipe-card">
-            <h1>Add New Recipe</h1>
-            <form id="recipe-form">
-                <div class="form-row">
-                    <label for="recipe_id">Recipe ID:</label>
-                    <input id="recipe_id" type="number" name="id" required>
-                </div>
-
-                <div class="form-row">
-                    <label for="recipe_name">Recipe Name:</label>
-                    <input id="recipe_name" type="text" name="name" required>
-                </div>
-
-                <div class="form-row">
-                    <label for="dish_type">Select Dish Type:</label>
-                    <select id="dish_type" name="course" required>
-                        <option value="healthy">Healthy Food</option>
-                        <option value="appetizers">Appetizers</option>
-                        <option value="main-course">Main-course</option>
-                        <option value="dessert">Dessert</option>
+        <div class="edit-card">
+            <h2>Add New Recipe</h2>
+            <form id="addRecipeForm">
+                <div class="form-grid">
+                    <input type="text" id="recipeName" class="form-input" placeholder="Recipe Name" required>
+                    <select id="recipeCourse" class="form-input">
+                        <option value="Main-course">Main-course</option>
+                        <option value="Dessert">Dessert</option>
+                        <option value="Appetizers">Appetizers</option>
+                        <option value="Healthy">Healthy Food</option>
+                        <option value="Bakery">Bakery</option>
+                        <option value="Drinks">Drinks</option>
                     </select>
                 </div>
-
-                <div class="form-row">
-                    <label for="recipe_time">Time (mins):</label>
-                    <input id="recipe_time" type="number" required>
+                
+                <div class="ingredients-section">
+                    <h4>Ingredients</h4>
+                    <textarea id="recipeIngredients" class="form-input" placeholder="List ingredients here..."></textarea>
                 </div>
 
-                <div class="form-row">
-                    <label for="recipe_calories">Calories (kcal):</label>
-                    <input id="recipe_calories" type="number" required>
-                </div>
-
-                <hr>
-                <h2>Ingredients</h2>
-
-                <div class="ingredient_group">
-                    <label>ID:</label> <input type="number" name="ingredient id">
-                    <label>Name:</label> <input type="text" name="ingredient name">
-                    <label>Qty:</label> <input type="text" name="ingredient quantity">
-                </div>
-
-                <div class="ingredient_group">
-                    <label>ID:</label> <input type="number" name="ingredient id">
-                    <label>Name:</label> <input type="text" name="ingredient name">
-                    <label>Qty:</label> <input type="text" name="ingredient quantity">
-                </div>
-
-                <div class="ingredient_group">
-                    <label>ID:</label> <input type="number" name="ingredient id">
-                    <label>Name:</label> <input type="text" name="ingredient name">
-                    <label>Qty:</label> <input type="text" name="ingredient quantity">
-                </div>
-
-                <hr>
-                <div class="description_section">
-                    <label for="recipe_ingredients">Ingredients (Separator with commas):</label>
-                    <textarea rows="3" id="recipe_ingredients" placeholder="e.g. Tomato, Lettuce, Olive Oil..."></textarea>
-                </div>
-
-                <hr>
-                <div class="description_section">
-                    <label for="discription">Recipe Description:</label>
-                    <textarea rows="5" name="discription" id="discription"></textarea>
-                </div>
-                <div class="form-actions">
-                    <input type="submit" value="Add Recipe" class="btn-main">
-                    <input type="reset" value="Reset" class="btn-main" style="background: #ccc; border: none;">
-                </div>
+                <button type="submit" id="saveBtn" class="btn-main">Save Recipe</button>
             </form>
         </div>
     </div>
 
-    <script src="main.js"></script> -->
+    <script>
+        document.getElementById('addRecipeForm').onsubmit = function(e) {
+            e.preventDefault();
+            
+            const saveBtn = document.getElementById('saveBtn');
+            saveBtn.disabled = true;
+            saveBtn.innerText = "Saving...";
+
+            // 1. جلب الوصفات الموجودة من الـ LocalStorage
+            let recipes = JSON.parse(localStorage.getItem('recipes')) || [];
+            
+            // 2. بناء كائن الوصفة الجديدة
+            const newRecipe = {
+                id: Date.now().toString(),
+                name: document.getElementById('recipeName').value,
+                course: document.getElementById('recipeCourse').value,
+                ingredients: document.getElementById('recipeIngredients').value
+            };
+
+            // 3. الحفظ في localStorage
+            recipes.push(newRecipe);
+            localStorage.setItem('recipes', JSON.stringify(recipes));
+            
+            // 4. التوجيه لصفحة الـ Admin باستخدام مسار Django
+            window.location.href = "{% url 'admin_recipe' %}";
+        };
+    </script>
 </body>
 
 </html>
-               
