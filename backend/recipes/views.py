@@ -157,7 +157,21 @@ def healthy_food(request):
 
 
 def get_recipe_details(request, recipe_id):
-   pass
+    try:
+        recipe = HealthyRecipe.objects.get(id=recipe_id)
+
+        data = {
+            "title": recipe.title,
+            "description": recipe.description,
+            "ingredients": recipe.ingredients.split(","),
+            "method": recipe.preparation_steps,
+            "image_url": recipe.image.url,
+            "calories": recipe.calories,
+            "prep_time": recipe.prep_time,
+        }
+        return JsonResponse(data)
+    except HealthyRecipe.DoesNotExist:
+        return JsonResponse({"error": "recipe not found"}, status=404)
 
 
 #  main_dish
