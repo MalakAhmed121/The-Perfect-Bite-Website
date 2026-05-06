@@ -142,8 +142,7 @@ def juices(request):
 
 
 #  healthy
-from django.shortcuts import render
-from .models import HealthyRecipe
+
 
 
 def healthy_food(request):
@@ -155,7 +154,6 @@ def healthy_food(request):
     )
 
 
-from django.http import JsonResponse
 
 
 def get_recipe_details(request, recipe_id):
