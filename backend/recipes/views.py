@@ -7,9 +7,10 @@ from django.contrib.auth.models import User
 from django.http import JsonResponse 
 from .forms import RegisterForm 
 from .models import HealthyRecipe
-
+from django.contrib.auth.decorators import login_required
 
 # home page
+@login_required(login_url="login")
 def home(request):
     return render(request, "recipes/index.html")
 
@@ -63,6 +64,13 @@ def signup_page(request):
             username = form.cleaned_data.get("username")
             password = form.cleaned_data.get("password")
             user_type = request.POST.get('user_type')
+            
+            if not user_type or user_type not in ['user', 'admin']:
+                return render(request, 'recipes/auth/signup.html', {
+                    'form': form,
+                    'error': 'Please select user type (User or Admin)'
+                })
+
             user = User.objects.create_user(username=username, password=password)
 
             if user_type == 'admin':

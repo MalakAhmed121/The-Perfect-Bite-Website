@@ -13,18 +13,17 @@
 </head>
 
 <body>
-    <div id="navbar">
+     <div id="navbar">
         <nav class="main-nav">
-            <div class="logo">Yummy 🍲</div>
+            <div class="logo">Yummy</div>
             <ul class="nav-links">
-                <button id="backbutton" class="big-arrow-btn" type="button" aria-label="Go Back">
-                    &#8592;
-                </button>
-                   <li><a href="{% url 'cover' %}">Team</a></li>
+                <li><a href="{% url 'cover' %}">Team</a></li>
                 <li><a href="{% url 'home' %}">Home</a></li>
                 <li><a href="{% url 'search' %}">Search</a></li>
                 <li><a href="{% url 'favorites' %}">Favorites</a></li>
+                {% if user.is_staff %}
                 <li><a href="{% url 'admin_recipe' %}">Admin</a></li>
+                {% endif %}
                 <li><a href="{% url 'add_recipe' %}">Add Recipe</a></li>
                 <li><a href="{% url 'login' %}">Login</a></li>
                 <li><a href="{% url 'signup' %}">Sign Up</a></li>
