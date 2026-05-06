@@ -1,11 +1,11 @@
 # Create your views here.
 
 from django.shortcuts import render
-from django.shortcuts import redirect  # ✅ أضيفي redirect
-from django.contrib.auth import authenticate, login  # ✅ جيبي authenticate و login
-from django.contrib.auth.models import User  # ✅ جيبي User
-from django.http import JsonResponse  # ✅ لـ API
-from .forms import RegisterForm  # ✅ جيبي الـ form
+from django.shortcuts import redirect 
+from django.contrib.auth import authenticate, login  
+from django.contrib.auth.models import User  
+from django.http import JsonResponse 
+from .forms import RegisterForm 
 from .models import HealthyRecipe
 
 
@@ -62,8 +62,14 @@ def signup_page(request):
         if form.is_valid():
             username = form.cleaned_data.get("username")
             password = form.cleaned_data.get("password")
-
+            user_type = request.POST.get('user_type')
             user = User.objects.create_user(username=username, password=password)
+
+            if user_type == 'admin':
+                user.is_staff = True
+                user.is_superuser = True 
+                user.save()
+
             login(request, user)
             return redirect("home")
     else:
