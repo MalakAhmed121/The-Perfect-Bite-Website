@@ -34,6 +34,8 @@ urlpatterns = [
     path("add-recipe/", views.add_recipe, name="add_recipe"),
     path("admin_recipe/", views.admin_recipe, name="admin_recipe"),
     path("edit-recipe/", views.edit_recipe, name="edit_recipe"),
+    path('delete-recipe/<int:pk>/', views.delete_recipe, name='delete_recipe'),
+
     # Appetizers
     path("appetizers/", views.appetizers, name="appetizers"),
     # Bakery
