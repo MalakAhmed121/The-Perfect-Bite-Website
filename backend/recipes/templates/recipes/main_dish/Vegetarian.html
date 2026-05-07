@@ -1,12 +1,14 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
+
 
 <head>
     <meta charset="UTF-8">
     <title>Vegetarian Recipes</title>
-    <link rel="stylesheet" href="../../src/css/maindish.css">
-    <script src="../../src/js/maindish.js"></script>
-    <script src="../../src/js/search-js.js"></script>
+    <link rel="stylesheet" href="{% static 'css/maindish.css' %}">
+    <script src="{% static 'js/maindish.js' %}"></script>
+    <script src="{% static 'js/search-js.js' %}"></script>
 </head>
 
 <body>
@@ -14,20 +16,21 @@
         <nav class="main-nav">
             <div class="logo">Yummy 🍲</div>
             <ul class="nav-links">
-                <li><a href="../../cover.html">Team</a></li>
-                <li><a href="../../index.html">Home</a></li>
-                <li><a href="../../search.html">Search</a></li>
-                <li><a href="../../favorites.html">Favorites</a></li>
-                <li><a href="../admin/admin_recipe.html">Admin</a></li>
-                <li><a href="../admin/add-recipe.html">Add Recipe</a></li>
-                <li><a href="../auth/login.html">Login</a></li>
-                <li><a href="../auth/signup.html">Sign Up</a></li>
+                <li><a href="{% url 'cover' %}">Team</a></li>
+                <li><a href="{% url 'home' %}">Home</a></li>
+                <li><a href="{% url 'search' %}">Search</a></li>
+                <li><a href="{% url 'favorites' %}">Favorites</a></li>
+                <li><a href="{% url 'admin_recipe' %}">Admin</a></li>
+                <li><a href="{% url 'add_recipe' %}">Add Recipe</a></li>
+                <li><a href="{% url 'login' %}">Login</a></li>
+                <li><a href="{% url 'signup' %}">Sign Up</a></li>
             </ul>
         </nav>
     </div>
 
     <div class="banner">
-        <img src="../../photos/maindish/Vegetarian-banner.jfif" style="width:100%; height:400px; margin-bottom:30px;">
+        <img src="{% static 'photos/maindish/Vegetarian-banner.jfif' %}"
+            style="width:100%; height:400px; margin-bottom:30px;">
     </div>
 
     <h2 class="h2">Our Vegetarian Recipes</h2>

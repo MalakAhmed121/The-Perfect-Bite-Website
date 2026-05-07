@@ -1,121 +1,62 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <title>Fast Food Recipes</title>
-    <link rel="stylesheet" href="../../src/css/maindish.css">
-    <script src="../../src/js/maindish.js"></script>
-    <script src="../../src/js/search-js.js"></script>
+
+    <link rel="stylesheet" href="{% static 'css/maindish.css' %}">
+
+    <script src="{% static 'js/maindish.js' %}" defer></script>
+    <script src="{% static 'js/search-js.js' %}" defer></script>
 </head>
 
 <body>
+
     <div id="navbar">
         <nav class="main-nav">
             <div class="logo">Yummy 🍲</div>
             <ul class="nav-links">
-                <li><a href="../../cover.html">Team</a></li>
-                <li><a href="../../index.html">Home</a></li>
-                <li><a href="../../search.html">Search</a></li>
-                <li><a href="../../favorites.html">Favorites</a></li>
-                <li><a href="../admin/admin_recipe.html">Admin</a></li>
-                <li><a href="../admin/add-recipe.html">Add Recipe</a></li>
-                <li><a href="../auth/login.html">Login</a></li>
-                <li><a href="../auth/signup.html">Sign Up</a></li>
+                <li><a href="{% url 'cover' %}">Team</a></li>
+                <li><a href="{% url 'home' %}">Home</a></li>
+                <li><a href="{% url 'search' %}">Search</a></li>
+                <li><a href="{% url 'favorites' %}">Favorites</a></li>
+                <li><a href="{% url 'admin_recipe' %}">Admin</a></li>
+                <li><a href="{% url 'add_recipe' %}">Add Recipe</a></li>
+                <li><a href="{% url 'login' %}">Login</a></li>
+                <li><a href="{% url 'signup' %}">Sign Up</a></li>
             </ul>
         </nav>
     </div>
 
     <div class="banner">
-        <img src="../../photos/maindish/fastfood-banner.jfif" style="width:100%; height:400px; margin-bottom:30px;">
+        <img src="{% static 'photos/maindish/fastfood-banner.jfif' %}"
+            style="width:100%; height:400px; margin-bottom:30px;">
     </div>
 
     <h2 class="h2">Our Fast Food Recipes</h2>
 
     <div class="recipes-container">
 
-        <div class="recipe-card" id="burger" data-id="burger" onclick="openCard(event,'burger-card')">
-
+        <div class="recipe-card" id="burger" onclick="openCard(event,'burger-card')">
             <h2>Burger 🍔</h2>
             <p>Juicy beef burger with fresh toppings.</p>
-            <a href="javascript:void(0)" onclick="openCard(event,'burger-card')">View Recipes</a>
+            <a href="#">View Recipes</a>
         </div>
 
-
-        <div class="recipe-card" id="fries" data-id="fries" onclick="openCard(event,'fries-card')">
-
+        <div class="recipe-card" id="fries" onclick="openCard(event,'fries-card')">
             <h2>French Fries 🍟</h2>
             <p>Crispy golden fries with a pinch of salt.</p>
-            <a href="javascript:void(0)" onclick="openCard(event,'fries-card')">View Recipes</a>
+            <a href="#">View Recipes</a>
         </div>
 
-
-        <div class="recipe-card" id="pizza" data-id="pizza" onclick="openCard(event,'pizza-card')">
-
+        <div class="recipe-card" id="pizza" onclick="openCard(event,'pizza-card')">
             <h2>Pizza 🍕</h2>
             <p>Classic pizza with tomato, cheese, and toppings.</p>
-            <a href="javascript:void(0)" onclick="openCard(event,'pizza-card')">View Recipes</a>
+            <a href="#">View Recipes</a>
         </div>
-    </div>
 
-    <!-- Recipe Details -->
-    <div class="detials-card" id="burger-card">
-        <div class="recipe-content-box">
-            <h2 style="text-align:center;">Burger</h2>
-            <h3>Ingredients</h3>
-            <ul class="recipe-list">
-                <li>Burger bun: 2</li>
-                <li>Beef patty: 150g</li>
-                <li>Lettuce, tomato, cheese: toppings</li>
-                <li>Condiments: ketchup, mustard</li>
-            </ul>
-            <h3>Preparation Steps</h3>
-            <ul class="recipe-list">
-                <li>Cook beef patty to desired doneness.</li>
-                <li>Assemble bun, patty, and toppings.</li>
-                <li>Serve immediately.</li>
-            </ul>
-            <span class="heart" onclick="changecolor(this)">♥</span>
-        </div>
-    </div>
-
-    <div class="detials-card" id="fries-card">
-        <div class="recipe-content-box">
-            <h2 style="text-align:center;">French Fries</h2>
-            <h3>Ingredients</h3>
-            <ul class="recipe-list">
-                <li>Potatoes: 3 large</li>
-                <li>Vegetable oil: for frying</li>
-                <li>Salt: to taste</li>
-            </ul>
-            <h3>Preparation Steps</h3>
-            <ul class="recipe-list">
-                <li>Cut potatoes into sticks.</li>
-                <li>Fry in hot oil until golden.</li>
-                <li>Drain, sprinkle with salt, serve hot.</li>
-            </ul>
-            <span class="heart" onclick="changecolor(this)">♥</span>
-        </div>
-    </div>
-
-    <div class="detials-card" id="pizza-card">
-        <div class="recipe-content-box">
-            <h2 style="text-align:center;">Pizza</h2>
-            <h3>Ingredients</h3>
-            <ul class="recipe-list">
-                <li>Pizza dough: 1 batch</li>
-                <li>Tomato sauce: 1/2 cup</li>
-                <li>Mozzarella: 150g</li>
-                <li>Toppings: veggies or pepperoni</li>
-            </ul>
-            <h3>Preparation Steps</h3>
-            <ul class="recipe-list">
-                <li>Roll dough, spread sauce, add cheese and toppings.</li>
-                <li>Bake at 200°C for 12-15 mins until golden.</li>
-                <li>Serve hot.</li>
-            </ul>
-            <span class="heart" onclick="changecolor(this)">♥</span>
-        </div>
     </div>
 
 </body>

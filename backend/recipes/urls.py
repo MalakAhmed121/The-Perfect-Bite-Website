@@ -50,7 +50,6 @@ urlpatterns = [
     path("pasta/", views.pasta, name="pasta"),
     path("seafood/", views.seafood, name="seafood"),
     path("vegetarian/", views.vegetarian, name="vegetarian"),
-    # Favorites
-    # path('favorites/', views.favorites_list, name='favorites'),
-    # path('toggle/<int:item_id>/', views.toggle_favorite, name='toggle_favorite'),
+    #path('favorites/', views.favorites_list, name='favorites'),
+    #path('toggle/<int:item_id>/', views.toggle_favorite, name='toggle_favorite'),
 ]
