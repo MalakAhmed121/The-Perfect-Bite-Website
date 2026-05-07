@@ -16,9 +16,12 @@
 </head>
 
 <body>
+
     <div id="navbar">
         <nav class="main-nav">
+
             <div class="logo">Yummy 🍲</div>
+
             <ul class="nav-links">
                 <li><a href="{% url 'cover' %}">Team</a></li>
                 <li><a href="{% url 'home' %}">Home</a></li>
@@ -31,15 +34,19 @@
                 <li><a href="{% url 'login' %}">Login</a></li>
                 <li><a href="{% url 'signup' %}">Sign Up</a></li>
             </ul>
+
         </nav>
     </div>
 
+    <!-- Banner -->
     <div class="banner">
         <img src="{% static 'maindish/jucybeef.jfif' %}" style="width:100%; height:400px; margin-bottom:30px;">
     </div>
 
+    <!-- Title -->
     <h2 class="h2">Our Beef Recipes</h2>
 
+    <!-- Recipe Cards -->
     <div class="recipes-container">
         {% for recipe in recipes %}
         <div class="recipe-card" 
@@ -64,13 +71,14 @@
             <div style="height: 200px; background-image: url('{{ recipe.image.url }}'); background-size: cover; background-position: center; border-radius: 10px; margin-bottom: 20px;"></div>
 
             <h3>Ingredients</h3>
+
             <ul class="recipe-list">
                 {% for line in recipe.ingredients.splitlines %}
                 <li>{{ line }}</li>
                 {% endfor %}
             </ul>
-
             <h3>Preparation Steps</h3>
+
             <ul class="recipe-list">
                 {% for line in recipe.instructions.splitlines %}
                 <li>{{ line }}</li>
@@ -79,6 +87,7 @@
             
             <span class="heart" data-id="{{ recipe.id }}" onclick="changecolor(this)">♥</span>
         </div>
+
     </div>
     {% endfor %}
 

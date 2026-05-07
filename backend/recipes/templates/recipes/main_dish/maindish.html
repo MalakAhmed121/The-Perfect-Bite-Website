@@ -20,9 +20,9 @@
 
 <body>
 
-    <!-- Navbar -->
     <div id="navbar">
         <nav class="main-nav">
+
             <div class="logo">Yummy 🍲</div>
             <ul class="nav-links">
                 <li><a href="{% url 'cover' %}">Team</a></li>
@@ -36,22 +36,27 @@
                 <li><a href="{% url 'login' %}">Login</a></li>
                 <li><a href="{% url 'signup' %}">Sign Up</a></li>
             </ul>
+
         </nav>
     </div>
 
     <!-- Hero Section -->
     <section class="main">
+
         <div class="main-content">
             <h1>Main Dishes</h1>
+
             <p>Fresh. Tasty. Unforgettable Meals 😍</p>
             <a href="#recipes" class="btn-main">View Categories</a>
         </div>
+
     </section>
 
     <!-- Recipes Categories -->
     <h2 class="h2">Recipes Categories</h2>
 
     <section class="recipes-container" id="recipes">
+
         <div class="recipe-card" id="chicken">
             <h2>Chicken 🍗</h2>
             <p>Tender chicken dishes bursting with flavor in every bite.</p>
@@ -87,6 +92,7 @@
             <p>Quick, tasty bites that hit the spot every time.</p>
             <a href="{% url 'fastfood' %}" class="btn-main">View Recipes</a>
         </div>
+
     </section>
 
 </body>
