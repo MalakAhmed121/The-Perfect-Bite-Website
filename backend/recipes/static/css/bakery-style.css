@@ -198,105 +198,105 @@ body {
 
 /* Main Categories Backgrounds */
 #Bread {
-    background-image: url('/static/bakeryimages/bread.jpeg');
+    background-image: url('{% static "bakeryimages/Bread.jpeg" %}');
 }
 
 #Croissants {
-    background-image: url('/static/bakeryimages/Croissants.jpeg');
+    background-image: url('{% static "bakeryimages/Croissants.jpeg" %}');
 }
 
 #Cookies {
-    background-image: url('/static/bakeryimages/cookies.jpeg');
+    background-image: url('{% static "bakeryimages/Cookies.jpeg" %}');
 }
 
 #Donuts {
-    background-image: url('/static/bakeryimages/Donuts.png');
+    background-image: url('{% static "bakeryimages/Donuts.png" %}');
 }
 
 #Macarons {
-    background-image: url('/static/bakeryimages/Macarons.jpeg');
+    background-image: url('{% static "bakeryimages/Macarons.jpeg" %}');
 }
 
 #Cinnamon {
-    background-image: url('/static/bakeryimages/Cinnamon.png');
+    background-image: url('{% static "bakeryimages/Cinnamon.png" %}');
 }
 
 /* Bread Section */
 #Baguette, #Baguette-card {
-    background-image: url('/static/bakeryimages/Baguette.jpeg');
+    background-image: url('{% static "bakeryimages/Baguette.jpeg" %}');
 }
 
 #Sourdough, #Sourdough-card {
-    background-image: url('/static/bakeryimages/Sourdough.jpeg');
+    background-image: url('{% static "bakeryimages/Sourdough.jpeg" %}');
 }
 
 #Focaccia, #Focaccia-card {
-    background-image: url('/static/bakeryimages/Focaccia1.jpeg');
+    background-image: url('{% static "bakeryimages/Focaccia1.jpeg" %}');
 }
 
 /* Cinnamon Section */
 #ClassicCinnamon, #ClassicCinnamon-card {
-    background-image: url('/static/bakeryimages/classicCinnamon.jpeg');
+    background-image: url('{% static "bakeryimages/classicCinnamon.jpeg" %}');
 }
 
 #PecanCinnamon, #PecanCinnamon-card {
-    background-image: url('/static/bakeryimages/PecanCinnamon.jpeg');
+    background-image: url('{% static "bakeryimages/PecanCinnamon.jpeg" %}');
 }
 
 #ChocolateCinnamon, #ChocolateCinnamon-card {
-    background-image: url('/static/bakeryimages/ChocolateCinnamon.jpeg');
+    background-image: url('{% static "bakeryimages/ChocolateCinnamon.jpeg" %}');
 }
 
 /* Cookies Section */
 #ChocolateCookies, #ChocolateCookies-card {
-    background-image: url('/static/bakeryimages/chocolatcookie.jpeg');
+    background-image: url('{% static "bakeryimages/chocolatcookie.jpeg" %}');
 }
 
 #ButterBiscuits, #ButterBiscuits-card {
-    background-image: url('/static/bakeryimages/butterbiscuit.jpeg');
+    background-image: url('{% static "bakeryimages/butterbiscuit.jpeg" %}');
 }
 
 #OatmealCookies, #OatmealCookies-card {
-    background-image: url('/static/bakeryimages/oatmlcookie.jpeg');
+    background-image: url('{% static "bakeryimages/oatmlcookie.jpeg" %}');
 }
 
 /* Croissant Section */
 #ButterCroissant, #ButterCroissant-card {
-    background-image: url('/static/bakeryimages/butter.jpeg');
+    background-image: url('{% static "bakeryimages/butter.jpeg" %}');
 }
 
 #PainauChocolat, #PainauChocolat-card {
-    background-image: url('/static/bakeryimages/Chocolat.jpeg');
+    background-image: url('{% static "bakeryimages/Chocolat.jpeg" %}');
 }
 
 #StrawberryDanish, #StrawberryDanish-card {
-    background-image: url('/static/bakeryimages/Danish.jpeg');
+    background-image: url('{% static "bakeryimages/Danish.jpeg" %}');
 }
 
 /* Donuts Section */
 #GlazedDonuts, #GlazedDonuts-card {
-    background-image: url('/static/bakeryimages/GlazedDonuts.jpeg');
+    background-image: url('{% static "bakeryimages/GlazedDonuts.jpeg" %}');
 }
 
 #ChocolateDonuts, #ChocolateDonuts-card {
-    background-image: url('/static/bakeryimages/Chocolatdounts.jpeg');
+    background-image: url('{% static "bakeryimages/Chocolatdounts.jpeg" %}');
 }
 
 #FilledDonuts, #FilledDonuts-card {
-    background-image: url('/static/bakeryimages/filledDounts.jpeg');
+    background-image: url('{% static "bakeryimages/filledDounts.jpeg" %}');
 }
 
 /* Macarons Section */
 #VanillaMacarons, #VanillaMacarons-card {
-    background-image: url('/static/bakeryimages/vanillamacron.jpeg');
+    background-image: url('{% static "bakeryimages/vanillamacron.jpeg" %}');
 }
 
 #RaspberryMacrons, #RaspberryMacrons-card {
-    background-image: url('/static/bakeryimages/RaspberryMacarons.jpeg');
+    background-image: url('{% static "bakeryimages/RaspberryMacarons.jpeg" %}');
 }
 
 #PistachioMacarons, #PistachioMacarons-card {
-    background-image: url('/static/bakeryimages/PistachioMacarons.jpeg');
+    background-image: url('{% static "bakeryimages/PistachioMacarons.jpeg" %}');
 }
 
 

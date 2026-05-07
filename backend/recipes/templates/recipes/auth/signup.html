@@ -1,12 +1,14 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>Yummy - Sign Up</title>
     <meta name="description" content="This is our Recipes Finder Website!">
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
 </head>
+
 <body style="background-color: #f2e7df; text-align: center;">
     <div id="navbar">
         <nav class="main-nav">
@@ -16,7 +18,9 @@
                 <li><a href="{% url 'home' %}">Home</a></li>
                 <li><a href="{% url 'search' %}">Search</a></li>
                 <li><a href="{% url 'favorites' %}">Favorites</a></li>
-                <li><a href="{% url 'admin_recipe' %}">Admin</a></li>
+                {% if user.is_staff %}
+               <li><a href="{% url 'admin_recipe' %}">Admin</a></li>
+                {% endif %}
                 <li><a href="{% url 'add_recipe' %}">Add Recipe</a></li>
                 <li><a href="{% url 'login' %}">Login</a></li>
                 <li><a href="{% url 'signup' %}">Sign Up</a></li>
@@ -27,34 +31,70 @@
     <div class="signup-page-wrapper">
         <h1 class="welcome-msg">Welcome to YUMMY! 😊</h1>
 
+        {% if form.errors %}
+        <div
+            style="color: red; background-color: #ffe0e0; padding: 10px; border-radius: 5px; margin: 10px auto; width: 50%;">
+            {% for field in form %}
+            {% for error in field.errors %}
+            <p>{{ error }}</p>
+            {% endfor %}
+            {% endfor %}
+            {% for error in form.non_field_errors %}
+            <p>{{ error }}</p>
+            {% endfor %}
+        </div>
+        {% endif %}
+
         <div class="signup-container">
             <div class="signup-image">
                 <img src="{% static 'siggnup.jpg' %}" alt="Delicious Food">
             </div>
 
             <div class="form-section">
-                <form action="{% url 'home' %}" method="GET">
+
+                <form method="POST">
+                    {% csrf_token %}
+
                     <div class="form-group">
                         <label>Username</label>
-                        <input type="text" class="form-input" required placeholder="Enter your username" name="user">
+
+                        <input type="text" class="form-input" required placeholder="Enter your username" name="username"
+                            required>
                     </div>
 
                     <div class="form-group">
                         <label>Password</label>
-                        <input type="password" class="form-input" placeholder="Min 5 characters" name="password" required minlength="5" maxlength="8">
+                        <input type="password" class="form-input" placeholder="Enter your password" name="password"
+                            required>
                     </div>
 
                     <div class="form-group">
                         <label>Confirm Password</label>
-                        <input type="password" class="form-input" name="confirm_password" required placeholder="Confirm your password">
+
+                        <input type="password" class="form-input" name="password_confirm" required
+                            placeholder="Confirm your password" required>
                     </div>
 
                     <div class="form-group">
-                        <label>Email</label>
-                        <input type="email" class="form-input" name="email" placeholder="Enter your email">
+                        <label>Email </label>
+                        <input type="email" class="form-input" name="email" placeholder="Enter your email" required>
+                    </div>
+                    {% if error %}
+                    <div
+                        style="color: red; background-color: #ffe0e0; padding: 10px; border-radius: 5px; margin: 10px auto; width: 50%;">
+                        {{ error }}
+                    </div>
+                    {% endif %}
+                    <div class="form-group">
+                        <label>Type of User</label>
+                        <select class="form-input" name="user_type" required>
+                            <option value="user">User</option>
+                            <option value="admin">Admin</option>
+                        </select>
                     </div>
 
                     <button type="submit" class="btn-main">Create Account</button>
+
                     <div class="Login-link">
                         <span>Already have an account? <a href="{% url 'login' %}">Login</a></span>
                     </div>
@@ -63,4 +103,5 @@
         </div>
     </div>
 </body>
+
 </html>

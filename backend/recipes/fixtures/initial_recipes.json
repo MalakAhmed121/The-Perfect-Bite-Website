@@ -1,0 +1,695 @@
+[
+  {
+    "model": "recipes.recipe",
+    "pk": 1,
+    "fields": {
+      "name": "Deviled Eggs",
+      "course": "appetizers",
+      "description": "A classic creamy finger-food often topped with paprika or bacon.",
+      "ingredients": "6-12 large eggs\nMayonnaise 1/4 to 1/2 cup\nMustard yellow or Dijon 1-2 tsp\nSalt and Pepper\nPaprika for garnish",
+      "steps": "Boil eggs for 10-20 min then cool in an ice bath before peeling and halving lengthwise.\nScoop out the yolks and mash with mayonnaise mustard salt and pepper until smooth.\nSpoon or pipe the mixture back into the egg white hollows and sprinkle with paprika."
+    }
+  },
+  {
+    "model": "recipes.recipe",
+    "pk": 2,
+    "fields": {
+      "name": "Spinach Artichoke Dip",
+      "course": "appetizers",
+      "description": "A warm cheesy and reliable crowd-pleaser often served with chips or bread.",
+      "ingredients": "10 oz frozen chopped spinach\n14 oz can artichoke hearts\n8 oz cream cheese\n1/2 cup sour cream or Greek yogurt\n1/2 cup mayonnaise\n1 cup shredded mozzarella\n1/2 cup grated Parmesan\nGarlic 1 tsp minced or powder",
+      "steps": "Combine softened cream cheese sour cream and mayonnaise with chopped spinach and drained artichoke hearts.\nStir in shredded mozzarella and Parmesan then season with garlic powder and red pepper flakes.\nBake at 350F for about 25 min until the cheese is bubbly and lightly browned on top."
+    }
+  },
+  {
+    "model": "recipes.recipe",
+    "pk": 3,
+    "fields": {
+      "name": "Chicken Wings",
+      "course": "appetizers",
+      "description": "Crispy baked wings tossed in a buttery hot sauce.",
+      "ingredients": "2-3 lbs chicken wings\n1/2 cup Buffalo hot sauce\n1/4 to 1/2 cup unsalted butter\nGarlic powder 1/2 to 1 tsp\nSalt and Pepper",
+      "steps": "Pat chicken wings dry and bake on a wire rack at 425F for about 45-60 min turning halfway through for even crisping.\nWhile they bake whisk together melted butter and hot sauce in a large bowl.\nOnce the wings are cooked and crispy toss them in the sauce until fully coated."
+    }
+  },
+  {
+    "model": "recipes.recipe",
+    "pk": 4,
+    "fields": {
+      "name": "Jalapeno Poppers",
+      "course": "appetizers",
+      "description": "Spicy creamy and fried or baked cheese-filled peppers.",
+      "ingredients": "10-12 fresh jalapenos halved and seeded\n8 oz cream cheese\n1 cup shredded cheese\n10-12 slices of bacon optional\nPanko breadcrumbs optional",
+      "steps": "Slice fresh jalapenos in half lengthwise and remove the seeds and membranes to control the heat.\nFill each half with a mixture of cream cheese and shredded cheddar then top with breadcrumbs or wrap in a half-slice of bacon.\nBake at 400F for 15-20 min until the peppers are tender and the topping is golden."
+    }
+  },
+  {
+    "model": "recipes.recipe",
+    "pk": 5,
+    "fields": {
+      "name": "Stuffed Mushrooms",
+      "course": "appetizers",
+      "description": "Bite-sized savory mushroom caps filled with an herb and cheese breadcrumb mixture.",
+      "ingredients": "1 lb large white or cremini mushrooms\n1/2 cup breadcrumbs\n1/4 cup grated Parmesan cheese\n2 cloves garlic minced\n2 tbsp butter or olive oil",
+      "steps": "Remove the stems from large mushrooms and finely chop the stems.\nSaute the chopped stems with garlic and herbs then mix with breadcrumbs and Parmesan cheese.\nFill the mushroom caps with the mixture and bake at 375F for 20 minutes until the caps are tender and the stuffing is browned."
+    }
+  },
+  {
+    "model": "recipes.recipe",
+    "pk": 6,
+    "fields": {
+      "name": "Crostini",
+      "course": "appetizers",
+      "description": "Toasted bread topped with tomatoes herbs or cheese.",
+      "ingredients": "1 baguette sliced and toasted\n4-6 Roma tomatoes diced\nFresh basil leaves chopped\n2 cloves garlic minced\nExtra virgin olive oil\nBalsamic glaze",
+      "steps": "Dice fresh tomatoes and toss them with minced garlic chopped basil balsamic vinegar and olive oil then let the mixture sit for at least 15 minutes to meld flavors.\nSlice a baguette into rounds brush them with olive oil and toast them in the oven until golden.\nSpoon the tomato mixture onto the warm bread just before serving to keep it crisp."
+    }
+  },
+  {
+    "model": "recipes.recipe",
+    "pk": 7,
+    "fields": {
+      "name": "Charcuterie Board",
+      "course": "appetizers",
+      "description": "Curated boards of cheeses meats crackers and fruits that allow for easy customization.",
+      "ingredients": "Assorted cured meats salami prosciutto\nVarious cheeses brie sharp cheddar gouda\nCrackers or sliced baguette\nFresh fruits grapes berries apple slices\nNuts olives or jam",
+      "steps": "Start by placing small bowls for jams olives or nuts on a large wooden board or platter.\nArrange a variety of sliced meats like prosciutto or salami alongside assorted cheeses like brie cheddar and gouda.\nFill in the remaining spaces with crackers fresh fruit like grapes or berries and sprigs of herbs for a decorative touch."
+    }
+  },
+  {
+    "model": "recipes.recipe",
+    "pk": 8,
+    "fields": {
+      "name": "Sliders",
+      "course": "appetizers",
+      "description": "Miniature sandwiches such as ham and cheese that can be made in bulk.",
+      "ingredients": "1 pack 12 count dinner rolls\n1/2 lb deli meat ham or turkey\n1/2 lb sliced cheese Swiss or provolone\nMelted butter with garlic powder and poppy seeds for the glaze",
+      "steps": "Slice a pack of dinner rolls in half horizontally without separating the individual buns and place the bottom half in a baking dish.\nLayer on deli meats like ham and slices of cheese then replace the top half of the rolls.\nBrush the tops with melted butter seasoned with garlic or poppy seeds and bake at 350F for 15-20 minutes until the cheese is melted."
+    }
+  },
+  {
+    "model": "recipes.recipe",
+    "pk": 9,
+    "fields": {
+      "name": "Shrimp Cocktail",
+      "course": "appetizers",
+      "description": "Sophisticated refreshing and protein-rich starter that has remained a party staple for decades.",
+      "ingredients": "1 lb large shrimp peeled and deveined tails left on\n1 cup ketchup\n1-3 tbsp prepared horseradish\n1 tbsp lemon juice freshly squeezed\n1 tsp Worcestershire sauce\nWater lemon slices bay leaves salt and black peppercorns for poaching",
+      "steps": "Bring a pot of water to a boil with the lemon slices bay leaves salt and peppercorns.\nAdd the shrimp and poach them gently for about 3-5 minutes until they turn pink and opaque.\nImmediately transfer the cooked shrimp to an ice bath to stop the cooking.\nFor the cocktail sauce whisk together the ketchup horseradish lemon juice and Worcestershire sauce.\nChill both the shrimp and sauce for at least an hour before serving."
+    }
+  },
+  {
+    "model": "recipes.recipe",
+    "pk": 10,
+    "fields": {
+      "name": "Beef Steak",
+      "course": "maindish/beef",
+      "description": "A juicy perfectly seared steak with a golden crust and tender center.",
+      "ingredients": "2 ribeye or sirloin steaks\n2 tbsp olive oil\n3 cloves garlic\n2 tbsp butter\nFresh rosemary and thyme\nSalt and black pepper",
+      "steps": "Take steaks out of the fridge 30 minutes before cooking and season generously with salt and pepper.\nHeat a cast iron skillet over high heat and add olive oil.\nSear steaks for 3-4 minutes per side for medium rare then add butter garlic and herbs and baste for 1 minute.\nRest the steaks for 5 minutes before slicing and serving."
+    }
+  },
+  {
+    "model": "recipes.recipe",
+    "pk": 11,
+    "fields": {
+      "name": "Beef Tacos",
+      "course": "maindish/beef",
+      "description": "Seasoned ground beef in warm tortillas topped with fresh salsa and cheese.",
+      "ingredients": "1 lb ground beef\n1 packet taco seasoning\n8 small corn or flour tortillas\n1 cup shredded cheddar cheese\n1 cup salsa\n1 cup shredded lettuce\n1 avocado sliced",
+      "steps": "Cook ground beef in a skillet over medium heat breaking it apart until browned then drain excess fat.\nStir in taco seasoning and 1/4 cup water and simmer for 3 minutes.\nWarm tortillas in a dry pan then fill with beef and top with cheese lettuce salsa and avocado."
+    }
+  },
+  {
+    "model": "recipes.recipe",
+    "pk": 12,
+    "fields": {
+      "name": "Beef Stew",
+      "course": "maindish/beef",
+      "description": "A hearty slow-cooked stew with tender beef chunks and root vegetables.",
+      "ingredients": "2 lbs beef chuck cut into chunks\n3 carrots chopped\n3 potatoes cubed\n2 stalks celery chopped\n1 onion diced\n2 cups beef broth\n2 tbsp tomato paste\nSalt pepper and thyme",
+      "steps": "Season beef chunks with salt and pepper then brown in batches in a heavy pot with oil.\nAdd onion celery and tomato paste and cook for 2 minutes.\nAdd broth carrots and potatoes then bring to a boil.\nReduce heat and simmer covered for 1.5 to 2 hours until beef is fork tender."
+    }
+  },
+  {
+    "model": "recipes.recipe",
+    "pk": 13,
+    "fields": {
+      "name": "Fried Chicken",
+      "course": "maindish/chicken",
+      "description": "Crispy golden fried chicken with a perfectly seasoned crust.",
+      "ingredients": "3 lbs chicken pieces\n2 cups buttermilk\n2 cups all-purpose flour\n1 tsp paprika\n1 tsp garlic powder\n1 tsp onion powder\nSalt and pepper\nOil for frying",
+      "steps": "Marinate chicken in buttermilk and salt for at least 2 hours or overnight in the fridge.\nMix flour with paprika garlic powder onion powder salt and pepper.\nDredge each piece in the flour mixture shaking off excess.\nFry in oil at 350F for 15-18 minutes turning once until golden and cooked through."
+    }
+  },
+  {
+    "model": "recipes.recipe",
+    "pk": 14,
+    "fields": {
+      "name": "Chicken Curry",
+      "course": "maindish/chicken",
+      "description": "A rich and aromatic curry with tender chicken in a spiced tomato sauce.",
+      "ingredients": "1.5 lbs chicken breast or thighs cubed\n1 onion diced\n3 cloves garlic minced\n1 inch ginger grated\n1 can diced tomatoes\n1 can coconut milk\n2 tbsp curry powder\n1 tsp cumin\nSalt and oil",
+      "steps": "Saute onion in oil until golden then add garlic ginger and spices and cook for 1 minute.\nAdd chicken pieces and brown on all sides.\nStir in diced tomatoes and coconut milk then simmer for 20-25 minutes until chicken is cooked through and sauce has thickened."
+    }
+  },
+  {
+    "model": "recipes.recipe",
+    "pk": 15,
+    "fields": {
+      "name": "Grilled Chicken",
+      "course": "maindish/chicken",
+      "description": "Simple herb-marinated grilled chicken with a smoky char.",
+      "ingredients": "4 chicken breasts\n3 tbsp olive oil\n2 cloves garlic minced\n1 tsp dried oregano\n1 tsp paprika\nJuice of 1 lemon\nSalt and pepper",
+      "steps": "Mix olive oil garlic oregano paprika lemon juice salt and pepper to make the marinade.\nCoat chicken breasts in the marinade and refrigerate for at least 30 minutes.\nGrill over medium-high heat for 6-7 minutes per side until cooked through with nice grill marks.\nRest for 5 minutes before serving."
+    }
+  },
+  {
+    "model": "recipes.recipe",
+    "pk": 16,
+    "fields": {
+      "name": "Spaghetti Carbonara",
+      "course": "maindish/pasta",
+      "description": "A classic Roman pasta with eggs pancetta and Parmesan in a silky sauce.",
+      "ingredients": "400g spaghetti\n200g pancetta or guanciale\n4 egg yolks\n1 whole egg\n100g Pecorino or Parmesan grated\nBlack pepper\nSalt",
+      "steps": "Cook spaghetti in well-salted boiling water until al dente reserving 1 cup of pasta water.\nFry pancetta in a pan until crispy then remove from heat.\nWhisk egg yolks whole egg and cheese with generous black pepper in a bowl.\nToss hot pasta with pancetta then add egg mixture off the heat stirring quickly and adding pasta water to create a creamy sauce."
+    }
+  },
+  {
+    "model": "recipes.recipe",
+    "pk": 17,
+    "fields": {
+      "name": "Pasta Pesto",
+      "course": "maindish/pasta",
+      "description": "Fresh basil pesto tossed with pasta for a vibrant quick dinner.",
+      "ingredients": "400g pasta of your choice\n2 cups fresh basil leaves\n1/3 cup pine nuts\n2 cloves garlic\n1/2 cup Parmesan grated\n1/2 cup extra virgin olive oil\nSalt and pepper",
+      "steps": "Blend basil pine nuts garlic and Parmesan in a food processor while slowly adding olive oil until smooth.\nSeason with salt and pepper.\nCook pasta until al dente then drain reserving some pasta water.\nToss pasta with pesto adding a splash of pasta water to loosen the sauce."
+    }
+  },
+  {
+    "model": "recipes.recipe",
+    "pk": 18,
+    "fields": {
+      "name": "Lasagna",
+      "course": "maindish/pasta",
+      "description": "Layers of pasta meat sauce and creamy bechamel baked to perfection.",
+      "ingredients": "12 lasagna sheets\n500g ground beef\n1 jar marinara sauce\n2 cups bechamel sauce\n2 cups mozzarella shredded\n1/2 cup Parmesan\n1 onion diced\n2 cloves garlic",
+      "steps": "Brown ground beef with onion and garlic then mix with marinara sauce.\nSpread a layer of meat sauce in a baking dish then add lasagna sheets bechamel and mozzarella.\nRepeat layers ending with bechamel and Parmesan on top.\nCover with foil and bake at 375F for 45 minutes then uncover and bake 15 more minutes until golden."
+    }
+  },
+  {
+    "model": "recipes.recipe",
+    "pk": 19,
+    "fields": {
+      "name": "Grilled Salmon",
+      "course": "maindish/seafood",
+      "description": "Perfectly grilled salmon fillet with a lemon herb glaze.",
+      "ingredients": "4 salmon fillets\n2 tbsp olive oil\n2 cloves garlic minced\nJuice of 1 lemon\n1 tsp dill\nSalt and pepper",
+      "steps": "Mix olive oil garlic lemon juice dill salt and pepper.\nBrush salmon fillets with the mixture.\nGrill skin-side down over medium-high heat for 4-5 minutes then flip and cook 3-4 more minutes.\nServe immediately with lemon wedges."
+    }
+  },
+  {
+    "model": "recipes.recipe",
+    "pk": 20,
+    "fields": {
+      "name": "Shrimp Pasta",
+      "course": "maindish/seafood",
+      "description": "Garlic butter shrimp tossed with pasta in a light white wine sauce.",
+      "ingredients": "400g linguine or spaghetti\n1 lb large shrimp peeled and deveined\n4 cloves garlic minced\n4 tbsp butter\n1/2 cup white wine\nJuice of 1 lemon\nFresh parsley\nRed pepper flakes",
+      "steps": "Cook pasta until al dente then drain.\nSaute garlic in butter then add shrimp and cook 2 minutes per side.\nAdd white wine and lemon juice and simmer 2 minutes.\nToss with pasta and parsley and serve immediately."
+    }
+  },
+  {
+    "model": "recipes.recipe",
+    "pk": 21,
+    "fields": {
+      "name": "Fish Curry",
+      "course": "maindish/seafood",
+      "description": "A fragrant coconut-based curry with flaky white fish.",
+      "ingredients": "1.5 lbs white fish fillets cod or tilapia\n1 can coconut milk\n1 onion diced\n3 cloves garlic\n1 tbsp curry paste\n1 can diced tomatoes\nFresh cilantro\nSalt and oil",
+      "steps": "Saute onion and garlic in oil until softened then add curry paste and cook 1 minute.\nAdd coconut milk and diced tomatoes and bring to a simmer.\nAdd fish fillets and cook gently for 8-10 minutes until fish is flaky.\nGarnish with fresh cilantro and serve with rice."
+    }
+  },
+  {
+    "model": "recipes.recipe",
+    "pk": 22,
+    "fields": {
+      "name": "Burger",
+      "course": "maindish/fastfood",
+      "description": "A juicy homemade beef burger with all the classic toppings.",
+      "ingredients": "500g ground beef 80/20\n4 burger buns\n4 slices cheddar cheese\nLettuce tomato onion\nKetchup mustard mayo\nSalt and pepper",
+      "steps": "Mix ground beef with salt and pepper and form into 4 patties.\nGrill or pan-fry over high heat for 3-4 minutes per side.\nAdd cheese in the last minute to melt.\nToast buns and assemble with your preferred toppings."
+    }
+  },
+  {
+    "model": "recipes.recipe",
+    "pk": 23,
+    "fields": {
+      "name": "French Fries",
+      "course": "maindish/fastfood",
+      "description": "Crispy golden fries seasoned with salt — a universal favourite.",
+      "ingredients": "4 large russet potatoes\nOil for frying\nSalt\nOptional paprika or garlic powder",
+      "steps": "Peel and cut potatoes into even sticks then soak in cold water for 30 minutes and pat dry.\nFry in oil at 325F for 5-6 minutes to cook through then remove and let cool.\nRaise oil temperature to 375F and fry again for 2-3 minutes until golden and crispy.\nDrain on paper towels and season with salt immediately."
+    }
+  },
+  {
+    "model": "recipes.recipe",
+    "pk": 24,
+    "fields": {
+      "name": "Pizza",
+      "course": "maindish/fastfood",
+      "description": "Homemade pizza with a crispy crust tangy tomato sauce and melted cheese.",
+      "ingredients": "Pizza dough 1 ball\n1/2 cup pizza sauce\n1.5 cups mozzarella shredded\nToppings of your choice\nOlive oil\nDried oregano",
+      "steps": "Preheat oven to 475F with a pizza stone or baking sheet inside.\nStretch dough on a floured surface to your desired size.\nSpread sauce then add cheese and toppings.\nBake for 10-12 minutes until the crust is golden and cheese is bubbly."
+    }
+  },
+  {
+    "model": "recipes.recipe",
+    "pk": 25,
+    "fields": {
+      "name": "Veggie Stir-Fry",
+      "course": "maindish/Vegetarian",
+      "description": "A colourful quick stir-fry of fresh vegetables in a savoury sauce.",
+      "ingredients": "1 bell pepper sliced\n1 cup broccoli florets\n1 carrot julienned\n1 cup snap peas\n3 cloves garlic\n3 tbsp soy sauce\n1 tbsp sesame oil\n1 tbsp cornstarch\nOil for cooking",
+      "steps": "Mix soy sauce sesame oil and cornstarch in a small bowl to make the sauce.\nHeat oil in a wok over high heat and stir-fry vegetables for 4-5 minutes until tender-crisp.\nAdd garlic and cook 30 seconds then pour in the sauce and toss until everything is coated.\nServe over steamed rice."
+    }
+  },
+  {
+    "model": "recipes.recipe",
+    "pk": 26,
+    "fields": {
+      "name": "Vegetable Curry",
+      "course": "maindish/Vegetarian",
+      "description": "A hearty and aromatic curry packed with seasonal vegetables.",
+      "ingredients": "1 cup chickpeas cooked\n1 cup diced potatoes\n1 cup spinach\n1 can diced tomatoes\n1 can coconut milk\n1 onion diced\n2 tbsp curry powder\n2 cloves garlic\nSalt and oil",
+      "steps": "Saute onion and garlic in oil until golden then add curry powder and cook 1 minute.\nAdd potatoes diced tomatoes and coconut milk and simmer 15 minutes.\nStir in chickpeas and spinach and cook 5 more minutes.\nAdjust seasoning and serve with naan or rice."
+    }
+  },
+  {
+    "model": "recipes.recipe",
+    "pk": 27,
+    "fields": {
+      "name": "Quinoa Salad",
+      "course": "maindish/Vegetarian",
+      "description": "A fresh and filling salad with quinoa cucumber tomato and lemon dressing.",
+      "ingredients": "1 cup quinoa\n1 cucumber diced\n1 cup cherry tomatoes halved\n1/4 cup red onion diced\nFresh parsley and mint\nJuice of 2 lemons\n3 tbsp olive oil\nSalt and pepper",
+      "steps": "Cook quinoa in 2 cups of water until absorbed about 15 minutes then let cool.\nCombine quinoa with cucumber cherry tomatoes red onion parsley and mint.\nWhisk lemon juice and olive oil together and pour over the salad.\nToss well season with salt and pepper and refrigerate for 30 minutes before serving."
+    }
+  },
+  {
+    "model": "recipes.recipe",
+    "pk": 28,
+    "fields": {
+      "name": "Grilled Salmon and Avocado",
+      "course": "Healthy",
+      "description": "A nutritious combination of omega-rich grilled salmon with creamy avocado.",
+      "ingredients": "2 salmon fillets\n1 ripe avocado sliced\n1 tbsp olive oil\nJuice of 1 lime\n1 tsp cumin\nSalt and pepper\nFresh cilantro",
+      "steps": "Season salmon with olive oil cumin salt and pepper.\nGrill over medium-high heat for 4-5 minutes per side until cooked through.\nSlice avocado and drizzle with lime juice.\nServe salmon alongside avocado slices and garnish with fresh cilantro."
+    }
+  },
+  {
+    "model": "recipes.recipe",
+    "pk": 29,
+    "fields": {
+      "name": "Quinoa Buddha Bowl",
+      "course": "Healthy",
+      "description": "A nourishing bowl of quinoa roasted vegetables and tahini dressing.",
+      "ingredients": "1 cup quinoa cooked\n1 cup roasted chickpeas\n1 cup roasted sweet potato cubes\n1 cup kale or spinach\n1/2 avocado sliced\n3 tbsp tahini\nJuice of 1 lemon\n1 tbsp water to thin",
+      "steps": "Cook quinoa and let cool slightly.\nRoast chickpeas and sweet potato at 400F with olive oil and salt for 25 minutes.\nWhisk tahini lemon juice and water to make the dressing.\nAssemble bowls with quinoa then arrange vegetables chickpeas and avocado on top.\nDrizzle with tahini dressing."
+    }
+  },
+  {
+    "model": "recipes.recipe",
+    "pk": 30,
+    "fields": {
+      "name": "Lemon Herb Chicken",
+      "course": "Healthy",
+      "description": "Light and flavourful oven-baked chicken with fresh herbs and lemon.",
+      "ingredients": "4 chicken breasts\nJuice and zest of 2 lemons\n3 cloves garlic minced\n2 tbsp olive oil\n1 tsp dried thyme\n1 tsp dried rosemary\nSalt and pepper",
+      "steps": "Mix lemon juice lemon zest garlic olive oil thyme rosemary salt and pepper.\nMarinate chicken in the mixture for at least 1 hour.\nBake at 400F for 22-25 minutes until internal temperature reaches 165F.\nRest 5 minutes before serving."
+    }
+  },
+  {
+    "model": "recipes.recipe",
+    "pk": 31,
+    "fields": {
+      "name": "Zucchini Noodles",
+      "course": "Healthy",
+      "description": "Low-carb zucchini noodles with a light tomato and basil sauce.",
+      "ingredients": "4 medium zucchinis spiralized\n2 cups cherry tomatoes halved\n3 cloves garlic minced\n2 tbsp olive oil\nFresh basil\nSalt and pepper\nParmesan optional",
+      "steps": "Spiralize zucchini into noodles and pat dry with paper towels.\nSaute garlic in olive oil for 1 minute then add cherry tomatoes and cook until they begin to burst.\nAdd zucchini noodles and toss for 2-3 minutes until just tender.\nSeason with salt and pepper and top with fresh basil."
+    }
+  },
+  {
+    "model": "recipes.recipe",
+    "pk": 32,
+    "fields": {
+      "name": "Classic French Baguette",
+      "course": "Bakery/Bread",
+      "description": "A traditional crusty French baguette with a light airy interior.",
+      "ingredients": "500g bread flour\n350ml warm water\n7g instant yeast\n10g salt",
+      "steps": "Mix flour yeast and salt then gradually add water and knead for 10 minutes until smooth.\nLet rise in a warm place for 1 hour until doubled.\nShape into long baguettes and let proof for 45 minutes.\nScore the tops with a sharp knife and bake at 450F with steam for 20-25 minutes until golden."
+    }
+  },
+  {
+    "model": "recipes.recipe",
+    "pk": 33,
+    "fields": {
+      "name": "Natural Sourdough",
+      "course": "Bakery/Bread",
+      "description": "A tangy naturally leavened sourdough loaf with a chewy crumb.",
+      "ingredients": "450g bread flour\n50g whole wheat flour\n375ml water\n100g active sourdough starter\n10g salt",
+      "steps": "Mix flours water and starter then rest for 30 minutes.\nAdd salt and perform stretch and fold every 30 minutes for 2 hours.\nShape into a round loaf and refrigerate overnight in a floured banneton.\nBake in a Dutch oven at 500F for 20 minutes covered then 25 minutes uncovered."
+    }
+  },
+  {
+    "model": "recipes.recipe",
+    "pk": 34,
+    "fields": {
+      "name": "Herbed Focaccia",
+      "course": "Bakery/Bread",
+      "description": "A fluffy dimpled Italian flatbread drizzled with olive oil and herbs.",
+      "ingredients": "500g bread flour\n375ml warm water\n7g instant yeast\n10g salt\n4 tbsp olive oil\nRosemary and flaky sea salt for topping",
+      "steps": "Mix flour yeast salt water and 2 tbsp olive oil then knead briefly.\nLet rise for 1 hour then press into an oiled baking pan.\nDimple the surface with your fingers and drizzle with remaining olive oil.\nTop with rosemary and sea salt and bake at 425F for 20-25 minutes until golden."
+    }
+  },
+  {
+    "model": "recipes.recipe",
+    "pk": 35,
+    "fields": {
+      "name": "Butter Croissant",
+      "course": "Bakery/Croissant",
+      "description": "Flaky buttery croissants with hundreds of delicate layers.",
+      "ingredients": "500g bread flour\n300ml cold milk\n10g instant yeast\n10g salt\n50g sugar\n250g cold butter for laminating",
+      "steps": "Make the dough by mixing flour yeast salt sugar and milk then refrigerate overnight.\nEncase the cold butter in the dough and perform 3 sets of letter folds chilling 30 minutes between each.\nRoll out cut into triangles and roll into croissant shapes then proof for 2-3 hours.\nBrush with egg wash and bake at 400F for 18-20 minutes until deep golden."
+    }
+  },
+  {
+    "model": "recipes.recipe",
+    "pk": 36,
+    "fields": {
+      "name": "Pain au Chocolat",
+      "course": "Bakery/Croissant",
+      "description": "Buttery laminated pastry wrapped around dark chocolate batons.",
+      "ingredients": "500g bread flour\n300ml cold milk\n10g instant yeast\n10g salt\n50g sugar\n250g cold butter for laminating\n16 dark chocolate batons",
+      "steps": "Prepare croissant dough and laminate with butter through 3 sets of folds.\nRoll out and cut into rectangles.\nPlace a chocolate baton at one end of each rectangle and roll up tightly.\nProof for 2-3 hours brush with egg wash and bake at 400F for 18-20 minutes."
+    }
+  },
+  {
+    "model": "recipes.recipe",
+    "pk": 37,
+    "fields": {
+      "name": "Strawberry Custard Danish",
+      "course": "Bakery/Croissant",
+      "description": "Flaky pastry filled with vanilla custard and topped with fresh strawberries.",
+      "ingredients": "500g puff pastry or croissant dough\n1 cup pastry cream\n1 cup fresh strawberries sliced\n2 tbsp apricot jam for glaze\nPowdered sugar for dusting",
+      "steps": "Roll out dough and cut into squares then fold up the edges to form a border.\nSpoon pastry cream into the centre of each square.\nBake at 375F for 18-20 minutes until golden.\nTop with fresh strawberry slices and brush with warm apricot jam for a glossy finish."
+    }
+  },
+  {
+    "model": "recipes.recipe",
+    "pk": 38,
+    "fields": {
+      "name": "Classic Cinnamon Rolls",
+      "course": "Bakery/Cinnamon",
+      "description": "Soft fluffy rolls swirled with cinnamon sugar and topped with cream cheese icing.",
+      "ingredients": "500g all-purpose flour\n200ml warm milk\n7g instant yeast\n60g sugar\n60g butter softened\n2 eggs\n1 tsp salt\nFilling: 100g butter 150g brown sugar 2 tbsp cinnamon\nIcing: 200g cream cheese 150g powdered sugar 2 tbsp milk",
+      "steps": "Make the dough by combining flour yeast sugar salt milk eggs and butter then knead for 8 minutes and let rise 1 hour.\nRoll dough into a rectangle spread with softened butter and sprinkle with cinnamon sugar.\nRoll up tightly and cut into 12 rolls then place in a greased pan and let proof 45 minutes.\nBake at 350F for 22-25 minutes then frost with cream cheese icing while warm."
+    }
+  },
+  {
+    "model": "recipes.recipe",
+    "pk": 39,
+    "fields": {
+      "name": "Pecan Cinnamon Rolls",
+      "course": "Bakery/Cinnamon",
+      "description": "Indulgent cinnamon rolls loaded with toasted pecans and brown sugar.",
+      "ingredients": "Classic cinnamon roll dough\n100g butter for filling\n150g brown sugar\n2 tbsp cinnamon\n1 cup toasted pecans chopped\nVanilla glaze for topping",
+      "steps": "Prepare cinnamon roll dough and let rise.\nRoll out and spread with butter brown sugar cinnamon and pecans.\nRoll up and slice into rolls then place in a greased pan and proof 45 minutes.\nBake at 350F for 22-25 minutes and drizzle with vanilla glaze."
+    }
+  },
+  {
+    "model": "recipes.recipe",
+    "pk": 40,
+    "fields": {
+      "name": "Chocolate Cinnamon Rolls",
+      "course": "Bakery/Cinnamon",
+      "description": "Rich rolls swirled with chocolate and cinnamon topped with chocolate ganache.",
+      "ingredients": "Classic cinnamon roll dough\n100g butter for filling\n100g dark chocolate melted\n2 tbsp cinnamon\n50g cocoa powder\nChocolate ganache: 100g dark chocolate 100ml cream",
+      "steps": "Prepare and rise the dough then roll out into a rectangle.\nSpread with butter and drizzle with melted chocolate then dust with cocoa powder and cinnamon.\nRoll up tightly slice and proof in a greased pan for 45 minutes.\nBake at 350F for 22-25 minutes and top with chocolate ganache."
+    }
+  },
+  {
+    "model": "recipes.recipe",
+    "pk": 41,
+    "fields": {
+      "name": "Chocolate Cookies",
+      "course": "Bakery/Cookies",
+      "description": "Chewy chocolate chip cookies with crispy edges and a soft centre.",
+      "ingredients": "225g butter softened\n200g brown sugar\n100g caster sugar\n2 eggs\n1 tsp vanilla extract\n300g all-purpose flour\n1 tsp baking soda\n1/2 tsp salt\n300g chocolate chips",
+      "steps": "Cream butter and sugars until light and fluffy then beat in eggs and vanilla.\nFold in flour baking soda and salt then stir in chocolate chips.\nChill dough for 30 minutes then scoop onto lined baking sheets.\nBake at 375F for 9-11 minutes until edges are set but centres are still soft."
+    }
+  },
+  {
+    "model": "recipes.recipe",
+    "pk": 42,
+    "fields": {
+      "name": "Butter Shortbread Biscuits",
+      "course": "Bakery/Cookies",
+      "description": "Melt-in-your-mouth buttery shortbread with a delicate crumb.",
+      "ingredients": "250g cold butter cubed\n125g caster sugar\n375g all-purpose flour\n1/2 tsp salt\n1 tsp vanilla extract",
+      "steps": "Rub cold butter into flour and sugar until the mixture resembles breadcrumbs.\nAdd vanilla and press mixture together into a dough without overworking.\nRoll to 1cm thickness cut into rectangles and prick with a fork.\nBake at 325F for 18-22 minutes until pale golden."
+    }
+  },
+  {
+    "model": "recipes.recipe",
+    "pk": 43,
+    "fields": {
+      "name": "Oatmeal Raisin Cookies",
+      "course": "Bakery/Cookies",
+      "description": "Chewy warmly spiced cookies packed with oats and plump raisins.",
+      "ingredients": "175g butter softened\n150g brown sugar\n100g caster sugar\n2 eggs\n1 tsp vanilla\n200g all-purpose flour\n1 tsp cinnamon\n1/2 tsp baking soda\n300g rolled oats\n150g raisins",
+      "steps": "Cream butter and sugars then beat in eggs and vanilla.\nMix in flour cinnamon and baking soda then stir in oats and raisins.\nScoop onto lined baking sheets and flatten slightly.\nBake at 350F for 10-12 minutes until golden at the edges."
+    }
+  },
+  {
+    "model": "recipes.recipe",
+    "pk": 44,
+    "fields": {
+      "name": "Glazed Donuts",
+      "course": "Bakery/Donuts",
+      "description": "Pillowy yeasted donuts with a classic sweet vanilla glaze.",
+      "ingredients": "500g all-purpose flour\n200ml warm milk\n7g instant yeast\n60g sugar\n60g butter\n2 eggs\n1 tsp salt\nGlaze: 300g powdered sugar 4 tbsp milk 1 tsp vanilla\nOil for frying",
+      "steps": "Make dough by combining all ingredients and kneading until smooth then let rise 1 hour.\nRoll out to 1.5cm thick and cut into rounds then proof 45 minutes.\nFry in oil at 350F for about 1 minute per side until golden.\nDip warm donuts into the vanilla glaze and set on a rack."
+    }
+  },
+  {
+    "model": "recipes.recipe",
+    "pk": 45,
+    "fields": {
+      "name": "Chocolate Donuts",
+      "course": "Bakery/Donuts",
+      "description": "Rich baked chocolate donuts with a dark chocolate glaze.",
+      "ingredients": "200g all-purpose flour\n60g cocoa powder\n150g sugar\n1 tsp baking powder\n1/2 tsp salt\n2 eggs\n200ml buttermilk\n60g melted butter\nChocolate glaze: 150g dark chocolate 100ml cream",
+      "steps": "Mix dry ingredients then whisk in eggs buttermilk and melted butter.\nSpoon batter into a greased donut pan filling each mould 3/4 full.\nBake at 375F for 10-12 minutes then let cool completely.\nMelt chocolate and cream together and dip each donut into the ganache glaze."
+    }
+  },
+  {
+    "model": "recipes.recipe",
+    "pk": 46,
+    "fields": {
+      "name": "Filled Donuts",
+      "course": "Bakery/Donuts",
+      "description": "Fluffy fried donuts filled with strawberry jam and dusted with sugar.",
+      "ingredients": "Classic yeasted donut dough\nOil for frying\n1 cup strawberry jam\nPowdered sugar for dusting",
+      "steps": "Make and rise the donut dough then cut into rounds without holes.\nProof for 45 minutes then fry in oil at 350F for 1-1.5 minutes per side.\nOnce cooled use a piping bag fitted with a long nozzle to inject jam into the centre.\nRoll in powdered sugar and serve."
+    }
+  },
+  {
+    "model": "recipes.recipe",
+    "pk": 47,
+    "fields": {
+      "name": "Vanilla Macarons",
+      "course": "Bakery/Macarons",
+      "description": "Delicate French almond meringue shells sandwiched with vanilla buttercream.",
+      "ingredients": "150g almond flour\n150g powdered sugar\n55g aged egg whites for shells\n150g caster sugar\n50ml water\n55g aged egg whites for meringue\nVanilla buttercream filling",
+      "steps": "Sift almond flour and powdered sugar together and fold with one portion of egg whites.\nMake Italian meringue by cooking sugar and water to 244F and pouring over whipped egg whites.\nFold meringue into almond mixture until batter flows like lava.\nPipe rounds onto lined sheets rest 30-60 minutes until a skin forms then bake at 300F for 13-15 minutes.\nSandwich with vanilla buttercream once cooled."
+    }
+  },
+  {
+    "model": "recipes.recipe",
+    "pk": 48,
+    "fields": {
+      "name": "Pistachio Macarons",
+      "course": "Bakery/Macarons",
+      "description": "Elegant green macarons with a rich pistachio cream filling.",
+      "ingredients": "150g almond flour\n150g powdered sugar\n55g aged egg whites\n150g caster sugar\n50ml water\n55g aged egg whites for meringue\nGreen food colouring\nPistachio buttercream filling",
+      "steps": "Follow the macaron shell method adding green food colouring to the almond mixture.\nPipe bake and cool the shells.\nMake pistachio buttercream by blending roasted pistachios into a paste and mixing with butter and powdered sugar.\nSandwich shells with the pistachio cream."
+    }
+  },
+  {
+    "model": "recipes.recipe",
+    "pk": 49,
+    "fields": {
+      "name": "Raspberry Macarons",
+      "course": "Bakery/Macarons",
+      "description": "Vibrant pink macarons filled with a tangy raspberry ganache.",
+      "ingredients": "150g almond flour\n150g powdered sugar\n55g aged egg whites\n150g caster sugar\n50ml water\n55g aged egg whites for meringue\nPink food colouring\nRaspberry ganache: 200g white chocolate 100ml cream 2 tbsp raspberry jam",
+      "steps": "Follow macaron shell method adding pink food colouring then pipe bake and cool.\nMake raspberry ganache by heating cream and pouring over white chocolate then stirring in raspberry jam.\nChill ganache until pipeable.\nSandwich cooled macaron shells with the raspberry ganache."
+    }
+  },
+  {
+    "model": "recipes.recipe",
+    "pk": 50,
+    "fields": {
+      "name": "Tiramisu",
+      "course": "Dessert",
+      "description": "A classic Italian dessert with espresso-soaked ladyfingers and mascarpone cream.",
+      "ingredients": "300g ladyfinger biscuits\n500g mascarpone cheese\n4 eggs separated\n100g caster sugar\n300ml strong espresso cooled\n4 tbsp coffee liqueur optional\nCocoa powder for dusting",
+      "steps": "Whisk egg yolks and sugar until pale then fold in mascarpone.\nWhip egg whites to stiff peaks and gently fold into the mascarpone mixture.\nDip ladyfingers briefly into cooled espresso and layer in a dish.\nSpread mascarpone cream over the biscuits then repeat layers.\nDust with cocoa powder and refrigerate at least 4 hours before serving."
+    }
+  },
+  {
+    "model": "recipes.recipe",
+    "pk": 51,
+    "fields": {
+      "name": "Black Forest Cheesecake",
+      "course": "Dessert",
+      "description": "A decadent cheesecake with chocolate base cherry filling and cream topping.",
+      "ingredients": "200g chocolate biscuits crushed\n100g butter melted\n600g cream cheese\n200g caster sugar\n3 eggs\n1 tsp vanilla\n1 jar morello cherries\n300ml whipping cream",
+      "steps": "Mix crushed biscuits with melted butter and press into a lined springform tin then chill.\nBeat cream cheese sugar eggs and vanilla until smooth then pour over base.\nBake in a water bath at 325F for 55-60 minutes then cool completely.\nTop with whipped cream and drained cherries before serving."
+    }
+  },
+  {
+    "model": "recipes.recipe",
+    "pk": 52,
+    "fields": {
+      "name": "Brownies",
+      "course": "Dessert",
+      "description": "Dense fudgy chocolate brownies with a crinkly top.",
+      "ingredients": "200g dark chocolate chopped\n150g butter\n250g caster sugar\n3 eggs\n1 tsp vanilla\n100g all-purpose flour\n30g cocoa powder\n1/2 tsp salt",
+      "steps": "Melt chocolate and butter together then let cool slightly.\nWhisk in sugar then eggs one at a time and vanilla.\nFold in flour cocoa and salt.\nPour into a lined 20cm tin and bake at 350F for 22-25 minutes — the centre should still have a slight wobble.\nCool completely before cutting."
+    }
+  },
+  {
+    "model": "recipes.recipe",
+    "pk": 53,
+    "fields": {
+      "name": "Strawberry Cake",
+      "course": "Dessert",
+      "description": "A light vanilla sponge layered with fresh strawberries and cream.",
+      "ingredients": "250g all-purpose flour\n250g caster sugar\n125g butter\n3 eggs\n1 tsp baking powder\n120ml milk\n1 tsp vanilla\n500ml whipping cream\n400g fresh strawberries",
+      "steps": "Cream butter and sugar then beat in eggs and vanilla.\nFold in flour and baking powder alternating with milk.\nBake in two 20cm tins at 350F for 25-30 minutes then cool.\nWhip cream to stiff peaks and slice strawberries.\nLayer cake with cream and strawberries then top with more cream and whole strawberries."
+    }
+  },
+  {
+    "model": "recipes.recipe",
+    "pk": 54,
+    "fields": {
+      "name": "Creme Caramel",
+      "course": "Dessert",
+      "description": "A silky baked custard with a golden caramel sauce.",
+      "ingredients": "200g caster sugar for caramel\n4 tbsp water\n500ml whole milk\n4 eggs\n2 egg yolks\n100g caster sugar for custard\n1 tsp vanilla extract",
+      "steps": "Make caramel by cooking sugar and water until deep amber then pour into ramekins.\nWarm milk with vanilla then whisk eggs egg yolks and sugar together.\nPour warm milk over egg mixture then strain and fill ramekins.\nBake in a water bath at 325F for 35-40 minutes until just set.\nChill overnight then invert onto plates to serve."
+    }
+  },
+  {
+    "model": "recipes.recipe",
+    "pk": 55,
+    "fields": {
+      "name": "Cupcake",
+      "course": "Dessert",
+      "description": "Soft vanilla cupcakes topped with swirls of buttercream frosting.",
+      "ingredients": "175g butter softened\n175g caster sugar\n3 eggs\n175g self-raising flour\n1 tsp vanilla extract\n2 tbsp milk\nButtercream: 250g butter 500g powdered sugar 2 tbsp milk 1 tsp vanilla",
+      "steps": "Cream butter and sugar until fluffy then beat in eggs one at a time.\nFold in flour vanilla and milk.\nDivide into 12 cupcake cases and bake at 350F for 18-20 minutes until springy.\nCool completely then pipe with buttercream."
+    }
+  },
+  {
+    "model": "recipes.recipe",
+    "pk": 56,
+    "fields": {
+      "name": "French Vanilla Cappuccino",
+      "course": "Drinks/coffee",
+      "description": "A creamy cappuccino with a sweet French vanilla flavour.",
+      "ingredients": "2 shots espresso\n200ml steamed milk\n2 tbsp French vanilla syrup\nFoamed milk for topping\nVanilla powder or cinnamon for garnish",
+      "steps": "Pull two shots of espresso into a large cup.\nStir in French vanilla syrup.\nPour steamed milk over the espresso then spoon foamed milk on top.\nDust with vanilla powder or cinnamon."
+    }
+  },
+  {
+    "model": "recipes.recipe",
+    "pk": 57,
+    "fields": {
+      "name": "Caramel Hazelnut Iced Coffee",
+      "course": "Drinks/coffee",
+      "description": "A refreshing iced coffee with caramel and hazelnut syrups.",
+      "ingredients": "2 shots espresso cooled\n200ml cold milk\n1 tbsp caramel syrup\n1 tbsp hazelnut syrup\nIce cubes\nWhipped cream optional",
+      "steps": "Brew espresso and allow to cool.\nFill a tall glass with ice then add caramel and hazelnut syrups.\nPour cold milk over the ice then slowly pour cooled espresso over the top.\nStir gently and top with whipped cream if desired."
+    }
+  },
+  {
+    "model": "recipes.recipe",
+    "pk": 58,
+    "fields": {
+      "name": "Arab Coffee",
+      "course": "Drinks/coffee",
+      "description": "Traditional Arabic coffee flavoured with cardamom and saffron.",
+      "ingredients": "4 cups water\n4 tbsp lightly roasted ground Arabic coffee\n1 tsp ground cardamom\nPinch of saffron\nDates for serving",
+      "steps": "Bring water to a boil in a traditional dallah or pot.\nAdd ground coffee and reduce heat then simmer for 10 minutes.\nAdd cardamom and saffron and simmer 5 more minutes.\nStrain into small cups and serve with dates."
+    }
+  },
+  {
+    "model": "recipes.recipe",
+    "pk": 59,
+    "fields": {
+      "name": "Berry Blast Smoothie",
+      "course": "Drinks/fresh juices& smoothie",
+      "description": "A vibrant antioxidant-rich blend of mixed berries and banana.",
+      "ingredients": "1 cup mixed frozen berries\n1 banana\n200ml almond milk or yogurt\n1 tbsp honey\nHandful of spinach optional",
+      "steps": "Add all ingredients to a blender.\nBlend on high until completely smooth.\nAdd more milk if the smoothie is too thick.\nPour into glasses and serve immediately."
+    }
+  },
+  {
+    "model": "recipes.recipe",
+    "pk": 60,
+    "fields": {
+      "name": "Pineapple Mango Smoothie",
+      "course": "Drinks/fresh juices& smoothie",
+      "description": "A tropical smoothie bursting with pineapple and mango.",
+      "ingredients": "1 cup frozen mango chunks\n1 cup fresh or frozen pineapple\n200ml coconut milk\n1 tbsp lime juice\nIce cubes",
+      "steps": "Add mango pineapple coconut milk and lime juice to a blender.\nBlend until smooth adding ice for a thicker consistency.\nPour into glasses and garnish with a slice of pineapple."
+    }
+  },
+  {
+    "model": "recipes.recipe",
+    "pk": 61,
+    "fields": {
+      "name": "Strawberry Lemonade",
+      "course": "Drinks/fresh juices& smoothie",
+      "description": "A refreshing sweet and tangy homemade strawberry lemonade.",
+      "ingredients": "2 cups fresh strawberries hulled\nJuice of 4 lemons\n1/2 cup sugar\n4 cups cold water\nIce and lemon slices to serve",
+      "steps": "Blend strawberries until smooth then strain through a sieve.\nMake a simple syrup by dissolving sugar in 1/2 cup hot water then cool.\nMix strawberry puree lemon juice simple syrup and cold water.\nPour over ice and garnish with lemon slices."
+    }
+  },
+  {
+    "model": "recipes.recipe",
+    "pk": 62,
+    "fields": {
+      "name": "Turkish Tea",
+      "course": "Drinks/Hot drinks",
+      "description": "Strong aromatic black tea brewed in the traditional double teapot method.",
+      "ingredients": "3 tbsp black tea leaves\n4 cups boiling water\nSugar to taste",
+      "steps": "Fill the lower kettle with water and bring to a boil.\nAdd tea leaves to the upper teapot and pour some boiling water over them.\nPlace the upper teapot on top of the lower kettle and brew for 10-15 minutes.\nPour a small amount of concentrated tea into a tulip glass then dilute with hot water to taste."
+    }
+  },
+  {
+    "model": "recipes.recipe",
+    "pk": 63,
+    "fields": {
+      "name": "Herbal Hibiscus Tea",
+      "course": "Drinks/Hot drinks",
+      "description": "A beautiful deep red floral tea with a tart cranberry-like flavour.",
+      "ingredients": "3 tbsp dried hibiscus flowers\n4 cups boiling water\n2 tbsp honey or sugar\nJuice of 1/2 lemon\nFresh mint for garnish",
+      "steps": "Place dried hibiscus flowers in a teapot or heatproof jug.\nPour boiling water over the flowers and steep for 5-7 minutes.\nStrain into cups and stir in honey and lemon juice.\nGarnish with fresh mint and serve hot."
+    }
+  }
+]

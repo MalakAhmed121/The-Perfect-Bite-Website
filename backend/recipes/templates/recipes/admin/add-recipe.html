@@ -10,21 +10,23 @@
 </head>
 
 <body>
-    <div id="navbar">
+        <div id="navbar">
         <nav class="main-nav">
-            <div class="logo">Yummy 🍲</div>
+            <div class="logo">Yummy</div>
             <ul class="nav-links">
-                <!-- استخدام أسماء الروابط المعرفة في urls.py بدلاً من مسارات الملفات -->
                 <li><a href="{% url 'cover' %}">Team</a></li>
                 <li><a href="{% url 'home' %}">Home</a></li>
                 <li><a href="{% url 'search' %}">Search</a></li>
                 <li><a href="{% url 'favorites' %}">Favorites</a></li>
-                <li><a href="{% url 'admin_recipe' %}">Admin</a></li>
+                {% if user.is_staff %}
+               <li><a href="{% url 'admin_recipe' %}">Admin</a></li>
+                {% endif %}
                 <li><a href="{% url 'add_recipe' %}">Add Recipe</a></li>
+                <li><a href="{% url 'login' %}">Login</a></li>
+                <li><a href="{% url 'signup' %}">Sign Up</a></li>
             </ul>
         </nav>
     </div>
-
     <div class="page-wrapper">
         <div class="edit-card">
             <h2>Add New Recipe</h2>

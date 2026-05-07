@@ -1,8 +1,28 @@
 from django.contrib import admin
+from .models import HealthyRecipe, Recipe, Favorite, Item
 
-# Register your models here.
-#healthy
-from django.contrib import admin
-from .models import HealthyRecipe
 
-admin.site.register(HealthyRecipe) # سجل الموديل بتاعنا في لوحة التحكم[cite: 5]
+@admin.register(Item)
+class ItemAdmin(admin.ModelAdmin):
+    list_display = ('name', 'description')
+    search_fields = ('name',)
+
+
+@admin.register(Recipe)
+class RecipeAdmin(admin.ModelAdmin):
+    list_display = ('name', 'course')
+    list_filter = ('course',)
+    search_fields = ('name',)
+
+
+@admin.register(HealthyRecipe)
+class HealthyRecipeAdmin(admin.ModelAdmin):
+    list_display = ('title', 'diet_type', 'calories', 'prep_time')
+    list_filter = ('diet_type',)
+    search_fields = ('title',)
+
+
+@admin.register(Favorite)
+class FavoriteAdmin(admin.ModelAdmin):
+    list_display = ('user', 'item')
+    list_filter = ('user',)

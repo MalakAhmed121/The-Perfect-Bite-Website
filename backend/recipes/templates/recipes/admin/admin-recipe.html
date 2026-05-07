@@ -8,16 +8,17 @@
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
 </head>
 <body>
-    <div id="navbar">
+      <div id="navbar">
         <nav class="main-nav">
-            <div class="logo">Yummy 🍲</div>
+            <div class="logo">Yummy</div>
             <ul class="nav-links">
-                <!-- تم استبدال المسارات النسبية (../../) بـ Django URL Tags[cite: 24, 26] -->
                 <li><a href="{% url 'cover' %}">Team</a></li>
                 <li><a href="{% url 'home' %}">Home</a></li>
                 <li><a href="{% url 'search' %}">Search</a></li>
                 <li><a href="{% url 'favorites' %}">Favorites</a></li>
+                {% if user.is_staff %}
                 <li><a href="{% url 'admin_recipe' %}">Admin</a></li>
+                {% endif %}
                 <li><a href="{% url 'add_recipe' %}">Add Recipe</a></li>
                 <li><a href="{% url 'login' %}">Login</a></li>
                 <li><a href="{% url 'signup' %}">Sign Up</a></li>
@@ -36,79 +37,31 @@
                     <th>Actions</th>
                 </tr>
             </thead>
-            <tbody id="recipeTableBody">
-                <!-- الصفوف سيتم إنشاؤها عبر JavaScript -->
+            <tbody>
+                {% for recipe in recipes %}
+                <tr>
+                    <td>{{ forloop.counter }}</td>
+                    <td><strong>{{ recipe.name }}</strong></td>
+                    <td>{{ recipe.course }}</td>
+                    <td class="actions-cell">
+                        <a href="javascript:void(0)" 
+                           class="btn-admin btn-view-mod" 
+                           onclick="viewRecipe('{{ recipe.id }}', '{{ recipe.course }}')">View</a>
+                    <a href="{% url 'edit_recipe' recipe.pk %}" 
+                        class="btn-admin btn-edit-mod">Edit</a>
+                    <a href="{% url 'delete_recipe' recipe.pk %}"
+                        class="btn-admin btn-delete-mod"
+                        onclick="return confirm('Delete this recipe?')">Delete</a>
+                    </td>
+                </tr>
+                {% empty %}
+                <tr><td colspan="4">No recipes yet.</td></tr>
+                {% endfor %}
             </tbody>
         </table>
     </div>
 
     <script>
-        const staticRecipes = [
-            { id: "beefSteak", name: "Beef Steak 🥩", course: "maindish/beef" },
-            { id: "beefTacos", name: "Beef Tacos 🌮", course: "maindish/beef" },
-            { id: "beefStew", name: "Beef Stew 🍲", course: "maindish/beef" },
-            { id: "friedChicken", name: "Fried Chicken 🍗", course: "maindish/chicken" },
-            { id: "chickenCurry", name: "Chicken Curry 🍛", course: "maindish/chicken" },
-            { id: "grilledChicken", name: "Grilled Chicken 🍗", course: "maindish/chicken" },
-            { id: "spaghettiCarbonara", name: " Spaghetti Carbonara 🍝", course: "maindish/pasta" },
-            { id: "pastaPesto", name: "Pasta Pesto 🌿", course: "maindish/pasta" },
-            { id: "lasagna", name: "Lasagna 🍲", course: "maindish/pasta" },
-            { id: "grilledSalmon", name: "Grilled Salmon 🐟", course: "maindish/seafood" },
-            { id: "shrimpPasta", name: "Shrimp Pasta 🍤", course: "maindish/seafood" },
-            { id: "fishCurry", name: "Fish Curry 🐠", course: "maindish/seafood" },
-            { id: "burger", name: " Burger 🍔", course: "maindish/fastfood" },
-            { id: "fries", name: "French Fries 🍟", course: "maindish/fastfood" },
-            { id: "pizza", name: "Pizza 🍕", course: "maindish/fastfood" },
-            { id: "veggieStirFry", name: "Veggie Stir-Fry 🥗", course: "maindish/Vegetarian" },
-            { id: "veggieCurry", name: "Vegetable Curry 🍛", course: "maindish/Vegetarian" },
-            { id: "quinoaSalad", name: "Quinoa Salad 🥗", course: "maindish/Vegetarian" },
-            { id: "grilled_salmon_avocado", name: "Grilled Salmon & Avocado", course: "Healthy" },
-            { id: "quinoa_buddha_bowl", name: "Quinoa Buddha Bowl", course: "Healthy" },
-            { id: "lemon_herb_chicken", name: "Lemon Herb Chicken", course: "Healthy" },
-            { id: "zucchini_noodles", name: "Zucchini Noodles (Zoodles)", course: "Healthy" },
-            { id: "Baguette", name: "Classic French Baguette 🥖", course: "Bakery/Bread" },
-            { id: "Sourdough", name: "Natural Sourdough 🥐", course: "Bakery/Bread" },
-            { id: "Focaccia", name: "Herbed Focaccia 🍪", course: "Bakery/Bread" },
-            { id: "ButterCroissant", name: "Butter Croissant", course: "Bakery/Croissant" },
-            { id: "PainauChocolat", name: "Pain au Chocolat", course: "Bakery/Croissant" },
-            { id: "StrawberryDanish", name: "Strawberry Custard Danish", course: "Bakery/Croissant" },
-            { id: "ClassicCinnamon", name: "Classic Cinnamon Rolls", course: "Bakery/Cinnamon" },
-            { id: "PecanCinnamon", name: "Pecan Cinnamon Rolls", course: "Bakery/Cinnamon" },
-            { id: "ChocolateCinnamon", name: "Chocolate Cinnamon Rolls", course: "Bakery/Cinnamon" },
-            { id: "ChocolateCookies", name: "Chocolate Cookies 🍪", course: "Bakery/Cookies" },
-            { id: "ButterBiscuits", name: "Butter Shortbread Biscuits 🧈", course: "Bakery/Cookies" },
-            { id: "OatmealCookies", name: "Oatmeal Raisin Cookies 🌾", course: "Bakery/Cookies" },
-            { id: "GlazedDonuts", name: "Glazed Donuts 🍩", course: "Bakery/Donuts" },
-            { id: "ChocolateDonuts", name: "Chocolate Donuts 🍫", course: "Bakery/Donuts" },
-            { id: "FilledDonuts", name: "Filled Donuts 🍓", course: "Bakery/Donuts" },
-            { id: "VanillaMacarons", name: "Vanilla Macarons", course: "Bakery/Macarons" },
-            { id: "PistachioMacarons", name: "Pistachio Macarons", course: "Bakery/Macarons" },
-            { id: "RaspberryMacrons", name: "Raspberry Macarons", course: "Bakery/Macarons" },
-            { id: "tiramisu", name: "Tiramisu ☕", course: "Dessert" },
-            { id: "blackforest-cheesecake", name: "Black Forest Cheesecake 🍒", course: "Dessert" },
-            { id: "brownie", name: "Brownies 🍫", course: "Dessert" },
-            { id: "strawberryCake", name: "Strawberry Cake 🍓", course: "Dessert" },
-            { id: "CremeCaramel", name: "Crème Caramel 🍮", course: "Dessert" },
-            { id: "cupcake", name: "Cupcake 🧁", course: "Dessert" },
-            { id: "DeviledEggs", name: "Deviled Eggs", course: "appetizers" },
-            { id: "SpinachArtichokeDip", name: "Spinach Artichoke Dip", course: "appetizers" },
-            { id: "ChickenWings", name: "Chicken Wings", course: "appetizers" },
-            { id: "JalapenoPoppers", name: "Jalapeno Poppers", course: "appetizers" },
-            { id: "StuffedMushrooms", name: "Stuffed Mushrooms", course: "appetizers" },
-            { id: "Crostini", name: "Crostini", course: "appetizers" },
-            { id: "CharcuterieBoard", name: "Charcuterie Board", course: "appetizers" },
-            { id: "Sliders", name: "Sliders", course: "appetizers" },
-            { id: "ShrimpCocktail", name: "Shrimp Cocktail", course: "appetizers" },
-            { id: "Cappuccino", name: "French Vanilla Cappuccino", course: "Drinks/coffee" },
-            { id: "icedcoffee", name: "Caramel Hazelnut Iced Coffee", course: "Drinks/coffee" },
-            { id: "arabcoffee", name: "Arab Coffee", course: "Drinks/coffee" },
-            { id: "Smoothie", name: "Berry Blast Smoothie🍸", course: "Drinks/fresh juices& smoothie" },
-            { id: "smothie2", name: "Pineapple Mango Smoothie", course: "Drinks/fresh juices& smoothie" },
-            { id: "strawberrylemo", name: "Strawberry Lemonade🍓", course: "Drinks/fresh juices& smoothie" },
-            { id: "turkish-tea", name: "Turkish Tea🍃", course: "Drinks/Hot drinks" },
-            { id: "Hibiscus-tea", name: "Herbal Hibiscus Tea🌺🌹", course: "Drinks/Hot drinks" }
-        ];
-
         function displayRecipes() {
             const tableBody = document.getElementById('recipeTableBody');
             let userAddedRecipes = JSON.parse(localStorage.getItem('recipes')) || [];
@@ -162,7 +115,7 @@
                 "bakery/macarons": "{% url 'macrons' %}",
                 "drinks/coffee": "{% url 'coffee' %}",
                 "drinks/fresh juices& smoothie": "{% url 'juices' %}",
-                "drinks/hot drinks": "{% url 'hot-drinks' %}"
+                "drinks/hot drinks": "{% url 'hot_drinks' %}"
             };
 
             let targetURL = "{% url 'home' %}";
@@ -196,8 +149,8 @@
 
         function editRecipe(id) {
             // توجيه لصفحة التعديل باستخدام Django URL[cite: 23]
-            window.location.href = "{% url 'edit_recipe' %}?id=" + id;
-        }
+            window.location.href = "/edit_recipe/" + id + "/";
+        } 
 
         displayRecipes();
     </script>

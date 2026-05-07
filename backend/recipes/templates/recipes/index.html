@@ -14,26 +14,22 @@
 </head>
 
 <body>
-    <div id="navbar">
+     <div id="navbar">
         <nav class="main-nav">
-            <div class="menu-icon" onclick="toggleMenu()">
-                <div class="bar"></div>
-                <div class="bar"></div>
-                <div class="bar"></div>
-            </div>
-
-            <div class="logo" style="margin-right: 490px;">Yummy</div>
-
+            <div class="logo">Yummy</div>
             <ul class="nav-links">
                 <li><a href="{% url 'cover' %}">Team</a></li>
                 <li><a href="{% url 'home' %}">Home</a></li>
                 <li><a href="{% url 'search' %}">Search</a></li>
                 <li><a href="{% url 'favorites' %}">Favorites</a></li>
+                {% if user.is_staff %}
                 <li><a href="{% url 'admin_recipe' %}">Admin</a></li>
+                {% endif %}
                 <li><a href="{% url 'add_recipe' %}">Add Recipe</a></li>
                 <li><a href="{% url 'login' %}">Login</a></li>
                 <li><a href="{% url 'signup' %}">Sign Up</a></li>
             </ul>
+        
 
             <ul class="dropdown-menu" id="side-menu">
                 <li><a href="{% url 'main_dish' %}">Main Dish</a></li>

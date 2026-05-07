@@ -9,23 +9,24 @@
 
 <body>
     <div id="navbar">
-    <nav class="main-nav">
-        <div class="logo">Yummy 🍲</div>
-        <ul class="nav-links">
-            <li><a href="../cover.html">Team</a></li>
-            <li><a href="../index.html">Home</a></li>
-            <li><a href="../../search.html">Search</a></li>
-            <li><a href="../favorites.html">Favorites</a></li>
-            <li><a href="../admin-recipe.html">Admin</a></li>
-            <li><a href="../add-recipe.html">Add Recipe</a></li>
-            <li><a href="../auth/login.html">Login</a></li>
-            <li><a href="../auth/signup.html">Sign Up</a></li>
-         
-        </ul>
-    </nav>
-</div>
+        <nav class="main-nav">
+            <div class="logo">Yummy</div>
+            <ul class="nav-links">
+                <li><a href="{% url 'cover' %}">Team</a></li>
+                <li><a href="{% url 'home' %}">Home</a></li>
+                <li><a href="{% url 'search' %}">Search</a></li>
+                <li><a href="{% url 'favorites' %}">Favorites</a></li>
+                {% if user.is_staff %}
+                <li><a href="{% url 'admin_recipe' %}">Admin</a></li>
+                {% endif %}
+                <li><a href="{% url 'add_recipe' %}">Add Recipe</a></li>
+                <li><a href="{% url 'login' %}">Login</a></li>
+                <li><a href="{% url 'signup' %}">Sign Up</a></li>
+            </ul>
+        </nav>
+    </div>
 
-<div class="page-wrapper">
+    <div class="page-wrapper">
         <div class="edit-card">
             <h1>Edit Recipe 📝</h1>
             <form>
@@ -60,7 +61,8 @@
 
                 <div class="form-group">
                     <label>Description</label>
-                    <textarea class="form-input" name="description" rows="4">Cut vegetables and mix with olive oil and lemon juice.</textarea>
+                    <textarea class="form-input" name="description"
+                        rows="4">Cut vegetables and mix with olive oil and lemon juice.</textarea>
                 </div>
 
                 <button type="submit" class="btn-main">Update Recipe</button>
@@ -71,36 +73,36 @@
 
 
     <script>
-    // 1. Get the ID from the URL
-    const urlParams = new URLSearchParams(window.location.search);
-    const recipeId = urlParams.get('id');
+        // 1. Get the ID from the URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const recipeId = urlParams.get('id');
 
-    // 2. Load the recipes from storage
-    let recipes = JSON.parse(localStorage.getItem('recipes')) || [];
-    let recipeToEdit = recipes.find(r => r.id == recipeId);
+        // 2. Load the recipes from storage
+        let recipes = JSON.parse(localStorage.getItem('recipes')) || [];
+        let recipeToEdit = recipes.find(r => r.id == recipeId);
 
-    // 3. Fill the form if the recipe exists
-    if (recipeToEdit) {
-        document.getElementById('recipeName').value = recipeToEdit.name;
-        document.getElementById('recipeCourse').value = recipeToEdit.course;
-        document.getElementById('recipeIngredients').value = recipeToEdit.ingredients || "";
-    }
+        // 3. Fill the form if the recipe exists
+        if (recipeToEdit) {
+            document.getElementById('recipeName').value = recipeToEdit.name;
+            document.getElementById('recipeCourse').value = recipeToEdit.course;
+            document.getElementById('recipeIngredients').value = recipeToEdit.ingredients || "";
+        }
 
-    // 4. Save the changes
-    document.getElementById('editRecipeForm').onsubmit = function(e) {
-        e.preventDefault();
-        
-        // Update the specific recipe in the array
-        recipeToEdit.name = document.getElementById('recipeName').value;
-        recipeToEdit.course = document.getElementById('recipeCourse').value;
-        recipeToEdit.ingredients = document.getElementById('recipeIngredients').value;
+        // 4. Save the changes
+        document.getElementById('editRecipeForm').onsubmit = function (e) {
+            e.preventDefault();
 
-        // Save back to localStorage
-        localStorage.setItem('recipes', JSON.stringify(recipes));
-        
-        // Go back to the Admin list
-        window.location.href = 'admin-recipe.html';
-    };
-</script>
+            // Update the specific recipe in the array
+            recipeToEdit.name = document.getElementById('recipeName').value;
+            recipeToEdit.course = document.getElementById('recipeCourse').value;
+            recipeToEdit.ingredients = document.getElementById('recipeIngredients').value;
+
+            // Save back to localStorage
+            localStorage.setItem('recipes', JSON.stringify(recipes));
+
+            // Go back to the Admin list
+            window.location.href = 'admin_recipe.html';
+        };
+    </script>
 
 </body>
