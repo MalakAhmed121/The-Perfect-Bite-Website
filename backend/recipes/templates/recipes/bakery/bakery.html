@@ -6,12 +6,21 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Home Baked Recipes • Bakery</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" />
     <link rel="stylesheet" href="{% static 'css/bakery-style.css' %}" />
-    <script src="{% static 'js/bakery-java.js' %}"></script>
+    <style>
+        .main { background-image: url("{% static 'home-page.png' %}") !important; }
+        #Bread { background-image: url("{% static 'bakeryimages/breads.jpeg' %}"); }
+        #Croissants { background-image: url("{% static 'bakeryimages/Croissants.jpeg' %}"); }
+        #Cookies { background-image: url("{% static 'bakeryimages/cookies.jpeg' %}"); }
+        #Macarons { background-image: url("{% static 'bakeryimages/macron.jpeg' %}"); }
+        #Donuts { background-image: url("{% static 'bakeryimages/Dounts.png' %}"); }
+        #Cinnamon { background-image: url("{% static 'bakeryimages/Cinnamon.png' %}"); }
+    </style>
 </head>
 
 <body>
-        <div id="navbar">
+    <div id="navbar">
         <nav class="main-nav">
             <div class="logo">Yummy</div>
             <ul class="nav-links">
@@ -20,7 +29,7 @@
                 <li><a href="{% url 'search' %}">Search</a></li>
                 <li><a href="{% url 'favorites' %}">Favorites</a></li>
                 {% if user.is_staff %}
-               <li><a href="{% url 'admin_recipe' %}">Admin</a></li>
+                <li><a href="{% url 'admin_recipe' %}">Admin</a></li>
                 {% endif %}
                 <li><a href="{% url 'add_recipe' %}">Add Recipe</a></li>
                 <li><a href="{% url 'login' %}">Login</a></li>
@@ -32,7 +41,7 @@
         <div class="main-content">
             <h1>Freshly Baked at Home</h1>
             <p>Delicious recipes & cookies hub – made with love in your kitchen</p>
-            <a href="javascript:void(0)" class="btn-main" onclick="onClick()">View Recipes</a>
+            <a href="#categories" class="btn-main">View Categories</a>
         </div>
     </section>
     
@@ -40,7 +49,7 @@
 
     <h2 class="h2">Recipes Categories</h2>
 
-    <section class="recipes-container">
+    <section class="recipes-container" id="categories">
         <div class="recipe-card" id="Bread">
             <h2>Artisan Breads 🥖</h2>
             <p>Freshly baked with natural ingredients and a perfect golden crust.</p>
@@ -62,7 +71,7 @@
         <div class="recipe-card" id="Macarons">
             <h2>French Macarons 🍥</h2>
             <p>Delicate French macarons with a smooth shell and a creamy, flavorful filling.</p>
-            <a href="{% url 'macrons' %}" class="btn-main">View Recipes</a>
+            <a href="{% url 'macarons' %}" class="btn-main">View Recipes</a>
         </div>
 
         <div class="recipe-card" id="Donuts">

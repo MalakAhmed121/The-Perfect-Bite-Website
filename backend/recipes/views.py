@@ -1,123 +1,168 @@
-# Create your views here.
-from django.shortcuts import render, redirect
-from django.contrib.auth import authenticate, login
+from django.shortcuts import render, redirect, get_object_or_404
+from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
 from django.http import JsonResponse
-from .forms import RegisterForm , RecipeForm 
-from .models import HealthyRecipe , Recipe
+from .forms import RegisterForm, RecipeForm 
+from .models import Recipe, Category, Favorite
 from django.contrib.auth.decorators import login_required
+from django.template.loader import get_template
+from django.template import TemplateDoesNotExist
 
+# --- الصفحات الأساسية ---
 
-# home page
 @login_required(login_url="login")
 def home(request):
-    return render(request, "recipes/index.html")
-
+    latest_recipes = Recipe.objects.select_related('category', 'author').all()[:6]
+    return render(request, "recipes/index.html", {"recipes": latest_recipes})
 
 def cover(request):
     return render(request, "recipes/cover.html")
 
-
+@login_required(login_url="login")
 def favorites(request):
-    return render(request, "recipes/favorites.html")
-
+    user_favorites = Favorite.objects.filter(user=request.user).select_related('recipe')
+    return render(request, "recipes/favorites.html", {"favorites": user_favorites})
 
 def recipes_page(request):
-    return render(request, "recipes/recipes.html")
+    all_recipes = Recipe.objects.all()
+    return render(request, "recipes/recipes.html", {"recipes": all_recipes})
 
-
-def recipe_details(request):
-    return render(request, "recipes/recipe-details.html")
-
+def recipe_details(request, slug): 
+    recipe = get_object_or_404(Recipe, slug=slug)
+    return render(request, "recipes/recipe-details.html", {'recipe': recipe})
 
 def search_page(request):
-    return render(request, "recipes/search.html")
+    query = request.GET.get('q')
+    results = []
+    if query:
+        results = Recipe.objects.filter(title__icontains=query)
+    return render(request, "recipes/search.html", {"results": results, "query": query})
 
+# --- نظام التصنيفات (الحل لمشكلة صفحة Healthy) ---
 
-def login_page(request):
+def category_detail(request, category_name):
+    # تحويل النص لصيغة موحدة للبحث
+    category_slug = category_name.lower().replace("-", " ").strip()
+    
+    # 1. التحقق إذا كان المطلوب هو صفحة Healthy
+    if category_slug == 'healthy':
+        recipes = Recipe.objects.filter(diet_type__in=['keto', 'vegan', 'protein', 'gluten-free'])
+        return render(request, "recipes/healthy/Healthy Food.html", {
+            "recipes": recipes,
+            "category": "Healthy Food"
+        })
+    
+    # 2. التعامل مع باقي التصنيفات ديناميكياً
+    category_obj = get_object_or_404(Category, name__iexact=category_slug)
+    recipes = Recipe.objects.filter(category=category_obj)
+    
+    # Smart Template Selection
+    category_slug = category_slug.lower()
+    clean_name = category_slug.replace(" ", "_").replace("-", "_")
+    simple_name = category_slug.replace(" ", "").replace("-", "")
+    
+    # Hardcoded hub mapping for reliability
+    hub_templates = {
+        'bakery': 'recipes/bakery/bakery.html',
+        'main dish': 'recipes/main_dish/maindish.html',
+        'healthy': 'recipes/healthy/Healthy Food.html',
+        'drinks': 'recipes/drinks/drinks.html',
+        'dessert': 'recipes/desserts/dessert.html',
+        'appetizers': 'recipes/appetizers/appetizers.html',
+    }
+    
+    template_name = hub_templates.get(category_slug)
+    
+    if not template_name:
+        # List of possible template paths for sub-categories
+        possible_templates = [
+            f"recipes/{clean_name}/{clean_name}.html",
+            f"recipes/{clean_name}/{simple_name}.html",
+            f"recipes/main_dish/{clean_name}.html",
+            f"recipes/main_dish/{simple_name}.html",
+            f"recipes/bakery/{clean_name}.html",
+            f"recipes/bakery/{simple_name}.html",
+            f"recipes/{clean_name}s/{clean_name}.html",
+            f"recipes/drinks/{clean_name}.html",
+            f"recipes/desserts/{clean_name}.html",
+            f"recipes/bakery/macrons.html" if clean_name == "macarons" else None,
+        ]
+        possible_templates = [t for t in possible_templates if t]
+        
+        template_name = None
+        for t in possible_templates:
+            try:
+                get_template(t)
+                template_name = t
+                break
+            except TemplateDoesNotExist:
+                continue
+        
+        # If still no template found, default to a sensible one
+        if not template_name:
+            template_name = "recipes/recipes.html"
 
-    if request.method == "POST":
-        username = request.POST.get("username")
-        password = request.POST.get("password")
+    return render(request, template_name, {
+        "recipes": recipes, 
+        "category": category_obj.name,
+        "category_obj": category_obj
+    })
 
-        user = authenticate(request, username=username, password=password)
-
-        if user is not None:
-            login(request, user)
-            next_url = request.POST.get("next") or request.GET.get("next") or "home"
-            return redirect(next_url)
-        else:
-            return render(
-                request,
-                "recipes/auth/login.html",
-                {"error": "Invalid username or password"},
-            )
-
-    return render(request, "recipes/auth/login.html")
-
+# --- إدارة الحسابات ---
 
 def signup_page(request):
-
     if request.method == "POST":
         form = RegisterForm(request.POST)
         if form.is_valid():
-            username = form.cleaned_data.get("username")
-            password = form.cleaned_data.get("password")
-            user_type = request.POST.get("user_type")
-
-            if not user_type or user_type not in ["user", "admin"]:
-                return render(
-                    request,
-                    "recipes/auth/signup.html",
-                    {"form": form, "error": "Please select user type (User or Admin)"},
-                )
-
-            user = User.objects.create_user(username=username, password=password)
-
-            if user_type == "admin":
-                user.is_staff = True
-                user.is_superuser = True
-                user.save()
-
-            login(request, user)
-            return redirect("home")
+            user = form.save(commit=False)
+            user.set_password(form.cleaned_data["password"])
+            if 'email' in form.cleaned_data:
+                user.email = form.cleaned_data["email"]
+            user.save()
+            return redirect("login")
     else:
         form = RegisterForm()
-
     return render(request, "recipes/auth/signup.html", {"form": form})
 
+def login_page(request):
+    if request.method == "POST":
+        u = request.POST.get("username")
+        p = request.POST.get("password")
+        user = authenticate(request, username=u, password=p)
+        if user is not None:
+            login(request, user)
+            return redirect("home")
+    return render(request, "recipes/auth/login.html")
 
-#/////////////////admin////////////////////
+def logout_user(request):
+    logout(request)
+    return redirect("login")
+
+# --- لوحة تحكم الإدارة (Admin Portal) ---
+
+@login_required(login_url="login")
 def admin_recipe(request):
     recipes = Recipe.objects.all()
     return render(request, "recipes/admin/admin-recipe.html", {"recipes": recipes})
 
-# //Add
+@login_required(login_url="login")
 def add_recipe(request):
     if request.method == 'POST':
         form = RecipeForm(request.POST, request.FILES)
         if form.is_valid():
-            form.save()
+            recipe = form.save(commit=False)
+            recipe.author = request.user
+            recipe.save()
             return redirect('admin_recipe')
     else:
         form = RecipeForm()
     return render(request, "recipes/admin/add-recipe.html", {"form": form})
 
-# //View
-def view_recipe(request):
-    form = RecipeForm()
+@login_required(login_url="login")
+def edit_recipe(request, id):
+    recipe = get_object_or_404(Recipe, id=id)
     if request.method == 'POST':
-      form = RecipeForm(request.POST,instance=recipe)
-      if form.is_valid():
-        form.save()
-        return redirect('admin_recipe')
-    return render(request, "recipes/admin/view-recipe.html", {'recipe': recipe})        
-
-# //Edit
-def edit_recipe(request,id):
-    recipe = Recipe.objects.get(id=id)
-    if request.method == 'POST':
-        form = RecipeForm(request.POST,instance=recipe)
+        form = RecipeForm(request.POST, request.FILES, instance=recipe)
         if form.is_valid():
             form.save()
             return redirect('admin_recipe')
@@ -125,145 +170,25 @@ def edit_recipe(request,id):
         form = RecipeForm(instance=recipe)    
     return render(request, 'recipes/admin/edit-recipe.html', {'form': form, 'recipe': recipe}) 
 
-# //Delete
+@login_required(login_url="login")
 def delete_recipe(request, id):
-   recipe = Recipe.objects.get(id=id)
-   if request.method == 'POST':
-         recipe.delete()
-         return redirect('admin_recipe')
-   return render(request, 'recipes/admin/delete-recipe.html', {'recipe': recipe}) 
-    
+    recipe = get_object_or_404(Recipe, id=id)
+    if request.method == 'POST':
+        recipe.delete()
+        return redirect('admin_recipe')
+    return render(request, 'recipes/admin/delete-recipe.html', {'recipe': recipe})
 
-#  appetizers
-def appetizers(request):
-    recipes = Recipe.objects.filter(course='appetizers')
-    return render(request, "recipes/appetizers/appetizers.html", {"recipes": recipes})
-
-
-#  bakery
-def bakery(request):
-    recipes = Recipe.objects.filter(course='bakery')
-    return render(request, "recipes/bakery/bakery.html", {"recipes": recipes})
-
-
-def bread(request):
-    recipes = Recipe.objects.filter(course='bakery', name='Bread')
-    return render(request, "recipes/bakery/Bread .html", {"recipes": recipes})
-
-
-def cinnamon(request):
-    recipes = Recipe.objects.filter(course='bakery', name='Cinnamon')
-    return render(request, "recipes/bakery/Cinnamon.html", {"recipes": recipes})
-
-
-def cookies(request):
-    recipes = Recipe.objects.filter(course='bakery', name='Cookies')
-    return render(request, "recipes/bakery/cookies.html", {"recipes": recipes})
-
-
-def croissants(request):
-    recipes = Recipe.objects.filter(course='bakery', name='Croissants')
-    return render(request, "recipes/bakery/Croissants .html", {"recipes": recipes})
-
-
-def donuts(request):
-    recipes = Recipe.objects.filter(course='bakery', name='Donuts')
-    return render(request, "recipes/bakery/Donuts .html", {"recipes": recipes})
-
-
-def macrons(request):
-    recipes = Recipe.objects.filter(course='bakery', name='Macrons')
-    return render(request, "recipes/bakery/macrons.html", {"recipes": recipes})
-
-
-#  desserts
-def dessert(request):
-    recipes = Recipe.objects.filter(course='desserts')
-    return render(request, "recipes/desserts/dessert.html", {"recipes": recipes})
-
-
-#  drinks
-def drinks_page(request):
-    recipes = Recipe.objects.filter(course='drinks')
-    return render(request, "recipes/drinks/drinks.html", {"recipes": recipes})
-
-
-def coffee(request):
-    recipes = Recipe.objects.filter(course='drinks', name='Coffee')
-    return render(request, "recipes/drinks/coffee.html", {"recipes": recipes})
-
-
-def hot_drinks(request):
-    recipes = Recipe.objects.filter(course='drinks', name='Hot Drinks')
-    return render(request, "recipes/drinks/hot_drinks.html", {"recipes": recipes})
-
-
-def juices(request):
-    recipes = Recipe.objects.filter(course='drinks', name='Juices')
-    return render(request, "recipes/drinks/juices.html", {"recipes": recipes})
-
-
-#  healthy
-
-
-def healthy_food(request):
-
-    all_healthy_recipes = HealthyRecipe.objects.all()
-
-    return render(
-        request, "recipes/healthy/Healthy Food.html", {"recipes": all_healthy_recipes}
-    )
-
-
-def get_recipe_details(request, recipe_id):
-    try:
-        recipe = HealthyRecipe.objects.get(id=recipe_id)
-
-        data = {
-            "title": recipe.title,
-            "description": recipe.description,
-            "ingredients": recipe.ingredients.split(","),
-            "method": recipe.preparation_steps,
-            "image_url": recipe.image.url,
-            "calories": recipe.calories,
-            "prep_time": recipe.prep_time,
-        }
-        return JsonResponse(data)
-    except HealthyRecipe.DoesNotExist:
-        return JsonResponse({"error": "recipe not found"}, status=404)
-
-
-#  main_dish
-def main_dish(request):
-    recipes = Recipe.objects.filter(course='main_dish')
-    return render(request, "recipes/main_dish/maindish.html", {"recipes": recipes})
-
-
-def beef(request):
-    recipes = Recipe.objects.filter(course='main_dish', name='Beef')
-    return render(request, "recipes/main_dish/beef.html", {"recipes": recipes})
-
-
-def chicken(request):
-    recipes = Recipe.objects.filter(course='main_dish', name='Chicken')
-    return render(request, "recipes/main_dish/chicken.html", {"recipes": recipes})
-
-
-def fastfood(request):
-    recipes = Recipe.objects.filter(course='main_dish', name='Fast Food')
-    return render(request, "recipes/main_dish/fastfood.html", {"recipes": recipes})
-
-
-def pasta(request):
-    recipes = Recipe.objects.filter(course='main_dish', name='Pasta')
-    return render(request, "recipes/main_dish/pasta.html", {"recipes": recipes})
-
-
-def seafood(request):
-    recipes = Recipe.objects.filter(course='main_dish', name='Seafood')
-    return render(request, "recipes/main_dish/seafood.html", {"recipes": recipes})
-
-
-def vegetarian(request):
-    recipes = Recipe.objects.filter(course='main_dish', name='Vegetarian')
-    return render(request, "recipes/main_dish/Vegetarian.html", {"recipes": recipes})
+@login_required(login_url="login")
+def toggle_favorite(request, recipe_id):
+    if request.method == "POST":
+        recipe = get_object_or_404(Recipe, id=recipe_id)
+        favorite, created = Favorite.objects.get_or_create(user=request.user, recipe=recipe)
+        
+        if not created:
+            favorite.delete()
+            is_favorite = False
+        else:
+            is_favorite = True
+            
+        return JsonResponse({"status": "success", "is_favorite": is_favorite})
+    return JsonResponse({"status": "error", "message": "Invalid request"}, status=400)

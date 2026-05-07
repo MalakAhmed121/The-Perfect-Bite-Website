@@ -116,10 +116,12 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/6.0/howto/static-files/
 
 STATIC_URL = 'static/'
+# Removing the non-existent global static folder to clear the warning
+STATICFILES_DIRS = []
 
-STATICFILES_DIRS = [
-    BASE_DIR / 'static',
-]
+# Media files (Uploaded recipe images)
+MEDIA_URL = '/media/'
+MEDIA_ROOT = BASE_DIR / 'media'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # Authentication settings

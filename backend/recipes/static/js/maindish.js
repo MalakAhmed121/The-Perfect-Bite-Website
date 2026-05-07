@@ -1,3 +1,19 @@
+
+function getCookie(name) {
+    let cookieValue = null;
+    if (document.cookie && document.cookie !== '') {
+        const cookies = document.cookie.split(';');
+        for (let i = 0; i < cookies.length; i++) {
+            const cookie = cookies[i].trim();
+            if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                break;
+            }
+        }
+    }
+    return cookieValue;
+}
+
 function onClick() {
     window.scrollBy({
         top: 740,
@@ -5,62 +21,57 @@ function onClick() {
     });
 }
 
-// ============================== HEART BUTTON ==============================
+//==============================  heart button (AJAX Version) ==================================
 function changecolor(heartIcon) {
-    heartIcon.classList.toggle('active');
+    const recipeId = heartIcon.getAttribute('data-id');
+    
+    if (!recipeId) {
+        heartIcon.classList.toggle('active');
+        heartIcon.style.color = heartIcon.classList.contains('active') ? "red" : "white";
+        return;
+    }
 
-    const card = heartIcon.closest('.recipe-content-box');
-    const title = card ? card.querySelector('h2').innerText : null;
-
-    let favorites = JSON.parse(localStorage.getItem('myFavorites')) || [];
-
-    if (heartIcon.classList.contains('active')) {
-        heartIcon.style.color = "red";
-
-        if (title) {
-            const recipe = {
-                id: title.toLowerCase().replace(/\s/g, '-'),
-                title: title
-            };
-
-            if (!favorites.some(fav => fav.title === title)) {
-                favorites.push(recipe);
-                localStorage.setItem('myFavorites', JSON.stringify(favorites));
+    fetch(`/toggle-favorite/${recipeId}/`, {
+        method: 'POST',
+        headers: {
+            'X-CSRFToken': getCookie('csrftoken'),
+            'Content-Type': 'application/json',
+        },
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.status === 'success') {
+            if (data.is_favorite) {
+                heartIcon.classList.add('active');
+                heartIcon.style.color = "red";
+            } else {
+                heartIcon.classList.remove('active');
+                heartIcon.style.color = "white";
             }
         }
-
-    } else {
-        heartIcon.style.color = "white";
-
-        // remove from favorites
-        if (title) {
-            favorites = favorites.filter(fav => fav.title !== title);
-            localStorage.setItem('myFavorites', JSON.stringify(favorites));
-        }
-    }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+    });
 }
 
-// ============================== OPEN CARD ==============================
+// =================================== OPEN CARD==============================================
 let currentCard = null;
 
 function openCard(event, cardId) {
     if (event && event.stopPropagation) {
         event.stopPropagation();
     }
-
     if (currentCard) {
         currentCard.style.display = "none";
     }
-
     const targetCard = document.getElementById(cardId);
-
     if (targetCard) {
         targetCard.style.display = "block";
         currentCard = targetCard;
     }
 }
 
-// ============================== CLOSE OUTSIDE CARD ==============================
 window.onclick = function (event) {
     if (currentCard && currentCard.style.display === "block") {
         if (!currentCard.contains(event.target)) {
@@ -68,62 +79,48 @@ window.onclick = function (event) {
             currentCard = null;
         }
     }
-};
+}
 
-// ============================== GO BACK ==============================
+//================================Go Back=========================================
 document.addEventListener("DOMContentLoaded", () => {
     const backBtn = document.getElementById("backbutton");
-
     if (backBtn) {
-        backBtn.onclick = function (event) {
+        backBtn.onclick = function(event) {
             event.preventDefault();
-
             if (window.history.length > 1) {
                 window.history.back();
             } else {
-                window.location.href = "home.html";
+                window.location.href = "/"; 
             }
         };
     }
 });
 
-// ============================== ADMIN FEATURES ==============================
-window.addEventListener("load", function () {
+//================================Admin Features (Deep Linking) =========================================      
+window.addEventListener("load", function() {
     let recipeId = window.location.hash.substring(1);
-
     if (recipeId && recipeId.endsWith('card')) {
         recipeId = recipeId.replace('card', '');
     }
-
     if (recipeId) {
-        setTimeout(function () {
+        setTimeout(function() {
             const detailsCardId = recipeId + 'card';
             const detailsCard = document.getElementById(detailsCardId);
-
             if (detailsCard) {
-                if (currentCard) {
-                    currentCard.style.display = "none";
-                }
-
+                if (currentCard) currentCard.style.display = "none";
                 detailsCard.style.display = "block";
                 currentCard = detailsCard;
-
                 const element = document.getElementById(recipeId);
-
                 if (element) {
                     element.scrollIntoView({ behavior: 'smooth', block: 'center' });
-
                     element.style.transition = "all 0.3s ease";
                     element.style.transform = "translateY(-10px)";
                     element.style.boxShadow = "0 5px 15px rgba(0,0,0,0.3)";
-
-                    setTimeout(function () {
+                    setTimeout(function() {
                         element.style.transform = "";
                         element.style.boxShadow = "";
                     }, 1000);
                 }
-            } else {
-                console.log("Card not found:", detailsCardId);
             }
         }, 500);
     }

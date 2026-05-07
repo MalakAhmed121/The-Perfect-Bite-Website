@@ -3,29 +3,30 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <title>Beef Recipes</title>
-    <link rel="stylesheet" href="{% static 'css/maindish.css' %}">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Home Baked Recipes • Bakery</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/bakery-style.css' %}" />
     <style>
-        #beefSteak, #beefSteak-card { background-image: url("{% static 'maindish/steak2.jfif' %}"); }
-        #beefStew, #beefStew-card { background-image: url("{% static 'maindish/swtea1.jfif' %}"); }
-        #beefTacos, #beefTacos-card { background-image: url("{% static 'maindish/tacos2.jfif' %}"); }
+        #GlazedDonuts, #GlazedDonuts-card { background-image: url("{% static 'bakeryimages/GlazedDonuts.jpeg' %}"); }
+        #ChocolateDonuts, #ChocolateDonuts-card { background-image: url("{% static 'bakeryimages/Chocolatdounts.jpeg' %}"); }
+        #FilledDonuts, #FilledDonuts-card { background-image: url("{% static 'bakeryimages/filledDounts.jpeg' %}"); }
     </style>
-    <script src="{% static 'js/maindish.js' %}"></script>
-    <script src="{% static 'js/search-js.js' %}"></script>
+    <script src="{% static 'js/bakery-java.js' %}"></script>
 </head>
 
 <body>
-    <div id="navbar">
+     <div id="navbar">
         <nav class="main-nav">
-            <div class="logo">Yummy 🍲</div>
+            <div class="logo">Yummy</div>
             <ul class="nav-links">
                 <li><a href="{% url 'cover' %}">Team</a></li>
                 <li><a href="{% url 'home' %}">Home</a></li>
                 <li><a href="{% url 'search' %}">Search</a></li>
                 <li><a href="{% url 'favorites' %}">Favorites</a></li>
                 {% if user.is_staff %}
-                <li><a href="{% url 'admin_recipe' %}">Admin</a></li>
+               <li><a href="{% url 'admin_recipe' %}">Admin</a></li>
                 {% endif %}
                 <li><a href="{% url 'add_recipe' %}">Add Recipe</a></li>
                 <li><a href="{% url 'login' %}">Login</a></li>
@@ -35,10 +36,14 @@
     </div>
 
     <div class="banner">
-        <img src="{% static 'maindish/jucybeef.jfif' %}" style="width:100%; height:400px; margin-bottom:30px;">
+        <img src="{% static 'bakeryimages/Donutsbanner.png' %}" style="width:100%; height:400px; object-fit:cover; margin-bottom:30px;">
     </div>
 
-    <h2 class="h2">Our Beef Recipes</h2>
+    <BR>
+    <BR>
+
+    <h2 class="h2">OUR Recipes </h2>
+
 
     <div class="recipes-container">
         {% for recipe in recipes %}
@@ -51,7 +56,7 @@
             <a href="javascript:void(0)" class="btn-main" onclick="openCard(event, 'recipe-{{ recipe.pk }}-card')">View Recipe</a>
         </div>
         {% empty %}
-        <p style="text-align: center; grid-column: 1/-1;">No beef recipes found yet. Add some in the Admin panel!</p>
+        <p style="text-align: center; grid-column: 1/-1;">No donut recipes found yet. Add some in the Admin panel!</p>
         {% endfor %}
     </div>
 
@@ -70,7 +75,7 @@
                 {% endfor %}
             </ul>
 
-            <h3>Preparation Steps</h3>
+            <p><strong>Preparation Steps:</strong></p>
             <ul class="recipe-list">
                 {% for line in recipe.instructions.splitlines %}
                 <li>{{ line }}</li>
@@ -81,7 +86,6 @@
         </div>
     </div>
     {% endfor %}
-
 </body>
 
 </html>

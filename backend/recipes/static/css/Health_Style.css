@@ -96,7 +96,7 @@ body {
   height: 85vh;
 
   background:
-    linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.4)),
+    linear-gradient( rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)),
     url("{% static 'photos/Healthy_images/healthy food.jpg' %}");
 
   background-size: cover;

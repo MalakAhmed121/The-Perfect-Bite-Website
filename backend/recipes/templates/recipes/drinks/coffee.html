@@ -44,109 +44,44 @@
 
     <h2 id="recipesss">Recipes</h2>
     <div class="recipes-container">
-
-        <div class="recipe-card" id="Cappuccino" data-id="Cappuccino" onclick="openCard(event, 'Cappuccino-card')">
-            <h2>French Vanilla Cappuccino</h2>
-            <p>Smooth espresso with creamy milk and a hint of vanilla</p>
-            <!-- <a href="coffee.html" class="btn-main">View Recipe</a> -->
-            <a href="javascript:void(0)" class="btn-main" onclick="openCard(event, 'Cappuccino-card')">View
-                Recipes</a>
+        {% for recipe in recipes %}
+        <div class="recipe-card" 
+             id="recipe-{{ recipe.pk }}" 
+             style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.4)), url('{{ recipe.image.url }}'); background-size: cover; background-position: center;"
+             onclick="openCard(event, 'recipe-{{ recipe.pk }}-card')">
+            <h2>{{ recipe.title }}</h2>
+            <p>{{ recipe.description|truncatewords:15 }}</p>
+            <a href="javascript:void(0)" class="btn-main" onclick="openCard(event, 'recipe-{{ recipe.pk }}-card')">View Recipe</a>
         </div>
-
-        <div class="recipe-card" id="icedcoffee" data-id="icedcoffee"  onclick="openCard(event, 'icedcoffee-card')">
-            <h2>Caramel Hazelnut Iced Coffee</h2>
-            <p>Iced coffee with rich caramel and hazelnut flavor</p>
-            <!-- <a href="recipe-details.html" class="btn-main">View Recipes</a> -->
-            <a href="javascript:void(0)" class="btn-main" onclick="openCard(event, 'icedcoffee-card')">View
-                Recipes</a>
-        </div>
-
-        <div class="recipe-card" id="arabcoffee" data-id="arabcoffee" onclick="openCard(event, 'arabcoffee-card')">
-            <h2>Arab Coffee</h2>
-            <p>Authentic Arabic coffee with a bold aroma </p>
-            <!-- <a href="recipe-details.html" class="btn-main">View Recipes</a> -->
-            <a href="javascript:void(0)" class="btn-main" onclick="openCard(event, 'arabcoffee-card')">View
-                Recipes</a>
-        </div>
-
+        {% empty %}
+        <p style="text-align: center; grid-column: 1/-1;">No coffee recipes found yet. Add some in the Admin panel!</p>
+        {% endfor %}
     </div>
-    <!-- ☕ French Vanilla Cappuccino -->
-    <div class="details-card" id="Cappuccino-card">
-        <div class="recipe-content-box">
-            <h2>French Vanilla Cappuccino</h2>
 
+    <!-- Recipe Details -->
+    {% for recipe in recipes %}
+    <div class="details-card" id="recipe-{{ recipe.pk }}-card" style="background-image: url('{{ recipe.image.url }}');">
+        <div class="recipe-content-box">
+            <h2 style="text-align:center;">{{ recipe.title }}</h2>
+            
             <h3>Ingredients</h3>
             <ul class="recipe-list">
-                <li>1 cup espresso (or strong coffee)</li>
-                <li>1/2 cup milk</li>
-                <li>1 tbsp French vanilla syrup</li>
-                <li>Milk foam</li>
-                <li>Sugar (optional)</li>
+                {% for line in recipe.ingredients.splitlines %}
+                <li>{{ line }}</li>
+                {% endfor %}
             </ul>
+
             <p><strong>Preparation Steps:</strong></p>
             <ul class="recipe-list">
-                <li><b>Brew ☕:</b> Prepare espresso or strong coffee.</li>
-                <li><b>Heat 🥛:</b> Warm the milk without boiling.</li>
-                <li><b>Mix 🍯:</b> Add vanilla syrup to the coffee.</li>
-                <li><b>Pour ✨:</b> Add milk and top with foam.</li>
-                <li><b>Serve 🎉:</b> Add sugar if desired and enjoy.</li>
+                {% for line in recipe.instructions.splitlines %}
+                <li>{{ line }}</li>
+                {% endfor %}
             </ul>
-            <span class="heart" title="Add to Favorites" onclick="changecolor(this)">♥</span>
+            
+            <span class="heart" data-id="{{ recipe.id }}" onclick="changecolor(this)">♥</span>
         </div>
     </div>
-
-
-    <!-- 🧊 Caramel Hazelnut Iced Coffee -->
-    <div class="details-card" id="icedcoffee-card">
-        <div class="recipe-content-box">
-            <h2>Caramel Hazelnut Iced Coffee</h2>
-
-            <h3>Ingredients</h3>
-            <ul class="recipe-list">
-                <li>1 cup cold coffee</li>
-                <li>Ice cubes</li>
-                <li>1 tbsp caramel syrup</li>
-                <li>1 tbsp hazelnut syrup</li>
-                <li>1/4 cup milk</li>
-                <li>Whipped cream (optional)</li>
-            </ul>
-            <p><strong>Preparation Steps:</strong></p>
-            <ul class="recipe-list">
-                <li><b>Ice ❄️:</b> Fill a glass with ice cubes.</li>
-                <li><b>Pour ☕:</b> Add cold coffee.</li>
-                <li><b>Flavor 🍯:</b> Add caramel & hazelnut syrup.</li>
-                <li><b>Mix 🥄:</b> Add milk and stir well.</li>
-                <li><b>Top 🎂:</b> Add whipped cream if desired.</li>
-            </ul>
-            <span class="heart" title="Add to Favorites" onclick="changecolor(this)">♥</span>
-        </div>
-    </div>
-
-
-    <!-- ☕ Arab Coffee -->
-    <div class="details-card" id="arabcoffee-card">
-        <div class="recipe-content-box">
-            <h2>Arab Coffee</h2>
-
-            <h3>Ingredients</h3>
-            <ul class="recipe-list">
-                <li>2 cups water</li>
-                <li>2 tbsp Arabic coffee</li>
-                <li>1/2 tsp cardamom</li>
-                <li>Saffron (optional)</li>
-                <li>Dates (for serving)</li>
-            </ul>
-            <p><strong>Preparation Steps:</strong></p>
-            <ul class="recipe-list">
-                <li><b>Boil 🔥:</b> Bring water to boil.</li>
-                <li><b>Add ☕:</b> Add coffee and simmer.</li>
-                <li><b>Flavor 🌿:</b> Add cardamom & saffron.</li>
-                <li><b>Settle ⏳:</b> Let it rest before pouring.</li>
-                <li><b>Serve 🫖:</b> Pour gently and serve with dates.</li>
-            </ul>
-            <span class="heart" title="Add to Favorites" onclick="changecolor(this)">♥</span>
-        </div>
-    </div>
+    {% endfor %}
 
     <script>
 

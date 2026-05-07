@@ -1,10 +1,11 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <title>Yummy - Edit-recipe</title>
-    <link rel="stylesheet" href="../../src/css/style.css">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
 </head>
 
 <body>
@@ -27,82 +28,61 @@
     </div>
 
     <div class="page-wrapper">
-        <div class="edit-card">
-            <h1>Edit Recipe 📝</h1>
-            <form>
-                <div class="form-group">
-                    <label>Recipe Name</label>
-                    <input type="text" class="form-input" name="recipe_name" value="Salad" required>
+        <div class="edit-card" style="max-width: 600px; margin: 50px auto; padding: 30px; background: white; border-radius: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
+            <h1 style="text-align: center; color: var(--dark-walnut);">Edit Recipe 📝</h1>
+            <form method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                
+                <div class="form-group" style="margin-bottom: 20px;">
+                    <label style="display: block; margin-bottom: 5px;">Recipe Title</label>
+                    {{ form.title }}
                 </div>
 
-                <div class="form-group">
-                    <label>Course Type</label>
-                    <select class="form-input" name="course_type">
-                        <option>Main-Course</option>
-                        <option>Appetizers</option>
-                        <option>Healthy</option>
-                        <option>Bakery</option>
-                        <option>Drinks</option>
-                        <option>Dessert</option>
-                    </select>
+                <div class="form-group" style="margin-bottom: 20px;">
+                    <label style="display: block; margin-bottom: 5px;">Category</label>
+                    {{ form.category }}
                 </div>
 
-                <div class="ingredients-section">
-                    <label>Ingredients</label>
-                    <div class="ingredient-row">
-                        <input type="text" class="form-input" placeholder="Ingredient" value="Lettuce">
-                        <input type="text" class="form-input" placeholder="Quantity" value="1 cup">
-                    </div>
-                    <div class="ingredient-row">
-                        <input type="text" class="form-input" placeholder="Ingredient" value="Tomato">
-                        <input type="text" class="form-input" placeholder="Quantity" value="1">
-                    </div>
+                <div class="form-group" style="margin-bottom: 20px;">
+                    <label style="display: block; margin-bottom: 5px;">Description</label>
+                    {{ form.description }}
                 </div>
 
-                <div class="form-group">
-                    <label>Description</label>
-                    <textarea class="form-input" name="description"
-                        rows="4">Cut vegetables and mix with olive oil and lemon juice.</textarea>
+                <div class="form-group" style="margin-bottom: 20px;">
+                    <label style="display: block; margin-bottom: 5px;">Ingredients</label>
+                    {{ form.ingredients }}
                 </div>
 
-                <button type="submit" class="btn-main">Update Recipe</button>
+                <div class="form-group" style="margin-bottom: 20px;">
+                    <label style="display: block; margin-bottom: 5px;">Instructions</label>
+                    {{ form.instructions }}
+                </div>
+
+                <div class="form-group" style="margin-bottom: 20px;">
+                    <label style="display: block; margin-bottom: 5px;">Current Image</label>
+                    {% if recipe.image %}
+                        <img src="{{ recipe.image.url }}" style="width: 100px; display: block; margin-bottom: 10px;">
+                    {% endif %}
+                    {{ form.image }}
+                </div>
+
+                <button type="submit" class="btn-main" style="width: 100%; padding: 12px; font-size: 16px;">Update Recipe in Database</button>
             </form>
         </div>
     </div>
 
-
-
-    <script>
-        // 1. Get the ID from the URL
-        const urlParams = new URLSearchParams(window.location.search);
-        const recipeId = urlParams.get('id');
-
-        // 2. Load the recipes from storage
-        let recipes = JSON.parse(localStorage.getItem('recipes')) || [];
-        let recipeToEdit = recipes.find(r => r.id == recipeId);
-
-        // 3. Fill the form if the recipe exists
-        if (recipeToEdit) {
-            document.getElementById('recipeName').value = recipeToEdit.name;
-            document.getElementById('recipeCourse').value = recipeToEdit.course;
-            document.getElementById('recipeIngredients').value = recipeToEdit.ingredients || "";
+    <style>
+        .form-group input, .form-group select, .form-group textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            box-sizing: border-box;
         }
-
-        // 4. Save the changes
-        document.getElementById('editRecipeForm').onsubmit = function (e) {
-            e.preventDefault();
-
-            // Update the specific recipe in the array
-            recipeToEdit.name = document.getElementById('recipeName').value;
-            recipeToEdit.course = document.getElementById('recipeCourse').value;
-            recipeToEdit.ingredients = document.getElementById('recipeIngredients').value;
-
-            // Save back to localStorage
-            localStorage.setItem('recipes', JSON.stringify(recipes));
-
-            // Go back to the Admin list
-            window.location.href = 'admin_recipe.html';
-        };
-    </script>
+        .form-group textarea {
+            height: 100px;
+        }
+    </style>
+</body>
 
 </body>

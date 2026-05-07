@@ -5,8 +5,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Yummy - Healthy Life 🥗</title>
-    <!-- استخدام static لاستدعاء ملف الـ CSS كما هو مطلوب في القواعد[cite: 10, 11] -->
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
     <link rel="stylesheet" href="{% static 'css/Health_Style.css' %}">
+    <style>
+        .healthy-hero {
+            background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.4)), url("{% static 'Healthy_images/healthy_food.jpg' %}") !important;
+        }
+    </style>
 </head>
 <body class="healthy-page">
 
@@ -14,19 +19,15 @@
         <nav class="main-nav">
             <div class="logo">Yummy 🍲</div>
             <ul class="nav-links">
-                <!-- تم تعديل الروابط لتستخدم نظام Django URLs بدلاً من المسارات الثابتة[cite: 3] -->
                 <li><a href="{% url 'home' %}">Home</a></li>
                 <li><a href="{% url 'search' %}">Search</a></li>
                 <li><a href="{% url 'favorites' %}">Favorites</a></li>
+                {% if user.is_staff %}
                 <li><a href="{% url 'admin_recipe' %}">Admin</a></li>
+                {% endif %}
                 <li><a href="{% url 'add_recipe' %}">Add Recipe</a></li>
                 <li><a href="{% url 'login' %}">Login</a></li>
                 <li><a href="{% url 'signup' %}">Sign Up</a></li>
-                <li>
-                    <button id="backbutton" class="big-arrow-btn" type="button" onclick="history.back()">
-                        &#8592;
-                    </button>
-                </li>
             </ul>
         </nav>
     </header>
@@ -39,7 +40,6 @@
         </div>
     </section>
 
-    <!-- الفلاتر كما هي[cite: 11] -->
     <section class="filter-section">
         <div class="container">
             <h2 class="section-title">Choose Your Diet Plan</h2>
@@ -56,42 +56,44 @@
     <main class="container">
         <div class="healthy-recipes-grid" id="recipes-container">
             
-            <!-- هنا السحر! بنستخدم Loop عشان نعرض الوصفات من قاعدة البيانات -->
             {% for recipe in recipes %}
             <div class="recipe-card {{ recipe.diet_type }}" id="recipe-{{ recipe.id }}">
                 <div class="card-image" style="background-image: url('{{ recipe.image.url }}');">
                     <span class="diet-badge">{{ recipe.get_diet_type_display }}</span>
-                    <button class="grid-heart-btn" onclick="changecolor(this)">❤</button>
                 </div>
                 <div class="card-body">
                     <h3>{{ recipe.title }}</h3>
-                    <p>{{ recipe.description }}</p>
+                    <p>{{ recipe.description|truncatewords:15 }}</p>
                     <div class="card-info">
                         <span>⏱ {{ recipe.prep_time }} min</span>
                         <span>🔥 {{ recipe.calories }} kcal</span>
                     </div>
-                    <!-- استدعاء دالة الـ AJAX عند الضغط -->
-                    <a href="javascript:void(0)" class="btn-healthy" onclick="openRecipeModal('{{ recipe.id }}')">
-                    </a>
+                    <a href="javascript:void(0)" onclick="openRecipeModal('{{ recipe.id }}')" class="btn-healthy">View Details</a>
+                    <span class="heart" title="Add to Favorites" 
+                          data-id="{{ recipe.id }}"
+                          onclick="changecolor(this)" 
+                          style="cursor: pointer; font-size: 24px; float: right; margin-top: -40px;">♥</span>
                 </div>
             </div>
             {% empty %}
-            <p>No healthy recipes found. Add some from the Admin panel!</p>
+            <div style="grid-column: 1/-1; text-align: center; padding: 40px;">
+                <p>No healthy recipes found yet. Try adding one!</p>
+            </div>
             {% endfor %}
 
         </div>
-
-        <!-- الـ Modal اللي بيظهر فيه تفاصيل الوجبة[cite: 11] -->
-        <div id="recipeModal" class="modal">
-            <div class="modal-content glass-card">
-                <div id="modalBody">
-                    <!-- البيانات بتدخل هنا عن طريق الـ AJAX[cite: 12] -->
-                </div>
-            </div>
-        </div>
     </main>
 
-    <!-- استدعاء ملف الـ JS باستخدام static[cite: 10, 12] -->
+    <!-- Modal for Recipe Details -->
+    <div id="recipeModal" class="modal">
+        <div class="glass-card" id="recipeModalContent">
+            <div id="modalBody">
+                <!-- Content will be injected by JavaScript -->
+            </div>
+        </div>
+    </div>
+
     <script src="{% static 'js/Health_Script.js' %}"></script>
+    <script src="{% static 'js/bakery-java.js' %}"></script>
 </body>
 </html>

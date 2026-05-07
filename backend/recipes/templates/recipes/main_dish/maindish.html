@@ -1,10 +1,21 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <title>Yummy - Main Dishes</title>
-    <link rel="stylesheet" href="../../src/css/maindish.css">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/maindish.css' %}">
+    <style>
+        .main { background-image: url("{% static 'maindish/main.jpg' %}") !important; }
+        #chicken { background-image: url("{% static 'maindish/chicken.jpg' %}"); }
+        #beef { background-image: url("{% static 'maindish/meat.jpg' %}"); }
+        #seafood { background-image: url("{% static 'maindish/seafood.jfif' %}"); }
+        #vegetarian { background-image: url("{% static 'maindish/Vegetarian.jpg' %}"); }
+        #pasta { background-image: url("{% static 'maindish/pasta.jfif' %}"); }
+        #fast-food { background-image: url("{% static 'maindish/fastfood.jpg' %}"); }
+    </style>
 </head>
 
 <body>
@@ -13,18 +24,17 @@
     <div id="navbar">
         <nav class="main-nav">
             <div class="logo">Yummy 🍲</div>
-            <button id="backbutton" class="big-arrow-btn" type="button" aria-label="Go Back">
-                &#8592;
-            </button>
             <ul class="nav-links">
-                <li><a href="../../cover.html">Team</a></li>
-                <li><a href="../../index.html">Home</a></li>
-                <li><a href="../../search.html">Search</a></li>
-                <li><a href="../../favorites.html">Favorites</a></li>
-                <li><a href="../admin/admin_recipe.html">Admin</a></li>
-                <li><a href="../admin/add-recipe.html">Add Recipe</a></li>
-                <li><a href="../auth/login.html">Login</a></li>
-                <li><a href="../auth/signup.html">Sign Up</a></li>
+                <li><a href="{% url 'cover' %}">Team</a></li>
+                <li><a href="{% url 'home' %}">Home</a></li>
+                <li><a href="{% url 'search' %}">Search</a></li>
+                <li><a href="{% url 'favorites' %}">Favorites</a></li>
+                {% if user.is_staff %}
+                <li><a href="{% url 'admin_recipe' %}">Admin</a></li>
+                {% endif %}
+                <li><a href="{% url 'add_recipe' %}">Add Recipe</a></li>
+                <li><a href="{% url 'login' %}">Login</a></li>
+                <li><a href="{% url 'signup' %}">Sign Up</a></li>
             </ul>
         </nav>
     </div>
@@ -34,7 +44,7 @@
         <div class="main-content">
             <h1>Main Dishes</h1>
             <p>Fresh. Tasty. Unforgettable Meals 😍</p>
-            <a href="javascript:void(0)" class="btn-main" onclick="onClick()">View Recipes</a>
+            <a href="#recipes" class="btn-main">View Categories</a>
         </div>
     </section>
 
@@ -45,41 +55,40 @@
         <div class="recipe-card" id="chicken">
             <h2>Chicken 🍗</h2>
             <p>Tender chicken dishes bursting with flavor in every bite.</p>
-            <a href="chicken.html" target="_blank">View Recipes</a>
+            <a href="{% url 'chicken' %}" class="btn-main">View Recipes</a>
         </div>
 
         <div class="recipe-card" id="beef">
             <h2>Beef 🥩</h2>
             <p>Rich, juicy beef cooked to perfection for true meat lovers.</p>
-            <a href="beef.html" target="_blank">View Recipes</a>
+            <a href="{% url 'beef' %}" class="btn-main">View Recipes</a>
         </div>
 
         <div class="recipe-card" id="seafood">
             <h2>Seafood 🐟</h2>
             <p>Fresh seafood delights straight from the ocean to your plate.</p>
-            <a href="seafood.html" target="_blank">View Recipes</a>
+            <a href="{% url 'seafood' %}" class="btn-main">View Recipes</a>
         </div>
 
         <div class="recipe-card" id="vegetarian">
             <h2>Vegetarian 🥗</h2>
             <p>Healthy and delicious plant-based meals full of goodness.</p>
-            <a href="vegetarian.html" target="_blank">View Recipes</a>
+            <a href="{% url 'vegetarian' %}" class="btn-main">View Recipes</a>
         </div>
 
         <div class="recipe-card" id="pasta">
             <h2>Pasta 🍝</h2>
             <p>Creamy, cheesy pasta made to satisfy your cravings.</p>
-            <a href="pasta.html" target="_blank">View Recipes</a>
+            <a href="{% url 'pasta' %}" class="btn-main">View Recipes</a>
         </div>
 
         <div class="recipe-card" id="fast-food">
             <h2>Fast Food 🍔</h2>
             <p>Quick, tasty bites that hit the spot every time.</p>
-            <a href="fastfood.html" target="_blank">View Recipes</a>
+            <a href="{% url 'fastfood' %}" class="btn-main">View Recipes</a>
         </div>
     </section>
 
-    <script src="../../src/js/maindish.js"></script>
 </body>
 
 </html>

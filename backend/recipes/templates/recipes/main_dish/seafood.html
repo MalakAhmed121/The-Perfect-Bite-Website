@@ -1,13 +1,18 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <title>Seafood Recipes</title>
-    <link rel="stylesheet" href="../../src/css/maindish.css">
-    <script src="../../src/js/maindish.js"></script>
-    <script src="../../src/js/search-js.js"></script>
-
+    <link rel="stylesheet" href="{% static 'css/maindish.css' %}">
+    <style>
+        #grilledSalmon, #grilledSalmon-card { background-image: url("{% static 'maindish/salmon.jfif' %}"); }
+        #shrimpPasta, #shrimpPasta-card { background-image: url("{% static 'maindish/pastash.jfif' %}"); }
+        #fishCurry, #fishCurry-card { background-image: url("{% static 'maindish/fishcurry.jfif' %}"); }
+    </style>
+    <script src="{% static 'js/maindish.js' %}"></script>
+    <script src="{% static 'js/search-js.js' %}"></script>
 </head>
 
 <body>
@@ -15,112 +20,67 @@
         <nav class="main-nav">
             <div class="logo">Yummy 🍲</div>
             <ul class="nav-links">
-                <li><a href="../../cover.html">Team</a></li>
-                <li><a href="../../index.html">Home</a></li>
-                <li><a href="../../search.html">Search</a></li>
-                <li><a href="../../favorites.html">Favorites</a></li>
-                <li><a href="../admin/admin_recipe.html">Admin</a></li>
-                <li><a href="../admin/add-recipe.html">Add Recipe</a></li>
-                <li><a href="../auth/login.html">Login</a></li>
-                <li><a href="../auth/signup.html">Sign Up</a></li>
+                <li><a href="{% url 'cover' %}">Team</a></li>
+                <li><a href="{% url 'home' %}">Home</a></li>
+                <li><a href="{% url 'search' %}">Search</a></li>
+                <li><a href="{% url 'favorites' %}">Favorites</a></li>
+                {% if user.is_staff %}
+                <li><a href="{% url 'admin_recipe' %}">Admin</a></li>
+                {% endif %}
+                <li><a href="{% url 'add_recipe' %}">Add Recipe</a></li>
+                <li><a href="{% url 'login' %}">Login</a></li>
+                <li><a href="{% url 'signup' %}">Sign Up</a></li>
             </ul>
         </nav>
     </div>
 
     <div class="banner">
-        <img src="../../photos/maindish/freshseafood.jfif" style="width:100%; height:400px; margin-bottom:30px;">
+        <img src="{% static 'maindish/freshseafood.jfif' %}" style="width:100%; height:400px; margin-bottom:30px;">
     </div>
 
     <h2 class="h2">Our Seafood Recipes</h2>
 
     <div class="recipes-container">
-
-        <div class="recipe-card" id="grilledSalmon" data-id="grilledSalmon"
-            onclick="openCard(event,'grilledSalmon-card')">
-            <h2>Grilled Salmon 🐟</h>
-                <p>Fresh salmon fillets grilled with lemon and herbs.</p>
-                <a href="javascript:void(0)" onclick="openCard(event,'grilledSalmon-card')">View Recipes</a>
+        {% for recipe in recipes %}
+        <div class="recipe-card" 
+             id="recipe-{{ recipe.pk }}" 
+             style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.4)), url('{{ recipe.image.url }}'); background-size: cover; background-position: center;"
+             onclick="openCard(event, 'recipe-{{ recipe.pk }}-card')">
+            <h2>{{ recipe.title }}</h2>
+            <p>{{ recipe.description|truncatewords:15 }}</p>
+            <a href="javascript:void(0)" class="btn-main" onclick="openCard(event, 'recipe-{{ recipe.pk }}-card')">View Recipe</a>
         </div>
-
-        <div class="recipe-card" id="shrimpPasta" data-id="shrimpPasta" onclick="openCard(event,'shrimpPasta-card')">
-
-            <h2>Shrimp Pasta 🍤</h2>
-            <p>Delicious pasta tossed with juicy shrimp and creamy sauce.</p>
-            <a href="javascript:void(0)" onclick="openCard(event,'shrimpPasta-card')">View Recipes</a>
-        </div>
-
-
-        <div class="recipe-card" id="fishCurry" data-id="fishCurry" onclick="openCard(event,'fishCurry-card')">
-
-            <h2>Fish Curry 🐠</h2>
-            <p>Spicy seafood curry with tender fish chunks.</p>
-            <a href="javascript:void(0)" onclick="openCard(event,'fishCurry-card')">View Recipes</a>
-        </div>
+        {% empty %}
+        <p style="text-align: center; grid-column: 1/-1;">No seafood recipes found yet. Add some in the Admin panel!</p>
+        {% endfor %}
     </div>
 
     <!-- Recipe Details -->
-    <div class="detials-card" id="grilledSalmon-card">
+    {% for recipe in recipes %}
+    <div class="detials-card" id="recipe-{{ recipe.pk }}-card">
         <div class="recipe-content-box">
-            <h2 style="text-align:center;">Grilled Salmon</h2>
-            <h3>Ingredients</h3>
-            <ul class="recipe-list">
-                <li>Salmon fillets: 500g</li>
-                <li>Lemon juice: 2 tbsp</li>
-                <li>Olive oil: 1 tbsp</li>
-                <li>Herbs: thyme & dill</li>
-                <li>Salt & pepper: to taste</li>
-            </ul>
-            <p><strong>Preparation Steps:</strong></p>
-            <ul class="recipe-list">
-                <li>Marinate salmon with lemon, oil, herbs, salt & pepper.</li>
-                <li>Grill for 6-8 mins on each side until cooked.</li>
-                <li>Serve hot with vegetables or rice.</li>
-            </ul>
-            <span class="heart" onclick="changecolor(this)">♥</span>
-        </div>
-    </div>
+            <h2 style="text-align:center;">{{ recipe.title }}</h2>
+            
+            <div style="height: 200px; background-image: url('{{ recipe.image.url }}'); background-size: cover; background-position: center; border-radius: 10px; margin-bottom: 20px;"></div>
 
-    <div class="detials-card" id="shrimpPasta-card">
-        <div class="recipe-content-box">
-            <h2 style="text-align:center;">Shrimp Pasta</h2>
             <h3>Ingredients</h3>
             <ul class="recipe-list">
-                <li>Pasta: 200g</li>
-                <li>Shrimp: 250g peeled & deveined</li>
-                <li>Cream: 1/2 cup</li>
-                <li>Garlic: 2 cloves</li>
-                <li>Parmesan: 2 tbsp</li>
+                {% for line in recipe.ingredients.splitlines %}
+                <li>{{ line }}</li>
+                {% endfor %}
             </ul>
-            <p><strong>Preparation Steps:</strong></p>
-            <ul class="recipe-list">
-                <li>Cook pasta al dente.</li>
-                <li>Sauté shrimp with garlic, add cream and parmesan.</li>
-                <li>Mix pasta with sauce and serve hot.</li>
-            </ul>
-            <span class="heart" onclick="changecolor(this)">♥</span>
-        </div>
-    </div>
 
-    <div class="detials-card" id="fishCurry-card">
-        <div class="recipe-content-box">
-            <h2 style="text-align:center;">Fish Curry</h2>
-            <h3>Ingredients</h3>
-            <ul class="recipe-list">
-                <li>White fish: 500g</li>
-                <li>Onion: 1 chopped</li>
-                <li>Coconut milk: 1 cup</li>
-                <li>Curry powder: 2 tsp</li>
-                <li>Chili: 1 tsp</li>
-            </ul>
             <p><strong>Preparation Steps:</strong></p>
             <ul class="recipe-list">
-                <li>Sauté onions, add curry powder, then fish chunks.</li>
-                <li>Add coconut milk, simmer 20 mins.</li>
-                <li>Serve hot with rice or bread.</li>
+                {% for line in recipe.instructions.splitlines %}
+                <li>{{ line }}</li>
+                {% endfor %}
             </ul>
-            <span class="heart" onclick="changecolor(this)">♥</span>
+            
+            <span class="heart" data-id="{{ recipe.id }}" onclick="changecolor(this)">♥</span>
         </div>
     </div>
+    {% endfor %}
 
 </body>
 

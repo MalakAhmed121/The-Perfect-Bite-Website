@@ -6,7 +6,13 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Home Baked Recipes • Bakery</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" />
     <link rel="stylesheet" href="{% static 'css/bakery-style.css' %}" />
+    <style>
+        #ChocolateCookies, #ChocolateCookies-card { background-image: url("{% static 'bakeryimages/chocolatcookie.jpeg' %}"); }
+        #ButterBiscuits, #ButterBiscuits-card { background-image: url("{% static 'bakeryimages/butterbiscuit.jpeg' %}"); }
+        #OatmealCookies, #OatmealCookies-card { background-image: url("{% static 'bakeryimages/oatmlcookie.jpeg' %}"); }
+    </style>
     <script src="{% static 'js/bakery-java.js' %}"></script>
 </head>
 
@@ -32,114 +38,54 @@
 
 
     <div class="banner">
-        <img src="{% static 'bakeryimages/cookiesbanner.png' %}" style="  width: 100%;
-            height: 420px;
-            margin-bottom: 30px;">
-
+        <img src="{% static 'bakeryimages/cookiesbanner.png' %}" style="width:100%; height:400px; object-fit:cover; margin-bottom:30px;">
     </div>
 
     <BR>
     <BR>
 
     <h2 class="h2">OUR Recipes </h2>
-
-
     <div class="recipes-container">
-        <div class="recipe-card" id="ChocolateCookies" data-id="ChocolateCookies"
-            onclick="openCard(event, 'ChocolateCookies-card')">
-            <h2> Chocolate Cookies 🍪</h2>
-            <p>The ultimate chewy cookie with melty chocolate pools..</p>
-            <a href="javascript:void(0)" class="btn-main" onclick="openCard(event, 'ChocolateCookies-card')">View
-                Recipes</a>
+        {% for recipe in recipes %}
+        <div class="recipe-card" 
+             id="recipe-{{ recipe.pk }}" 
+             style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.4)), url('{{ recipe.image.url }}'); background-size: cover; background-position: center;"
+             onclick="openCard(event, 'recipe-{{ recipe.pk }}-card')">
+            <h2>{{ recipe.title }}</h2>
+            <p>{{ recipe.description|truncatewords:15 }}</p>
+            <a href="javascript:void(0)" class="btn-main" onclick="openCard(event, 'recipe-{{ recipe.pk }}-card')">View Recipe</a>
         </div>
-
-        <div class="recipe-card" id="ButterBiscuits" data-id="ButterBiscuits"
-            onclick="openCard(event, 'ButterBiscuits-card')">
-            <h2>Butter Shortbread Biscuits 🧈</h2>
-            <p>ISimple, buttery, and melts in your mouth.</p>
-            <a href="javascript:void(0)" class="btn-main" onclick="openCard(event, 'ButterBiscuits-card')">View
-                Recipes</a>
-        </div>
-
-        <div class="recipe-card" id="OatmealCookies" data-id="OatmealCookies"
-            onclick="openCard(event, 'OatmealCookies-card')">
-            <h2>Oatmeal Raisin Cookies 🌾</h2>
-            <p>The perfect balance of chewy oats and sweet raisins.</p>
-            <a href="javascript:void(0)" class="btn-main" onclick="openCard(event, 'OatmealCookies-card')">View
-                Recipes</a>
-        </div>
+        {% empty %}
+        <p style="text-align: center; grid-column: 1/-1;">No cookie recipes found yet. Add some in the Admin panel!</p>
+        {% endfor %}
     </div>
 
-    </div>
-
-
-    <div class="detials-card" id="ChocolateCookies-card">
+    <!-- Recipe Details -->
+    {% for recipe in recipes %}
+    <div class="detials-card" id="recipe-{{ recipe.pk }}-card">
         <div class="recipe-content-box">
-            <h2 style="text-align: center;">Ultimate Chocolate Cookies</h2>
+            <h2 style="text-align:center;">{{ recipe.title }}</h2>
+            
+            <div style="height: 200px; background-image: url('{{ recipe.image.url }}'); background-size: cover; background-position: center; border-radius: 10px; margin-bottom: 20px;"></div>
+
             <h3>Ingredients</h3>
             <ul class="recipe-list">
-                <li>Butter: 200g Browned butter (for extra flavor).</li>
-                <li>Sugar: 1 cup Brown sugar + 1/2 cup White sugar.</li>
-                <li>Flour: 2 cups All-purpose flour + 1 tsp Baking soda.</li>
-                <li>Chocolate: 200g Dark chocolate chunks or pools.</li>
+                {% for line in recipe.ingredients.splitlines %}
+                <li>{{ line }}</li>
+                {% endfor %}
             </ul>
+
             <p><strong>Preparation Steps:</strong></p>
             <ul class="recipe-list">
-                <li><b>Cream🥣:</b> Whisk butter and sugars until fluffy. Add 1 egg and vanilla.</li>
-                <li><b>Fold Chunks🍫:</b> Gently fold in flour and chocolate chunks. Do not overmix!</li>
-                <li><b>Chill⏳:</b> Refrigerate the dough for at least 30 mins (This is the secret!).</li>
-                <li><b>Bake🔥:</b> Scoop onto tray and bake at 175°C for 10-12 mins until edges are golden.</li>
+                {% for line in recipe.instructions.splitlines %}
+                <li>{{ line }}</li>
+                {% endfor %}
             </ul>
-            <span class="heart" title="Add to Favorites" onclick="changecolor(this)">♥</span>
+            
+            <span class="heart" data-id="{{ recipe.id }}" onclick="changecolor(this)">♥</span>
         </div>
     </div>
-
-
-    <div class="detials-card" id="ButterBiscuits-card">
-        <div class="recipe-content-box">
-            <h2 style="text-align: center;">Butter Shortbread Biscuits</h2>
-            <h3>Ingredients</h3>
-            <ul class="recipe-list">
-                <li>Butter: 250g High-quality salted butter (softened).</li>
-                <li>Sugar: 1/2 cup Powdered sugar.</li>
-                <li>Flour: 2.5 cups All-purpose flour.</li>
-                <li>Vanilla: 1 tsp Pure vanilla extract.</li>
-            </ul>
-            <p><strong>Preparation Steps:</strong></p>
-            <ul class="recipe-list">
-                <li><b>Mix🥣:</b> Beat butter and sugar until creamy. Gradually add flour.</li>
-                <li><b>Shape✨:</b> Roll out dough and cut into rounds or rectangles. Prick with a fork.</li>
-                <li><b>Chill⏳:</b> Let them rest in the fridge for 15 mins to keep their shape.</li>
-                <li><b>Bake🔥:</b> Bake at 160°C for 15-20 mins until pale golden. They should melt in your mouth!</li>
-            </ul>
-            <span class="heart" title="Add to Favorites" onclick="changecolor(this)">♥</span>
-        </div>
-    </div>
-
-
-    <div class="detials-card" id="OatmealCookies-card">
-        <div class="recipe-content-box">
-            <h2 style="text-align: center;">Oatmeal Raisin Cookies</h2>
-            <h3>Ingredients</h3>
-            <ul class="recipe-list">
-                <li>Oats: 2 cups Old-fashioned rolled oats.</li>
-                <li>Raisins: 1 cup Sweet raisins (soak in warm water for 5 mins first).</li>
-                <li>Spices: 1 tsp Cinnamon + 1/2 tsp Nutmeg.</li>
-                <li>Base: 1 cup Flour, 1/2 cup Butter, 1/2 cup Brown sugar.</li>
-            </ul>
-            <p><strong>Preparation Steps:</strong></p>
-            <ul class="recipe-list">
-                <li><b>Mix Dry🥣:</b> Combine oats, flour, and spices in a bowl.</li>
-                <li><b>Combine✨:</b> Mix with creamed butter and sugar. Fold in the juicy raisins.</li>
-                <li><b>Scoop🍪:</b> Place large scoops on the baking sheet.</li>
-                <li><b>Bake🔥:</b> Bake at 180°C for 12-14 mins until the centers are still slightly soft.</li>
-            </ul>
-            <span class="heart" title="Add to Favorites" onclick="changecolor(this)">♥</span>
-        </div>
-    </div>
-
-
-
+    {% endfor %}
 
 </body>
 

@@ -1,0 +1,50 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Yummy - View Recipe</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <div id="navbar">
+        <nav class="main-nav">
+            <div class="logo">Yummy</div>
+            <ul class="nav-links">
+                <li><a href="{% url 'home' %}">Home</a></li>
+                <li><a href="{% url 'admin_recipe' %}">Back to Admin</a></li>
+            </ul>
+        </nav>
+    </div>
+
+    <div class="page-wrapper" style="max-width: 800px; margin: 50px auto; background: white; padding: 40px; border-radius: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
+        <h1 style="text-align: center; color: var(--dark-walnut);">{{ recipe.title }}</h1>
+        
+        <div style="text-align: center; margin-bottom: 20px;">
+            {% if recipe.image %}
+                <img src="{{ recipe.image.url }}" alt="{{ recipe.title }}" style="max-width: 100%; border-radius: 10px; height: 300px; object-fit: cover;">
+            {% endif %}
+        </div>
+
+        <div style="margin-bottom: 20px;">
+            <h3>Category</h3>
+            <p>{{ recipe.category.name }}</p>
+        </div>
+
+        <div style="margin-bottom: 20px;">
+            <h3>Ingredients</h3>
+            <div style="white-space: pre-line;">{{ recipe.ingredients }}</div>
+        </div>
+
+        <div style="margin-bottom: 20px;">
+            <h3>Instructions</h3>
+            <div style="white-space: pre-line;">{{ recipe.instructions }}</div>
+        </div>
+
+        <div style="text-align: center; margin-top: 30px;">
+            <a href="{% url 'edit_recipe' recipe.id %}" class="btn-main">Edit This Recipe</a>
+            <a href="{% url 'admin_recipe' %}" style="display: inline-block; margin-left: 20px; color: #666;">Cancel</a>
+        </div>
+    </div>
+</body>
+</html>

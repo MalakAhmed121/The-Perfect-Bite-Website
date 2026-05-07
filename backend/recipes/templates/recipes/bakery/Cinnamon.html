@@ -6,7 +6,13 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Home Baked Recipes • Bakery</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" />
     <link rel="stylesheet" href="{% static 'css/bakery-style.css' %}" />
+    <style>
+        #ClassicCinnamon, #ClassicCinnamon-card { background-image: url("{% static 'bakeryimages/classicCinnamon.jpeg' %}"); }
+        #PecanCinnamon, #PecanCinnamon-card { background-image: url("{% static 'bakeryimages/PecanCinnamon.jpeg' %}"); }
+        #ChocolateCinnamon, #ChocolateCinnamon-card { background-image: url("{% static 'bakeryimages/ChocolateCinnamon.jpeg' %}"); }
+    </style>
     <script src="{% static 'js/bakery-java.js' %}"></script>
 </head>
 
@@ -30,10 +36,7 @@
     </div>
 
     <div class="banner">
-        <img src="{% static 'bakeryimages/Cinnamonbanner.png' %}" style=" width: 100%;
-            height: 420px;
-            margin-bottom: 30px;">
-
+        <img src="{% static 'bakeryimages/Cinnamonbanner.png' %}" style="width:100%; height:400px; object-fit:cover; margin-bottom:30px;">
     </div>
 
     <BR>
@@ -43,100 +46,46 @@
 
 
     <div class="recipes-container">
-
-        <div class="recipe-card" id="ClassicCinnamon" data-id="ClassicCinnamon"
-            onclick="openCard(event, 'ClassicCinnamon-card')">
-            <h2>Classic Cinnamon Rolls </h2>
-            <p> gooey rolls filled with aromatic cinnamon sugar and topped with cream cheese.</p>
-            <a href="javascript:void(0)" class="btn-main" onclick="openCard(event, 'ClassicCinnamon-card')">View
-                Recipes</a>
+        {% for recipe in recipes %}
+        <div class="recipe-card" 
+             id="recipe-{{ recipe.pk }}" 
+             style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.4)), url('{{ recipe.image.url }}'); background-size: cover; background-position: center;"
+             onclick="openCard(event, 'recipe-{{ recipe.pk }}-card')">
+            <h2>{{ recipe.title }}</h2>
+            <p>{{ recipe.description|truncatewords:15 }}</p>
+            <a href="javascript:void(0)" class="btn-main" onclick="openCard(event, 'recipe-{{ recipe.pk }}-card')">View Recipe</a>
         </div>
-
-        <div class="recipe-card" id="PecanCinnamon" data-id="PecanCinnamon"
-            onclick="openCard(event, 'PecanCinnamon-card')">
-            <h2>Pecan Cinnamon Rolls </h2>
-            <p>Decadent rolls topped with toasted pecans and a rich, buttery caramel drizzle.</p>
-            <a href="javascript:void(0)" class="btn-main" onclick="openCard(event, 'PecanCinnamon-card')">View
-                Recipes</a>
-        </div>
-
-        <div class="recipe-card" id="ChocolateCinnamon" data-id="ChocolateCinnamon"
-            onclick="openCard(event, 'ChocolateCinnamon-card')">
-            <h2>Chocolate Cinnamon Rolls </h2>
-            <p>A delicious twist with rich chocolate swirls inside every soft, buttery layer.</p>
-            <a href="javascript:void(0)" class="btn-main" onclick="openCard(event, 'ChocolateCinnamon-card')">View
-                Recipes</a>
-        </div>
-
+        {% empty %}
+        <p style="text-align: center; grid-column: 1/-1;">No cinnamon roll recipes found yet. Add some in the Admin panel!</p>
+        {% endfor %}
     </div>
 
-    <div class="detials-card" id="ClassicCinnamon-card">
+    <!-- Recipe Details -->
+    {% for recipe in recipes %}
+    <div class="detials-card" id="recipe-{{ recipe.pk }}-card">
         <div class="recipe-content-box">
-            <h2 style="text-align: center;">Classic Cinnamon Rolls</h2>
+            <h2 style="text-align:center;">{{ recipe.title }}</h2>
+            
+            <div style="height: 200px; background-image: url('{{ recipe.image.url }}'); background-size: cover; background-position: center; border-radius: 10px; margin-bottom: 20px;"></div>
+
             <h3>Ingredients</h3>
             <ul class="recipe-list">
-                <li>Dough: 500g Flour, 1/4 cup sugar, 1 pack yeast, 1 cup warm milk.</li>
-                <li>Filling: 1/2 cup softened butter, 1 cup brown sugar, 2 tbsp cinnamon.</li>
-                <li>Frosting: 100g Cream cheese, 1/4 cup butter, 1 cup powdered sugar.</li>
+                {% for line in recipe.ingredients.splitlines %}
+                <li>{{ line }}</li>
+                {% endfor %}
             </ul>
+
             <p><strong>Preparation Steps:</strong></p>
             <ul class="recipe-list">
-                <li><b>Knead🥣:</b> Mix dough ingredients and knead until smooth. Let rise for 1 hour.</li>
-                <li><b>Roll & Fill🌀:</b> Roll out dough, spread butter, and sprinkle cinnamon sugar.</li>
-                <li><b>Cut & Rise⏳:</b> Cut into rolls and let them rise for another 30 mins.</li>
-                <li><b>Bake🔥:</b> Bake at 180°C for 20-25 mins, then top with cream cheese frosting.</li>
+                {% for line in recipe.instructions.splitlines %}
+                <li>{{ line }}</li>
+                {% endfor %}
             </ul>
-            <span class="heart" title="Add to Favorites" onclick="changecolor(this)">♥</span>
+            
+            <span class="heart" data-id="{{ recipe.id }}" onclick="changecolor(this)">♥</span>
         </div>
     </div>
-
-
-    <div class="detials-card" id="PecanCinnamon-card">
-        <div class="recipe-content-box">
-            <h2 style="text-align: center;">Pecan Cinnamon Rolls</h2>
-            <h3>Ingredients</h3>
-            <ul class="recipe-list">
-                <li>Dough: Standard brioche-style dough (same as classic).</li>
-                <li>Topping: 1 cup Toasted pecans, 1/2 cup melted butter, 1/2 cup maple syrup.</li>
-                <li>Caramel: 1/2 cup brown sugar, 1/4 cup heavy cream.</li>
-            </ul>
-            <p><strong>Preparation Steps:</strong></p>
-            <ul class="recipe-list">
-                <li><b>Caramel Base🍯:</b> Pour melted butter, brown sugar, and pecans into the baking pan.</li>
-                <li><b>Place Rolls🌀:</b> Place your filled cinnamon rolls directly on top of the pecan mixture.</li>
-                <li><b>Bake🔥:</b> Bake at 180°C for 25 mins until the caramel is bubbling.</li>
-                <li><b>Flip Over🔄:</b> Flip the pan immediately after baking so the pecans stay on top!</li>
-            </ul>
-            <span class="heart" title="Add to Favorites" onclick="changecolor(this)">♥</span>
-        </div>
-    </div>
-
-
-    <div class="detials-card" id="ChocolateCinnamon-card">
-        <div class="recipe-content-box">
-            <h2 style="text-align: center;">Chocolate Cinnamon Rolls</h2>
-            <h3>Ingredients</h3>
-            <ul class="recipe-list">
-                <li>Dough: Add 2 tbsp cocoa powder to your flour mix.</li>
-                <li>Filling: 1/2 cup Chocolate spread (Nutella), 1/2 cup chocolate chips.</li>
-                <li>Glaze: Melted dark chocolate and a pinch of sea salt.</li>
-            </ul>
-            <p><strong>Preparation Steps:</strong></p>
-            <ul class="recipe-list">
-                <li><b>Chocolate Swirl🍫:</b> Spread Nutella instead of butter, then sprinkle chocolate chips.</li>
-                <li><b>Roll & Cut🌀:</b> Roll tightly to keep the chocolate layers intact.</li>
-                <li><b>Bake🔥:</b> Bake at 175°C for 22 mins (don't overbake to keep them soft).</li>
-                <li><b>Drizzle✨:</b> While warm, drizzle with extra melted chocolate for a rich finish.</li>
-            </ul>
-            <span class="heart" title="Add to Favorites" onclick="changecolor(this)">♥</span>
-        </div>
-    </div>
-
-
-
-
-
-
+    {% endfor %}
 
 </body>
 

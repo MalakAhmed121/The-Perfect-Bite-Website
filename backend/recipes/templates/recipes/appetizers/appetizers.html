@@ -77,6 +77,20 @@
 			text-shadow: 0 0 15px rgb(255, 255, 255, 0.5);
 			transform: scale(1.2);
 		}
+
+        /* --- Fix Background Images --- */
+        .main {
+            background-image: url("{% static 'appetizersimgs/main1.jpg' %}") !important;
+        }
+        #DeviledEggs, #DeviledEggs-card { background-image: url("{% static 'appetizersimgs/pic1.jpg' %}"); }
+        #SpinachArtichokeDip, #SpinachArtichokeDip-card { background-image: url("{% static 'appetizersimgs/pic2.jpg' %}"); }
+        #ChickenWings, #ChickenWings-card { background-image: url("{% static 'appetizersimgs/pic3.jpg' %}"); }
+        #JalapenoPoppers, #JalapenoPoppers-card { background-image: url("{% static 'appetizersimgs/pic4.jpg' %}"); }
+        #StuffedMushrooms, #StuffedMushrooms-card { background-image: url("{% static 'appetizersimgs/mushroom.jpeg' %}"); }
+        #Crostini, #Crostini-card { background-image: url("{% static 'appetizersimgs/pic5.jpeg' %}"); }
+        #CharcuterieBoard, #CharcuterieBoard-card { background-image: url("{% static 'appetizersimgs/pic7.jpeg' %}"); }
+        #Sliders, #Sliders-card { background-image: url("{% static 'appetizersimgs/pic6.jpeg' %}"); }
+        #ShrimpCocktail, #ShrimpCocktail-card { background-image: url("{% static 'appetizersimgs/pic8.jpeg' %}"); }
 	</style>
 </head>
 
@@ -115,192 +129,45 @@
 	<!-- Recipe cards grid — generated from DB -->
 	<div class="recipes-container">
         {% for recipe in recipes %}
-        <div class="recipe-card"
-             id="recipe-{{ recipe.pk }}"
-             data-id="{{ recipe.pk }}"
+        <div class="recipe-card" 
+             id="recipe-{{ recipe.pk }}" 
+             style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.4)), url('{{ recipe.image.url }}'); background-size: cover; background-position: center;"
              onclick="openCard(event, 'recipe-{{ recipe.pk }}-card')">
-            <h2>{{ recipe.name }}</h2>
-            <p>{{ recipe.description }}</p>
-            <a href="javascript:void(0)" class="btn-main"
-               onclick="openCard(event, 'recipe-{{ recipe.pk }}-card')">View Recipe</a>
+            <h2>{{ recipe.title }}</h2>
+            <p>{{ recipe.description|truncatewords:15 }}</p>
+            <a href="javascript:void(0)" class="btn-main" onclick="openCard(event, 'recipe-{{ recipe.pk }}-card')">View Recipe</a>
         </div>
         {% empty %}
-        <p>No recipes found.</p>
+        <p style="text-align: center; grid-column: 1/-1;">No appetizer recipes found yet. Add some in the Admin panel!</p>
         {% endfor %}
     </div>
-<!-- Detail cards — generated from DB -->
-{% for recipe in recipes %}
-    <div class="details-card" id="recipe-{{ recipe.pk }}-card">
-        <div class="recipe-content-box">
-            <h2 style="text-align:center;">{{ recipe.name }}</h2>
 
+    <!-- Recipe Details -->
+    {% for recipe in recipes %}
+    <div class="details-card" id="recipe-{{ recipe.pk }}-card" style="background-image: url('{{ recipe.image.url }}');">
+        <div class="recipe-content-box">
+            <h2 style="text-align:center;">{{ recipe.title }}</h2>
+            
             <h3>Ingredients</h3>
             <ul class="recipe-list">
-                {% for ingredient in recipe.ingredients.splitlines %}
-                <li>{{ ingredient }}</li>
+                {% for line in recipe.ingredients.splitlines %}
+                <li>{{ line }}</li>
                 {% endfor %}
             </ul>
 
             <p><strong>Preparation Steps:</strong></p>
             <ul class="recipe-list">
-                {% for step in recipe.steps.splitlines %}
-                <li>{{ step }}</li>
+                {% for line in recipe.instructions.splitlines %}
+                <li>{{ line }}</li>
                 {% endfor %}
             </ul>
-
-            <span class="heart" title="Add to Favorites" 
-                  onclick="changecolor(this)">♥</span>
+            
+            <span class="heart" data-id="{{ recipe.id }}" onclick="changecolor(this)">♥</span>
         </div>
- 	</div>
-{% endfor %}
-
-	<script>
-
-		//==============================  heart button==================================
-		function changecolor(element) {
-			if (element.style.color == "red") {
-				element.style.color = "white";
-				element.title = "add to favorite";
-			} else {
-				element.style.color = "red";
-
-				element.title = "Added Successfully! ✨";
-
-			}
-		}
-
-		// =================================== OPEN CARD==============================================
-		let currentCard = null;
-
-		function openCard(event, cardId) {
-			// Prevent the click event from bubbling up to the 'window' object,
-			// otherwise the window.onclick listener would immediately close the card we just opened.
-			if (event && event.stopPropagation) {
-				event.stopPropagation();
-			}
-
-			if (currentCard) {
-				currentCard.style.display = "none";
-			}
+    </div>
+    {% endfor %}
 
 
-			const targetCard = document.getElementById(cardId);
-
-			if (targetCard) {
-				targetCard.style.display = "block";
-				currentCard = targetCard;
-			}
-		}
-		/**
-		 * Global click listener to detect clicks outside the active card.
-		 */
-		window.onclick = function (event) {
-			// Check if the clicked element is NOT the card itself 
-			// AND is NOT a child element inside the card
-			if (currentCard && currentCard.style.display === "block") {
-				if (!currentCard.contains(event.target)) {
-					currentCard.style.display = "none";
-					currentCard = null;
-				}
-			}
-		}
-
-
-
-
-		//================================Go Back=========================================
-		document.addEventListener("DOMContentLoaded", () => {
-			const backBtn = document.getElementById("backbutton");
-
-			if (backBtn) {
-				backBtn.onclick = function (event) {
-					event.preventDefault();
-
-					// Check if there is actually a page to go back to in this tab
-					if (window.history.length > 1) {
-						window.history.back();
-					} else {
-
-						window.location.href = "../../index.html";
-					}
-				};
-			}
-		});
-
-
-		//================================Admin Features=========================================      
-		window.addEventListener("load", function () {
-			// Get the recipe ID from the URL hash (everything after #)
-			let recipeId = window.location.hash.substring(1);
-			console.log("Hash detected:", recipeId);
-
-			if (!recipeId) return;
-
-			// Clean the ID - remove any suffixes
-			let cleanId = recipeId;
-			if (cleanId.endsWith('card')) {
-				cleanId = cleanId.replace('card', '');
-			}
-			if (cleanId.endsWith('-card')) {
-				cleanId = cleanId.replace('-card', '');
-			}
-
-			console.log("Looking for recipe card:", cleanId);
-
-			setTimeout(function () {
-				// Find the recipe card
-				const recipeCard = document.getElementById(cleanId);
-
-				if (recipeCard) {
-					console.log("Found recipe card!");
-
-					// Scroll to the card
-					recipeCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
-
-					// Highlight effect
-					recipeCard.style.transition = "all 0.3s ease";
-					recipeCard.style.transform = "translateY(-10px)";
-					recipeCard.style.boxShadow = "0 5px 15px rgba(0,0,0,0.3)";
-
-					// Try BOTH formats for details card
-					let detailsCard = null;
-
-					// Try with '-card' (your new appetizers format)
-					if (!detailsCard) {
-						detailsCard = document.getElementById(cleanId + '-card');
-						if (detailsCard) console.log("Found with '-card' format");
-					}
-
-					// Try with 'card' (old format)
-					if (!detailsCard) {
-						detailsCard = document.getElementById(cleanId + 'card');
-						if (detailsCard) console.log("Found with 'card' format");
-					}
-
-					if (detailsCard) {
-						console.log("Opening details card");
-						if (currentCard) {
-							currentCard.style.display = "none";
-						}
-						detailsCard.style.display = "block";
-						currentCard = detailsCard;
-					} else {
-						console.log("No details card found for:", cleanId);
-					}
-
-					// Remove highlight after delay
-					setTimeout(function () {
-						recipeCard.style.transform = "";
-						recipeCard.style.boxShadow = "";
-					}, 1500);
-
-				} else {
-					console.log("Recipe card not found for ID:", cleanId);
-				}
-			}, 500);
-		});
-
-	</script>
 
 </body>
 
