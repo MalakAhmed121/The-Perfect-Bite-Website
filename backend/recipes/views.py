@@ -1,12 +1,10 @@
 # Create your views here.
-
-from django.shortcuts import render
-from django.shortcuts import redirect
+from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.models import User
 from django.http import JsonResponse
-from .forms import RegisterForm
-from .models import HealthyRecipe
+from .forms import RegisterForm , RecipeForm 
+from .models import HealthyRecipe , Recipe
 from django.contrib.auth.decorators import login_required
 
 
@@ -89,73 +87,120 @@ def signup_page(request):
     return render(request, "recipes/auth/signup.html", {"form": form})
 
 
-#  admin
-def add_recipe(request):
-    return render(request, "recipes/admin/add-recipe.html")
-
-
+#/////////////////admin////////////////////
 def admin_recipe(request):
-    return render(request, "recipes/admin/admin_recipe.html")
+    recipes = Recipe.objects.all()
+    return render(request, "recipes/admin/admin-recipe.html", {"recipes": recipes})
 
+# //Add
+def add_recipe(request):
+    if request.method == 'POST':
+        form = RecipeForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            return redirect('admin_recipe')
+    else:
+        form = RecipeForm()
+    return render(request, "recipes/admin/add-recipe.html", {"form": form})
 
-def edit_recipe(request):
-    return render(request, "recipes/admin/edit-recipe.html")
+# //View
+def view_recipe(request):
+    form = RecipeForm()
+    if request.method == 'POST':
+      form = RecipeForm(request.POST,instance=recipe)
+      if form.is_valid():
+        form.save()
+        return redirect('admin_recipe')
+    return render(request, "recipes/admin/view-recipe.html", {'recipe': recipe})        
 
+# //Edit
+def edit_recipe(request,id):
+    recipe = Recipe.objects.get(id=id)
+    if request.method == 'POST':
+        form = RecipeForm(request.POST,instance=recipe)
+        if form.is_valid():
+            form.save()
+            return redirect('admin_recipe')
+    else:
+        form = RecipeForm(instance=recipe)    
+    return render(request, 'recipes/admin/edit-recipe.html', {'form': form, 'recipe': recipe}) 
+
+# //Delete
+def delete_recipe(request, id):
+   recipe = Recipe.objects.get(id=id)
+   if request.method == 'POST':
+         recipe.delete()
+         return redirect('admin_recipe')
+   return render(request, 'recipes/admin/delete-recipe.html', {'recipe': recipe}) 
+    
 
 #  appetizers
 def appetizers(request):
-    return render(request, "recipes/appetizers/appetizers.html")
+    recipes = Recipe.objects.filter(course='appetizers')
+    return render(request, "recipes/appetizers/appetizers.html", {"recipes": recipes})
 
 
 #  bakery
 def bakery(request):
-    return render(request, "recipes/bakery/bakery.html")
+    recipes = Recipe.objects.filter(course='bakery')
+    return render(request, "recipes/bakery/bakery.html", {"recipes": recipes})
 
 
 def bread(request):
-    return render(request, "recipes/bakery/Bread .html")
+    recipes = Recipe.objects.filter(course='bakery', name='Bread')
+    return render(request, "recipes/bakery/Bread .html", {"recipes": recipes})
 
 
 def cinnamon(request):
-    return render(request, "recipes/bakery/Cinnamon.html")
+    recipes = Recipe.objects.filter(course='bakery', name='Cinnamon')
+    return render(request, "recipes/bakery/Cinnamon.html", {"recipes": recipes})
 
 
 def cookies(request):
-    return render(request, "recipes/bakery/cookies.html")
+    recipes = Recipe.objects.filter(course='bakery', name='Cookies')
+    return render(request, "recipes/bakery/cookies.html", {"recipes": recipes})
 
 
 def croissants(request):
-    return render(request, "recipes/bakery/Croissants .html")
+    recipes = Recipe.objects.filter(course='bakery', name='Croissants')
+    return render(request, "recipes/bakery/Croissants .html", {"recipes": recipes})
 
 
 def donuts(request):
-    return render(request, "recipes/bakery/Donuts .html")
+    recipes = Recipe.objects.filter(course='bakery', name='Donuts')
+    return render(request, "recipes/bakery/Donuts .html", {"recipes": recipes})
 
 
 def macrons(request):
-    return render(request, "recipes/bakery/macrons.html")
+    recipes = Recipe.objects.filter(course='bakery', name='Macrons')
+    return render(request, "recipes/bakery/macrons.html", {"recipes": recipes})
 
 
 #  desserts
 def dessert(request):
-    return render(request, "recipes/desserts/dessert.html")
+    recipes = Recipe.objects.filter(course='desserts')
+    return render(request, "recipes/desserts/dessert.html", {"recipes": recipes})
 
 
 #  drinks
 def drinks_page(request):
-    return render(request, "recipes/drinks/drinks.html")
+    recipes = Recipe.objects.filter(course='drinks')
+    return render(request, "recipes/drinks/drinks.html", {"recipes": recipes})
 
 
 def coffee(request):
-    return render(request, "recipes/drinks/coffee.html")
+    recipes = Recipe.objects.filter(course='drinks', name='Coffee')
+    return render(request, "recipes/drinks/coffee.html", {"recipes": recipes})
 
 
 def hot_drinks(request):
-    return render(request, "recipes/drinks/hot_drinks.html")
+    recipes = Recipe.objects.filter(course='drinks', name='Hot Drinks')
+    return render(request, "recipes/drinks/hot_drinks.html", {"recipes": recipes})
 
 
 def juices(request):
-    return render(request, "recipes/drinks/juices.html")
+    recipes = Recipe.objects.filter(course='drinks', name='Juices')
+    return render(request, "recipes/drinks/juices.html", {"recipes": recipes})
 
 
 #  healthy
@@ -190,28 +235,35 @@ def get_recipe_details(request, recipe_id):
 
 #  main_dish
 def main_dish(request):
-    return render(request, "recipes/main_dish/maindish.html")
+    recipes = Recipe.objects.filter(course='main_dish')
+    return render(request, "recipes/main_dish/maindish.html", {"recipes": recipes})
 
 
 def beef(request):
-    return render(request, "recipes/main_dish/beef.html")
+    recipes = Recipe.objects.filter(course='main_dish', name='Beef')
+    return render(request, "recipes/main_dish/beef.html", {"recipes": recipes})
 
 
 def chicken(request):
-    return render(request, "recipes/main_dish/chicken.html")
+    recipes = Recipe.objects.filter(course='main_dish', name='Chicken')
+    return render(request, "recipes/main_dish/chicken.html", {"recipes": recipes})
 
 
 def fastfood(request):
-    return render(request, "recipes/main_dish/fastfood.html")
+    recipes = Recipe.objects.filter(course='main_dish', name='Fast Food')
+    return render(request, "recipes/main_dish/fastfood.html", {"recipes": recipes})
 
 
 def pasta(request):
-    return render(request, "recipes/main_dish/pasta.html")
+    recipes = Recipe.objects.filter(course='main_dish', name='Pasta')
+    return render(request, "recipes/main_dish/pasta.html", {"recipes": recipes})
 
 
 def seafood(request):
-    return render(request, "recipes/main_dish/seafood.html")
+    recipes = Recipe.objects.filter(course='main_dish', name='Seafood')
+    return render(request, "recipes/main_dish/seafood.html", {"recipes": recipes})
 
 
 def vegetarian(request):
-    return render(request, "recipes/main_dish/Vegetarian.html")
+    recipes = Recipe.objects.filter(course='main_dish', name='Vegetarian')
+    return render(request, "recipes/main_dish/Vegetarian.html", {"recipes": recipes})

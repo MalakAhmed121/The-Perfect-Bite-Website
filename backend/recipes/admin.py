@@ -10,9 +10,9 @@ class ItemAdmin(admin.ModelAdmin):
 
 @admin.register(Recipe)
 class RecipeAdmin(admin.ModelAdmin):
-    list_display = ('title', 'category')
-    list_filter = ('category',)
-    search_fields = ('title',)
+    list_display = ('name', 'course')
+    list_filter = ('course',)
+    search_fields = ('name',)
 
 
 @admin.register(HealthyRecipe)

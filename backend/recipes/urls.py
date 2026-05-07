@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.urls import path
-from recipes import views
+from . import views
 
 urlpatterns = [
     path("admin/", admin.site.urls),
@@ -16,7 +16,8 @@ urlpatterns = [
     # Admin
     path("add-recipe/", views.add_recipe, name="add_recipe"),
     path("admin_recipe/", views.admin_recipe, name="admin_recipe"),
-    path("edit-recipe/", views.edit_recipe, name="edit_recipe"),
+    path("edit-recipe/<int:id>/", views.edit_recipe, name="edit_recipe"),
+    path('delete-recipe/<int:id>/', views.delete_recipe, name='delete_recipe'),
     # Appetizers
     path("appetizers/", views.appetizers, name="appetizers"),
     # Bakery
@@ -50,6 +51,6 @@ urlpatterns = [
     path("seafood/", views.seafood, name="seafood"),
     path("vegetarian/", views.vegetarian, name="vegetarian"),
     # Favorites
-    path('favorites/', views.favorites_list, name='favorites'),
-    path('toggle/<int:item_id>/', views.toggle_favorite, name='toggle_favorite'),
+    # path('favorites/', views.favorites_list, name='favorites'),
+    # path('toggle/<int:item_id>/', views.toggle_favorite, name='toggle_favorite'),
 ]
