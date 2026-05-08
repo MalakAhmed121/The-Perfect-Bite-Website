@@ -6,16 +6,42 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Home Baked Recipes • Bakery</title>
-    <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+   <script>
+    function onClick() {
+        document.getElementById('categories').scrollIntoView({
+            behavior: 'smooth'
+        });
+    }
+</script>
     <link rel="stylesheet" href="{% static 'css/bakery-style.css' %}" />
     <style>
-        .main { background-image: url("{% static 'home-page.png' %}") !important; }
-        #Bread { background-image: url("{% static 'bakeryimages/breads.jpeg' %}"); }
-        #Croissants { background-image: url("{% static 'bakeryimages/Croissants.jpeg' %}"); }
-        #Cookies { background-image: url("{% static 'bakeryimages/cookies.jpeg' %}"); }
-        #Macarons { background-image: url("{% static 'bakeryimages/macron.jpeg' %}"); }
-        #Donuts { background-image: url("{% static 'bakeryimages/Dounts.png' %}"); }
-        #Cinnamon { background-image: url("{% static 'bakeryimages/Cinnamon.png' %}"); }
+        .main {
+            background-image: url('/static/bakeryimages/bakery12.png') !important;
+        }
+
+        #Bread {
+            background-image: url("{% static 'bakeryimages/breads.jpeg' %}");
+        }
+
+        #Croissants {
+            background-image: url("{% static 'bakeryimages/Croissants.jpeg' %}");
+        }
+
+        #Cookies {
+            background-image: url("{% static 'bakeryimages/cookies.jpeg' %}");
+        }
+
+        #Macarons {
+            background-image: url("{% static 'bakeryimages/macron.jpeg' %}");
+        }
+
+        #Donuts {
+            background-image: url("{% static 'bakeryimages/Dounts.png' %}");
+        }
+
+        #Cinnamon {
+            background-image: url("{% static 'bakeryimages/Cinnamon.png' %}");
+        }
     </style>
 </head>
 
@@ -38,13 +64,13 @@
         </nav>
     </div>
     <section class="main">
-        <div class="main-content">
+        <div class="main-content ">
             <h1>Freshly Baked at Home</h1>
             <p>Delicious recipes & cookies hub – made with love in your kitchen</p>
-            <a href="#categories" class="btn-main">View Categories</a>
+            <a href="#categories" class="btn-main" onclick="onClick(); return false;">View Categories</a>
         </div>
     </section>
-    
+
     <br><br>
 
     <h2 class="h2">Recipes Categories</h2>
@@ -87,4 +113,5 @@
         </div>
     </section>
 </body>
+
 </html>
