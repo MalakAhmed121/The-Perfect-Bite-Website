@@ -7,7 +7,8 @@ urlpatterns = [
     path("cover/", views.cover, name="cover"),
     path("favorites/", views.favorites, name="favorites"),
     path("recipes/", views.recipes_page, name="recipes"),
-    path("search/", views.search_page, name="search"),
+    path('search/', views.search_page, name='search'),
+    path('ajax-search/', views.ajax_search, name='ajax_search'),
     
     # 2. صفحة تفاصيل الوصفة (Slug for SEO)
     path("recipe/<slug:slug>/", views.recipe_details, name="recipe_detail"),

@@ -32,11 +32,33 @@ def recipe_details(request, slug):
     return render(request, "recipes/recipe-details.html", {'recipe': recipe})
 
 def search_page(request):
-    query = request.GET.get('q')
-    results = []
-    if query:
-        results = Recipe.objects.filter(title__icontains=query)
-    return render(request, "recipes/search.html", {"results": results, "query": query})
+    return render(request, "recipes/search.html")
+
+def ajax_search(request):
+    query = request.GET.get('q', '')
+    search_type = request.GET.get('type', 'title')
+
+    if search_type == 'ingredients':
+        recipes = Recipe.objects.filter(
+            ingredients__icontains=query
+        )
+    else:
+        recipes = Recipe.objects.filter(
+            title__icontains=query
+        )
+
+    data = [
+        {
+            "id": r.id,
+            "slug": r.slug,
+            "title": r.title,
+            "description": r.description,
+            "image": r.image.url if r.image else ""
+        }
+        for r in recipes
+    ]
+
+    return JsonResponse({"results": data})
 
 # --- نظام التصنيفات (الحل لمشكلة صفحة Healthy) ---
 
