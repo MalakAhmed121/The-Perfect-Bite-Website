@@ -108,31 +108,52 @@ def category_detail(request, category_name):
         "category_obj": category_obj
     })
 
-# --- إدارة الحسابات ---
 
 def signup_page(request):
-    if request.method == "POST":
+    
+    if request.method == 'POST':
         form = RegisterForm(request.POST)
         if form.is_valid():
-            user = form.save(commit=False)
-            user.set_password(form.cleaned_data["password"])
-            if 'email' in form.cleaned_data:
-                user.email = form.cleaned_data["email"]
-            user.save()
-            return redirect("login")
+            username = form.cleaned_data.get('username')
+            password = form.cleaned_data.get('password')
+            user_type = request.POST.get('user_type')
+            
+            
+            if not user_type or user_type not in ['user', 'admin']:
+                return render(request, 'recipes/auth/signup.html', {
+                    'form': form,
+                    'error': 'Please select user type (User or Admin)'
+                })
+            
+            user = User.objects.create_user(username=username, password=password)
+            
+            if user_type == 'admin':
+                user.is_staff = True
+                user.is_superuser = True
+                user.save()
+            
+            login(request, user)
+            return redirect('home')
     else:
         form = RegisterForm()
-    return render(request, "recipes/auth/signup.html", {"form": form})
+
+    return render(request, 'recipes/auth/signup.html', {'form': form})
 
 def login_page(request):
-    if request.method == "POST":
-        u = request.POST.get("username")
-        p = request.POST.get("password")
-        user = authenticate(request, username=u, password=p)
+  
+    if request.method == 'POST':
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+        user = authenticate(request, username=username, password=password)
+
         if user is not None:
             login(request, user)
-            return redirect("home")
-    return render(request, "recipes/auth/login.html")
+            next_url = request.POST.get('next') or request.GET.get('next') or 'home'
+            return redirect(next_url)
+        else:
+            return render(request, 'recipes/auth/login.html', {'error': 'Invalid username or password'})
+
+    return render(request, 'recipes/auth/login.html')
 
 def logout_user(request):
     logout(request)
