@@ -1,0 +1,99 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yummy - Healthy Life 🥗</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/Health_Style.css' %}">
+    <style>
+        .healthy-hero {
+            background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.4)), url("{% static 'Healthy_images/healthy_food.jpg' %}") !important;
+        }
+    </style>
+</head>
+<body class="healthy-page">
+
+    <header id="navbar">
+        <nav class="main-nav">
+            <div class="logo">Yummy 🍲</div>
+            <ul class="nav-links">
+                <li><a href="{% url 'home' %}">Home</a></li>
+                <li><a href="{% url 'search' %}">Search</a></li>
+                <li><a href="{% url 'favorites' %}">Favorites</a></li>
+                {% if user.is_staff %}
+                <li><a href="{% url 'admin_recipe' %}">Admin</a></li>
+                {% endif %}
+                <li><a href="{% url 'add_recipe' %}">Add Recipe</a></li>
+                <li><a href="{% url 'login' %}">Login</a></li>
+                <li><a href="{% url 'signup' %}">Sign Up</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="healthy-hero">
+        <div class="hero-content">
+            <h1>Eat Better, Feel Better</h1>
+            <p>Your journey to a healthier lifestyle starts with a single delicious bite.</p>
+            <a href="#recipes-container" class="btn-hero">View Recipes</a>
+        </div>
+    </section>
+
+    <section class="filter-section">
+        <div class="container">
+            <h2 class="section-title">Choose Your Diet Plan</h2>
+            <div class="diet-tabs">
+                <button class="tab-btn active" data-diet="all">All Recipes</button>
+                <button class="tab-btn" data-diet="keto">Keto Friendly</button>
+                <button class="tab-btn" data-diet="vegan">Vegan / Vegetarian</button>
+                <button class="tab-btn" data-diet="protein">High Protein</button>
+                <button class="tab-btn" data-diet="gluten-free">Gluten-Free</button>
+            </div>
+        </div>
+    </section>
+
+    <main class="container">
+        <div class="healthy-recipes-grid" id="recipes-container">
+            
+            {% for recipe in recipes %}
+            <div class="recipe-card {{ recipe.diet_type }}" id="recipe-{{ recipe.id }}">
+                <div class="card-image" style="background-image: url('{{ recipe.image.url }}');">
+                    <span class="diet-badge">{{ recipe.get_diet_type_display }}</span>
+                </div>
+                <div class="card-body">
+                    <h3>{{ recipe.title }}</h3>
+                    <p>{{ recipe.description|truncatewords:15 }}</p>
+                    <div class="card-info">
+                        <span>⏱ {{ recipe.prep_time }} min</span>
+                        <span>🔥 {{ recipe.calories }} kcal</span>
+                    </div>
+                    <a href="javascript:void(0)" onclick="openRecipeModal('{{ recipe.id }}')" class="btn-healthy">View Details</a>
+                    <span class="heart" title="Add to Favorites" 
+                          data-id="{{ recipe.id }}"
+                          onclick="changecolor(this)" 
+                          style="cursor: pointer; font-size: 24px; float: right; margin-top: -40px;">♥</span>
+                </div>
+            </div>
+            {% empty %}
+            <div style="grid-column: 1/-1; text-align: center; padding: 40px;">
+                <p>No healthy recipes found yet. Try adding one!</p>
+            </div>
+            {% endfor %}
+
+        </div>
+    </main>
+
+    <!-- Modal for Recipe Details -->
+    <div id="recipeModal" class="modal">
+        <div class="glass-card" id="recipeModalContent">
+            <div id="modalBody">
+                <!-- Content will be injected by JavaScript -->
+            </div>
+        </div>
+    </div>
+
+    <script src="{% static 'js/Health_Script.js' %}"></script>
+    <script src="{% static 'js/bakery-java.js' %}"></script>
+</body>
+</html>

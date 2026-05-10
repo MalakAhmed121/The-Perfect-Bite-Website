@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+
+<head>
+    <meta charset="UTF-8">
+    <title>Yummy-Hot drinks</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/drinks.css' %}">
+    <script src="{% static 'js/search-js.js' %}"></script>
+    <script src="{% static 'js/bakery-java.js' %}"></script>
+
+</head>
+
+<body>
+     <div id="navbar">
+        <nav class="main-nav">
+            <div class="logo">Yummy</div>
+            <ul class="nav-links">
+                <li><a href="{% url 'cover' %}">Team</a></li>
+                <li><a href="{% url 'home' %}">Home</a></li>
+                <li><a href="{% url 'search' %}">Search</a></li>
+                <li><a href="{% url 'favorites' %}">Favorites</a></li>
+                {% if user.is_staff %}
+               <li><a href="{% url 'admin_recipe' %}">Admin</a></li>
+                {% endif %}
+                <li><a href="{% url 'add_recipe' %}">Add Recipe</a></li>
+                <li><a href="{% url 'login' %}">Login</a></li>
+                <li><a href="{% url 'signup' %}">Sign Up</a></li>
+            </ul>
+        </nav>
+    </div>
+    <section class="hero hot-drinks-hero">
+        <div class="hero-content">
+            <h1 class="hero-title">
+                Warm your day with every sip — cozy, rich, and full of comfort
+            </h1>
+            <br>
+            <a href="#recipesss" class="btn-main">View Recipes</a>
+            <br>
+        </div>
+    </section>
+    <br>
+
+    <h2 id="recipesss">Recipes</h2>
+    <div class="recipes-container">
+        {% for recipe in recipes %}
+        <div class="recipe-card" 
+             id="recipe-{{ recipe.pk }}" 
+             style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.4)), url('{{ recipe.image.url }}'); background-size: cover; background-position: center;"
+             onclick="openCard(event, 'recipe-{{ recipe.pk }}-card')">
+            <h2>{{ recipe.title }}</h2>
+            <p>{{ recipe.description|truncatewords:15 }}</p>
+            <a href="javascript:void(0)" class="btn-main" onclick="openCard(event, 'recipe-{{ recipe.pk }}-card')">View Recipe</a>
+        </div>
+        {% empty %}
+        <p style="text-align: center; grid-column: 1/-1;">No hot drink recipes found yet. Add some in the Admin panel!</p>
+        {% endfor %}
+    </div>
+
+    <!-- Recipe Details -->
+    {% for recipe in recipes %}
+    <div class="details-card" id="recipe-{{ recipe.pk }}-card" style="background-image: url('{{ recipe.image.url }}');">
+        <div class="recipe-content-box">
+            <h2 style="text-align:center;">{{ recipe.title }}</h2>
+            
+            <h3>Ingredients</h3>
+            <ul class="recipe-list">
+                {% for line in recipe.ingredients.splitlines %}
+                <li>{{ line }}</li>
+                {% endfor %}
+            </ul>
+
+            <p><strong>Preparation Steps:</strong></p>
+            <ul class="recipe-list">
+                {% for line in recipe.instructions.splitlines %}
+                <li>{{ line }}</li>
+                {% endfor %}
+            </ul>
+            
+            <span class="heart" data-id="{{ recipe.id }}" onclick="changecolor(this)">♥</span>
+        </div>
+    </div>
+    {% endfor %}
+
+    <script>
+
+        //==============================  heart button ==================================
+        function changecolor(element) {
+            const isRed = element.style.color === "red";
+
+            if (isRed) {
+                element.style.color = "white";
+
+
+            }
+            else {
+                element.style.color = "red";
+                element.title = "Added Successfully! ✨";
+            }
+        }
+
+        // =================================== OPEN CARD==============================================
+        let currentCard = null;
+
+        function openCard(event, cardId) {
+            if (event) event.stopPropagation();
+
+
+            if (currentCard) {
+                currentCard.style.display = "none";
+            }
+
+
+            const targetCard = document.getElementById(cardId);
+
+            if (targetCard) {
+                targetCard.style.display = "block";
+                currentCard = targetCard;
+            }
+        }
+
+        window.onclick = function (event) {
+            if (currentCard && currentCard.style.display === "block") {
+                if (event.target !== currentCard && !currentCard.contains(event.target)) {
+                    currentCard.style.display = "none";
+                    currentCard = null;
+                }
+            }
+        }
+
+        //================================Admin Features=========================================      
+
+        // هذا الكود يعمل فور تحميل الصفحة
+        window.addEventListener("load", function () {
+            // Get the recipe ID from the URL hash (everything after #)
+            let recipeId = window.location.hash.substring(1);
+
+            // Remove 'card' suffix if present (clean the ID)
+            if (recipeId && recipeId.endsWith('card')) {
+                recipeId = recipeId.replace('card', '');
+            }
+
+            if (recipeId) {
+                // Add a longer delay to ensure the DOM is fully ready
+                setTimeout(function () {
+                    // Try to open the details card
+                    const detailsCardId = recipeId + 'card';
+                    const detailsCard = document.getElementById(detailsCardId);
+
+                    if (detailsCard) {
+                        // Close any open card first
+                        if (currentCard) {
+                            currentCard.style.display = "none";
+                        }
+
+                        // Open the card
+                        detailsCard.style.display = "block";
+                        currentCard = detailsCard;
+
+                        // Find and scroll to the recipe card
+                        const element = document.getElementById(recipeId);
+                        if (element) {
+                            element.scrollIntoView({ behavior: 'smooth', block: 'center' });
+
+                            // Add highlight effect
+                            element.style.transition = "all 0.3s ease";
+                            element.style.transform = "translateY(-10px)";
+                            element.style.boxShadow = "0 5px 15px rgba(0,0,0,0.3)";
+
+                            setTimeout(function () {
+                                element.style.transform = "";
+                                element.style.boxShadow = "";
+                            }, 1000);
+                        }
+                    } else {
+                        console.log("Card not found:", detailsCardId);
+                    }
+                }, 500); // Increased delay to 500ms
+            }
+        });
+
+    </script>
+
+
+
+</body>

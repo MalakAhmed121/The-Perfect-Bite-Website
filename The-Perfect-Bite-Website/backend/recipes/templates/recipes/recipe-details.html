@@ -1,0 +1,71 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Yummy - {{ recipe.title }}</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+
+<body>
+    <div id="navbar">
+        <nav class="main-nav">
+            <div class="logo">Yummy</div>
+            <ul class="nav-links">
+                <li><a href="{% url 'cover' %}">Team</a></li>
+                <li><a href="{% url 'home' %}">Home</a></li>
+                <li><a href="{% url 'search' %}">Search</a></li>
+                <li><a href="{% url 'favorites' %}">Favorites</a></li>
+                {% if user.is_staff %}
+               <li><a href="{% url 'admin_recipe' %}">Admin</a></li>
+                {% endif %}
+                <li><a href="{% url 'add_recipe' %}">Add Recipe</a></li>
+                <li><a href="{% url 'login' %}">Login</a></li>
+                <li><a href="{% url 'signup' %}">Sign Up</a></li>
+            </ul>
+        </nav>
+    </div>
+<div class="page-wrapper">
+    <div class="recipe-detail-container" style="max-width: 800px; margin: 40px auto; padding: 20px; background: white; border-radius: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
+        <h1 style="text-align: center; color: var(--dark-walnut);">{{ recipe.title }}</h1>
+        
+        <div style="text-align: center; margin-bottom: 20px;">
+            <img src="{{ recipe.image.url }}" alt="{{ recipe.title }}" style="max-width: 100%; border-radius: 10px; height: 400px; object-fit: cover;">
+        </div>
+
+        <div class="meta-info" style="display: flex; justify-content: space-around; margin-bottom: 30px; border-bottom: 1px solid #eee; padding-bottom: 20px;">
+            <span><strong>Category:</strong> {{ recipe.category.name }}</span>
+            <span><strong>Author:</strong> {{ recipe.author.username }}</span>
+            <span><strong>Posted:</strong> {{ recipe.created_at|date:"M d, Y" }}</span>
+        </div>
+
+        <div class="recipe-body">
+            <h3>Description</h3>
+            <p>{{ recipe.description }}</p>
+
+            <h3>Ingredients</h3>
+            <ul style="line-height: 1.8;">
+                {% for ingredient in recipe.ingredients.splitlines %}
+                {% if ingredient.strip %}
+                <li>{{ ingredient }}</li>
+                {% endif %}
+                {% endfor %}
+            </ul>
+
+            <h3>Instructions</h3>
+            <div style="line-height: 1.8; white-space: pre-line;">
+                {{ recipe.instructions }}
+            </div>
+        </div>
+
+        <div style="text-align: center; margin-top: 40px;">
+            <span class="heart" data-id="{{ recipe.id }}" onclick="changecolor(this)" 
+                  style="font-size: 40px; cursor: pointer; color: #6B3E26;">♥</span>
+        </div>
+    </div>
+</div>
+
+<script src="{% static 'js/bakery-java.js' %}"></script>
+</body>
+</html>

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+
+<head>
+    <meta charset="UTF-8">
+    <title>Yummy - Search</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    
+</head>
+
+<body>
+
+    <div id="navbar">
+        <nav class="main-nav">
+            <div class="logo">Yummy</div>
+            <ul class="nav-links">
+                <li><a href="{% url 'cover' %}">Team</a></li>
+                <li><a href="{% url 'home' %}">Home</a></li>
+                <li><a href="{% url 'search' %}">Search</a></li>
+                <li><a href="{% url 'favorites' %}">Favorites</a></li>
+                {% if user.is_staff %}
+                <li><a href="{% url 'admin_recipe' %}">Admin</a></li>
+                {% endif %}
+                <li><a href="{% url 'add_recipe' %}">Add Recipe</a></li>
+                <li><a href="{% url 'login' %}">Login</a></li>
+                <li><a href="{% url 'signup' %}">Sign Up</a></li>
+            </ul>
+        </nav>
+    </div>
+    <center>
+        <h1 style="text-align:center;">Find Your Recipe 🍲</h1>
+
+        <!-- SEARCH AREA (no container styling) -->
+        <div style="text-align:center; margin-top:20px;">
+
+            <input type="text" id="searchInput" placeholder="Type to search..." style="
+            width:60%;
+            padding:12px;
+            border-radius:12px;
+            border:1px solid #ccc;
+            outline:none; ">
+
+            <br><br>
+
+            <button type="button" onclick="searchRecipes('title')" style="
+            padding:10px 20px;
+            border-radius:12px;
+            border:none;
+            cursor:pointer;
+          " class="btn-main">
+                Search Recipes
+            </button>
+
+            <button type="button" onclick="searchRecipes('ingredients')" style="
+            padding:10px 20px;
+            border-radius:12px;
+            border:none;
+            cursor:pointer;
+            margin-left:10px;
+         " class="btn-main">
+                Search Ingredients
+            </button>
+
+        </div>
+
+        <!-- RESULTS (uses your CSS grid already) -->
+        <div id="results" class="recipes-container" style="margin-top:30px;"></div>
+    </center>
+    <script src="{% static 'js/search-js.js' %}"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,772 @@
+/* ============================================================
+   1. DESIGN SYSTEM & VARIABLES
+   ============================================================ */
+:root {
+  --primary-color: #e67e22;
+  /* البرتقالي الأساسي - هوية المشروع */
+  --primary-hover: #d35400;
+  /* برتقالي أغمق للهوفر */
+  --bg-color: #f4f4f9;
+  /* لون الخلفية العام */
+  --card-bg: #ffffff;
+  /* لون الكروت والفورم */
+  --text-main: #2d3436;
+  /* لون النصوص الأساسي */
+  --text-muted: #636e72;
+  /* لون النصوص الثانوية */
+  --error-color: #e74c3c;
+  /* اللون الأحمر للحذف */
+  --info-color: #3498db;
+  /* اللون الأزرق للعرض */
+
+  --border-radius: 12px;
+  --input-radius: 8px;
+  --shadow-sm: 0 2px 5px rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0 10px 30px rgba(0, 0, 0, 0.05);
+  --transition: all 0.3s ease;
+}
+
+/* ============================================================
+   2. GLOBAL RESET
+   ============================================================ */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  line-height: 1.6;
+  background-color: var(--bg-color);
+  color: var(--text-main);
+}
+
+h1 {
+  text-align: center;
+  margin: 30px 0;
+  color: var(--primary-color);
+  font-size: 2.5rem;
+}
+
+/* ============================================================
+   3. NAVIGATION BAR
+   ============================================================ */
+#navbar {
+  background-color: var(--primary-color);
+  padding: 1rem 2rem;
+  box-shadow: var(--shadow-sm);
+}
+
+.main-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.logo {
+  color: #fff;
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.nav-links {
+  display: flex;
+  list-style: none;
+}
+
+.nav-links li {
+  margin-left: 20px;
+}
+
+.nav-links a {
+  color: #ecf0f1;
+  text-decoration: none;
+  font-weight: 500;
+  transition: var(--transition);
+}
+
+.nav-links a:hover {
+  color: white;
+  text-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
+}
+
+/* ============================================================
+   4. UNIVERSAL BUTTONS 
+   ============================================================ */
+button,
+.btn-main {
+  background-color: var(--primary-color) !important;
+  color: white !important;
+  padding: 12px 25px;
+  border: none;
+  border-radius: var(--input-radius);
+  font-weight: bold;
+  cursor: pointer;
+  transition: var(--transition);
+  text-decoration: none;
+  display: inline-block;
+  text-align: center;
+}
+
+button:hover,
+.btn-main:hover {
+  background-color: var(--primary-hover) !important;
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(230, 126, 34, 0.3);
+}
+
+
+.btn-view,
+.btn-edit,
+.btn-delete {
+  padding: 6px 12px;
+  border-radius: 4px;
+  font-size: 13px;
+  font-weight: 600;
+  width: auto;
+}
+
+.btn-view {
+  background-color: #e67e22 !important;
+}
+
+.btn-edit {
+  background-color: #e67e22 !important;
+}
+
+.btn-delete {
+  background-color: #e67e22 !important;
+}
+
+/* ============================================================
+   5. FORMS & INPUTS
+   ============================================================ */
+.form-input {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #dfe6e9;
+  border-radius: var(--input-radius);
+  font-size: 15px;
+  margin-bottom: 15px;
+  transition: var(--transition);
+}
+
+.form-input:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 3px rgba(230, 126, 34, 0.1);
+}
+
+label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+  color: var(--text-main);
+}
+
+/* ============================================================
+   6. RECIPES CARDS 
+   ============================================================ */
+.recipes-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 25px;
+  padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.recipe-card {
+  background: var(--card-bg);
+  border-radius: var(--border-radius);
+  padding: 25px;
+  box-shadow: var(--shadow-lg);
+  transition: var(--transition);
+  border-top: 5px solid var(--primary-color);
+}
+
+.recipe-card:hover {
+  transform: translateY(-5px);
+}
+
+.cover-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 25px;
+  padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.id-card {
+  background: var(--card-bg);
+  border-radius: var(--border-radius);
+  padding: 25px;
+  box-shadow: var(--shadow-lg);
+  transition: var(--transition);
+  border-top: 5px solid var(--primary-color);
+}
+
+/* ============================================================
+   7. TABLES
+   ============================================================ */
+table {
+  width: 90%;
+  max-width: 1100px;
+  border-collapse: collapse;
+  margin: 30px auto;
+  background: var(--card-bg);
+  border-radius: var(--border-radius);
+  overflow: hidden;
+  box-shadow: var(--shadow-lg);
+}
+
+table th,
+table td {
+  padding: 15px;
+  text-align: center;
+  border-bottom: 1px solid #eee;
+}
+
+table th {
+  background-color: var(--primary-color);
+  color: white;
+  text-transform: uppercase;
+}
+
+.actions-cell {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+}
+
+/* ============================================================
+   8. SIGNUP & LOGIN 
+   ============================================================ */
+.signup-page-wrapper {
+  min-height: 80vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 20px;
+}
+
+.signup-container {
+  display: flex;
+  background: white;
+  width: 900px;
+  max-width: 95%;
+  border-radius: 15px;
+  box-shadow: var(--shadow-lg);
+  overflow: hidden;
+}
+
+.signup-image {
+  flex: 1;
+}
+
+.signup-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.form-section {
+  flex: 1;
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.login-page-wrapper {
+  min-height: 80vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 20px;
+}
+
+.login-container {
+  display: flex;
+  background: white;
+  width: 900px;
+  max-width: 95%;
+  border-radius: 15px;
+  box-shadow: var(--shadow-lg);
+  overflow: hidden;
+}
+
+.login-image {
+  flex: 1;
+}
+
+.login-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.cover-page-wrapper {
+  min-height: 80vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 20px;
+}
+
+/* ============================================================
+   9. EDIT & ADD RECIPE SPECIALS
+   ============================================================ */
+.page-wrapper {
+  display: flex;
+  justify-content: center;
+  padding: 40px 20px;
+  background-color: var(--bg-color);
+}
+
+.edit-card {
+  background: white;
+  padding: 30px;
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow-lg);
+  width: 100%;
+  max-width: 700px;
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  margin-top: 20px;
+}
+
+.ingredients-section {
+  margin: 20px 0;
+  padding: 15px;
+  background: #fdf2e9;
+  border-radius: 8px;
+  border: 1px dashed var(--primary-color);
+}
+
+.ingredient-row {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+textarea.form-input {
+  resize: vertical;
+  min-height: 120px;
+}
+
+/* ============================================================
+   10. ADMIN TABLE MODERN LOOK
+   ============================================================ */
+table {
+  width: 90%;
+  max-width: 1100px;
+  border-collapse: separate;
+  border-spacing: 0;
+  margin: 40px auto;
+  background: var(--card-bg);
+  border-radius: var(--border-radius);
+  overflow: hidden;
+  box-shadow: var(--shadow-lg);
+  border: none;
+}
+
+table th {
+  background-color: #fdf2e9;
+  color: var(--primary-color);
+  padding: 20px;
+  text-transform: uppercase;
+  font-size: 14px;
+  letter-spacing: 1px;
+  border-bottom: 2px solid var(--primary-color);
+}
+
+table td {
+  padding: 15px;
+  text-align: center;
+  border-bottom: 1px solid #eee;
+  background-color: white;
+}
+
+table tr:hover td {
+  background-color: #fffaf5;
+  transition: var(--transition);
+}
+
+.btn-admin {
+  padding: 8px 18px !important;
+  font-size: 13px !important;
+  border-radius: 25px !important;
+  margin: 0 5px;
+  min-width: 80px;
+}
+
+.btn-view-mod {
+  background-color: #db7434 !important;
+}
+
+.btn-edit-mod {
+  background-color: #db7434 !important;
+}
+
+.btn-delete-mod {
+  background-color: #db7434 !important;
+}
+
+/* ============================================================
+   11. SEARCH PAGE
+   ============================================================ */
+.search-page-wrapper {
+  background: var(--card-bg);
+  padding: 40px;
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow-lg);
+  max-width: 600px;
+  margin: 50px auto;
+}
+
+.search-form label {
+  display: inline-block;
+  width: 180px;
+  text-align: left;
+  margin-bottom: 20px;
+}
+
+.search-form .form-input {
+  display: inline-block;
+  width: 300px !important;
+  vertical-align: middle;
+}
+
+.search-form br {
+  display: block;
+  margin: 10px 0;
+  content: "";
+}
+
+.search-form .btn-main {
+  margin-top: 20px;
+  width: 150px;
+}
+
+.cover-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  padding: 40px;
+  background-color: var(--primary-color);
+  min-height: 80vh;
+}
+
+.id-card {
+  text-align: center;
+  border-top: 5px solid var(--text-main);
+  padding: 30px;
+  background: white;
+  border-radius: 15px;
+  transition: var(--transition);
+}
+
+.id-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+}
+
+.id-card h3 {
+  margin-bottom: 10px;
+  color: var(--text-main);
+}
+
+.id-card p {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+}
+
+/* ============================================================
+   12. ADD RECIPE PAGE
+   ============================================================ */
+.add-recipe-card {
+  background: white;
+  padding: 30px;
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow-lg);
+  width: 100%;
+  max-width: 700px;
+}
+
+.form-row {
+  margin-bottom: 20px;
+}
+
+.form-row label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: bold;
+}
+
+.form-row input[type="number"],
+.form-row input[type="text"],
+.form-row select {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  box-sizing: border-box;
+}
+
+.ingredient-group {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 15px;
+  padding: 15px;
+  background: #f9f9f9;
+  border-radius: 8px;
+}
+
+.ingredient-group label {
+  display: inline-block;
+  margin-bottom: 5px;
+  font-weight: normal;
+}
+
+.ingredient-group input {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+.description-section {
+  margin-top: 20px;
+}
+
+.description-section label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: bold;
+}
+
+.description-section textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  resize: vertical;
+}
+
+.form-actions {
+  margin-top: 30px;
+  text-align: right;
+}
+
+.form-actions .btn-main {
+  margin-left: 10px;
+  cursor: pointer;
+}
+
+/* ============================================================
+   12.Home Page Style
+   ============================================================ */
+.hero-home-container {
+  height: 90vh;
+  /* Dark Overlay for better text readability */
+  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('home.jpg');
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  color: white;
+  position: relative;
+  margin-bottom: 50px;
+}
+
+.hero-content {
+  max-width: 850px;
+  padding: 20px;
+}
+
+.hungry-title {
+  font-size: 5rem;
+  font-weight: 900;
+  letter-spacing: 2px;
+  text-shadow: 2px 4px 15px rgba(0, 0, 0, 0.6);
+  margin-bottom: 15px;
+  text-transform: uppercase;
+}
+
+.hero-subtext {
+  font-size: 1.5rem;
+  font-weight: 300;
+  opacity: 0.9;
+  text-shadow: 1px 2px 8px rgba(0, 0, 0, 0.5);
+  margin-bottom: 35px;
+  line-height: 1.4;
+}
+
+.btn-main.hero-btn {
+  padding: 18px 45px;
+  font-size: 1.2rem;
+  background: var(--primary-color) !important;
+  color: white !important;
+  text-decoration: none;
+  border-radius: 50px;
+  font-weight: bold;
+  box-shadow: 0 10px 30px rgba(230, 126, 34, 0.4);
+  transition: var(--transition);
+}
+
+.btn-main.hero-btn:hover {
+  background-color: #ff9f43 !important;
+  transform: scale(1.05);
+}
+
+/* ============================================================
+   QUICK ACCESS SECTION (Cards)
+   ============================================================ */
+.quick-access-section {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  padding: 0 40px 80px;
+  max-width: 1200px;
+  margin: 0 auto;
+  flex-wrap: wrap;
+}
+
+.home-card {
+  background: var(--card-bg);
+  border: 1px solid #eee;
+  padding: 40px 30px;
+  width: 320px;
+  text-align: center;
+  border-radius: var(--border-radius);
+  cursor: pointer;
+  transition: var(--transition);
+  box-shadow: var(--shadow-sm);
+}
+
+.home-card:hover {
+  transform: translateY(-12px);
+  border-color: var(--primary-color);
+  box-shadow: 0 15px 35px rgba(230, 126, 34, 0.15);
+}
+
+.card-icon {
+  font-size: 3.5rem;
+  margin-bottom: 15px;
+}
+
+.home-card h3 {
+  margin-bottom: 10px;
+  color: var(--primary-color);
+}
+
+.home-card p {
+  color: var(--text-muted);
+  font-size: 0.95rem;
+}
+
+/* ============================================================
+                        Side Bar
+   ============================================================ */
+
+.nav-links {
+  display: flex !important;
+  list-style: none;
+}
+
+.dropdown-menu {
+  display: none;
+  position: absolute;
+  top: 70px;
+  left: 20px;
+  background-color: white;
+  border: 1px solid var(--primary-color);
+  box-shadow: var(--shadow-lg);
+  z-index: 1000;
+  list-style: none;
+  padding: 10px;
+  border-radius: var(--border-radius);
+  min-width: 200px;
+}
+
+.dropdown-menu.show {
+  display: block !important;
+}
+
+.dropdown-menu li a {
+  color: var(--text-main) !important;
+  padding: 10px 20px;
+  display: block;
+  text-decoration: none;
+}
+
+.dropdown-menu li a:hover {
+  background-color: var(--primary-color);
+  color: white !important;
+}
+
+.menu-icon {
+  cursor: pointer;
+  margin-right: 15px;
+}
+
+.bar {
+  width: 25px;
+  height: 3px;
+  background-color: white;
+  margin: 5px 0;
+}
+
+
+/* ============================================================
+                     FAVORITE PAGE
+   ============================================================ */
+
+.fav {
+  font-family: 'Dancing Script', cursive;
+
+  font-size: 28px;
+  color: #5C3A21;
+  text-align: center;
+  text-shadow: 0px 0px 4px white;
+}
+
+.P-fav {
+  font-family: cursive;
+  font-size: 18px;
+  color: #6B4F3F;
+  text-shadow: 0px 0px 4px white;
+}
+
+.favbutton {
+  padding: 18px 40px;
+  text-align: center;
+  border-radius: 50px;
+
+
+  background-color: #4b1f11;
+  color: #dcb8a0;
+
+  font-family: 'Dancing Script', cursive;
+
+  display: inline-block;
+}
+
+.favbutton:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+}

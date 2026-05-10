@@ -1,0 +1,117 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Home Baked Recipes • Bakery</title>
+   <script>
+    function onClick() {
+        document.getElementById('categories').scrollIntoView({
+            behavior: 'smooth'
+        });
+    }
+</script>
+    <link rel="stylesheet" href="{% static 'css/bakery-style.css' %}" />
+    <style>
+        .main {
+            background-image: url('/static/bakeryimages/bakery12.png') !important;
+        }
+
+        #Bread {
+            background-image: url("{% static 'bakeryimages/breads.jpeg' %}");
+        }
+
+        #Croissants {
+            background-image: url("{% static 'bakeryimages/Croissants.jpeg' %}");
+        }
+
+        #Cookies {
+            background-image: url("{% static 'bakeryimages/cookies.jpeg' %}");
+        }
+
+        #Macarons {
+            background-image: url("{% static 'bakeryimages/macron.jpeg' %}");
+        }
+
+        #Donuts {
+            background-image: url("{% static 'bakeryimages/Dounts.png' %}");
+        }
+
+        #Cinnamon {
+            background-image: url("{% static 'bakeryimages/Cinnamon.png' %}");
+        }
+    </style>
+</head>
+
+<body>
+    <div id="navbar">
+        <nav class="main-nav">
+            <div class="logo">Yummy</div>
+            <ul class="nav-links">
+                <li><a href="{% url 'cover' %}">Team</a></li>
+                <li><a href="{% url 'home' %}">Home</a></li>
+                <li><a href="{% url 'search' %}">Search</a></li>
+                <li><a href="{% url 'favorites' %}">Favorites</a></li>
+                {% if user.is_staff %}
+                <li><a href="{% url 'admin_recipe' %}">Admin</a></li>
+                {% endif %}
+                <li><a href="{% url 'add_recipe' %}">Add Recipe</a></li>
+                <li><a href="{% url 'login' %}">Login</a></li>
+                <li><a href="{% url 'signup' %}">Sign Up</a></li>
+            </ul>
+        </nav>
+    </div>
+    <section class="main">
+        <div class="main-content ">
+            <h1>Freshly Baked at Home</h1>
+            <p>Delicious recipes & cookies hub – made with love in your kitchen</p>
+            <a href="#categories" class="btn-main" onclick="onClick(); return false;">View Categories</a>
+        </div>
+    </section>
+
+    <br><br>
+
+    <h2 class="h2">Recipes Categories</h2>
+
+    <section class="recipes-container" id="categories">
+        <div class="recipe-card" id="Bread">
+            <h2>Artisan Breads 🥖</h2>
+            <p>Freshly baked with natural ingredients and a perfect golden crust.</p>
+            <a href="{% url 'bread' %}" class="btn-main">View Recipes</a>
+        </div>
+
+        <div class="recipe-card" id="Croissants">
+            <h2>Croissants & Danish 🥐</h2>
+            <p>Buttery, flaky layers of perfection that melt in your mouth with every bite.</p>
+            <a href="{% url 'croissants' %}" class="btn-main">View Recipes</a>
+        </div>
+
+        <div class="recipe-card" id="Cookies">
+            <h2>Cookies & Biscuits 🍪🤎</h2>
+            <p>The perfect crunch and sweetness to brighten up your coffee break.</p>
+            <a href="{% url 'cookies' %}" class="btn-main">View Recipes</a>
+        </div>
+
+        <div class="recipe-card" id="Macarons">
+            <h2>French Macarons 🍥</h2>
+            <p>Delicate French macarons with a smooth shell and a creamy, flavorful filling.</p>
+            <a href="{% url 'macarons' %}" class="btn-main">View Recipes</a>
+        </div>
+
+        <div class="recipe-card" id="Donuts">
+            <h2>Donuts 🍩✨</h2>
+            <p>Fluffy, golden-fried donuts topped with creative glazes and colorful sprinkles.</p>
+            <a href="{% url 'donuts' %}" class="btn-main">View Recipes</a>
+        </div>
+
+        <div class="recipe-card" id="Cinnamon">
+            <h2>Cinnamon Rolls 🌀🍩✨</h2>
+            <p>Soft, gooey rolls filled with aromatic cinnamon and topped with our secret cream cheese frosting.</p>
+            <a href="{% url 'cinnamon' %}" class="btn-main">View Recipes</a>
+        </div>
+    </section>
+</body>
+
+</html>

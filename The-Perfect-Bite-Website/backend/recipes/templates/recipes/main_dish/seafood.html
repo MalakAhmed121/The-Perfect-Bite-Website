@@ -1,0 +1,88 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Seafood Recipes</title>
+    <link rel="stylesheet" href="{% static 'css/maindish.css' %}">
+    <style>
+        #grilledSalmon, #grilledSalmon-card { background-image: url("{% static 'maindish/salmon.jfif' %}"); }
+        #shrimpPasta, #shrimpPasta-card { background-image: url("{% static 'maindish/pastash.jfif' %}"); }
+        #fishCurry, #fishCurry-card { background-image: url("{% static 'maindish/fishcurry.jfif' %}"); }
+    </style>
+    <script src="{% static 'js/maindish.js' %}"></script>
+    <script src="{% static 'js/search-js.js' %}"></script>
+</head>
+
+<body>
+    <div id="navbar">
+        <nav class="main-nav">
+            <div class="logo">Yummy 🍲</div>
+            <ul class="nav-links">
+                <li><a href="{% url 'cover' %}">Team</a></li>
+                <li><a href="{% url 'home' %}">Home</a></li>
+                <li><a href="{% url 'search' %}">Search</a></li>
+                <li><a href="{% url 'favorites' %}">Favorites</a></li>
+                {% if user.is_staff %}
+                <li><a href="{% url 'admin_recipe' %}">Admin</a></li>
+                {% endif %}
+                <li><a href="{% url 'add_recipe' %}">Add Recipe</a></li>
+                <li><a href="{% url 'login' %}">Login</a></li>
+                <li><a href="{% url 'signup' %}">Sign Up</a></li>
+            </ul>
+        </nav>
+    </div>
+
+
+    <div class="banner">
+        <img src="{% static 'maindish/freshseafood.jfif' %}" style="width:100%; height:400px; margin-bottom:30px;">
+    </div>
+
+    <h2 class="h2">Our Seafood Recipes</h2>
+
+    <div class="recipes-container">
+        {% for recipe in recipes %}
+        <div class="recipe-card" 
+             id="recipe-{{ recipe.pk }}" 
+             style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.4)), url('{{ recipe.image.url }}'); background-size: cover; background-position: center;"
+             onclick="openCard(event, 'recipe-{{ recipe.pk }}-card')">
+            <h2>{{ recipe.title }}</h2>
+            <p>{{ recipe.description|truncatewords:15 }}</p>
+            <a href="javascript:void(0)" class="btn-main" onclick="openCard(event, 'recipe-{{ recipe.pk }}-card')">View Recipe</a>
+        </div>
+        {% empty %}
+        <p style="text-align: center; grid-column: 1/-1;">No seafood recipes found yet. Add some in the Admin panel!</p>
+        {% endfor %}
+    </div>
+
+    <!-- Recipe Details -->
+    {% for recipe in recipes %}
+    <div class="detials-card" id="recipe-{{ recipe.pk }}-card">
+        <div class="recipe-content-box">
+            <h2 style="text-align:center;">{{ recipe.title }}</h2>
+            
+            <div style="height: 200px; background-image: url('{{ recipe.image.url }}'); background-size: cover; background-position: center; border-radius: 10px; margin-bottom: 20px;"></div>
+
+            <h3>Ingredients</h3>
+            <ul class="recipe-list">
+                {% for line in recipe.ingredients.splitlines %}
+                <li>{{ line }}</li>
+                {% endfor %}
+            </ul>
+
+            <p><strong>Preparation Steps:</strong></p>
+            <ul class="recipe-list">
+                {% for line in recipe.instructions.splitlines %}
+                <li>{{ line }}</li>
+                {% endfor %}
+            </ul>
+            
+            <span class="heart" data-id="{{ recipe.id }}" onclick="changecolor(this)">♥</span>
+        </div>
+    </div>
+    {% endfor %}
+
+</body>
+
+</html>

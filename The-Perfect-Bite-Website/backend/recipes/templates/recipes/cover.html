@@ -1,0 +1,165 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yummy - Project Cover</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <style>
+        body {
+            background: url("{% static 'cover.png' %}");
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 0;
+            font-family: 'Segoe UI', sans-serif;
+        }
+
+        .glass-overlay {
+            background: rgba(255, 255, 255, 0.1);
+            width: 100%;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .main-title {
+            font-size: 5rem;
+            color: #2d3436;
+            margin-bottom: 5px;
+            text-shadow: 2px 2px 5px rgba(255, 255, 255, 0.5);
+        }
+
+        .sub-title {
+            font-size: 1.5rem;
+            color: #e67e22;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 50px;
+        }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+            max-width: 1100px;
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.85);
+            padding: 30px;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            transition: transform 0.3s ease;
+        }
+
+        .glass-card:hover {
+            transform: translateY(-10px);
+            background: rgba(255, 255, 255, 1);
+        }
+
+        .glass-card h3 {
+            color: #2d3436;
+            margin: 10px 0;
+            font-size: 1.2rem;
+        }
+
+        .glass-card p {
+            color: #636e72;
+            font-size: 0.9rem;
+            margin: 0;
+        }
+
+        .id-tag {
+            background: #ffeaa7;
+            color: #d35400;
+            padding: 3px 10px;
+            border-radius: 5px;
+            font-weight: bold;
+            display: inline-block;
+            margin-top: 10px;
+        }
+
+        .enter-btn {
+            margin-top: 60px;
+            background: #e67e22;
+            color: white;
+            padding: 18px 50px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.2rem;
+            box-shadow: 0 10px 20px rgba(230, 126, 34, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .enter-btn:hover {
+            background: #d35400;
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="glass-overlay">
+        <h1 class="main-title">Yummy 🍲</h1>
+        <p class="sub-title">Recipe Project - Web Technology</p>
+        <div style="background: rgba(255,255,255,0.9); padding:15px 30px; border-radius:10px; margin-bottom:40px; text-align:center;">
+            <p><strong>Course:</strong> IS231 Web Technology</p>
+            <p><strong>Project Name:</strong> Yummy Recipe Website</p>
+            <p><strong>Project Number:</strong> 1</p>
+            <p><strong>Phase:</strong> Phase 2</p>
+            <p><strong>TA Name:</strong> Mira </p>
+            <p><strong>Group Number:</strong>24 </p>
+        </div>
+        <div class="team-grid">
+            <div class="glass-card">
+                <h3>Nada Ramadan Mohamed</h3>
+                <p>Team Leader</p>
+                <span class="id-tag">ID: 20240628</span>
+            </div>
+            <div class="glass-card">
+                <h3>Malak Ahmed AbdelRauof</h3>
+                <p>Member</p>
+                <span class="id-tag">ID: 20240608</span>
+            </div>
+            <div class="glass-card">
+                <h3>Rahma Saber Ibrahim</h3>
+                <p>Member</p>
+                <span class="id-tag">ID: 20242122</span>
+            </div>
+            <div class="glass-card">
+                <h3>Reem Hussein</h3>
+                <p>Member</p>
+                <span class="id-tag">ID: 20240205</span>
+            </div>
+            <div class="glass-card">
+                <h3>Sara Hany Mostafa</h3>
+                <p>Member</p>
+                <span class="id-tag">ID: 20240231</span>
+            </div>
+            <div class="glass-card">
+                <h3>Shrouk Hany Sabry</h3>
+                <p>Member</p>
+                <span class="id-tag">ID: 20240276</span>
+            </div>
+        </div>
+
+        <a href="{% url 'home' %}" class="enter-btn">Start Exploring</a>
+    </div>
+
+</body>
+
+</html>

@@ -1,0 +1,174 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>Appetizers - Yummy</title>
+	<link rel="stylesheet" href="{% static 'css/bakery-style.css' %}" />
+	<link rel="stylesheet" type="text/css" href="{% static 'css/appetizers.css' %}">
+	<script src="{% static 'js/search-js.js' %}"></script>
+	<script src="{% static 'js/bakery-java.js' %}"></script>
+	
+
+	<style>
+		#navbar {
+			background-color: var(--dark-walnut);
+			padding: 1rem 2rem;
+			box-shadow: var(--shadow-sm);
+		}
+
+		.main-nav {
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			max-width: 1200px;
+			margin: 0 auto;
+		}
+
+		.logo {
+			color: #fff;
+			font-size: 1.5rem;
+			font-weight: bold;
+		}
+
+		.nav-links {
+			display: flex;
+			list-style: none;
+		}
+
+		.nav-links li {
+			margin-left: 20px;
+		}
+
+		.nav-links a {
+			color: #ecf0f1;
+			text-decoration: none;
+			font-weight: 500;
+			transition: var(--transition);
+			display: inline-block;
+		}
+
+		.nav-links a:hover,
+		.nav-links li button#backbutton:hover {
+			color: white;
+			transform: translateY(-1.5px);
+			text-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
+		}
+
+		.big-arrow-btn {
+			font-size: 24px;
+			font-weight: bold;
+			background: none;
+			border: none;
+			cursor: pointer;
+			color: rgb(234, 221, 212);
+			transition: transform 0.2s;
+			padding: 0 10px;
+			display: flex;
+			align-items: center;
+		}
+
+
+		.big-arrow-btn:hover {
+			transform: translateY(-1.5px);
+
+			text-shadow: 0 0 15px rgb(255, 255, 255, 0.5);
+			transform: scale(1.2);
+		}
+
+        /* --- Fix Background Images --- */
+        .main {
+            background-image: url("{% static 'appetizersimgs/main1.jpg' %}") !important;
+        }
+        #DeviledEggs, #DeviledEggs-card { background-image: url("{% static 'appetizersimgs/pic1.jpg' %}"); }
+        #SpinachArtichokeDip, #SpinachArtichokeDip-card { background-image: url("{% static 'appetizersimgs/pic2.jpg' %}"); }
+        #ChickenWings, #ChickenWings-card { background-image: url("{% static 'appetizersimgs/pic3.jpg' %}"); }
+        #JalapenoPoppers, #JalapenoPoppers-card { background-image: url("{% static 'appetizersimgs/pic4.jpg' %}"); }
+        #StuffedMushrooms, #StuffedMushrooms-card { background-image: url("{% static 'appetizersimgs/mushroom.jpeg' %}"); }
+        #Crostini, #Crostini-card { background-image: url("{% static 'appetizersimgs/pic5.jpeg' %}"); }
+        #CharcuterieBoard, #CharcuterieBoard-card { background-image: url("{% static 'appetizersimgs/pic7.jpeg' %}"); }
+        #Sliders, #Sliders-card { background-image: url("{% static 'appetizersimgs/pic6.jpeg' %}"); }
+        #ShrimpCocktail, #ShrimpCocktail-card { background-image: url("{% static 'appetizersimgs/pic8.jpeg' %}"); }
+	</style>
+</head>
+
+<body>
+
+	<div id="navbar">
+		<nav class="main-nav">
+			<div class="logo">Yummy 🍲</div>
+			<ul class="nav-links">
+				<button id="backbutton" class="big-arrow-btn" type="button" aria-label="Go Back">
+					&#8592;
+				</button>
+				<li><a href="{% url 'cover' %}">Team</a></li>
+				<li><a href="{% url 'home' %}">Home</a></li>
+				<li><a href="{% url 'search' %}">Search</a></li>
+				<li><a href="{% url 'favorites' %}">Favorites</a></li>
+				{% if user.is_staff %}
+				<li><a href="{% url 'admin_recipe' %}">Admin</a></li>
+				{% endif %}
+				<li><a href="{% url 'add_recipe' %}">Add Recipe</a></li>
+				<li><a href="{% url 'login' %}">Login</a></li>
+				<li><a href="{% url 'signup' %}">Sign Up</a></li>
+			</ul>
+		</nav>
+	</div>
+
+	<section class="main">
+		<div class="main-content">
+			<h1>Bite-Sized made with love</h1>
+			<p>Savor the artistry in every bite.</p>
+			<a href="javascript:void(0)" class="btn-main" onclick="onClick()">View Recipes</a>
+		</div>
+	</section>
+
+	<h2 class="h2"> Our Recipes </h2>
+	<!-- Recipe cards grid — generated from DB -->
+	<div class="recipes-container">
+        {% for recipe in recipes %}
+        <div class="recipe-card" 
+             id="recipe-{{ recipe.pk }}" 
+             style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.4)), url('{{ recipe.image.url }}'); background-size: cover; background-position: center;"
+             onclick="openCard(event, 'recipe-{{ recipe.pk }}-card')">
+            <h2>{{ recipe.title }}</h2>
+            <p>{{ recipe.description|truncatewords:15 }}</p>
+            <a href="javascript:void(0)" class="btn-main" onclick="openCard(event, 'recipe-{{ recipe.pk }}-card')">View Recipe</a>
+        </div>
+        {% empty %}
+        <p style="text-align: center; grid-column: 1/-1;">No appetizer recipes found yet. Add some in the Admin panel!</p>
+        {% endfor %}
+    </div>
+
+    <!-- Recipe Details -->
+    {% for recipe in recipes %}
+    <div class="details-card" id="recipe-{{ recipe.pk }}-card" style="background-image: url('{{ recipe.image.url }}');">
+        <div class="recipe-content-box">
+            <h2 style="text-align:center;">{{ recipe.title }}</h2>
+            
+            <h3>Ingredients</h3>
+            <ul class="recipe-list">
+                {% for line in recipe.ingredients.splitlines %}
+                <li>{{ line }}</li>
+                {% endfor %}
+            </ul>
+
+            <p><strong>Preparation Steps:</strong></p>
+            <ul class="recipe-list">
+                {% for line in recipe.instructions.splitlines %}
+                <li>{{ line }}</li>
+                {% endfor %}
+            </ul>
+            
+            <span class="heart" data-id="{{ recipe.id }}" onclick="changecolor(this)">♥</span>
+        </div>
+    </div>
+    {% endfor %}
+
+
+
+</body>
+
+</html>

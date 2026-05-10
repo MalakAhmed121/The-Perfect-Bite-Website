@@ -1,0 +1,27 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Yummy - Delete Recipe</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <div id="navbar">
+        <nav class="main-nav">
+            <div class="logo">Yummy</div>
+        </nav>
+    </div>
+
+    <div class="page-wrapper" style="max-width: 500px; margin: 100px auto; background: white; padding: 40px; border-radius: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); text-align: center;">
+        <h2 style="color: #e74c3c;">Delete Recipe?</h2>
+        <p>Are you sure you want to delete "<strong>{{ recipe.title }}</strong>"? This action cannot be undone.</p>
+        
+        <form method="POST" style="margin-top: 30px;">
+            {% csrf_token %}
+            <button type="submit" class="btn-main" style="background: #e74c3c;">Yes, Delete Forever</button>
+            <a href="{% url 'admin_recipe' %}" style="display: block; margin-top: 15px; color: #666;">No, Keep It</a>
+        </form>
+    </div>
+</body>
+</html>

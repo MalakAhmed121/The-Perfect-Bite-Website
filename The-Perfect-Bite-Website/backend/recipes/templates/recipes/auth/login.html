@@ -1,0 +1,80 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Yummy - Login</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+
+<body style="background-color: #f2e7df; text-align: center;">
+       <div id="navbar">
+        <nav class="main-nav">
+            <div class="logo">Yummy</div>
+            <ul class="nav-links">
+                <li><a href="{% url 'cover' %}">Team</a></li>
+                <li><a href="{% url 'home' %}">Home</a></li>
+                <li><a href="{% url 'search' %}">Search</a></li>
+                <li><a href="{% url 'favorites' %}">Favorites</a></li>
+                {% if user.is_staff %}
+               <li><a href="{% url 'admin_recipe' %}">Admin</a></li>
+                {% endif %}
+                <li><a href="{% url 'add_recipe' %}">Add Recipe</a></li>
+                <li><a href="{% url 'login' %}">Login</a></li>
+                <li><a href="{% url 'signup' %}">Sign Up</a></li>
+            </ul>
+        </nav>
+    </div>
+
+    <div class="login-page-wrapper">
+        <h1 class="welcome-msg">Welcome Back to YUMMY! 😊</h1>
+
+    
+        {% if error %}
+        <div
+            style="color: red; background-color: #ffe0e0; padding: 10px; border-radius: 5px; margin: 10px auto; width: 50%;">
+            {{ error }}
+        </div>
+        {% endif %}
+
+        <div class="login-container">
+            <div class="login-image">
+                <img src="{% static 'login.jpg' %}" alt="Delicious Food">
+            </div>
+
+            <div class="form-section">
+              
+                <form method="POST">
+                    {% csrf_token %}
+
+                    <div class="form-group">
+                        <label>Username</label>
+                        
+                        <input type="text" class="form-input" required placeholder="Enter your username"
+                            name="username">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Password</label>
+                        <input type="password" class="form-input" placeholder="Enter your password" name="password"
+                            required>
+                    </div>
+
+                   
+                    <input type="hidden" name="next" value="{{ request.GET.next }}">
+
+                    <div class="form-group">
+                        <button type="submit" class="btn-main">Login</button>
+                    </div>
+
+                    <div class="Signup-link">
+                        <span>Don't have an account? <a href="{% url 'signup' %}">Sign Up</a></span>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
