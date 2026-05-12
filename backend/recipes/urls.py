@@ -62,6 +62,7 @@ urlpatterns = [
     path("vegetarian/", views.category_detail, {'category_name': 'Vegetarian'}, name="vegetarian"),
 
     path("toggle-favorite/<int:recipe_id>/", views.toggle_favorite, name="toggle_favorite"),
+    path("recipe-api/<int:recipe_id>/", views.recipe_api, name="recipe_api"),
     
     # 7. لوحة التحكم (Admin Portal)
     path("admin-recipe/", views.admin_recipe, name="admin_recipe"),

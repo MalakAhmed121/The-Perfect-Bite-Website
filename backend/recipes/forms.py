@@ -49,9 +49,9 @@ class RecipeForm(forms.ModelForm):
             'ingredients', 
             'instructions', 
             'image', 
-          # 'diet_type', 
-           # 'prep_time', 
-           # 'calories'
+            'diet_type',
+            'prep_time',
+            'calories',
         ]   
         
         widgets = {
@@ -60,16 +60,13 @@ class RecipeForm(forms.ModelForm):
             'description': forms.Textarea(attrs={'rows': 3, 'class': 'form-control', 'placeholder': 'Brief description of the dish...'}),   
             'ingredients': forms.Textarea(attrs={'rows': 5, 'class': 'form-control', 'placeholder': 'Ingredient 1, Ingredient 2...'}),
             'instructions': forms.Textarea(attrs={'rows': 5, 'class': 'form-control', 'placeholder': 'Step 1, Step 2...'}),
-          # 'diet_type': forms.Select(attrs={'class': 'form-control'}),
-         # 'prep_time': forms.NumberInput(attrs={'class': 'form-control', 'placeholder': 'Time in minutes'}),
-          # 'calories': forms.NumberInput(attrs={'class': 'form-control', 'placeholder': 'Total calories'}),
+            'diet_type': forms.Select(attrs={'class': 'form-control'}),
+            'prep_time': forms.NumberInput(attrs={'class': 'form-control', 'placeholder': 'Time in minutes'}),
+            'calories': forms.NumberInput(attrs={'class': 'form-control', 'placeholder': 'Total calories'}),
         }
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        
-
-
-      #  self.fields['diet_type'].label = "Diet Category (For Healthy Page)"
-       # self.fields['prep_time'].label = "Preparation Time (Minutes)"
-       # self.fields['calories'].label = "Calories (kcal)"
+        self.fields['diet_type'].label = "Diet Type (For Healthy Page)"
+        self.fields['prep_time'].label = "Preparation Time (Minutes)"
+        self.fields['calories'].label = "Calories (kcal)"

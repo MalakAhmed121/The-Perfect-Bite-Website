@@ -68,7 +68,7 @@ def category_detail(request, category_name):
     
     # 1. التحقق إذا كان المطلوب هو صفحة Healthy
     if category_slug == 'healthy':
-        recipes = Recipe.objects.filter(diet_type__in=['keto', 'vegan', 'protein', 'gluten-free'])
+        recipes = Recipe.objects.filter(category__name__iexact='Healthy')
         return render(request, "recipes/healthy/Healthy Food.html", {
             "recipes": recipes,
             "category": "Healthy Food"
@@ -238,3 +238,32 @@ def toggle_favorite(request, recipe_id):
             
         return JsonResponse({"status": "success", "is_favorite": is_favorite})
     return JsonResponse({"status": "error", "message": "Invalid request"}, status=400)
+
+
+# --- Recipe API (used by Health_Script.js modal) ---
+
+def recipe_api(request, recipe_id):
+    """
+    Returns recipe data as JSON for the Healthy page modal.
+    Health_Script.js expects: title, ingredients (list), method,
+    calories, prep_time, image_url.
+    """
+    recipe = get_object_or_404(Recipe, id=recipe_id)
+
+    # Split ingredients string into a list so JS can call .map()
+    raw_ingredients = recipe.ingredients or ""
+    if "\n" in raw_ingredients:
+        ingredients_list = [i.strip() for i in raw_ingredients.split("\n") if i.strip()]
+    else:
+        ingredients_list = [i.strip() for i in raw_ingredients.split(",") if i.strip()]
+
+    return JsonResponse({
+        "id":           recipe.id,
+        "title":        recipe.title,
+        "ingredients":  ingredients_list,
+        "method":       recipe.instructions,
+        "calories":     recipe.calories,
+        "prep_time":    recipe.prep_time,
+        "image_url":    recipe.image.url if recipe.image else "",
+        "diet_type":    recipe.diet_type,
+    })

@@ -1,100 +1,237 @@
-// --- Page Initialization ---
+// ==========================================================================
+// HEALTHY FOOD PAGE SCRIPT - FINAL COMPLETE VERSION
+// ==========================================================================
+
+// =========================
+// PAGE INITIALIZATION
+// =========================
 document.addEventListener('DOMContentLoaded', () => {
+
     const tabBtns = document.querySelectorAll('.tab-btn');
-    const recipesContainer = document.getElementById('recipes-container');
+
     const modal = document.getElementById('recipeModal');
 
-    // 1. --- Category Filters (التحكم في ظهور الكروت بناءً على نوع الدايت) ---
+    // =========================================================
+    // CATEGORY FILTERS
+    // =========================================================
     tabBtns.forEach(btn => {
+
         btn.addEventListener('click', () => {
-            // تغيير شكل الزرار النشط
+
+            // إزالة active من كل الأزرار
             tabBtns.forEach(b => b.classList.remove('active'));
+
+            // إضافة active للزر الحالي
             btn.classList.add('active');
 
             const selectedDiet = btn.getAttribute('data-diet');
-            
-            // الفلترة بتحصل هنا بناءً على الـ Class اللي جاي من Django
+
+            // فلترة الكروت
             document.querySelectorAll('.recipe-card').forEach(card => {
-                if (selectedDiet === 'all' || card.classList.contains(selectedDiet)) {
-                    card.style.display = 'flex';
+
+                if (
+                    selectedDiet === 'all' ||
+                    card.classList.contains(selectedDiet)
+                ) {
+
+                    card.style.display = 'block';
+
                 } else {
+
                     card.style.display = 'none';
                 }
             });
+
         });
+
     });
 
-    // 2. --- Close Modal Logic (قفل النافذة) ---
-    window.onclick = (event) => {
-        if (event.target == modal) {
-            modal.style.display = "none";
+    // =========================================================
+    // CLOSE MODAL WHEN CLICKING OUTSIDE
+    // =========================================================
+    window.addEventListener('click', (event) => {
+
+        if (event.target === modal) {
+
+            closeModal();
         }
-    };
+    });
+
 });
 
-// 3. --- AJAX Function: Fetch Recipe Details ---
-// دي الدالة اللي بتجيب البيانات من السيرفر بدون تحميل الصفحة
+
+// ==========================================================================
+// OPEN RECIPE MODAL
+// ==========================================================================
 function openRecipeModal(recipeId) {
+
     const modal = document.getElementById('recipeModal');
+
     const modalBody = document.getElementById('modalBody');
 
-    // بننادي على الرابط اللي عملناه في urls.py[cite: 3]
+    const modalContent = document.getElementById('recipeModalContent');
+
+    // =========================================================
+    // FETCH RECIPE DATA
+    // =========================================================
     fetch(`/recipe-api/${recipeId}/`)
+
         .then(response => {
-            if (!response.ok) throw new Error('Recipe not found');
-            return response.json();
-        })
-        .then(data => {
-            // بنحقن البيانات الحقيقية جوه الـ HTML[cite: 11, 12]
-            modalBody.innerHTML = `
-                <div class="modal-overlay-content">
-                    <span class="close-btn" onclick="closeModal()">&times;</span> 
-                    <h2 class="modal-title">${data.title}</h2>
-                    
-                    <span class="section-title">Ingredients</span>
-                    <ul class="modal-list">
-                        ${data.ingredients.map(i => `<li>• ${i.trim()}</li>`).join('')}
-                    </ul>
-                    
-                    <span class="section-title">Preparation Steps</span>
-                    <p class="modal-text">${data.method}</p>
-                    
-                    <div class="modal-footer">
-                        <div class="stats">
-                            <span>🔥 ${data.calories} kcal</span>
-                            <span>⏱ ${data.prep_time} min</span>
-                        </div>
-                        <button class="heart-btn" onclick="changecolor(this, '${data.title}')">❤</button>
-                    </div>
-                </div>
-            `;
-            
-            // تغيير خلفية الـ Modal لصورة الوجبة[cite: 11]
-            const modalContent = document.querySelector('.glass-card');
-            if (modalContent) {
-                modalContent.style.backgroundImage = `url('${data.image_url}')`;
-                modalContent.style.backgroundSize = "cover";
-                modalContent.style.backgroundPosition = "center";
+
+            if (!response.ok) {
+
+                throw new Error('Recipe not found');
             }
 
-            modal.style.display = "block";
+            return response.json();
         })
-        .catch(err => console.error("Error fetching recipe:", err));
+
+        .then(data => {
+
+            // =====================================================
+            // INSERT MODAL CONTENT
+            // =====================================================
+            modalBody.innerHTML = `
+
+                <div class="modal-overlay-content">
+
+                    <!-- CLOSE BUTTON -->
+                    <span
+                        class="close-btn"
+                        onclick="closeModal()"
+                    >
+                        &times;
+                    </span>
+
+                    <!-- TITLE -->
+                    <h2 class="modal-title">
+                        ${data.title}
+                    </h2>
+
+                    <!-- INGREDIENTS -->
+                    <span class="section-title-modal">
+                        Ingredients
+                    </span>
+
+                    <ul class="modal-list">
+
+                        ${data.ingredients.map(item => `
+                            <li>• ${item.trim()}</li>
+                        `).join('')}
+
+                    </ul>
+
+                    <!-- PREPARATION -->
+                    <span class="section-title-modal">
+                        Preparation Steps
+                    </span>
+
+                    <p class="modal-text">
+                        ${data.method}
+                    </p>
+
+                    <!-- FOOTER -->
+                    <div class="modal-footer">
+
+                        <div class="stats">
+
+                            <span>
+                                🔥 ${data.calories} kcal
+                            </span>
+
+                            |
+
+                            <span>
+                                ⏱ ${data.prep_time} min
+                            </span>
+
+                        </div>
+
+                        <button
+                            class="heart-btn"
+                            onclick="changecolor(this, '${data.title}')"
+                        >
+                            ❤
+                        </button>
+
+                    </div>
+
+                </div>
+            `;
+
+            // =====================================================
+            // MODAL BACKGROUND IMAGE
+            // =====================================================
+            modalContent.style.backgroundImage = `
+                linear-gradient(
+                    rgba(255,255,255,0.90),
+                    rgba(255,255,255,0.90)
+                ),
+                url('${data.image_url}')
+            `;
+
+            modalContent.style.backgroundSize = "cover";
+
+            modalContent.style.backgroundPosition = "center";
+
+            modalContent.style.backgroundRepeat = "no-repeat";
+
+            // =====================================================
+            // RESET SCROLL POSITION
+            // =====================================================
+            modalContent.scrollTop = 0;
+
+            // =====================================================
+            // SHOW MODAL
+            // =====================================================
+            modal.style.display = "flex";
+
+            // =====================================================
+            // PREVENT PAGE SCROLL
+            // =====================================================
+            document.body.style.overflow = "hidden";
+
+        })
+
+        .catch(error => {
+
+            console.error("Error fetching recipe:", error);
+
+            alert("Failed to load recipe details.");
+        });
+
 }
 
+
+// ==========================================================================
+// CLOSE MODAL
+// ==========================================================================
 function closeModal() {
-    document.getElementById('recipeModal').style.display = "none";
+
+    const modal = document.getElementById('recipeModal');
+
+    modal.style.display = "none";
+
+    // إعادة السكرول للصفحة
+    document.body.style.overflow = "auto";
 }
 
-// 4. --- Favorites Logic (القلب الأحمر) ---
+
+// ==========================================================================
+// FAVORITES BUTTON
+// ==========================================================================
 function changecolor(heartIcon, recipeTitle) {
+
     heartIcon.classList.toggle('active');
-    
+
     if (heartIcon.classList.contains('active')) {
-        heartIcon.style.color = "#e74c3c"; 
-        // ممكن لاحقاً نربط دي بـ Backend لحفظ المفضلة
+
+        heartIcon.style.color = "#e74c3c";
+
         console.log("Added to favorites:", recipeTitle);
+
     } else {
+
         heartIcon.style.color = "";
     }
 }

@@ -69,10 +69,11 @@
                         <span>🔥 {{ recipe.calories }} kcal</span>
                     </div>
                     <a href="javascript:void(0)" onclick="openRecipeModal('{{ recipe.id }}')" class="btn-healthy">View Details</a>
-                    <span class="heart" title="Add to Favorites" 
+                    
+                    <span class="heart-icon-grid" title="Add to Favorites" 
                           data-id="{{ recipe.id }}"
-                          onclick="changecolor(this)" 
-                          style="cursor: pointer; font-size: 24px; float: right; margin-top: -40px;">♥</span>
+                          onclick="changecolor(this, '{{ recipe.title }}')" 
+                          style="cursor: pointer; font-size: 24px; float: right; margin-top: -40px; transition: 0.3s;">♥</span>
                 </div>
             </div>
             {% empty %}
@@ -84,12 +85,10 @@
         </div>
     </main>
 
-    <!-- Modal for Recipe Details -->
     <div id="recipeModal" class="modal">
         <div class="glass-card" id="recipeModalContent">
             <div id="modalBody">
-                <!-- Content will be injected by JavaScript -->
-            </div>
+                </div>
         </div>
     </div>
 

@@ -64,6 +64,47 @@
                     {{ form.image }}
                 </div>
 
+                <!-- ===== Healthy-Exclusive Fields ===== -->
+                <!-- These appear ONLY when the "Healthy" category is selected -->
+                <div id="healthy-fields" style="display: none; border: 2px solid #27ae60; border-radius: 10px; padding: 20px; margin-bottom: 20px; background: #f0fff4;">
+                    <p style="font-weight: bold; color: #27ae60; margin: 0 0 15px 0;">🥗 Healthy Page Details</p>
+
+                    <div class="form-group" style="margin-bottom: 15px;">
+                        <label style="display: block; margin-bottom: 5px;">Diet Type</label>
+                        {{ form.diet_type }}
+                    </div>
+
+                    <div class="form-group" style="margin-bottom: 15px;">
+                        <label style="display: block; margin-bottom: 5px;">Preparation Time (minutes)</label>
+                        {{ form.prep_time }}
+                    </div>
+
+                    <div class="form-group" style="margin-bottom: 0;">
+                        <label style="display: block; margin-bottom: 5px;">Calories (kcal)</label>
+                        {{ form.calories }}
+                    </div>
+                </div>
+
+                <script>
+                    (function () {
+                        const categorySelect = document.getElementById('id_category');
+                        const healthyFields  = document.getElementById('healthy-fields');
+
+                        function toggleHealthyFields() {
+                            const selected = categorySelect.options[categorySelect.selectedIndex];
+                            if (selected && selected.text.trim().toLowerCase() === 'healthy') {
+                                healthyFields.style.display = 'block';
+                            } else {
+                                healthyFields.style.display = 'none';
+                            }
+                        }
+
+                        categorySelect.addEventListener('change', toggleHealthyFields);
+                        // Run immediately so edit-mode works correctly
+                        toggleHealthyFields();
+                    })();
+                </script>
+
                 <div style="text-align: center;">
                     <button type="submit" class="btn-main" style="width: 100%; padding: 12px; font-size: 16px;">Save Recipe to Database</button>
                 </div>
