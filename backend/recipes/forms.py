@@ -3,7 +3,6 @@ from django.contrib.auth.models import User
 from django.core.exceptions import ValidationError
 from .models import Recipe
 
-# 1. نموذج تسجيل المستخدم (Sign Up Form)
 class RegisterForm(forms.ModelForm):
     password = forms.CharField(
         widget=forms.PasswordInput(attrs={'placeholder': 'Enter Password', 'class': 'form-control'}),
@@ -38,7 +37,6 @@ class RegisterForm(forms.ModelForm):
 
         return cleaned_data
 
-# 2. نموذج إضافة وتعديل الوصفات (Recipe Form)
 class RecipeForm(forms.ModelForm):
     class Meta:
         model = Recipe

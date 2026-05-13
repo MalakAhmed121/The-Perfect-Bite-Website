@@ -60,17 +60,14 @@ def ajax_search(request):
 
     return JsonResponse({"results": data})
 
-# --- نظام التصنيفات (الحل لمشكلة صفحة Healthy) ---
 
 def category_detail(request, category_name):
-    # تحويل النص لصيغة موحدة للبحث
     category_slug = category_name.lower().replace("-", " ").strip()
     
     favorite_recipe_ids = []
     if request.user.is_authenticated:
         favorite_recipe_ids = Favorite.objects.filter(user=request.user).values_list('recipe_id', flat=True)
 
-    # 1. التحقق إذا كان المطلوب هو صفحة Healthy
     if category_slug == 'healthy':
         recipes = Recipe.objects.filter(category__name__iexact='Healthy')
         return render(request, "recipes/healthy/Healthy Food.html", {
@@ -79,16 +76,13 @@ def category_detail(request, category_name):
             "favorite_recipe_ids": favorite_recipe_ids
         })
     
-    # 2. التعامل مع باقي التصنيفات ديناميكياً
     category_obj = get_object_or_404(Category, name__iexact=category_slug)
     recipes = Recipe.objects.filter(category=category_obj)
     
-    # Smart Template Selection
     category_slug = category_slug.lower()
     clean_name = category_slug.replace(" ", "_").replace("-", "_")
     simple_name = category_slug.replace(" ", "").replace("-", "")
     
-    # Hardcoded hub mapping for reliability
     hub_templates = {
         'bakery': 'recipes/bakery/bakery.html',
         'main dish': 'recipes/main_dish/maindish.html',
@@ -101,7 +95,6 @@ def category_detail(request, category_name):
     template_name = hub_templates.get(category_slug)
     
     if not template_name:
-        # List of possible template paths for sub-categories
         possible_templates = [
             f"recipes/{clean_name}/{clean_name}.html",
             f"recipes/{clean_name}/{simple_name}.html",
@@ -125,7 +118,6 @@ def category_detail(request, category_name):
             except TemplateDoesNotExist:
                 continue
         
-        # If still no template found, default to a sensible one
         if not template_name:
             template_name = "recipes/recipes.html"
 
@@ -186,8 +178,6 @@ def login_page(request):
 def logout_user(request):
     logout(request)
     return redirect("login")
-
-# --- لوحة تحكم الإدارة (Admin Portal) ---
 
 @login_required(login_url="login")
 def admin_recipe(request):
