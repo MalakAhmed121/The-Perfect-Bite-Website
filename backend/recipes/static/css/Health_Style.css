@@ -114,12 +114,14 @@ body {
 .hero-content h1 {
   font-size: 3.5rem;
   margin-bottom: 15px;
-
+  color: var(--healthy-primary) !important;
   text-shadow: 2px 2px 10px rgba(0,0,0,0.5);
 }
 
 .hero-content p {
   font-size: 1.2rem;
+  color: var(--healthy-primary) !important;
+  font-weight: 500;
 }
 
 .btn-hero {
@@ -153,6 +155,7 @@ body {
 
 .section-title {
   margin-bottom: 25px;
+  color: var(--healthy-primary);
 }
 
 .diet-tabs {
@@ -166,10 +169,10 @@ body {
 .tab-btn {
   padding: 10px 25px;
 
-  border: 2px solid var(--healthy-primary);
-  background: transparent;
+  border: 2px solid var(--healthy-primary) !important;
+  background: transparent !important;
 
-  color: var(--healthy-primary);
+  color: var(--healthy-primary) !important;
 
   border-radius: 30px;
 
@@ -181,8 +184,8 @@ body {
 
 .tab-btn:hover,
 .tab-btn.active {
-  background: var(--healthy-primary);
-  color: white;
+  background: var(--healthy-primary) !important;
+  color: white !important;
 }
 
 /* =========================
@@ -400,22 +403,23 @@ body {
    SCROLLBAR
 ========================= */
 .glass-card::-webkit-scrollbar {
-  width: 12px;
+  width: 10px;
 }
 
 .glass-card::-webkit-scrollbar-track {
   background: #f1f1f1;
-  border-radius: 20px;
+  border-radius: 50px;
+  margin: 15px 0;
 }
 
 .glass-card::-webkit-scrollbar-thumb {
-  background: #27ae60;
-  border-radius: 20px;
-  border: 2px solid white;
+  background: var(--healthy-primary);
+  border-radius: 50px;
+  border: 2px solid #f1f1f1;
 }
 
 .glass-card::-webkit-scrollbar-thumb:hover {
-  background: #1e8449;
+  background: var(--healthy-dark);
 }
 
 /* =========================
@@ -429,16 +433,14 @@ body {
    CLOSE BUTTON
 ========================= */
 .close-btn {
-  position: sticky;
-  top: 0;
+  position: absolute;
+  top: 20px;
+  right: 20px;
 
-  float: right;
-
-  width: 45px;
-  height: 45px;
+  width: 40px;
+  height: 40px;
 
   border-radius: 50%;
-
   background: white;
 
   display: flex;
@@ -446,12 +448,18 @@ body {
   align-items: center;
 
   color: var(--healthy-primary);
-
-  font-size: 35px;
+  font-size: 28px;
+  font-weight: bold;
 
   cursor: pointer;
-
+  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
   z-index: 100;
+  transition: var(--transition);
+}
+
+.close-btn:hover {
+  transform: rotate(90deg) scale(1.1);
+  color: #e74c3c;
 }
 
 /* =========================
@@ -524,28 +532,31 @@ body {
    HEART BUTTON
 ========================= */
 .heart-btn {
-  width: 60px;
-  height: 60px;
+  width: 55px;
+  height: 55px;
 
   border: none;
-
   border-radius: 50%;
 
-  background: #f1f1f1;
-  color: var(--healthy-primary); /* Green heart by default */
-  border: 2px solid var(--healthy-primary);
+  background: white !important;
+  color: var(--healthy-primary) !important;
+  border: 2px solid var(--healthy-primary) !important;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
   font-size: 1.8rem;
-
   cursor: pointer;
-
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  margin: 0 auto;
   transition: 0.3s;
 }
 
 .heart-btn.active {
-  background: #f1f1f1;
-  color: #e74c3c !important; /* Red heart when active */
-  border-color: #e74c3c;
+  background: white !important;
+  color: #e74c3c !important;
+  border-color: #e74c3c !important;
   box-shadow: 0 5px 15px rgba(231,76,60,0.3);
 }
 
