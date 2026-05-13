@@ -2,7 +2,6 @@ from django.urls import path
 from . import views
 
 urlpatterns = [
-    # 1. الصفحات الأساسية (Main Pages)
     path("", views.home, name="home"),
     path("cover/", views.cover, name="cover"),
     path("favorites/", views.favorites, name="favorites"),
@@ -10,27 +9,19 @@ urlpatterns = [
     path('search/', views.search_page, name='search'),
     path('ajax-search/', views.ajax_search, name='ajax_search'),
     
-    # 2. صفحة تفاصيل الوصفة (Slug for SEO)
     path("recipe/<slug:slug>/", views.recipe_details, name="recipe_detail"),
     
-    # 3. نظام الحسابات (Authentication)
     path("login/", views.login_page, name="login"),
     path("signup/", views.signup_page, name="signup"),
     path("logout/", views.logout_user, name="logout"),
     
-    # 4. إدارة الوصفات (CRUD)
     path("add-recipe/", views.add_recipe, name="add_recipe"),
     path("edit-recipe/<int:id>/", views.edit_recipe, name="edit_recipe"),
     path("delete-recipe/<int:id>/", views.delete_recipe, name="delete_recipe"),
     
-    # 5. نظام التصنيفات (الحل لمشكلة صفحة Healthy)
-    # ملاحظة: وضعنا رابط "healthy" هنا لضمان عدم تداخله مع الكاتيجوري العام
     path("category/healthy/", views.category_detail, {'category_name': 'healthy'}, name="healthy"),
-    
-    # الرابط الديناميكي لباقي الأقسام
     path("category/<str:category_name>/", views.category_detail, name="category_detail"),
     
-    # 6. اختصارات الأقسام (Shortcuts لتتوافق مع الروابط في Navbar)
     path("main-dish/", views.category_detail, {'category_name': 'Main Dish'}, name="main_dish"),
     path("beef/", views.category_detail, {'category_name': 'Beef'}, name="beef"),
     path("chicken/", views.category_detail, {'category_name': 'Chicken'}, name="chicken"),
@@ -64,6 +55,5 @@ urlpatterns = [
     path("toggle-favorite/<int:recipe_id>/", views.toggle_favorite, name="toggle_favorite"),
     path("recipe-api/<int:recipe_id>/", views.recipe_api, name="recipe_api"),
     
-    # 7. لوحة التحكم (Admin Portal)
     path("admin-recipe/", views.admin_recipe, name="admin_recipe"),
 ]

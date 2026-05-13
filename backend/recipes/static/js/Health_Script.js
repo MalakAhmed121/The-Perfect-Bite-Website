@@ -18,15 +18,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
         btn.addEventListener('click', () => {
 
-            // إزالة active من كل الأزرار
             tabBtns.forEach(b => b.classList.remove('active'));
 
-            // إضافة active للزر الحالي
             btn.classList.add('active');
 
             const selectedDiet = btn.getAttribute('data-diet');
 
-            // فلترة الكروت
             document.querySelectorAll('.recipe-card').forEach(card => {
 
                 if (
@@ -213,10 +210,6 @@ function closeModal() {
 
     modal.style.display = "none";
 
-    // إعادة السكرول للصفحة
+
     document.body.style.overflow = "auto";
 }
-
-
-// Note: changecolor is now handled by bakery-java.js to avoid duplication
-// and ensure AJAX favorites work across all pages.
