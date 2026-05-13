@@ -82,7 +82,7 @@
 </style>
 
 <body style="background-color: #f2e7df; text-align: center;">
-      <div id="navbar">
+    <div id="navbar">
         <nav class="main-nav">
             <div class="logo">Yummy</div>
             <ul class="nav-links">
@@ -91,11 +91,12 @@
                 <li><a href="{% url 'search' %}">Search</a></li>
                 <li><a href="{% url 'favorites' %}">Favorites</a></li>
                 {% if user.is_staff %}
-               <li><a href="{% url 'admin_recipe' %}">Admin</a></li>
-                {% endif %}
+                <li><a href="{% url 'admin_recipe' %}">Admin</a></li>
                 <li><a href="{% url 'add_recipe' %}">Add Recipe</a></li>
+                {% endif %}
                 <li><a href="{% url 'login' %}">Login</a></li>
                 <li><a href="{% url 'signup' %}">Sign Up</a></li>
+                <li><a href="{% url 'logout' %}">Logout</a></li>
             </ul>
         </nav>
     </div>
@@ -106,7 +107,7 @@
             <h2>Main Dishes</h2>
             <a href="{% url 'main_dish' %}" class="btn-main">View Recipes</a>
         </div>
-        
+
         <div class="recipe" id="healthy-food">
             <h2>Healthy Food</h2>
             <a href="{% url 'healthy' %}" class="btn-main">View Recipes</a>
@@ -126,11 +127,12 @@
             <h2>Appetizers</h2>
             <a href="{% url 'appetizers' %}" class="btn-main">View Recipes</a>
         </div>
-        
+
         <div class="recipe" id="drinks">
             <h2>Drinks</h2>
             <a href="{% url 'drinks' %}" class="btn-main">View Recipes</a>
         </div>
     </section>
 </body>
+
 </html>

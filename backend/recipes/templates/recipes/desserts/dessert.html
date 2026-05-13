@@ -1,34 +1,66 @@
 {% load static %}
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Yummy - Desserts</title>
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
     <link rel="stylesheet" href="{% static 'css/dessert.css' %}">
     <style>
-        .main { background-image: url("{% static 'dessertimages/background.jpg' %}") !important; }
-        #tiramisu, #tiramisu-card { background-image: url("{% static 'dessertimages/tiramisu.jpg' %}"); }
-        #blackforest-cheesecake, #blackforest-cheesecake-card { background-image: url("{% static 'dessertimages/blackforest.jpg' %}"); }
-        #brownie, #brownie-card { background-image: url("{% static 'dessertimages/brownie.jpg' %}"); }
-        #strawberryCake, #strawberryCake-card { background-image: url("{% static 'dessertimages/strawberrycake.jpg' %}"); }
-        #CremeCaramel, #CremeCaramel-card { background-image: url("{% static 'dessertimages/creamecramel.jpg' %}"); }
-        #cupcake, #cupcake-card { background-image: url("{% static 'dessertimages/cupcake.jpg' %}"); }
+        .main {
+            background-image: url("{% static 'dessertimages/background.jpg' %}") !important;
+        }
+
+        #tiramisu,
+        #tiramisu-card {
+            background-image: url("{% static 'dessertimages/tiramisu.jpg' %}");
+        }
+
+        #blackforest-cheesecake,
+        #blackforest-cheesecake-card {
+            background-image: url("{% static 'dessertimages/blackforest.jpg' %}");
+        }
+
+        #brownie,
+        #brownie-card {
+            background-image: url("{% static 'dessertimages/brownie.jpg' %}");
+        }
+
+        #strawberryCake,
+        #strawberryCake-card {
+            background-image: url("{% static 'dessertimages/strawberrycake.jpg' %}");
+        }
+
+        #CremeCaramel,
+        #CremeCaramel-card {
+            background-image: url("{% static 'dessertimages/creamecramel.jpg' %}");
+        }
+
+        #cupcake,
+        #cupcake-card {
+            background-image: url("{% static 'dessertimages/cupcake.jpg' %}");
+        }
     </style>
 </head>
+
 <body>
     <div id="navbar">
         <nav class="main-nav">
             <div class="logo">Yummy</div>
             <ul class="nav-links">
+                <li><a href="{% url 'cover' %}">Team</a></li>
                 <li><a href="{% url 'home' %}">Home</a></li>
                 <li><a href="{% url 'search' %}">Search</a></li>
                 <li><a href="{% url 'favorites' %}">Favorites</a></li>
                 {% if user.is_staff %}
                 <li><a href="{% url 'admin_recipe' %}">Admin</a></li>
-                {% endif %}
                 <li><a href="{% url 'add_recipe' %}">Add Recipe</a></li>
+                {% endif %}
+                <li><a href="{% url 'login' %}">Login</a></li>
+                <li><a href="{% url 'signup' %}">Sign Up</a></li>
+                <li><a href="{% url 'logout' %}">Logout</a></li>
             </ul>
         </nav>
     </div>
@@ -45,13 +77,13 @@
 
     <div class="recipes-container">
         {% for recipe in recipes %}
-        <div class="recipe-card" 
-             id="recipe-{{ recipe.pk }}" 
-             style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.4)), url('{{ recipe.image.url }}'); background-size: cover; background-position: center;"
-             onclick="openCard(event, 'recipe-{{ recipe.pk }}-card')">
+        <div class="recipe-card" id="recipe-{{ recipe.pk }}"
+            style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.4)), url('{{ recipe.image.url }}'); background-size: cover; background-position: center;"
+            onclick="openCard(event, 'recipe-{{ recipe.pk }}-card')">
             <h2>{{ recipe.title }}</h2>
             <p>{{ recipe.description|truncatewords:15 }}</p>
-            <a href="javascript:void(0)" class="btn-main" onclick="openCard(event, 'recipe-{{ recipe.pk }}-card')">View Recipe</a>
+            <a href="javascript:void(0)" class="btn-main" onclick="openCard(event, 'recipe-{{ recipe.pk }}-card')">View
+                Recipe</a>
         </div>
         {% empty %}
         <p style="text-align: center; grid-column: 1/-1;">No dessert recipes found yet. Add some in the Admin panel!</p>
@@ -63,7 +95,7 @@
     <div class="details-card" id="recipe-{{ recipe.pk }}-card" style="background-image: url('{{ recipe.image.url }}');">
         <div class="recipe-content-box">
             <h2 style="text-align:center;">{{ recipe.title }}</h2>
-            
+
             <h3>Ingredients</h3>
             <ul class="recipe-list">
                 {% for line in recipe.ingredients.splitlines %}
@@ -77,7 +109,7 @@
                 <li>{{ line }}</li>
                 {% endfor %}
             </ul>
-            
+
             <span class="heart" data-id="{{ recipe.id }}" onclick="changecolor(this)">♥</span>
         </div>
     </div>
@@ -86,4 +118,5 @@
     <script src="{% static 'js/bakery-java.js' %}"></script>
 
 </body>
+
 </html>

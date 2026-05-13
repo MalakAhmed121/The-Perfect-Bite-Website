@@ -10,7 +10,7 @@
 	<link rel="stylesheet" type="text/css" href="{% static 'css/appetizers.css' %}">
 	<script src="{% static 'js/search-js.js' %}"></script>
 	<script src="{% static 'js/bakery-java.js' %}"></script>
-	
+
 
 	<style>
 		#navbar {
@@ -78,19 +78,55 @@
 			transform: scale(1.2);
 		}
 
-        /* --- Fix Background Images --- */
-        .main {
-            background-image: url("{% static 'appetizersimgs/main1.jpg' %}") !important;
-        }
-        #DeviledEggs, #DeviledEggs-card { background-image: url("{% static 'appetizersimgs/pic1.jpg' %}"); }
-        #SpinachArtichokeDip, #SpinachArtichokeDip-card { background-image: url("{% static 'appetizersimgs/pic2.jpg' %}"); }
-        #ChickenWings, #ChickenWings-card { background-image: url("{% static 'appetizersimgs/pic3.jpg' %}"); }
-        #JalapenoPoppers, #JalapenoPoppers-card { background-image: url("{% static 'appetizersimgs/pic4.jpg' %}"); }
-        #StuffedMushrooms, #StuffedMushrooms-card { background-image: url("{% static 'appetizersimgs/mushroom.jpeg' %}"); }
-        #Crostini, #Crostini-card { background-image: url("{% static 'appetizersimgs/pic5.jpeg' %}"); }
-        #CharcuterieBoard, #CharcuterieBoard-card { background-image: url("{% static 'appetizersimgs/pic7.jpeg' %}"); }
-        #Sliders, #Sliders-card { background-image: url("{% static 'appetizersimgs/pic6.jpeg' %}"); }
-        #ShrimpCocktail, #ShrimpCocktail-card { background-image: url("{% static 'appetizersimgs/pic8.jpeg' %}"); }
+		/* --- Fix Background Images --- */
+		.main {
+			background-image: url("{% static 'appetizersimgs/main1.jpg' %}") !important;
+		}
+
+		#DeviledEggs,
+		#DeviledEggs-card {
+			background-image: url("{% static 'appetizersimgs/pic1.jpg' %}");
+		}
+
+		#SpinachArtichokeDip,
+		#SpinachArtichokeDip-card {
+			background-image: url("{% static 'appetizersimgs/pic2.jpg' %}");
+		}
+
+		#ChickenWings,
+		#ChickenWings-card {
+			background-image: url("{% static 'appetizersimgs/pic3.jpg' %}");
+		}
+
+		#JalapenoPoppers,
+		#JalapenoPoppers-card {
+			background-image: url("{% static 'appetizersimgs/pic4.jpg' %}");
+		}
+
+		#StuffedMushrooms,
+		#StuffedMushrooms-card {
+			background-image: url("{% static 'appetizersimgs/mushroom.jpeg' %}");
+		}
+
+		#Crostini,
+		#Crostini-card {
+			background-image: url("{% static 'appetizersimgs/pic5.jpeg' %}");
+		}
+
+		#CharcuterieBoard,
+		#CharcuterieBoard-card {
+			background-image: url("{% static 'appetizersimgs/pic7.jpeg' %}");
+		}
+
+		#Sliders,
+		#Sliders-card {
+			background-image: url("{% static 'appetizersimgs/pic6.jpeg' %}");
+		}
+
+		#ShrimpCocktail,
+		#ShrimpCocktail-card {
+			background-image: url("{% static 'appetizersimgs/pic8.jpeg' %}");
+		}
 	</style>
 </head>
 
@@ -99,6 +135,7 @@
 	<div id="navbar">
 		<nav class="main-nav">
 			<div class="logo">Yummy 🍲</div>
+
 			<ul class="nav-links">
 				<button id="backbutton" class="big-arrow-btn" type="button" aria-label="Go Back">
 					&#8592;
@@ -109,10 +146,11 @@
 				<li><a href="{% url 'favorites' %}">Favorites</a></li>
 				{% if user.is_staff %}
 				<li><a href="{% url 'admin_recipe' %}">Admin</a></li>
-				{% endif %}
 				<li><a href="{% url 'add_recipe' %}">Add Recipe</a></li>
+				{% endif %}
 				<li><a href="{% url 'login' %}">Login</a></li>
 				<li><a href="{% url 'signup' %}">Sign Up</a></li>
+				<li><a href="{% url 'logout' %}">Logout</a></li>
 			</ul>
 		</nav>
 	</div>
@@ -128,44 +166,45 @@
 	<h2 class="h2"> Our Recipes </h2>
 	<!-- Recipe cards grid — generated from DB -->
 	<div class="recipes-container">
-        {% for recipe in recipes %}
-        <div class="recipe-card" 
-             id="recipe-{{ recipe.pk }}" 
-             style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.4)), url('{{ recipe.image.url }}'); background-size: cover; background-position: center;"
-             onclick="openCard(event, 'recipe-{{ recipe.pk }}-card')">
-            <h2>{{ recipe.title }}</h2>
-            <p>{{ recipe.description|truncatewords:15 }}</p>
-            <a href="javascript:void(0)" class="btn-main" onclick="openCard(event, 'recipe-{{ recipe.pk }}-card')">View Recipe</a>
-        </div>
-        {% empty %}
-        <p style="text-align: center; grid-column: 1/-1;">No appetizer recipes found yet. Add some in the Admin panel!</p>
-        {% endfor %}
-    </div>
+		{% for recipe in recipes %}
+		<div class="recipe-card" id="recipe-{{ recipe.pk }}"
+			style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.4)), url('{{ recipe.image.url }}'); background-size: cover; background-position: center;"
+			onclick="openCard(event, 'recipe-{{ recipe.pk }}-card')">
+			<h2>{{ recipe.title }}</h2>
+			<p>{{ recipe.description|truncatewords:15 }}</p>
+			<a href="javascript:void(0)" class="btn-main" onclick="openCard(event, 'recipe-{{ recipe.pk }}-card')">View
+				Recipe</a>
+		</div>
+		{% empty %}
+		<p style="text-align: center; grid-column: 1/-1;">No appetizer recipes found yet. Add some in the Admin panel!
+		</p>
+		{% endfor %}
+	</div>
 
-    <!-- Recipe Details -->
-    {% for recipe in recipes %}
-    <div class="details-card" id="recipe-{{ recipe.pk }}-card" style="background-image: url('{{ recipe.image.url }}');">
-        <div class="recipe-content-box">
-            <h2 style="text-align:center;">{{ recipe.title }}</h2>
-            
-            <h3>Ingredients</h3>
-            <ul class="recipe-list">
-                {% for line in recipe.ingredients.splitlines %}
-                <li>{{ line }}</li>
-                {% endfor %}
-            </ul>
+	<!-- Recipe Details -->
+	{% for recipe in recipes %}
+	<div class="details-card" id="recipe-{{ recipe.pk }}-card" style="background-image: url('{{ recipe.image.url }}');">
+		<div class="recipe-content-box">
+			<h2 style="text-align:center;">{{ recipe.title }}</h2>
 
-            <p><strong>Preparation Steps:</strong></p>
-            <ul class="recipe-list">
-                {% for line in recipe.instructions.splitlines %}
-                <li>{{ line }}</li>
-                {% endfor %}
-            </ul>
-            
-            <span class="heart" data-id="{{ recipe.id }}" onclick="changecolor(this)">♥</span>
-        </div>
-    </div>
-    {% endfor %}
+			<h3>Ingredients</h3>
+			<ul class="recipe-list">
+				{% for line in recipe.ingredients.splitlines %}
+				<li>{{ line }}</li>
+				{% endfor %}
+			</ul>
+
+			<p><strong>Preparation Steps:</strong></p>
+			<ul class="recipe-list">
+				{% for line in recipe.instructions.splitlines %}
+				<li>{{ line }}</li>
+				{% endfor %}
+			</ul>
+
+			<span class="heart" data-id="{{ recipe.id }}" onclick="changecolor(this)">♥</span>
+		</div>
+	</div>
+	{% endfor %}
 
 
 
