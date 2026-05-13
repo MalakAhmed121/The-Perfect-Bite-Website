@@ -66,12 +66,17 @@ def category_detail(request, category_name):
     # تحويل النص لصيغة موحدة للبحث
     category_slug = category_name.lower().replace("-", " ").strip()
     
+    favorite_recipe_ids = []
+    if request.user.is_authenticated:
+        favorite_recipe_ids = Favorite.objects.filter(user=request.user).values_list('recipe_id', flat=True)
+
     # 1. التحقق إذا كان المطلوب هو صفحة Healthy
     if category_slug == 'healthy':
         recipes = Recipe.objects.filter(category__name__iexact='Healthy')
         return render(request, "recipes/healthy/Healthy Food.html", {
             "recipes": recipes,
-            "category": "Healthy Food"
+            "category": "Healthy Food",
+            "favorite_recipe_ids": favorite_recipe_ids
         })
     
     # 2. التعامل مع باقي التصنيفات ديناميكياً
@@ -127,7 +132,8 @@ def category_detail(request, category_name):
     return render(request, template_name, {
         "recipes": recipes, 
         "category": category_obj.name,
-        "category_obj": category_obj
+        "category_obj": category_obj,
+        "favorite_recipe_ids": favorite_recipe_ids
     })
 
 
@@ -257,6 +263,10 @@ def recipe_api(request, recipe_id):
     else:
         ingredients_list = [i.strip() for i in raw_ingredients.split(",") if i.strip()]
 
+    is_favorite = False
+    if request.user.is_authenticated:
+        is_favorite = Favorite.objects.filter(user=request.user, recipe=recipe).exists()
+
     return JsonResponse({
         "id":           recipe.id,
         "title":        recipe.title,
@@ -266,4 +276,5 @@ def recipe_api(request, recipe_id):
         "prep_time":    recipe.prep_time,
         "image_url":    recipe.image.url if recipe.image else "",
         "diet_type":    recipe.diet_type,
+        "is_favorite":  is_favorite,
     })

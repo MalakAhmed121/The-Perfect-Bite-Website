@@ -323,23 +323,27 @@ body {
 ========================= */
 .heart-icon-grid {
   position: absolute;
-
-  top: 20px;
-  left: 20px;
-
+  top: 15px;
+  left: 15px;
   z-index: 10;
-
-  font-size: 26px;
-
-  color: white;
-
+  
+  width: 40px;
+  height: 40px;
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  
+  font-size: 22px;
+  color: var(--healthy-primary); /* Green by default */
   cursor: pointer;
-
-  transition: 0.3s;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+  transition: var(--transition);
 }
 
 .heart-icon-grid.active {
-  color: #e74c3c;
+  color: #e74c3c !important; /* Red when active */
 }
 
 /* ==========================================================================
@@ -527,9 +531,9 @@ body {
 
   border-radius: 50%;
 
-  background: var(--healthy-primary);
-
-  color: white;
+  background: #f1f1f1;
+  color: var(--healthy-primary); /* Green heart by default */
+  border: 2px solid var(--healthy-primary);
 
   font-size: 1.8rem;
 
@@ -539,9 +543,9 @@ body {
 }
 
 .heart-btn.active {
-  background: white;
-  color: #e74c3c;
-
+  background: #f1f1f1;
+  color: #e74c3c !important; /* Red heart when active */
+  border-color: #e74c3c;
   box-shadow: 0 5px 15px rgba(231,76,60,0.3);
 }
 

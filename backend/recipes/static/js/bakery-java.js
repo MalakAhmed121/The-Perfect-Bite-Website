@@ -28,7 +28,7 @@ function changecolor(heartIcon) {
     if (!recipeId) {
         // Fallback for hardcoded recipes if they don't have a data-id yet
         heartIcon.classList.toggle('active');
-        heartIcon.style.color = heartIcon.classList.contains('active') ? "red" : "white";
+        heartIcon.style.color = ""; 
         return;
     }
 
@@ -45,11 +45,11 @@ function changecolor(heartIcon) {
         if (data.status === 'success') {
             if (data.is_favorite) {
                 heartIcon.classList.add('active');
-                heartIcon.style.color = "red";
+                heartIcon.style.color = ""; // Let CSS handle it
                 heartIcon.title = "Added to Favorites! ✨";
             } else {
                 heartIcon.classList.remove('active');
-                heartIcon.style.color = "white";
+                heartIcon.style.color = ""; // Let CSS handle it
                 heartIcon.title = "Add to Favorites";
             }
         } else {

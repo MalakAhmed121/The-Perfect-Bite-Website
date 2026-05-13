@@ -70,10 +70,10 @@
                     </div>
                     <a href="javascript:void(0)" onclick="openRecipeModal('{{ recipe.id }}')" class="btn-healthy">View Details</a>
                     
-                    <span class="heart-icon-grid" title="Add to Favorites" 
+                    <span class="heart-icon-grid {% if recipe.id in favorite_recipe_ids %}active{% endif %}" 
+                          title="Add to Favorites" 
                           data-id="{{ recipe.id }}"
-                          onclick="changecolor(this, '{{ recipe.title }}')" 
-                          style="cursor: pointer; font-size: 24px; float: right; margin-top: -40px; transition: 0.3s;">♥</span>
+                          onclick="changecolor(this, '{{ recipe.title }}')">♥</span>
                 </div>
             </div>
             {% empty %}

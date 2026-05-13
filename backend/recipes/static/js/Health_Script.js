@@ -148,7 +148,8 @@ function openRecipeModal(recipeId) {
                         </div>
 
                         <button
-                            class="heart-btn"
+                            class="heart-btn ${data.is_favorite ? 'active' : ''}"
+                            data-id="${data.id}"
                             onclick="changecolor(this, '${data.title}')"
                         >
                             ❤
@@ -217,21 +218,5 @@ function closeModal() {
 }
 
 
-// ==========================================================================
-// FAVORITES BUTTON
-// ==========================================================================
-function changecolor(heartIcon, recipeTitle) {
-
-    heartIcon.classList.toggle('active');
-
-    if (heartIcon.classList.contains('active')) {
-
-        heartIcon.style.color = "#e74c3c";
-
-        console.log("Added to favorites:", recipeTitle);
-
-    } else {
-
-        heartIcon.style.color = "";
-    }
-}
+// Note: changecolor is now handled by bakery-java.js to avoid duplication
+// and ensure AJAX favorites work across all pages.
