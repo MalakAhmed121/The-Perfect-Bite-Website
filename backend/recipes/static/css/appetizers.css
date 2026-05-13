@@ -26,7 +26,7 @@ body {
 
 /* Main Banner Section */
 .main {
-    background-image: url("{% static 'photos/appetizersimgs/main1.jpg' %}");
+    background-image: url('../appetizersimgs/main1.jpg');
     background-color: #8F6128ff;
     text-align: center;
     height: 630px;
@@ -162,7 +162,7 @@ body {
 #DeviledEggs-card
  
  {
-    background-image: url("{% static 'photos/appetizersimgs/pic1.jpg' %}");
+    background-image: url('../appetizersimgs/pic1.jpg');
 }
 
  
@@ -170,47 +170,47 @@ body {
 #SpinachArtichokeDip-card
  
  {
-    background-image: url("{% static 'photos/appetizersimgs/pic2.jpg' %}");
+    background-image: url('../appetizersimgs/pic2.jpg');
 }
 
  
 #ChickenWings,
 #ChickenWings-card{
-    background-image: url("{% static 'photos/appetizersimgs/pic3.jpg' %}");
+    background-image: url('../appetizersimgs/pic3.jpg');
 }
 
 #JalapenoPoppers,
 #JalapenoPoppers-card {
-    background-image: url("{% static 'photos/appetizersimgs/pic4.jpg' %}");
+    background-image: url('../appetizersimgs/pic4.jpg');
 }
 
 #StuffedMushrooms,
 #StuffedMushrooms-card{
  
-    background-image: url("{% static 'photos/appetizersimgs/mushroom.jpeg' %}");
+    background-image: url('../appetizersimgs/mushroom.jpeg');
 }
 
 #Crostini,
 #Crostini-card{
-    background-image: url("{% static 'photos/appetizersimgs/pic5.jpeg' %}");
+    background-image: url('../appetizersimgs/pic5.jpeg');
 
 }
 
 #CharcuterieBoard-card,
 #CharcuterieBoard{
-    background-image: url("{% static 'photos/appetizersimgs/pic7.jpeg' %}");
+    background-image: url('../appetizersimgs/pic7.jpeg');
 
 }
 
 #Sliders,
 #Sliders-card{
-     background-image: url("{% static 'photos/appetizersimgs/pic6.jpeg' %}");
+     background-image: url('../appetizersimgs/pic6.jpeg');
 
 }
 
 #ShrimpCocktail,
 #ShrimpCocktail-card{
-     background-image: url("{% static 'photos/appetizersimgs/pic8.jpeg' %}");
+     background-image: url('../appetizersimgs/pic8.jpeg');
 
 }
 

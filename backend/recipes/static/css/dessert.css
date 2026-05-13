@@ -9,7 +9,7 @@ body{
     color:#333333;
 }
 .main{
-    background-image:url("{% static 'dessertimages/background.jpg' %}");
+    background-image:url('../dessertimages/background.jpg');
      height: 630px;
     width: 1535px;
     background-size: cover;
@@ -130,27 +130,27 @@ body{
 
 #tiramisu,
 #tiramisu-card{
-    background-image: url("{% static 'dessertimages/tiramisu.jpg' %}");
+    background-image: url('../dessertimages/tiramisu.jpg');
 }
 #blackforest-cheesecake,
 #blackforest-cheesecake-card{
-    background-image: url("{% static 'dessertimages/blackforest.jpg' %}");
+    background-image: url('../dessertimages/blackforest.jpg');
 }
 #brownie,
 #brownie-card{
-    background-image: url("{% static 'dessertimages/brownie.jpg' %}");
+    background-image: url('../dessertimages/brownie.jpg');
 }
 #strawberryCake,
 #strawberryCake-card{
-    background-image: url("{% static 'dessertimages/strawberrycake.jpg' %}");
+    background-image: url('../dessertimages/strawberrycake.jpg');
 }
 #CremeCaramel,
 #CremeCaramel-card{
-    background-image: url("{% static 'dessertimages/creamecramel.jpg' %}");
+    background-image: url('../dessertimages/creamecramel.jpg');
 }
 #cupcake,
 #cupcake-card{
-    background-image: url("{% static 'dessertimages/cupcake.jpg' %}");
+    background-image: url('../dessertimages/cupcake.jpg');
 }
 
 .details-card {

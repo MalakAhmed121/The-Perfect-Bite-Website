@@ -10,12 +10,22 @@
         h1 {
             color: rgb(220, 228, 235);
         }
+        .hero-home-container {
+            background-image: url("{% static 'home-page.png' %}");
+            background-size: cover;
+            background-position: center;
+        }
     </style>
 </head>
 
 <body>
      <div id="navbar">
         <nav class="main-nav">
+            <div class="menu-icon">
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+            </div>
             <div class="logo">Yummy</div>
             <ul class="nav-links">
                 <li><a href="{% url 'cover' %}">Team</a></li>
@@ -42,7 +52,7 @@
         </nav>
     </div>
 
-    <main class="hero-home-container" style="background-image: url('/static/home-page.png'); background-size: cover; background-position: center;">
+    <main class="hero-home-container">
         <div class="hero-content">
             <h1 class="hungry-title">Sharpen Your Knives.</h1>
             <p class="hero-subtext">Step into the kitchen and turn simple ingredients into pure magic, because every
