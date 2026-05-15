@@ -6,22 +6,17 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Home Baked Recipes • Bakery</title>
-   
-    <link rel="stylesheet" href="{% static 'css/bakery-style.css' %}" />
-     <link rel="stylesheet" href="{% static 'css/style.css' %}" />
-    <style>
-        #GlazedDonuts, #GlazedDonuts-card { background-image: url("{% static 'bakeryimages/GlazedDonuts.jpeg' %}"); }
-        #ChocolateDonuts, #ChocolateDonuts-card { background-image: url("{% static 'bakeryimages/Chocolatdounts.jpeg' %}"); }
-        #FilledDonuts, #FilledDonuts-card { background-image: url("{% static 'bakeryimages/filledDounts.jpeg' %}"); }
-    </style>
+    <link rel="stylesheet" href="{% static 'css/bakery-style.css' %}?v=1.2" />
+    <!-- <link rel="stylesheet" href="{% static 'css/style.css' %}" /> -->
+
     <script src="{% static 'js/bakery-java.js' %}"></script>
 </head>
 
 <body>
-     <div id="navbar">
+    <div id="navbar">
         <nav class="main-nav">
             <div class="logo">Yummy</div>
-           <ul class="nav-links">
+            <ul class="nav-links">
                 <li><a href="{% url 'cover' %}">Team</a></li>
                 <li><a href="{% url 'home' %}">Home</a></li>
                 <li><a href="{% url 'search' %}">Search</a></li>
@@ -38,14 +33,12 @@
     </div>
 
     <div class="banner">
-        <img src="{% static 'bakeryimages/Donutsbanner.png' %}" style="width:100%; height:400px; object-fit:cover; margin-bottom:30px;">
+        <img src="{% static 'bakeryimages/Dountsbanner.png' %}" style="width:100%; height:400px; object-fit:cover;">
     </div>
 
-    <BR>
-    <BR>
+    <br><br>
 
-    <h2 class="h2">OUR Recipes </h2>
-
+    <h2 class="h2">OUR Recipes</h2>
 
     <div class="recipes-container">
         {% for recipe in recipes %}
@@ -61,15 +54,11 @@
         <p style="text-align: center; grid-column: 1/-1;">No donut recipes found yet. Add some in the Admin panel!</p>
         {% endfor %}
     </div>
-
-    <!-- Recipe Details -->
-    {% for recipe in recipes %}
-    <div class="detials-card" id="recipe-{{ recipe.pk }}-card">
+{% for recipe in recipes %}
+    <div class="details-card detials-card" id="recipe-{{ recipe.pk }}-card" style="background-image: url('{{ recipe.image.url }}');">
         <div class="recipe-content-box">
             <h2 style="text-align:center;">{{ recipe.title }}</h2>
             
-            <div style="height: 200px; background-image: url('{{ recipe.image.url }}'); background-size: cover; background-position: center; border-radius: 10px; margin-bottom: 20px;"></div>
-
             <h3>Ingredients</h3>
             <ul class="recipe-list">
                 {% for line in recipe.ingredients.splitlines %}
@@ -89,5 +78,4 @@
     </div>
     {% endfor %}
 </body>
-
 </html>
