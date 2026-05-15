@@ -1,6 +1,7 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8" />
     <title>Yummy - My Favorites</title>
@@ -56,7 +57,7 @@
                 {% endif %}
                 <li><a href="{% url 'login' %}">Login</a></li>
                 <li><a href="{% url 'signup' %}">Sign Up</a></li>
-                  <li><a href="{% url 'logout' %}">Logout</a></li>
+                <li><a href="{% url 'logout' %}">Logout</a></li>
             </ul>
         </nav>
     </div>
@@ -64,45 +65,47 @@
         <h1 class="fav" style="margin-top: 20px">MY FAVORITES</h1>
 
         {% if favorites %}
-            <div id="favorites-list">
-                {% for fav in favorites %}
-                <div class="recipe-card" 
-                     id="recipe-{{ fav.recipe.pk }}" 
-                     style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.4)), url('{{ fav.recipe.image.url }}'); background-size: cover; background-position: center;"
-                     onclick="openCard(event, 'recipe-{{ fav.recipe.pk }}-card')">
-                    <h2>{{ fav.recipe.title }}</h2>
-                    <p>{{ fav.recipe.description|truncatewords:15 }}</p>
-                    <a href="javascript:void(0)" class="btn-main" onclick="openCard(event, 'recipe-{{ fav.recipe.pk }}-card')" 
-                       style="margin-top: auto; align-self: center; background-color: #6B3E26; color: white; padding: 10px 20px; border-radius: 20px; text-decoration: none;">View Recipe</a>
-                </div>
-                {% endfor %}
+        <div id="favorites-list">
+            {% for fav in favorites %}
+            <div class="recipe-card" id="recipe-{{ fav.recipe.pk }}"
+                style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.4)), url('{{ fav.recipe.image.url }}'); background-size: cover; background-position: center;"
+                onclick="openCard(event, 'recipe-{{ fav.recipe.pk }}-card')">
+                <h2>{{ fav.recipe.title }}</h2>
+                <p>{{ fav.recipe.description|truncatewords:15 }}</p>
+                <a href="javascript:void(0)" class="btn-main"
+                    onclick="openCard(event, 'recipe-{{ fav.recipe.pk }}-card')"
+                    style="margin-top: auto; align-self: center; background-color: #6B3E26; color: white; padding: 10px 20px; border-radius: 20px; text-decoration: none;">View
+                    Recipe</a>
             </div>
+            {% endfor %}
+        </div>
         {% else %}
-            <div id="empty-state">
-                <div>
-                    <img class="favimg" src="{% static 'bakeryimages/favorite.png' %}" width="400" />
-                </div>
-                <h2 class="fav">Your favorites haven't arrived yet...</h2>
-                <p class="P-fav">
-                    Your personal collection of recipes is ready to grow.<br />
-                    Start saving the recipes you love and build your delicious collection!
-                </p>
-                <br />
-                <a href="{% url 'recipes' %}" style="text-decoration: none">
-                    <span class="favbutton">DISCOVER DELIGHTFUL RECIPES</span>
-                </a>
+        <div id="empty-state">
+            <div>
+                <img class="favimg" src="{% static 'bakeryimages/favorite.png' %}" width="400" />
             </div>
+            <h2 class="fav">Your favorites haven't arrived yet...</h2>
+            <p class="P-fav">
+                Your personal collection of recipes is ready to grow.<br />
+                Start saving the recipes you love and build your delicious collection!
+            </p>
+            <br />
+            <a href="{% url 'recipes' %}" style="text-decoration: none">
+                <span class="favbutton">DISCOVER DELIGHTFUL RECIPES</span>
+            </a>
+        </div>
         {% endif %}
     </div>
 
     <!-- Details Cards -->
     {% for fav in favorites %}
-    <div class="details-card" id="recipe-{{ fav.recipe.pk }}-card" 
-         style="display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 2000; height: 600px; width: 500px; border-radius: 40px; padding: 25px; background-size: cover; background-position: center; background-image: url('{{ fav.recipe.image.url }}');">
-        
-        <div class="recipe-content-box" style="margin-top: 50px; background-color: rgba(255,255,255,0.8); border-radius: 30px; padding: 30px; height: 450px; overflow-y: auto;">
+    <div class="details-card" id="recipe-{{ fav.recipe.pk }}-card"
+        style="display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 2000; height: 600px; width: 500px; border-radius: 40px; padding: 25px; background-size: cover; background-position: center; background-image: url('{{ fav.recipe.image.url }}');">
+
+        <div class="recipe-content-box"
+            style="margin-top: 50px; background-color: rgba(255,255,255,0.8); border-radius: 30px; padding: 30px; height: 450px; overflow-y: auto;">
             <h2 style="text-align:center; color: #4a332d;">{{ fav.recipe.title }}</h2>
-            
+
             <h3 style="color: #6B3E26;">Ingredients</h3>
             <ul style="list-style: none; padding: 0;">
                 {% for line in fav.recipe.ingredients.splitlines %}
@@ -116,15 +119,111 @@
                 {{ line }}<br>
                 {% endfor %}
             </p>
-            
+
             <div style="text-align: center; margin-top: 20px;">
-                <span class="heart" data-id="{{ fav.recipe.id }}" onclick="changecolor(this)" 
-                      style="color: red; font-size: 40px; cursor: pointer; text-shadow: 0 0 5px white;">♥</span>
+                <span class="heart" data-id="{{ fav.recipe.id }}" onclick="changecolor(this)"
+                    style="color: red; font-size: 40px; cursor: pointer; text-shadow: 0 0 5px white;">♥</span>
             </div>
         </div>
     </div>
     {% endfor %}
 
-    <script src="{% static 'js/bakery-java.js' %}"></script>
 
-    
+    <script>
+
+        function toggleFavorite(element) {
+
+            const recipeId = element.dataset.id;
+            const recipeCard = document.getElementById(`recipe-${recipeId}`);
+            const detailsCard = document.getElementById(`recipe-${recipeId}-card`);
+
+            if (element.style.color === "red") {
+
+                element.style.color = "white";
+
+                if (recipeCard) {
+                    recipeCard.remove();
+                }
+
+                if (detailsCard) {
+                    detailsCard.remove();
+                }
+
+                const remainingCards = document.querySelectorAll(".recipe-card");
+
+                if (remainingCards.length === 0) {
+
+                    document.getElementById("favorites-list").innerHTML = `
+                <div id="empty-state">
+                    <div>
+                        <img class="favimg"
+                             src="/static/bakeryimages/favorite.png"
+                             width="400" />
+                    </div>
+
+                    <h2 class="fav">
+                        Your favorites haven't arrived yet...
+                    </h2>
+
+                    <p class="P-fav">
+                        Your personal collection of recipes is ready to grow.<br />
+                        Start saving the recipes you love and build your delicious collection!
+                    </p>
+
+                    <br />
+
+                    <a href="/recipes/" style="text-decoration: none">
+                        <span class="favbutton">
+                            DISCOVER DELIGHTFUL RECIPES
+                        </span>
+                    </a>
+                </div>
+            `;
+                }
+
+            } else {
+
+                element.style.color = "red";
+            }
+        }
+
+        function openCard(event, cardId) {
+
+            event.stopPropagation();
+
+            const allCards = document.querySelectorAll(".details-card");
+
+            allCards.forEach(card => {
+                card.style.display = "none";
+            });
+
+            document.getElementById(cardId).style.display = "block";
+        }
+
+        document.addEventListener("click", function (event) {
+
+            const detailCards = document.querySelectorAll(".details-card");
+
+            detailCards.forEach(card => {
+
+                if (
+                    card.style.display === "block" &&
+                    !card.contains(event.target) &&
+                    !event.target.closest(".recipe-card")
+                ) {
+                    card.style.display = "none";
+                }
+            });
+        });
+
+        const detailCards = document.querySelectorAll(".details-card");
+
+        detailCards.forEach(card => {
+
+            card.addEventListener("click", function (event) {
+                event.stopPropagation();
+            });
+
+        });
+
+    </script>
