@@ -75,36 +75,108 @@
             </ul>
         </nav>
     </div>
-
-    <main class="hero-home-container">
+    <main class="new-hero-section">
         <div class="hero-content">
-            <h1 class="hungry-title">Sharpen Your Knives.</h1>
-            <p class="hero-subtext">Step into the kitchen and turn simple ingredients into pure magic, because every
-                great story starts with a sizzle.</p>
-            <a href="{% url 'recipes' %}" class="btn-main hero-btn">Explore Masterpieces</a>
+            <h1 class="hungry-title" style="font-size: 4.5rem; text-transform: uppercase; font-weight: 800; letter-spacing: 2px;">SHARPEN YOUR<br>KNIVES.</h1>
+            <p class="hero-subtext" style="font-size: 1.3rem; margin-top: 20px; font-weight: 500;">Turn simple ingredients into pure magic, because every<br>great story starts with a sizzle.</p>
+            <a href="{% url 'search' %}" class="btn-hero-pill" style="margin-top: 30px;">Explore Masterpieces</a>
         </div>
     </main>
-    <section class="quick-access-section">
-        <div class="home-card" onclick="location.href='/recipes/'">
-            <div class="card-icon"></div>
-            <h3>Recipes</h3>
-            <p>Discover the recipes that are breaking the internet this week.</p>
+
+    <div class="overlapping-cards-wrapper">
+        <div class="overlapping-cards-container">
+            <a href="{% url 'recipes' %}" class="feature-card" style="text-decoration: none; display: block; color: inherit;">
+                <div class="icon-circle">
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+                </div>
+                <h3>Recipes</h3>
+                <p>Discover the recipes that are breaking the internet this week.</p>
+            </a>
+            <a href="{% url 'search' %}" class="feature-card" style="text-decoration: none; display: block; color: inherit;">
+                <div class="icon-circle">
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+                </div>
+                <h3>Search</h3>
+                <p>Gourmet meals ready in under 15 minutes for your busy nights.</p>
+            </a>
+            <a href="{% url 'favorites' %}" class="feature-card" style="text-decoration: none; display: block; color: inherit;">
+                <div class="icon-circle">
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg>
+                </div>
+                <h3>Favorites</h3>
+                <p>Feeling cozy or adventurous? Find the perfect dish for your vibe.</p>
+            </a>
+        </div>
+    </div>
+
+    <section class="vibe-section">
+        <div class="vibe-filter">
+            <span class="vibe-label" style="font-weight: bold; color: var(--text-main);">What's Your Vibe?</span>
+            <span class="vibe-separator">|</span>
+            <a href="{% url 'main_dish' %}" class="vibe-link">Main Dishes</a>
+            <span class="vibe-separator">|</span>
+            <a href="{% url 'healthy' %}" class="vibe-link">Healthy Food</a>
+            <span class="vibe-separator">|</span>
+            <a href="{% url 'bakery' %}" class="vibe-link">Bakery</a>
+            <span class="vibe-separator">|</span>
+            <a href="{% url 'dessert' %}" class="vibe-link">Desserts</a>
+            <span class="vibe-separator">|</span>
+            <a href="{% url 'juices' %}" class="vibe-link">Juices</a>
+            <span class="vibe-separator">|</span>
+            <a href="{% url 'appetizers' %}" class="vibe-link">Appetizers</a>
         </div>
 
-        <div class="home-card" onclick="location.href='/search/'">
-            <div class="card-icon"></div>
-            <h3>Search</h3>
-            <p>Gourmet meals ready in under 15 minutes for your busy nights.</p>
-        </div>
+        <div class="bento-grid">
+            <a href="{% url 'main_dish' %}" class="bento-card bento-main-dish tall" style="text-decoration: none;">
+                <div class="bento-overlay"></div>
+                <div class="bento-content">
+                    <h3>Main Dishes</h3>
+                    <button class="bento-btn">View Recipes</button>
+                </div>
+            </a>
+            
+            <a href="{% url 'healthy' %}" class="bento-card bento-healthy" style="text-decoration: none;">
+                <div class="bento-overlay"></div>
+                <div class="bento-content">
+                    <h3>Healthy Food</h3>
+                    <button class="bento-btn">View Recipes</button>
+                </div>
+            </a>
+            
+            <a href="{% url 'bakery' %}" class="bento-card bento-bakery tall" style="text-decoration: none;">
+                <div class="bento-overlay"></div>
+                <div class="bento-content">
+                    <h3>Bakery</h3>
+                    <button class="bento-btn">View Recipes</button>
+                </div>
+            </a>
+            
+            <a href="{% url 'dessert' %}" class="bento-card bento-dessert" style="text-decoration: none;">
+                <div class="bento-overlay"></div>
+                <div class="bento-content">
+                    <h3>Desserts</h3>
+                    <button class="bento-btn">View Recipes</button>
+                </div>
+            </a>
 
-        <div class="home-card" onclick="location.href='/favorites/'">
-            <div class="card-icon"></div>
-            <h3>Favorites</h3>
-            <p>Feeling cozy or adventurous? Find the perfect dish for your vibe.</p>
+            <a href="{% url 'juices' %}" class="bento-card bento-juices" style="text-decoration: none;">
+                <div class="bento-overlay"></div>
+                <div class="bento-content">
+                    <h3>Juices</h3>
+                    <button class="bento-btn">View Recipes</button>
+                </div>
+            </a>
+
+            <a href="{% url 'appetizers' %}" class="bento-card bento-appetizers" style="text-decoration: none;">
+                <div class="bento-overlay"></div>
+                <div class="bento-content">
+                    <h3>Appetizers</h3>
+                    <button class="bento-btn">View Recipes</button>
+                </div>
+            </a>
         </div>
     </section>
-
-    <script src="{% static 'js/main.js' %}"></script>
+<script src="{% static 'js/main.js' %}"></script>
 </body>
 
 </html>

@@ -970,3 +970,269 @@ table tr:hover td {
         background-position: center;
         background-size: cover;
     }
+
+/* ============================================================
+   NEW HOMEPAGE DESIGN
+   ============================================================ */
+
+.new-hero-section {
+    min-height: 85vh;
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: white;
+    position: relative;
+    padding-bottom: 80px; /* Space for overlapping cards */
+}
+
+.new-hero-section::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.1) 100%);
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: 800px;
+    padding: 0 20px;
+}
+
+.btn-hero-pill {
+    display: inline-block;
+    background-color: rgba(169, 143, 111, 0.85); /* Brownish pill */
+    backdrop-filter: blur(5px);
+    color: white;
+    padding: 15px 40px;
+    border-radius: 50px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.btn-hero-pill:hover {
+    transform: translateY(-3px);
+    background-color: rgba(169, 143, 111, 1);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+    color: white;
+}
+
+/* Feature Cards Overlapping */
+.overlapping-cards-wrapper {
+    max-width: 1200px;
+    margin: -80px auto 40px auto;
+    position: relative;
+    z-index: 10;
+    padding: 0 20px;
+}
+
+.overlapping-cards-container {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.feature-card {
+    background: white;
+    border-radius: 20px;
+    padding: 40px 30px;
+    flex: 1;
+    text-align: center;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.05);
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.feature-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+}
+
+.icon-circle {
+    width: 60px;
+    height: 60px;
+    margin: 0 auto 20px auto;
+    color: var(--text-main);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.feature-card h3 {
+    color: var(--text-main);
+    font-size: 1.4rem;
+    margin-bottom: 15px;
+    font-weight: bold;
+}
+
+.feature-card p {
+    color: var(--text-muted);
+    font-size: 1rem;
+    line-height: 1.5;
+}
+
+/* Vibe Section */
+.vibe-section {
+    max-width: 1200px;
+    margin: 60px auto;
+    padding: 0 20px;
+}
+
+.vibe-filter {
+    text-align: center;
+    margin-bottom: 40px;
+    font-size: 1.1rem;
+}
+
+.vibe-link {
+    color: var(--text-muted);
+    text-decoration: none;
+    margin: 0 10px;
+    transition: color 0.3s ease;
+}
+
+.vibe-link:hover {
+    color: var(--text-main);
+}
+
+.vibe-separator {
+    color: #ccc;
+    margin: 0 5px;
+}
+
+/* Bento Grid */
+.bento-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(2, 250px);
+    gap: 20px;
+}
+
+.bento-card {
+    position: relative;
+    border-radius: 25px;
+    overflow: hidden;
+    background-size: cover;
+    background-position: center;
+    cursor: pointer;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.bento-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+}
+
+.bento-card:hover .bento-overlay {
+    background: linear-gradient(to top, rgba(0,0,0,0.9), rgba(0,0,0,0.2));
+}
+
+.bento-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(0,0,0,0.7), rgba(0,0,0,0.1));
+    transition: background 0.3s ease;
+}
+
+.bento-content {
+    position: absolute;
+    bottom: 30px;
+    left: 0;
+    right: 0;
+    text-align: center;
+    z-index: 2;
+    padding: 0 15px;
+}
+
+.bento-content h3 {
+    color: white;
+    font-size: 1.6rem;
+    margin-bottom: 15px;
+    text-shadow: 0 2px 5px rgba(0,0,0,0.5);
+    font-weight: 600;
+}
+
+.bento-btn {
+    background-color: rgba(169, 143, 111, 0.7);
+    backdrop-filter: blur(5px);
+    color: white;
+    border: none;
+    padding: 10px 25px;
+    border-radius: 50px;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.bento-btn:hover {
+    background-color: white;
+    color: #4b1f11;
+}
+
+.bento-card.tall {
+    grid-row: span 2;
+}
+
+@media (max-width: 900px) {
+    .overlapping-cards-container {
+        flex-direction: column;
+    }
+    .overlapping-cards-wrapper {
+        margin-top: -40px;
+    }
+    .bento-grid {
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: auto;
+    }
+    .bento-card.tall {
+        grid-row: span 1;
+        height: 250px;
+    }
+    .bento-card {
+        height: 250px;
+    }
+    .vibe-filter {
+        line-height: 2;
+    }
+}
+@media (max-width: 600px) {
+    .bento-grid {
+        grid-template-columns: 1fr;
+    }
+    .new-hero-section h1 {
+        font-size: 3rem !important;
+    }
+}
+
+
+/* Bento & Hero Background Images */
+.new-hero-section {
+    background-image: url("../premium_kitchen_hero.png");
+}
+.bento-main-dish {
+    background-image: url("../maindish/main.jpg");
+}
+.bento-healthy {
+    background-image: url("../Healthy_images/healthy_food.jpg");
+}
+.bento-bakery {
+    background-image: url("../bakeryimages/bakery12.png");
+}
+.bento-dessert {
+    background-image: url("../dessertimages/background.jpg");
+}
+.bento-juices {
+    background-image: url("../drinksimages/juices.jpeg");
+}
+.bento-appetizers {
+    background-image: url("../appetizersimgs/main1.jpg");
+}
