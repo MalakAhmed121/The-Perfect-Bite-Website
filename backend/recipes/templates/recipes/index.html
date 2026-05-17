@@ -10,6 +10,7 @@
         h1 {
             color: rgb(220, 228, 235);
         }
+
         .hero-home-container {
             background-image: url("{% static 'home-page.png' %}");
             background-size: cover;
@@ -19,7 +20,7 @@
 </head>
 
 <body>
-     <div id="navbar">
+    <div id="navbar">
         <nav class="main-nav">
             <div class="menu-icon">
                 <div class="bar"></div>
@@ -27,7 +28,7 @@
                 <div class="bar"></div>
             </div>
             <div class="logo">Yummy</div>
-          <ul class="nav-links">
+            <ul class="nav-links">
                 <li><a href="{% url 'cover' %}">Team</a></li>
                 <li><a href="{% url 'home' %}">Home</a></li>
                 <li><a href="{% url 'search' %}">Search</a></li>
@@ -38,9 +39,9 @@
                 {% endif %}
                 <li><a href="{% url 'login' %}">Login</a></li>
                 <li><a href="{% url 'signup' %}">Sign Up</a></li>
-                  <li><a href="{% url 'logout' %}">Logout</a></li>
+                <li><a href="{% url 'logout' %}">Logout</a></li>
             </ul>
-        
+
 
             <ul class="dropdown-menu" id="side-menu">
                 <li><a href="{% url 'main_dish' %}">Main Dish</a></li>
@@ -61,25 +62,25 @@
             <a href="{% url 'recipes' %}" class="btn-main hero-btn">Explore Masterpieces</a>
         </div>
     </main>
-<section class="quick-access-section">
-    <div class="home-card" onclick="location.href='/recipes/'">
-        <div class="card-icon"></div>
-        <h3>Recipes</h3>
-        <p>Discover the recipes that are breaking the internet this week.</p>
-    </div>
+    <section class="quick-access-section">
+        <div class="home-card" onclick="location.href='/recipes/'">
+            <div class="card-icon"></div>
+            <h3>Recipes</h3>
+            <p>Discover the recipes that are breaking the internet this week.</p>
+        </div>
 
-    <div class="home-card" onclick="location.href='/search/'">
-        <div class="card-icon"></div>
-        <h3>Search</h3>
-        <p>Gourmet meals ready in under 15 minutes for your busy nights.</p>
-    </div>
+        <div class="home-card" onclick="location.href='/search/'">
+            <div class="card-icon"></div>
+            <h3>Search</h3>
+            <p>Gourmet meals ready in under 15 minutes for your busy nights.</p>
+        </div>
 
-    <div class="home-card" onclick="location.href='/favorites/'">
-        <div class="card-icon"></div>
-        <h3>Favorites</h3>
-        <p>Feeling cozy or adventurous? Find the perfect dish for your vibe.</p>
-    </div>
-</section>
+        <div class="home-card" onclick="location.href='/favorites/'">
+            <div class="card-icon"></div>
+            <h3>Favorites</h3>
+            <p>Feeling cozy or adventurous? Find the perfect dish for your vibe.</p>
+        </div>
+    </section>
 
     <script src="{% static 'js/main.js' %}"></script>
 </body>

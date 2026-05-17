@@ -121,109 +121,18 @@
             </p>
 
             <div style="text-align: center; margin-top: 20px;">
-                <span class="heart" data-id="{{ fav.recipe.id }}" onclick="changecolor(this)"
-                    style="color: red; font-size: 40px; cursor: pointer; text-shadow: 0 0 5px white;">♥</span>
+                <span class="heart" data-id="{{ fav.recipe.id }}" onclick="toggleFavorite(event, this)" style="color:red;
+                 font-size:40px;
+                 cursor:pointer;
+                 text-shadow: 0 0 5px white;">
+                    ♥
+                </span>
             </div>
         </div>
     </div>
+    <script src="{% static 'js/favorite.js' %}"></script>
     {% endfor %}
 
+</body>
 
-    <script>
-
-        function toggleFavorite(element) {
-
-            const recipeId = element.dataset.id;
-            const recipeCard = document.getElementById(`recipe-${recipeId}`);
-            const detailsCard = document.getElementById(`recipe-${recipeId}-card`);
-
-            if (element.style.color === "red") {
-
-                element.style.color = "white";
-
-                if (recipeCard) {
-                    recipeCard.remove();
-                }
-
-                if (detailsCard) {
-                    detailsCard.remove();
-                }
-
-                const remainingCards = document.querySelectorAll(".recipe-card");
-
-                if (remainingCards.length === 0) {
-
-                    document.getElementById("favorites-list").innerHTML = `
-                <div id="empty-state">
-                    <div>
-                        <img class="favimg"
-                             src="/static/bakeryimages/favorite.png"
-                             width="400" />
-                    </div>
-
-                    <h2 class="fav">
-                        Your favorites haven't arrived yet...
-                    </h2>
-
-                    <p class="P-fav">
-                        Your personal collection of recipes is ready to grow.<br />
-                        Start saving the recipes you love and build your delicious collection!
-                    </p>
-
-                    <br />
-
-                    <a href="/recipes/" style="text-decoration: none">
-                        <span class="favbutton">
-                            DISCOVER DELIGHTFUL RECIPES
-                        </span>
-                    </a>
-                </div>
-            `;
-                }
-
-            } else {
-
-                element.style.color = "red";
-            }
-        }
-
-        function openCard(event, cardId) {
-
-            event.stopPropagation();
-
-            const allCards = document.querySelectorAll(".details-card");
-
-            allCards.forEach(card => {
-                card.style.display = "none";
-            });
-
-            document.getElementById(cardId).style.display = "block";
-        }
-
-        document.addEventListener("click", function (event) {
-
-            const detailCards = document.querySelectorAll(".details-card");
-
-            detailCards.forEach(card => {
-
-                if (
-                    card.style.display === "block" &&
-                    !card.contains(event.target) &&
-                    !event.target.closest(".recipe-card")
-                ) {
-                    card.style.display = "none";
-                }
-            });
-        });
-
-        const detailCards = document.querySelectorAll(".details-card");
-
-        detailCards.forEach(card => {
-
-            card.addEventListener("click", function (event) {
-                event.stopPropagation();
-            });
-
-        });
-
-    </script>
+</html>

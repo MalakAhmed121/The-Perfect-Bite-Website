@@ -10,9 +10,20 @@
     <!-- <link rel="stylesheet" href="{% static 'css/style.css' %}" /> -->
 
     <style>
-        #Baguette, #Baguette-card { background-image: url("{% static 'bakeryimages/Baguette.jpeg' %}"); }
-        #Sourdough, #Sourdough-card { background-image: url("{% static 'bakeryimages/Sourdough.jpeg' %}"); }
-        #Focaccia, #Focaccia-card { background-image: url("{% static 'bakeryimages/Focaccia1.jpeg' %}"); }
+        #Baguette,
+        #Baguette-card {
+            background-image: url("{% static 'bakeryimages/Baguette.jpeg' %}");
+        }
+
+        #Sourdough,
+        #Sourdough-card {
+            background-image: url("{% static 'bakeryimages/Sourdough.jpeg' %}");
+        }
+
+        #Focaccia,
+        #Focaccia-card {
+            background-image: url("{% static 'bakeryimages/Focaccia1.jpeg' %}");
+        }
     </style>
     <script src="{% static 'js/bakery-java.js' %}"></script>
 </head>
@@ -47,23 +58,25 @@
 
     <div class="recipes-container">
         {% for recipe in recipes %}
-        <div class="recipe-card" 
-             id="recipe-{{ recipe.pk }}" 
-             style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.4)), url('{{ recipe.image.url }}'); background-size: cover; background-position: center;"
-             onclick="openCard(event, 'recipe-{{ recipe.pk }}-card')">
+        <div class="recipe-card" id="recipe-{{ recipe.pk }}"
+            style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.4)), url('{{ recipe.image.url }}'); background-size: cover; background-position: center;"
+            onclick="openCard(event, 'recipe-{{ recipe.pk }}-card')">
             <h2>{{ recipe.title }}</h2>
             <p>{{ recipe.description|truncatewords:15 }}</p>
-            <a href="javascript:void(0)" class="btn-main" onclick="openCard(event, 'recipe-{{ recipe.pk }}-card')">View Recipe</a>
+            <a href="javascript:void(0)" class="btn-main" onclick="openCard(event, 'recipe-{{ recipe.pk }}-card')">View
+                Recipe</a>
         </div>
         {% empty %}
-        <p style="text-align: center; grid-column: 1/-1;">No croissant recipes found yet. Add some in the Admin panel!</p>
+        <p style="text-align: center; grid-column: 1/-1;">No croissant recipes found yet. Add some in the Admin panel!
+        </p>
         {% endfor %}
     </div>
-{% for recipe in recipes %}
-    <div class="details-card detials-card" id="recipe-{{ recipe.pk }}-card" style="background-image: url('{{ recipe.image.url }}');">
+    {% for recipe in recipes %}
+    <div class="details-card detials-card" id="recipe-{{ recipe.pk }}-card"
+        style="background-image: url('{{ recipe.image.url }}');">
         <div class="recipe-content-box">
             <h2 style="text-align:center;">{{ recipe.title }}</h2>
-            
+
             <h3>Ingredients</h3>
             <ul class="recipe-list">
                 {% for line in recipe.ingredients.splitlines %}
@@ -77,10 +90,12 @@
                 <li>{{ line }}</li>
                 {% endfor %}
             </ul>
-            
+
             <span class="heart" data-id="{{ recipe.id }}" onclick="changecolor(this)">♥</span>
         </div>
     </div>
     {% endfor %}
+    <script src="{% static 'js/favorites.js' %}"></script>
 </body>
+
 </html>

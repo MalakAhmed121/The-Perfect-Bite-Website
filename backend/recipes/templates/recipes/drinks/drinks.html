@@ -1,23 +1,36 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>Yummy - Drinks</title>
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
     <link rel="stylesheet" href="{% static 'css/drinks.css' %}">
     <style>
-        .drinks-hero { background-image: url("{% static 'drinksimages/drink2.png' %}") !important; }
-        #coffee { background-image: url("{% static 'drinksimages/cof2.png' %}"); }
-        #juices { background-image: url("{% static 'drinksimages/juices.jpeg' %}"); }
-        #hot_drinks { background-image: url("{% static 'drinksimages/hotdrinks.jpeg' %}"); }
+        .drinks-hero {
+            background-image: url("{% static 'drinksimages/drink2.png' %}") !important;
+        }
+
+        #coffee {
+            background-image: url("{% static 'drinksimages/cof2.png' %}");
+        }
+
+        #juices {
+            background-image: url("{% static 'drinksimages/juices.jpeg' %}");
+        }
+
+        #hot_drinks {
+            background-image: url("{% static 'drinksimages/hotdrinks.jpeg' %}");
+        }
     </style>
 </head>
+
 <body>
     <div id="navbar">
         <nav class="main-nav">
             <div class="logo">Yummy</div>
-          <ul class="nav-links">
+            <ul class="nav-links">
                 <li><a href="{% url 'cover' %}">Team</a></li>
                 <li><a href="{% url 'home' %}">Home</a></li>
                 <li><a href="{% url 'search' %}">Search</a></li>
@@ -28,7 +41,7 @@
                 {% endif %}
                 <li><a href="{% url 'login' %}">Login</a></li>
                 <li><a href="{% url 'signup' %}">Sign Up</a></li>
-                  <li><a href="{% url 'logout' %}">Logout</a></li>
+                <li><a href="{% url 'logout' %}">Logout</a></li>
             </ul>
         </nav>
     </div>
@@ -61,5 +74,7 @@
             <a href="{% url 'hot_drinks' %}" class="btn-main">View Recipes</a>
         </div>
     </div>
+    <script src="{% static 'js/favorites.js' %}"></script>
 </body>
+
 </html>

@@ -8,9 +8,20 @@
     <title>Vegetarian Recipes</title>
     <link rel="stylesheet" href="{% static 'css/maindish.css' %}">
     <style>
-        #veggieStirFry, #veggieStirFry-card { background-image: url("{% static 'maindish/stirfry.jfif' %}"); }
-        #veggieCurry, #veggieCurry-card { background-image: url("{% static 'maindish/veggiecurry.jfif' %}"); }
-        #quinoaSalad, #quinoaSalad-card { background-image: url("{% static 'maindish/qunioa.jfif' %}"); }
+        #veggieStirFry,
+        #veggieStirFry-card {
+            background-image: url("{% static 'maindish/stirfry.jfif' %}");
+        }
+
+        #veggieCurry,
+        #veggieCurry-card {
+            background-image: url("{% static 'maindish/veggiecurry.jfif' %}");
+        }
+
+        #quinoaSalad,
+        #quinoaSalad-card {
+            background-image: url("{% static 'maindish/qunioa.jfif' %}");
+        }
     </style>
     <script src="{% static 'js/maindish.js' %}"></script>
     <script src="{% static 'js/search-js.js' %}"></script>
@@ -20,7 +31,7 @@
     <div id="navbar">
         <nav class="main-nav">
             <div class="logo">Yummy 🍲</div>
-              <ul class="nav-links">
+            <ul class="nav-links">
                 <li><a href="{% url 'cover' %}">Team</a></li>
                 <li><a href="{% url 'home' %}">Home</a></li>
                 <li><a href="{% url 'search' %}">Search</a></li>
@@ -31,7 +42,7 @@
                 {% endif %}
                 <li><a href="{% url 'login' %}">Login</a></li>
                 <li><a href="{% url 'signup' %}">Sign Up</a></li>
-                  <li><a href="{% url 'logout' %}">Logout</a></li>
+                <li><a href="{% url 'logout' %}">Logout</a></li>
             </ul>
         </nav>
     </div>
@@ -44,16 +55,17 @@
 
     <div class="recipes-container">
         {% for recipe in recipes %}
-        <div class="recipe-card" 
-             id="recipe-{{ recipe.pk }}" 
-             style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.4)), url('{{ recipe.image.url }}'); background-size: cover; background-position: center;"
-             onclick="openCard(event, 'recipe-{{ recipe.pk }}-card')">
+        <div class="recipe-card" id="recipe-{{ recipe.pk }}"
+            style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.4)), url('{{ recipe.image.url }}'); background-size: cover; background-position: center;"
+            onclick="openCard(event, 'recipe-{{ recipe.pk }}-card')">
             <h2>{{ recipe.title }}</h2>
             <p>{{ recipe.description|truncatewords:15 }}</p>
-            <a href="javascript:void(0)" class="btn-main" onclick="openCard(event, 'recipe-{{ recipe.pk }}-card')">View Recipe</a>
+            <a href="javascript:void(0)" class="btn-main" onclick="openCard(event, 'recipe-{{ recipe.pk }}-card')">View
+                Recipe</a>
         </div>
         {% empty %}
-        <p style="text-align: center; grid-column: 1/-1;">No vegetarian recipes found yet. Add some in the Admin panel!</p>
+        <p style="text-align: center; grid-column: 1/-1;">No vegetarian recipes found yet. Add some in the Admin panel!
+        </p>
         {% endfor %}
     </div>
 
@@ -62,8 +74,10 @@
     <div class="detials-card" id="recipe-{{ recipe.pk }}-card">
         <div class="recipe-content-box">
             <h2 style="text-align:center;">{{ recipe.title }}</h2>
-            
-            <div style="height: 200px; background-image: url('{{ recipe.image.url }}'); background-size: cover; background-position: center; border-radius: 10px; margin-bottom: 20px;"></div>
+
+            <div
+                style="height: 200px; background-image: url('{{ recipe.image.url }}'); background-size: cover; background-position: center; border-radius: 10px; margin-bottom: 20px;">
+            </div>
 
             <h3>Ingredients</h3>
             <ul class="recipe-list">
@@ -78,11 +92,12 @@
                 <li>{{ line }}</li>
                 {% endfor %}
             </ul>
-            
+
             <span class="heart" data-id="{{ recipe.id }}" onclick="changecolor(this)">♥</span>
         </div>
     </div>
     {% endfor %}
+    <script src="{% static 'js/favorites.js' %}"></script>
 
 </body>
 

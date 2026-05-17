@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
- {% load static %}
+{% load static %}
+
 <head>
     <meta charset="UTF-8">
     <title>Yummy-Coffee </title>
-   <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
     <link rel="stylesheet" href="{% static 'css/drinks.css' %}">
     <script src="{% static 'js/search-js.js' %}"></script>
     <script src="{% static 'js/bakery-java.js' %}"></script>
@@ -13,7 +14,7 @@
 </head>
 
 <body>
-      <div id="navbar">
+    <div id="navbar">
         <nav class="main-nav">
             <div class="logo">Yummy</div>
             <ul class="nav-links">
@@ -27,7 +28,7 @@
                 {% endif %}
                 <li><a href="{% url 'login' %}">Login</a></li>
                 <li><a href="{% url 'signup' %}">Sign Up</a></li>
-                  <li><a href="{% url 'logout' %}">Logout</a></li>
+                <li><a href="{% url 'logout' %}">Logout</a></li>
             </ul>
         </nav>
     </div>
@@ -46,13 +47,13 @@
     <h2 id="recipesss">Recipes</h2>
     <div class="recipes-container">
         {% for recipe in recipes %}
-        <div class="recipe-card" 
-             id="recipe-{{ recipe.pk }}" 
-             style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.4)), url('{{ recipe.image.url }}'); background-size: cover; background-position: center;"
-             onclick="openCard(event, 'recipe-{{ recipe.pk }}-card')">
+        <div class="recipe-card" id="recipe-{{ recipe.pk }}"
+            style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.4)), url('{{ recipe.image.url }}'); background-size: cover; background-position: center;"
+            onclick="openCard(event, 'recipe-{{ recipe.pk }}-card')">
             <h2>{{ recipe.title }}</h2>
             <p>{{ recipe.description|truncatewords:15 }}</p>
-            <a href="javascript:void(0)" class="btn-main" onclick="openCard(event, 'recipe-{{ recipe.pk }}-card')">View Recipe</a>
+            <a href="javascript:void(0)" class="btn-main" onclick="openCard(event, 'recipe-{{ recipe.pk }}-card')">View
+                Recipe</a>
         </div>
         {% empty %}
         <p style="text-align: center; grid-column: 1/-1;">No coffee recipes found yet. Add some in the Admin panel!</p>
@@ -64,7 +65,7 @@
     <div class="details-card" id="recipe-{{ recipe.pk }}-card" style="background-image: url('{{ recipe.image.url }}');">
         <div class="recipe-content-box">
             <h2 style="text-align:center;">{{ recipe.title }}</h2>
-            
+
             <h3>Ingredients</h3>
             <ul class="recipe-list">
                 {% for line in recipe.ingredients.splitlines %}
@@ -78,7 +79,7 @@
                 <li>{{ line }}</li>
                 {% endfor %}
             </ul>
-            
+
             <span class="heart" data-id="{{ recipe.id }}" onclick="changecolor(this)">♥</span>
         </div>
     </div>
@@ -181,6 +182,7 @@
             }
         });
     </script>
+    <script src="{% static 'js/favorites.js' %}"></script>
 
 
 
