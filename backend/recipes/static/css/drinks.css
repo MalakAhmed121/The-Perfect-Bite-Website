@@ -5,14 +5,12 @@
 
 /* :root {
   --primary-color: #5b4e3f;
-  
+
   --primary-hover: #b78f66;
-  
 
   --bg-color: #f1dcbe;
-   
-  --card-bg: #ffffff;
 
+  --card-bg: #ffffff;
 
   --text-main:#2e2720;
   --text-muted: #7a7a7a;
@@ -87,32 +85,11 @@
 }
 
 /* go back */
-.big-arrow-btn {
-  font-size: 24px;
-  font-weight: bold;
-  background: none;
-  border: none;
-  cursor: pointer;
-  color: rgb(234, 221, 212);
-  transition: transform 0.2s;
-  padding: 0 10px;
-  display: flex;
-  align-items: center;
-}
-
-
-.big-arrow-btn:hover {
-  transform: translateY(-1.5px);
-
-  text-shadow: 0 0 15px rgb(255, 255, 255, 0.5);
-  transform: scale(1.2);
-}
-
 
 /* صور مختلفة لكل صفحة */
 .drinks-hero {
   background-image: url("/static/drinksimages/drink2.png");
-  
+
 }
 
 .coffee-hero {
@@ -161,9 +138,6 @@ h2 {
   background-size: cover;
 }
 
-
-
-
 #coffee {
   background-image: url("/static/drinksimages/cof2.png");
 
@@ -178,7 +152,6 @@ h2 {
   background-image: url("/static/drinksimages/hotdrinks.jpeg");
 
 }
-
 
 #Cappuccino,
 #Cappuccino-card {
@@ -235,8 +208,6 @@ h2 {
   color: var(--primary-color);
 }
 
-
-
 .recipe-content-box {
   margin-top: 20px;
 
@@ -281,9 +252,7 @@ h2 {
   background-size: cover;
   background-position: center;
 
-
 }
-
 
 .recipe-content-box {
   margin-top: 50px;
@@ -295,10 +264,6 @@ h2 {
   padding: 20px;
   text-shadow: 0px 0px 10px rgb(255, 255, 255);
 
-
-
-
-
 }
 
 .details-card span {
@@ -308,9 +273,6 @@ h2 {
   width: 90%;
   height: auto;
 }
-
-
-
 
 .btn-main {
   margin-top: auto;
@@ -326,7 +288,7 @@ h2 {
 }
 
 .heart {
- 
+
   margin-top: 100px;
   align-self: center;
   width: 10px;
@@ -341,10 +303,7 @@ h2 {
   background-color: var(--primary-color);
   text-align: center;
 
-
- 
 }
-
 
 .heart:hover {
    transform: translateY(-5px);

@@ -1,20 +1,11 @@
-{% load static %}
-<!DOCTYPE html>
-<html lang="en">
+import os
+import glob
+import re
 
-<head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Home Baked Recipes • Bakery</title>
-    <link rel="stylesheet" href="{% static 'css/bakery-style.css' %}?v=1.2" />
-    <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+base_dir = r"d:\web_course\The-Perfect-Bite-Website\backend\recipes\templates\recipes"
+files = glob.glob(base_dir + "/**/*.html", recursive=True)
 
-    <script src="{% static 'js/bakery-java.js' %}"></script>
-</head>
-
-<body>
-    <div id="navbar">
-                <nav class="main-nav">
+nav_html = """        <nav class="main-nav">
             <div class="nav-left">
                 <a href="{% url 'home' %}" class="logo" style="text-decoration: none;">
                     <svg viewBox="0 0 24 24" fill="currentColor" stroke="none">
@@ -26,8 +17,7 @@
             </div>
 
             <div class="nav-right">
-
-                <button class="nav-back-btn" onclick="window.history.back()" aria-label="Go Back">
+            <button class="nav-back-btn" onclick="window.history.back()" aria-label="Go Back">
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                         <line x1="19" y1="12" x2="5" y2="12"></line>
                         <polyline points="12 19 5 12 12 5"></polyline>
@@ -56,6 +46,7 @@
                     <div class="bar"></div>
                     <div class="bar"></div>
                 </div>
+                
             </div>
             
             <ul class="dropdown-menu" id="side-menu">
@@ -66,58 +57,19 @@
                 <li><a href="{% url 'juices' %}">Juices</a></li>
                 <li><a href="{% url 'appetizers' %}">Appetizers</a></li>
             </ul>
-        </nav>
-    </div>
+        </nav>"""
 
-    <div class="banner">
-        <img src="{% static 'bakeryimages/Cinnamonbanner.png' %}" style="width:100%; height:400px; object-fit:cover;">
-    </div>
+pattern = re.compile(r'<nav class="main-nav">.*?</nav>', re.DOTALL)
 
-    <br><br>
-
-    <h2 class="h2">OUR Recipes</h2>
-
-    <div class="recipes-container">
-        {% for recipe in recipes %}
-        <div class="recipe-card" id="recipe-{{ recipe.pk }}"
-            style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.4)), url('{{ recipe.image.url }}'); background-size: cover; background-position: center;"
-            onclick="openCard(event, 'recipe-{{ recipe.pk }}-card')">
-            <h2>{{ recipe.title }}</h2>
-            <p>{{ recipe.description|truncatewords:15 }}</p>
-            <a href="javascript:void(0)" class="btn-main" onclick="openCard(event, 'recipe-{{ recipe.pk }}-card')">View
-                Recipe</a>
-        </div>
-        {% empty %}
-        <p style="text-align: center; grid-column: 1/-1;">No cinnamon roll recipes found yet. Add some in the Admin
-            panel!</p>
-        {% endfor %}
-    </div>
-    {% for recipe in recipes %}
-    <div class="details-card detials-card" id="recipe-{{ recipe.pk }}-card"
-        style="background-image: url('{{ recipe.image.url }}');">
-        <div class="recipe-content-box">
-            <h2 style="text-align:center;">{{ recipe.title }}</h2>
-
-            <h3>Ingredients</h3>
-            <ul class="recipe-list">
-                {% for line in recipe.ingredients.splitlines %}
-                <li>{{ line }}</li>
-                {% endfor %}
-            </ul>
-
-            <p><strong>Preparation Steps:</strong></p>
-            <ul class="recipe-list">
-                {% for line in recipe.instructions.splitlines %}
-                <li>{{ line }}</li>
-                {% endfor %}
-            </ul>
-
-            <span class="heart" data-id="{{ recipe.id }}" onclick="changecolor(this)">♥</span>
-        </div>
-    </div>
-    {% endfor %}
+count = 0
+for f in files:
+    with open(f, 'r', encoding='utf-8') as file:
+        content = file.read()
     
-    <script src="{% static 'js/main.js' %}"></script>
-</body>
+    if pattern.search(content):
+        new_content = pattern.sub(nav_html, content)
+        with open(f, 'w', encoding='utf-8') as file:
+            file.write(new_content)
+        count += 1
 
-</html>
+print(f"Modified {count} files.")

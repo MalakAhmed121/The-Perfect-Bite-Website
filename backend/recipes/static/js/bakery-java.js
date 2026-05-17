@@ -45,11 +45,11 @@ function changecolor(heartIcon) {
         if (data.status === 'success') {
             if (data.is_favorite) {
                 heartIcon.classList.add('active');
-                heartIcon.style.color = ""; // Let CSS handle it
+                heartIcon.style.color = "red"; 
                 heartIcon.title = "Added to Favorites! ✨";
             } else {
                 heartIcon.classList.remove('active');
-                heartIcon.style.color = ""; // Let CSS handle it
+                heartIcon.style.color = "white"; 
                 heartIcon.title = "Add to Favorites";
             }
         } else {

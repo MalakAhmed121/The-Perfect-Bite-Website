@@ -1,82 +1,12 @@
+:root {
+    --primary-color: #A98F6F;
+}
 /* --- Navbar --- */
-#navbar {
-    padding: 15px;
-    background-color: #f4deaadc;
-    /* Very Light Cream */
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-}
-
-.main-nav {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    max-width: 1200px;
-    margin: auto;
-}
-
-.logo {
-    color: #A98F6F;
-    /* Soft Brownish Beige */
-    font-size: 1.6rem;
-    font-weight: bold;
-}
-
-.nav-links {
-    display: flex;
-    list-style: none;
-    margin-left: 0;
-}
-
-.nav-links li {
-    margin-left: 15px;
-}
-
-.nav-links a {
-    color: #5A5A5A;
-    /* Dark Grey */
-    text-decoration: none;
-    font-weight: 500;
-    transition: 0.3s;
-}
-
-.nav-links a:hover,
-.nav-links li button#backbutton:hover {
-    transform: translateY(-1.5px);
-
-    text-shadow: 0 0 15px rgb(255, 255, 255, 0.5);
-}
-
-.big-arrow-btn {
-    font-size: 24px;
-    font-weight: bold;
-    background: none;
-    border: none;
-    cursor: pointer;
-    color: rgb(48, 27, 11);
-    transition: transform 0.2s;
-    padding: 0 10px;
-    display: flex;
-    align-items: center;
-}
-
-
-.big-arrow-btn:hover {
-    transform: translateY(-1.5px);
-
-    text-shadow: 0 0 15px rgb(255, 255, 255, 0.5);
-    transform: scale(1.2);
-}
-
 
 /* General Reset & Base Styles */
 * {
     margin: 0;
     padding: 0;
-}
-
-.nav-links a:hover {
-    transform: translateY(-2px);
-    text-shadow: 0 0 5px rgba(171, 135, 92, 0.5);
 }
 
 /* --- Body & General --- */
@@ -172,7 +102,6 @@ h2.h2 {
         6px 6px 10px rgba(0, 0, 0, 0.5);
 }
 
-
 .recipe-card a {
     margin-top: auto;
     align-self: center;
@@ -188,8 +117,6 @@ h2.h2 {
     text-decoration: none;
     display: inline-block;
 }
-
-
 
 .recipe-card a:hover {
     transform: translateY(-3px);
@@ -219,7 +146,6 @@ h2.h2 {
 #fast-food {
     background-image: url('../maindish/fastfood.jpg');
 }
-
 
 /* Hide recipe details initially */
 .detials-card {
@@ -346,7 +272,6 @@ h2.h2 {
 #lasagna-card {
     background-image: url('../maindish/lasania.jfif');
 }
-
 
 .detials-card {
     display: none;

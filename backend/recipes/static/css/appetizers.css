@@ -3,7 +3,8 @@
     padding: 0;
 }
 
-:root{
+:root {
+    --primary-color: #C1772B;
     --fern: #62783Bff;
     --wheat: #E8D2A8ff;
     --ochre: #C1772Bff;
@@ -14,8 +15,6 @@
     --shadow-sm: 0 2px 5px rgba(0, 0, 0, 0.1);
     --harvest-gold: #CA8B24ff;
 }
-
- 
 
 body {
     font-family: 'Segoe UI', system-ui, sans-serif;
@@ -157,23 +156,20 @@ body {
     text-shadow: 0px 0px 3px black;
 }
 
- 
 #DeviledEggs,
 #DeviledEggs-card
- 
+
  {
     background-image: url('../appetizersimgs/pic1.jpg');
 }
 
- 
 #SpinachArtichokeDip,
 #SpinachArtichokeDip-card
- 
+
  {
     background-image: url('../appetizersimgs/pic2.jpg');
 }
 
- 
 #ChickenWings,
 #ChickenWings-card{
     background-image: url('../appetizersimgs/pic3.jpg');
@@ -186,7 +182,7 @@ body {
 
 #StuffedMushrooms,
 #StuffedMushrooms-card{
- 
+
     background-image: url('../appetizersimgs/mushroom.jpeg');
 }
 
@@ -252,10 +248,10 @@ body {
 }
 .recipe-content-box p ,h3{
     color:#643305;
-  
+
 }
 .recipe-content-box ul{
-    
+
     list-style: none;
 }
 
@@ -273,7 +269,7 @@ body {
     font-family: 'Times New Roman', Times, serif;
     text-decoration: none;
     display: inline-block;
-    
+
 }
 
 .heart {
@@ -292,7 +288,6 @@ body {
     border-radius: 20px;
     background-color: #4b1f11;
 }
-
 
 .heart:hover {
    transform: translateY(-5px);
@@ -325,8 +320,6 @@ body {
         font-size: 14px;
         padding: 10px 20px;
     }
-
-
 
     .detials-card {
         width: 90%;

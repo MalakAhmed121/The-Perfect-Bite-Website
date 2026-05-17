@@ -7,11 +7,13 @@ document.addEventListener("DOMContentLoaded", () => {
         menuIcon.addEventListener("click", (e) => {
             e.stopPropagation();
             sideMenu.classList.toggle("show");
+            menuIcon.classList.toggle("active");
         });
 
         document.addEventListener("click", (e) => {
             if (!sideMenu.contains(e.target) && !menuIcon.contains(e.target)) {
                 sideMenu.classList.remove("show");
+                menuIcon.classList.remove("active");
             }
         });
     }

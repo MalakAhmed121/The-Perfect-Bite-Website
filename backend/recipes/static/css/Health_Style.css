@@ -6,6 +6,7 @@
    ROOT VARIABLES
 ========================= */
 :root {
+    --primary-color: #27ae60;
   --healthy-primary: #27ae60;
   --healthy-dark: #1e8449;
   --healthy-light: #eafaf1;
@@ -45,54 +46,6 @@ body {
 /* =========================
    NAVBAR
 ========================= */
-#navbar {
-  background: var(--healthy-light);
-
-  padding: 15px 0;
-
-  position: sticky;
-  top: 0;
-
-  z-index: 1000;
-}
-
-.main-nav {
-  width: 90%;
-  max-width: 1200px;
-
-  margin: auto;
-
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.logo {
-  font-size: 1.8rem;
-  font-weight: bold;
-  color: var(--healthy-primary);
-}
-
-.nav-links {
-  display: flex;
-  list-style: none;
-}
-
-.nav-links li {
-  margin-left: 20px;
-}
-
-.nav-links a {
-  text-decoration: none;
-  color: var(--text-dark);
-  font-weight: 500;
-
-  transition: 0.3s;
-}
-
-.nav-links a:hover {
-  color: var(--healthy-primary);
-}
 
 /* =========================
    HERO SECTION
@@ -329,7 +282,7 @@ body {
   top: 15px;
   left: 15px;
   z-index: 10;
-  
+
   width: 40px;
   height: 40px;
   background: rgba(255, 255, 255, 0.95);
@@ -337,7 +290,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  
+
   font-size: 22px;
   color: var(--healthy-primary); /* Green by default */
   cursor: pointer;
