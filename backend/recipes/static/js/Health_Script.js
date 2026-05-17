@@ -133,13 +133,13 @@ function openRecipeModal(recipeId) {
                         <div class="stats">
 
                             <span>
-                                🔥 ${data.calories} kcal
+                                 ${data.calories} kcal
                             </span>
 
                             |
 
                             <span>
-                                ⏱ ${data.prep_time} min
+                                 ${data.prep_time} min
                             </span>
 
                         </div>

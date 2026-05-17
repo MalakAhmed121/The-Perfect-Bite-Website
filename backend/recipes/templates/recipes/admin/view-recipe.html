@@ -3,57 +3,151 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Yummy - View Recipe</title>
+    <title>Yummy - {{ recipe.title }}</title>
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <style>
+        .view-card {
+            max-width: 1000px;
+            margin: 40px auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            overflow: hidden;
+            display: flex;
+        }
+
+        .view-image {
+            width: 45%;
+            min-height: 500px;
+            flex-shrink: 0;
+        }
+
+        .view-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .view-content {
+            width: 55%;
+            height: 500px;
+            overflow-y: auto;
+            padding: 35px 30px;
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .view-content h1 {
+            font-size: 1.8rem;
+            color: #3F1F08;
+            margin: 0;
+        }
+
+        .view-meta {
+            display: flex;
+            gap: 16px;
+            font-size: 0.88rem;
+            color: #555;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 12px;
+            flex-wrap: wrap;
+        }
+
+        .view-section {
+            display: flex;
+            gap: 16px;
+        }
+
+        .view-section-label {
+            font-size: 1rem;
+            font-weight: bold;
+            color: #3F1F08;
+            min-width: 110px;
+        }
+
+        .view-section-content {
+            font-size: 0.9rem;
+            color: #444;
+            line-height: 1.7;
+        }
+
+        .view-section-content ul {
+            padding-left: 18px;
+            margin: 0;
+        }
+
+        .view-section-content ul li {
+            margin-bottom: 5px;
+        }
+    </style>
 </head>
 <body>
     <div id="navbar">
         <nav class="main-nav">
             <div class="logo">Yummy</div>
             <ul class="nav-links">
-                <li><a href="{% url 'cover' %}">Team</a></li>
                 <li><a href="{% url 'home' %}">Home</a></li>
-                <li><a href="{% url 'search' %}">Search</a></li>
-                <li><a href="{% url 'favorites' %}">Favorites</a></li>
-                {% if user.is_staff %}
-                <li><a href="{% url 'admin_recipe' %}">Admin</a></li>
-                <li><a href="{% url 'add_recipe' %}">Add Recipe</a></li>
-                {% endif %}
-                <li><a href="{% url 'login' %}">Login</a></li>
-                <li><a href="{% url 'signup' %}">Sign Up</a></li>
-                <li><a href="{% url 'logout' %}">Logout</a></li>
+                <li><a href="{% url 'admin_recipe' %}">Back to Admin</a></li>
             </ul>
         </nav>
     </div>
 
-    <div class="page-wrapper" style="max-width: 800px; margin: 50px auto; background: white; padding: 40px; border-radius: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
-        <h1 style="text-align: center; color: var(--dark-walnut);">{{ recipe.title }}</h1>
+    <div class="view-card">
+
         
-        <div style="text-align: center; margin-bottom: 20px;">
+        <div class="view-image">
             {% if recipe.image %}
-                <img src="{{ recipe.image.url }}" alt="{{ recipe.title }}" style="max-width: 100%; border-radius: 10px; height: 300px; object-fit: cover;">
+                <img src="{{ recipe.image.url }}" alt="{{ recipe.title }}">
             {% endif %}
         </div>
 
-        <div style="margin-bottom: 20px;">
-            <h3>Category</h3>
-            <p>{{ recipe.category.name }}</p>
-        </div>
+        
+        <div class="view-content">
 
-        <div style="margin-bottom: 20px;">
-            <h3>Ingredients</h3>
-            <div style="white-space: pre-line;">{{ recipe.ingredients }}</div>
-        </div>
+            <h1>{{ recipe.title }}</h1>
 
-        <div style="margin-bottom: 20px;">
-            <h3>Instructions</h3>
-            <div style="white-space: pre-line;">{{ recipe.instructions }}</div>
-        </div>
+            <div class="view-meta">
+                <span><strong>Category:</strong> {{ recipe.category.name }}</span>
+                <span><strong>Author:</strong> {{ recipe.author }}</span>
+                <span><strong>Posted:</strong> {{ recipe.created_at|date:"M d, Y" }}</span>
+            </div>
 
-        <div style="text-align: center; margin-top: 30px;">
-            <a href="{% url 'edit_recipe' recipe.id %}" class="btn-main">Edit This Recipe</a>
-            <a href="{% url 'admin_recipe' %}" style="display: inline-block; margin-left: 20px; color: #666;">Cancel</a>
+            <div class="view-section">
+                <div class="view-section-label">Description</div>
+                <div class="view-section-content">{{ recipe.description }}</div>
+            </div>
+
+            <div class="view-section">
+                <div class="view-section-label">Ingredients</div>
+                <div class="view-section-content">
+                    <ul>
+                        {% for line in recipe.ingredients.splitlines %}
+                            {% if line.strip %}
+                                <li>{{ line }}</li>
+                            {% endif %}
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+
+            <div class="view-section">
+                <div class="view-section-label">Instructions</div>
+                <div class="view-section-content" style="white-space: pre-line;">{{ recipe.instructions }}</div>
+            </div>
+
+           
+            <div style="text-align: center; margin-top: 8px;">
+                <span class="heart" data-id="{{ recipe.id }}" onclick="changecolor(this)"
+                      style="font-size: 40px; cursor: pointer; color: #B79986;"
+                      title="Add to Favorites">♥</span>
+            </div>
+
         </div>
     </div>
+
+    <script src="{% static 'js/bakery-java.js' %}"></script>
 </body>
 </html>

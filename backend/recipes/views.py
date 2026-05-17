@@ -8,7 +8,7 @@ from django.contrib.auth.decorators import login_required
 from django.template.loader import get_template
 from django.template import TemplateDoesNotExist
 
-# --- الصفحات الأساسية ---
+
 
 @login_required(login_url="login")
 def home(request):
@@ -236,7 +236,6 @@ def toggle_favorite(request, recipe_id):
     return JsonResponse({"status": "error", "message": "Invalid request"}, status=400)
 
 
-# --- Recipe API (used by Health_Script.js modal) ---
 
 def recipe_api(request, recipe_id):
     """
@@ -245,8 +244,6 @@ def recipe_api(request, recipe_id):
     calories, prep_time, image_url.
     """
     recipe = get_object_or_404(Recipe, id=recipe_id)
-
-    # Split ingredients string into a list so JS can call .map()
     raw_ingredients = recipe.ingredients or ""
     if "\n" in raw_ingredients:
         ingredients_list = [i.strip() for i in raw_ingredients.split("\n") if i.strip()]
@@ -268,3 +265,10 @@ def recipe_api(request, recipe_id):
         "diet_type":    recipe.diet_type,
         "is_favorite":  is_favorite,
     })
+
+    
+# view recipe
+@login_required(login_url="login")
+def view_recipe(request, id):
+    recipe = get_object_or_404(Recipe, id=id)
+    return render(request, "recipes/admin/view-recipe.html", {"recipe": recipe})
