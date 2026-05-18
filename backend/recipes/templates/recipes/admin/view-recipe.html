@@ -12,76 +12,50 @@
             margin: 40px auto;
             background: white;
             border-radius: 15px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
             display: flex;
+            overflow: hidden;
         }
 
         .view-image {
             width: 45%;
-            min-height: 500px;
-            flex-shrink: 0;
         }
 
         .view-image img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            display: block;
         }
 
         .view-content {
             width: 55%;
-            height: 500px;
-            overflow-y: auto;
-            padding: 35px 30px;
-            box-sizing: border-box;
+            padding: 30px;
             display: flex;
             flex-direction: column;
-            gap: 16px;
-        }
-
-        .view-content h1 {
-            font-size: 1.8rem;
-            color: #3F1F08;
-            margin: 0;
+            gap: 15px;
         }
 
         .view-meta {
             display: flex;
-            gap: 16px;
-            font-size: 0.88rem;
-            color: #555;
+            gap: 15px;
+            font-size: 0.9rem;
             border-bottom: 1px solid #eee;
-            padding-bottom: 12px;
+            padding-bottom: 10px;
             flex-wrap: wrap;
         }
 
         .view-section {
             display: flex;
-            gap: 16px;
+            gap: 10px;
         }
 
         .view-section-label {
-            font-size: 1rem;
             font-weight: bold;
-            color: #3F1F08;
-            min-width: 110px;
+            min-width: 100px;
         }
 
         .view-section-content {
-            font-size: 0.9rem;
-            color: #444;
-            line-height: 1.7;
-        }
-
-        .view-section-content ul {
-            padding-left: 18px;
-            margin: 0;
-        }
-
-        .view-section-content ul li {
-            margin-bottom: 5px;
+            line-height: 1.6;
         }
     </style>
 </head>
@@ -89,24 +63,72 @@
 <body>
     <div id="navbar">
         <nav class="main-nav">
-            <div class="logo">Yummy</div>
-            <ul class="nav-links">
-                <li><a href="{% url 'home' %}">Home</a></li>
-                <li><a href="{% url 'admin_recipe' %}">Back to Admin</a></li>
+            <div class="nav-left">
+                <a href="{% url 'home' %}" class="logo" style="text-decoration: none;">
+                    <svg viewBox="0 0 24 24" fill="currentColor" stroke="none">
+                        <!-- Custom Chef Hat SVG for Premium Look -->
+                        <path
+                            d="M19,8c0-2.76-2.24-5-5-5c-1.64,0-3.09,0.79-4,2.01C9.09,3.79,7.64,3,6,3C3.24,3,1,5.24,1,8c0,2.15,1.36,3.98,3.26,4.71 c0.16,3.61,3.14,6.46,6.81,6.46c2.08,0,3.95-0.91,5.23-2.34C18.17,15.93,19,13.71,19,11.23c0-0.45-0.04-0.89-0.12-1.32 C18.96,9.58,19,9.25,19,8z M11.07,17.17C8.48,17.17,6.38,15.07,6.38,12.48c0-0.57,0.11-1.11,0.3-1.61 C6.84,10.95,7,11,7.18,11c1.23,0,2.23-1,2.23-2.23c0-0.18-0.05-0.34-0.13-0.5c0.5-0.19,1.04-0.3,1.61-0.3c2.59,0,4.69,2.1,4.69,4.69 C15.76,15.07,13.66,17.17,11.07,17.17z" />
+                    </svg>
+                    Yummy
+                </a>
+            </div>
+
+            <div class="nav-right">
+
+                <button class="nav-back-btn" onclick="window.history.back()" aria-label="Go Back">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="19" y1="12" x2="5" y2="12"></line>
+                        <polyline points="12 19 5 12 12 5"></polyline>
+                    </svg>
+                    <span>Back</span>
+                </button>
+                <ul class="nav-links">
+                    <li><a href="{% url 'home' %}">Home</a></li>
+                    <li><a href="{% url 'search' %}">Search</a></li>
+                    <li><a href="{% url 'cover' %}">Team</a></li>
+                    {% if user.is_authenticated %}
+                    <li><a href="{% url 'favorites' %}">Favorites</a></li>
+                    {% if user.is_staff %}
+                    <li><a href="{% url 'admin_recipe' %}">Admin</a></li>
+                    <li><a href="{% url 'add_recipe' %}">Add Recipe</a></li>
+                    {% endif %}
+                    <li><a href="{% url 'logout' %}">Logout</a></li>
+                    {% else %}
+                    <li><a href="{% url 'login' %}">Login</a></li>
+                    <li><a href="{% url 'signup' %}">Sign Up</a></li>
+                    {% endif %}
+                </ul>
+
+                <div class="menu-icon" id="menu-icon-btn">
+                    <div class="bar"></div>
+                    <div class="bar"></div>
+                    <div class="bar"></div>
+                </div>
+            </div>
+
+            <ul class="dropdown-menu" id="side-menu">
+                <li><a href="{% url 'main_dish' %}">Main Dish</a></li>
+                <li><a href="{% url 'healthy' %}">Healthy Food</a></li>
+                <li><a href="{% url 'dessert' %}">Dessert</a></li>
+                <li><a href="{% url 'bakery' %}">Bakery</a></li>
+                <li><a href="{% url 'juices' %}">Juices</a></li>
+                <li><a href="{% url 'appetizers' %}">Appetizers</a></li>
             </ul>
         </nav>
     </div>
 
     <div class="view-card">
 
-        
+
         <div class="view-image">
             {% if recipe.image %}
-                <img src="{{ recipe.image.url }}" alt="{{ recipe.title }}">
+            <img src="{{ recipe.image.url }}" alt="{{ recipe.title }}">
             {% endif %}
         </div>
 
-        
+
         <div class="view-content">
 
             <h1>{{ recipe.title }}</h1>
@@ -127,9 +149,9 @@
                 <div class="view-section-content">
                     <ul>
                         {% for line in recipe.ingredients.splitlines %}
-                            {% if line.strip %}
-                                <li>{{ line }}</li>
-                            {% endif %}
+                        {% if line.strip %}
+                        <li>{{ line }}</li>
+                        {% endif %}
                         {% endfor %}
                     </ul>
                 </div>
@@ -140,13 +162,17 @@
                 <div class="view-section-content" style="white-space: pre-line;">{{ recipe.instructions }}</div>
             </div>
 
-           
-            <span class="heart" data-id="{{ recipe.id }}" onclick="changecolor(this)">♥</span>
 
+            <div style="text-align: center; margin-top: 8px;">
+                <span class="heart" data-id="{{ recipe.id }}" onclick="changecolor(this)"
+                    style="font-size: 40px; cursor: pointer; color: #B79986;" title="Add to Favorites">♥</span>
+            </div>
 
         </div>
     </div>
 
     <script src="{% static 'js/bakery-java.js' %}"></script>
+    <script src="{% static 'js/main.js' %}"></script>
 </body>
+
 </html>
