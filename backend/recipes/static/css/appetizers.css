@@ -26,14 +26,21 @@ body {
 /* Main Banner Section */
 .main {
     background-image: url('../appetizersimgs/main1.jpg');
-    background-color: #8F6128ff;
-    text-align: center;
-    height: 630px;
+    position: relative;
     padding-bottom: 0ch;
-    width: 1550px;
-    background-repeat: no-repeat;
     background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin: auto;
+    width: 2000px;
+    height: 560px;
+    
 }
+
 
 .main h1 {
     font-size: 50px;
@@ -259,7 +266,7 @@ body {
     margin-top: auto;
     align-self: center;
     margin-top: 40px;
-    margin-left: 150PX;
+    margin-left: 100PX;
     padding: 10px 30px;
     text-align: center;
     border-radius: 20px;
