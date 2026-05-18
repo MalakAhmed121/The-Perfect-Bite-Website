@@ -6,16 +6,69 @@
     <meta charset="UTF-8">
     <title>Yummy - {{ recipe.title }}</title>
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <style>
+        .view-card {
+            max-width: 1000px;
+            margin: 40px auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            display: flex;
+            overflow: hidden;
+        }
+
+        .view-image {
+            width: 45%;
+        }
+
+        .view-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .view-content {
+            width: 55%;
+            padding: 30px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .view-meta {
+            display: flex;
+            gap: 15px;
+            font-size: 0.9rem;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 10px;
+            flex-wrap: wrap;
+        }
+
+        .view-section {
+            display: flex;
+            gap: 10px;
+        }
+
+        .view-section-label {
+            font-weight: bold;
+            min-width: 100px;
+        }
+
+        .view-section-content {
+            line-height: 1.6;
+        }
+    </style>
 </head>
 
 <body>
     <div id="navbar">
-                <nav class="main-nav">
+        <nav class="main-nav">
             <div class="nav-left">
                 <a href="{% url 'home' %}" class="logo" style="text-decoration: none;">
                     <svg viewBox="0 0 24 24" fill="currentColor" stroke="none">
                         <!-- Custom Chef Hat SVG for Premium Look -->
-                        <path d="M19,8c0-2.76-2.24-5-5-5c-1.64,0-3.09,0.79-4,2.01C9.09,3.79,7.64,3,6,3C3.24,3,1,5.24,1,8c0,2.15,1.36,3.98,3.26,4.71 c0.16,3.61,3.14,6.46,6.81,6.46c2.08,0,3.95-0.91,5.23-2.34C18.17,15.93,19,13.71,19,11.23c0-0.45-0.04-0.89-0.12-1.32 C18.96,9.58,19,9.25,19,8z M11.07,17.17C8.48,17.17,6.38,15.07,6.38,12.48c0-0.57,0.11-1.11,0.3-1.61 C6.84,10.95,7,11,7.18,11c1.23,0,2.23-1,2.23-2.23c0-0.18-0.05-0.34-0.13-0.5c0.5-0.19,1.04-0.3,1.61-0.3c2.59,0,4.69,2.1,4.69,4.69 C15.76,15.07,13.66,17.17,11.07,17.17z"/>
+                        <path
+                            d="M19,8c0-2.76-2.24-5-5-5c-1.64,0-3.09,0.79-4,2.01C9.09,3.79,7.64,3,6,3C3.24,3,1,5.24,1,8c0,2.15,1.36,3.98,3.26,4.71 c0.16,3.61,3.14,6.46,6.81,6.46c2.08,0,3.95-0.91,5.23-2.34C18.17,15.93,19,13.71,19,11.23c0-0.45-0.04-0.89-0.12-1.32 C18.96,9.58,19,9.25,19,8z M11.07,17.17C8.48,17.17,6.38,15.07,6.38,12.48c0-0.57,0.11-1.11,0.3-1.61 C6.84,10.95,7,11,7.18,11c1.23,0,2.23-1,2.23-2.23c0-0.18-0.05-0.34-0.13-0.5c0.5-0.19,1.04-0.3,1.61-0.3c2.59,0,4.69,2.1,4.69,4.69 C15.76,15.07,13.66,17.17,11.07,17.17z" />
                     </svg>
                     Yummy
                 </a>
@@ -24,7 +77,8 @@
             <div class="nav-right">
 
                 <button class="nav-back-btn" onclick="window.history.back()" aria-label="Go Back">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round">
                         <line x1="19" y1="12" x2="5" y2="12"></line>
                         <polyline points="12 19 5 12 12 5"></polyline>
                     </svg>
@@ -35,15 +89,15 @@
                     <li><a href="{% url 'search' %}">Search</a></li>
                     <li><a href="{% url 'cover' %}">Team</a></li>
                     {% if user.is_authenticated %}
-                        <li><a href="{% url 'favorites' %}">Favorites</a></li>
-                        {% if user.is_staff %}
-                            <li><a href="{% url 'admin_recipe' %}">Admin</a></li>
-                            <li><a href="{% url 'add_recipe' %}">Add Recipe</a></li>
-                        {% endif %}
-                        <li><a href="{% url 'logout' %}">Logout</a></li>
+                    <li><a href="{% url 'favorites' %}">Favorites</a></li>
+                    {% if user.is_staff %}
+                    <li><a href="{% url 'admin_recipe' %}">Admin</a></li>
+                    <li><a href="{% url 'add_recipe' %}">Add Recipe</a></li>
+                    {% endif %}
+                    <li><a href="{% url 'logout' %}">Logout</a></li>
                     {% else %}
-                        <li><a href="{% url 'login' %}">Login</a></li>
-                        <li><a href="{% url 'signup' %}">Sign Up</a></li>
+                    <li><a href="{% url 'login' %}">Login</a></li>
+                    <li><a href="{% url 'signup' %}">Sign Up</a></li>
                     {% endif %}
                 </ul>
 
@@ -53,7 +107,7 @@
                     <div class="bar"></div>
                 </div>
             </div>
-            
+
             <ul class="dropdown-menu" id="side-menu">
                 <li><a href="{% url 'main_dish' %}">Main Dish</a></li>
                 <li><a href="{% url 'healthy' %}">Healthy Food</a></li>
@@ -65,50 +119,60 @@
         </nav>
     </div>
     <div class="page-wrapper">
-        <div class="recipe-detail-container"
-            style="max-width: 800px; margin: 40px auto; padding: 20px; background: white; border-radius: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
-            <h1 style="text-align: center; color: var(--dark-walnut);">{{ recipe.title }}</h1>
+        <div class="view-card">
 
-            <div style="text-align: center; margin-bottom: 20px;">
-                <img src="{{ recipe.image.url }}" alt="{{ recipe.title }}"
-                    style="max-width: 100%; border-radius: 10px; height: 400px; object-fit: cover;">
+            <div class="view-image">
+                <img src="{{ recipe.image.url }}" alt="{{ recipe.title }}">
             </div>
 
-            <div class="meta-info"
-                style="display: flex; justify-content: space-around; margin-bottom: 30px; border-bottom: 1px solid #eee; padding-bottom: 20px;">
-                <span><strong>Category:</strong> {{ recipe.category.name }}</span>
-                <span><strong>Author:</strong> {{ recipe.author.username }}</span>
-                <span><strong>Posted:</strong> {{ recipe.created_at|date:"M d, Y" }}</span>
-            </div>
+            <div class="view-content">
 
-            <div class="recipe-body">
-                <h3>Description</h3>
-                <p>{{ recipe.description }}</p>
+                <h1>{{ recipe.title }}</h1>
 
-                <h3>Ingredients</h3>
-                <ul style="line-height: 1.8;">
-                    {% for ingredient in recipe.ingredients.splitlines %}
-                    {% if ingredient.strip %}
-                    <li>{{ ingredient }}</li>
-                    {% endif %}
-                    {% endfor %}
-                </ul>
-
-                <h3>Instructions</h3>
-                <div style="line-height: 1.8; white-space: pre-line;">
-                    {{ recipe.instructions }}
+                <div class="view-meta">
+                    <span><strong>Category:</strong> {{ recipe.category.name }}</span>
+                    <span><strong>Author:</strong> {{ recipe.author.username }}</span>
+                    <span><strong>Posted:</strong> {{ recipe.created_at|date:"M d, Y" }}</span>
                 </div>
+
+                <div class="view-section">
+                    <div class="view-section-label">Description</div>
+                    <div class="view-section-content">
+                        {{ recipe.description }}
+                    </div>
+                </div>
+
+                <div class="view-section">
+                    <div class="view-section-label">Ingredients</div>
+                    <div class="view-section-content">
+                        <ul>
+                            {% for ingredient in recipe.ingredients.splitlines %}
+                            {% if ingredient.strip %}
+                            <li>{{ ingredient }}</li>
+                            {% endif %}
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="view-section">
+                    <div class="view-section-label">Instructions</div>
+                    <div class="view-section-content" style="white-space: pre-line;">
+                        {{ recipe.instructions }}
+                    </div>
+                </div>
+
+                <div style="text-align: center; margin-top: 10px;">
+                    <span class="heart" data-id="{{ recipe.id }}" onclick="changecolor(this)"
+                        style="font-size: 40px; cursor: pointer; color: #6B3E26;">♥</span>
+                </div>
+
             </div>
 
-            <div style="text-align: center; margin-top: 40px;">
-                <span class="heart" data-id="{{ recipe.id }}" onclick="changecolor(this)"
-                    style="font-size: 40px; cursor: pointer; color: #6B3E26;">♥</span>
-            </div>
         </div>
-    </div>
 
-    <script src="{% static 'js/bakery-java.js' %}"></script>
-    <script src="{% static 'js/main.js' %}"></script>
+        <script src="{% static 'js/bakery-java.js' %}"></script>
+        <script src="{% static 'js/main.js' %}"></script>
 </body>
 
 </html>
