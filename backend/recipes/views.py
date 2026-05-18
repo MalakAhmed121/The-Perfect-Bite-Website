@@ -235,7 +235,15 @@ def toggle_favorite(request, recipe_id):
         return JsonResponse({"status": "success", "is_favorite": is_favorite})
     return JsonResponse({"status": "error", "message": "Invalid request"}, status=400)
 
-
+@login_required(login_url="login")
+def view_recipe(request, id):
+    recipe = get_object_or_404(Recipe, id=id)
+    is_favorite = Favorite.objects.filter(user=request.user, recipe=recipe).exists()
+    return render(request, "recipes/admin/view-recipe.html", {
+        "recipe": recipe,
+        "is_favorite": is_favorite,
+    })
+# --- Recipe API (used by Health_Script.js modal) ---
 
 def recipe_api(request, recipe_id):
     """

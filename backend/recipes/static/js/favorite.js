@@ -1,3 +1,5 @@
+function changecolor(el) { toggleFavorite({ stopPropagation: () => {} }, el); }
+
 function toggleFavorite(event, element) {
     event.stopPropagation();
 

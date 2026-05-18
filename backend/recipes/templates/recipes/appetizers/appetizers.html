@@ -9,8 +9,7 @@
 	<link rel="stylesheet" href="{% static 'css/style.css' %}" />
     <link rel="stylesheet" href="{% static 'css/bakery-style.css' %}" />
 	<link rel="stylesheet" type="text/css" href="{% static 'css/appetizers.css' %}">
-	<script src="{% static 'js/search-js.js' %}"></script>
-	<script src="{% static 'js/bakery-java.js' %}"></script>
+
 
 
 	<style>
@@ -235,11 +234,13 @@
 				{% endfor %}
 			</ul>
 
-			<span class="heart" data-id="{{ recipe.id }}" onclick="changecolor(this)">♥</span>
-		</div>
+            <span class="heart" data-id="{{ recipe.id }}" onclick="changecolor(this)">♥</span>
+		</div>	
 	</div>
 	{% endfor %}
-	
+	<script src="{% static 'js/search-js.js' %}"></script>
+	<script src="{% static 'js/bakery-java.js' %}"></script>
+	<script src="{% static 'js/favorites.js' %}"></script>
 
 
 

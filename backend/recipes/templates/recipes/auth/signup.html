@@ -7,71 +7,190 @@
     <title>Yummy - Sign Up</title>
     <meta name="description" content="This is our Recipes Finder Website!">
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&display=swap" rel="stylesheet">
+    
+   <style>
+    body {
+        background: url("{% static '../static/MAHRAJA.jpg' %}");
+        background-size: cover;
+        background-position: center;
+        background-attachment: fixed;
+        min-height: 100vh;
+        margin: 0;
+        padding: 0;
+        font-family: 'Segoe UI', sans-serif;
+    }
+
+    .glass-overlay {
+        background: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(5px);
+        width: 100%;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 20px;
+    }
+
+    .welcome-msg {
+        font-family: 'Playfair Display', serif;
+        color: white;
+        font-size: 2.5rem;
+        margin-bottom: 30px;
+        margin-top: -50px;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        text-align: center;
+    }
+
+    .signup-container {
+    background: rgba(255, 255, 255, 0.25);
+    backdrop-filter: blur(15px);
+    border-radius: 20px;
+    padding: 30px 35px;
+
+    width: 540px;
+    max-width: 95%;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    transition: all 0.3s ease;
+    max-height: 85vh;
+    overflow-y: auto;
+}
+
+.signup-container:hover {
+    background: rgba(255, 255, 255, 0.35);
+    transform: translateY(-3px);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+}
+
+.form-row {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 16px;
+}
+
+.form-group {
+    margin-bottom: 16px;
+    flex: 1;
+}
+
+.form-group.full-width {
+    flex: 0 0 100%;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 6px;
+    color: #333;
+    font-weight: 600;
+    font-size: 0.9rem;
+    text-align: left;
+}
+
+.form-input {
+    width: 100%;
+    padding: 10px 15px;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.9);
+    font-size: 0.95rem;
+    transition: all 0.3s ease;
+    box-sizing: border-box;
+}
+
+.form-input:focus {
+    outline: none;
+    border-color: #e67e22;
+    background: white;
+    box-shadow: 0 0 0 3px rgba(230, 126, 34, 0.1);
+}
+
+select.form-input {
+    appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23333' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right 15px center;
+    background-size: 20px;
+    cursor: pointer;
+}
+
+.btn-main {
+    width: 100%;
+    padding: 12px;
+    background: #e67e22;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 5px;
+}
+
+.btn-main:hover {
+    background: #d35400;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(230, 126, 34, 0.4);
+}
+
+.Login-link {
+    margin-top: 18px;
+    color: white;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+    text-align: center;
+}
+
+.Login-link a {
+    color: #5a3413;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.Login-link a:hover {
+    text-decoration: underline;
+}
+
+.error-container {
+    color: #721c24;
+    background-color: rgba(248, 215, 218, 0.9);
+    padding: 10px;
+    border-radius: 8px;
+    margin: 0 auto 20px;
+    width: 650px;
+    max-width: 95%;
+    text-align: center;
+    backdrop-filter: blur(5px);
+    font-size: 0.9rem;
+}
+</style>  
 </head>
 
-<body style="background-color: #f2e7df; text-align: center;">
+<body>
     <div id="navbar">
-                <nav class="main-nav">
-            <div class="nav-left">
-                <a href="{% url 'home' %}" class="logo" style="text-decoration: none;">
-                    <svg viewBox="0 0 24 24" fill="currentColor" stroke="none">
-                        <!-- Custom Chef Hat SVG for Premium Look -->
-                        <path d="M19,8c0-2.76-2.24-5-5-5c-1.64,0-3.09,0.79-4,2.01C9.09,3.79,7.64,3,6,3C3.24,3,1,5.24,1,8c0,2.15,1.36,3.98,3.26,4.71 c0.16,3.61,3.14,6.46,6.81,6.46c2.08,0,3.95-0.91,5.23-2.34C18.17,15.93,19,13.71,19,11.23c0-0.45-0.04-0.89-0.12-1.32 C18.96,9.58,19,9.25,19,8z M11.07,17.17C8.48,17.17,6.38,15.07,6.38,12.48c0-0.57,0.11-1.11,0.3-1.61 C6.84,10.95,7,11,7.18,11c1.23,0,2.23-1,2.23-2.23c0-0.18-0.05-0.34-0.13-0.5c0.5-0.19,1.04-0.3,1.61-0.3c2.59,0,4.69,2.1,4.69,4.69 C15.76,15.07,13.66,17.17,11.07,17.17z"/>
-                    </svg>
-                    Yummy
-                </a>
-            </div>
-
-            <div class="nav-right">
-
-                <button class="nav-back-btn" onclick="window.history.back()" aria-label="Go Back">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <line x1="19" y1="12" x2="5" y2="12"></line>
-                        <polyline points="12 19 5 12 12 5"></polyline>
-                    </svg>
-                    <span>Back</span>
-                </button>
-                <ul class="nav-links">
-                    <li><a href="{% url 'home' %}">Home</a></li>
-                    <li><a href="{% url 'search' %}">Search</a></li>
-                    <li><a href="{% url 'cover' %}">Team</a></li>
-                    {% if user.is_authenticated %}
-                        <li><a href="{% url 'favorites' %}">Favorites</a></li>
-                        {% if user.is_staff %}
-                            <li><a href="{% url 'admin_recipe' %}">Admin</a></li>
-                            <li><a href="{% url 'add_recipe' %}">Add Recipe</a></li>
-                        {% endif %}
-                        <li><a href="{% url 'logout' %}">Logout</a></li>
-                    {% else %}
-                        <li><a href="{% url 'login' %}">Login</a></li>
-                        <li><a href="{% url 'signup' %}">Sign Up</a></li>
-                    {% endif %}
-                </ul>
-
-                <div class="menu-icon" id="menu-icon-btn">
-                    <div class="bar"></div>
-                    <div class="bar"></div>
-                    <div class="bar"></div>
-                </div>
-            </div>
-            
-            <ul class="dropdown-menu" id="side-menu">
-                <li><a href="{% url 'main_dish' %}">Main Dish</a></li>
-                <li><a href="{% url 'healthy' %}">Healthy Food</a></li>
-                <li><a href="{% url 'dessert' %}">Dessert</a></li>
-                <li><a href="{% url 'bakery' %}">Bakery</a></li>
-                <li><a href="{% url 'juices' %}">Juices</a></li>
-                <li><a href="{% url 'appetizers' %}">Appetizers</a></li>
+        <nav class="main-nav">
+            <div class="logo">Yummy</div>
+            <ul class="nav-links">
+                <li><a href="{% url 'cover' %}">Team</a></li>
+                <li><a href="{% url 'home' %}">Home</a></li>
+                <li><a href="{% url 'search' %}">Search</a></li>
+                <li><a href="{% url 'favorites' %}">Favorites</a></li>
+                {% if user.is_staff %}
+                <li><a href="{% url 'admin_recipe' %}">Admin</a></li>
+                <li><a href="{% url 'add_recipe' %}">Add Recipe</a></li>
+                {% endif %}
+                <li><a href="{% url 'login' %}">Login</a></li>
+                <li><a href="{% url 'signup' %}">Sign Up</a></li>
             </ul>
         </nav>
     </div>
 
-    <div class="signup-page-wrapper">
-        <h1 class="welcome-msg">Welcome to YUMMY! 😊</h1>
+    <div class="glass-overlay">
+        <h1 class="welcome-msg">Welcome to YUMMY!</h1>
 
         {% if form.errors %}
-        <div
-            style="color: red; background-color: #ffe0e0; padding: 10px; border-radius: 5px; margin: 10px auto; width: 50%;">
+        <div class="error-container">
             {% for field in form %}
             {% for error in field.errors %}
             <p>{{ error }}</p>
@@ -84,60 +203,54 @@
         {% endif %}
 
         <div class="signup-container">
-            <div class="signup-image">
-                <img src="{% static 'siggnup.jpg' %}" alt="Delicious Food">
-            </div>
+            <form method="POST">
+                {% csrf_token %}
 
-            <div class="form-section">
-
-                <form method="POST">
-                    {% csrf_token %}
-
+                <!-- Row 1: Two columns -->
+                <div class="form-row">
                     <div class="form-group">
                         <label>Username</label>
-
-                        <input type="text" class="form-input" required placeholder="Enter your username" name="username"
-                            required>
+                        <input type="text" class="form-input" required placeholder="Enter your username" name="username">
                     </div>
-
                     <div class="form-group">
-                        <label>Password</label>
-                        <input type="password" class="form-input" placeholder="Enter your password" name="password"
-                            required>
-                    </div>
-
-                    <div class="form-group">
-                        <label>Confirm Password</label>
-
-                        <input type="password" class="form-input" name="password_confirm" required
-                            placeholder="Confirm your password" required>
-                    </div>
-
-                    <div class="form-group">
-                        <label>Email </label>
+                        <label>Email</label>
                         <input type="email" class="form-input" name="email" placeholder="Enter your email" required>
                     </div>
-                    {% if error %}
-                    <div
-                        style="color: red; background-color: #ffe0e0; padding: 10px; border-radius: 5px; margin: 10px auto; width: 50%;">
-                        {{ error }}
-                    </div>
-                    {% endif %}
+                </div>
+
+                <!-- Row 2: Two columns -->
+                <div class="form-row">
                     <div class="form-group">
-                        <label>Type of User</label>
-                        <select class="form-input" name="user_type" required>
-                            <option value="user">User</option>
-                            <option value="admin">Admin</option>
-                        </select>
+                        <label>Password</label>
+                        <input type="password" class="form-input" placeholder="Enter your password" name="password" required>
                     </div>
-
-                    <button type="submit" class="btn-main">Create Account</button>
-
-                    <div class="Login-link">
-                        <span>Already have an account? <a href="{% url 'login' %}">Login</a></span>
+                    <div class="form-group">
+                        <label>Confirm Password</label>
+                        <input type="password" class="form-input" name="password_confirm" required placeholder="Confirm your password">
                     </div>
-                </form>
-            </div>
+                </div>
+
+                <!-- Row 3: Full width -->
+                <div class="form-group full-width">
+                    <label>Type of User</label>
+                    <select class="form-input" name="user_type" required>
+                        <option value="user">User</option>
+                        <option value="admin">Admin</option>
+                    </select>
+                </div>
+
+                {% if error %}
+                <div class="error-container">
+                    {{ error }}
+                </div>
+                {% endif %}
+
+                <button type="submit" class="btn-main">Create Account</button>
+
+                <div class="Login-link">
+                    <span>Already have an account? <a href="{% url 'login' %}">Login</a></span>
+                </div>
+            </form>
         </div>
     </div>
     <script src="{% static 'js/main.js' %}"></script>
