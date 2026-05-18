@@ -15,8 +15,16 @@
 	<style>
 		#navbar {
 			background-color: rgb(102, 30, 8);
-			padding: 1rem 2rem;
-			box-shadow: var(--shadow-sm);
+			position: sticky;
+			top: 0;
+			z-index: 1000;
+			background-color: color-mix(in srgb, rgb(102, 30, 8) 85%, transparent);
+			backdrop-filter: blur(12px);
+			-webkit-backdrop-filter: blur(12px);
+			border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+			box-shadow: 0 8px 32px color-mix(in srgb, vrgb(102, 30, 8) 20%, transparent);
+			padding: 1.2rem 2rem;
+			transition: var(--transition);
 		}
 
 		.main-nav {
